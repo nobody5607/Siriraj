@@ -49,12 +49,7 @@ $this->registerJS("
 $this->registerCss("
        
       
-       .panel-default > .panel-heading {
-            color: #fff;
-            background-color: #9fc45a;
-            border-color: #ddd;
-            
-        }
+      a:link{text-decoration:none;}  
       #list-section{
         display:flex;
         flex-direction: column;
@@ -71,7 +66,7 @@ $this->registerCss("
       #list-section .list-section-items a{
         color:#6d6d6d;
         text-decoration:none;
-        color: #789a32;
+//        color: #789a32;
       }
       .breadcrumb li a{
         text-decoration:none;

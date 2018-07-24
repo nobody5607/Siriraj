@@ -36,7 +36,8 @@
         "bower-asset/open-sans-fontface": "*",
         "bower-asset/highlightjs": "*",
         "bower-asset/timecircles": "*",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "dmstr/yii2-adminlte-asset": "2.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
