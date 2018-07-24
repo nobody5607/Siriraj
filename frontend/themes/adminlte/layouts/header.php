@@ -17,7 +17,7 @@ janpan\jn\assets\JScrollbarAssets::register($this);
 ?>
 <header class="main-header">
     <?php NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' =>"<div style='display: flex;flex-direction: row;'><div>".Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name, 'style'=>'    max-width: 100px;    margin-top: -10px;    width: 40px;    margin-right: 5px;'])."</div><div>LOGO</div></div>",
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',            
