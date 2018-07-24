@@ -36,20 +36,11 @@ if (Yii::$app->controller->action->id === 'logins') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-red sidebar-mini sidebar-collapse fixed">
+    <body class="skin-blue layout-top-nav fixed">
+        
     <?php $this->beginBody() ?>
     <div class="wrapper">
-
-        <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
-        ) ?>
-
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
+        <?= $this->render('header');?>        
 
         <?= $this->render(
             'content.php',
