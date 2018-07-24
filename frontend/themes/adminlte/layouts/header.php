@@ -22,7 +22,7 @@ janpan\jn\assets\JScrollbarAssets::register($this);
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',            
         ],
-        'innerContainerOptions' => ['class' => 'container'],
+        'innerContainerOptions' => ['class' => 'container-fluid'],
         
     ]);
     $menuItems = [

@@ -39,9 +39,9 @@ if (Yii::$app->controller->action->id === 'logins') {
     <body class="skin-blue layout-top-nav fixed">
         
     <?php $this->beginBody() ?>
-    <div class="wrapper">
+    <div class="">
         <?= $this->render(
-            'header.php',
+            'mega-menu.php',
             ['directoryAsset' => $directoryAsset]
         ) ?>        
 
