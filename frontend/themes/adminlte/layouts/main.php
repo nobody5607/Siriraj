@@ -3,7 +3,7 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+janpan\jn\assets\JScrollbarAssets::register($this);
 
 if (Yii::$app->controller->action->id === 'logins') { 
 /**
