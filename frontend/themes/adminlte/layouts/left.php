@@ -32,7 +32,7 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    ['label' => 'ห้องความรู้', 'icon' => 'dashboard', 'url' => ['/knowledges']],
                     ['label' => 'Sign up', 'url' => ['/account/sign-in/signup'], 'visible' =>Yii::$app->user->isGuest],
                     ['label' => 'Login', 'url' => ['/account/sign-in/login'], 'visible' => Yii::$app->user->isGuest],
                     [
