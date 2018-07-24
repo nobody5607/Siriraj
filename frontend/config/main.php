@@ -22,6 +22,13 @@ $config = [
         ],
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@frontend/views' => '@frontend/themes/adminlte'
+                ],
+            ],
+       ],
         'request' => [
             'baseUrl' => '',
             'cookieValidationKey' => env('BACKEND_COOKIE_VALIDATION_KEY'),
