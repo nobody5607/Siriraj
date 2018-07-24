@@ -31,8 +31,9 @@ class NavItem extends Model
                 'items' => self::getMenuItems($model->childs),
                 'active' => $model->url === Yii::$app->request->pathinfo,
             ];
+//            \appxq\sdii\utils\VarDumper::dump($model->url);
         }
-
+        
         return $items;
     }
 }
