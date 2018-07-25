@@ -1,7 +1,7 @@
 <?php
 
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\bootstrap4\NavBar;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
@@ -31,11 +31,10 @@ janpan\jn\assets\JScrollbarAssets::register($this);
 <div class="wrap">
     <?php NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'renderInnerContainer' => false,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',            
-        ],
-        'innerContainerOptions' => ['class' => 'container-fluid'],
+            'class' => 'navbar navbar-dark bg-primary navbar-expand-md fixed-top' 
+        ]
         
     ]);
     $menuItems = [
@@ -70,23 +69,32 @@ janpan\jn\assets\JScrollbarAssets::register($this);
         ];
     }
     echo Nav::widget([        
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'nav navbar-nav ml-auto'],
         'items' => ArrayHelper::merge(NavItem::getMenuItems(), $menuItems),
     ]);
     NavBar::end() ?>
-
-    <div class="container-fluid" id="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+    <div>
+        <?=         nivans\Bs4Breadcrumbs\Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]); ?>
+    </div>
+    <div class="container-fluid" id="container">       
         <?= Wrapper::widget() ?>
         <?= $content ?>
     </div>
 </div>
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-right"><?= Yii::powered() ?></p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                &copy; หน่วยงานของฉัน <?= date('Y') ?>
+            </div>
+            <div class="col-6 text-right">
+                
+            </div>
+        </div>
+
     </div>
 </footer>
 

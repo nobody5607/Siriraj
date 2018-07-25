@@ -4,7 +4,7 @@
     'dataProvider' => $dataProviderContent,
     'options' => [
         'tag' => 'div',
-        'class' => 'list-content',
+        'class' => 'list-contents',
         'id' => 'list-contents',
     ],
     'itemOptions' => function($model) {

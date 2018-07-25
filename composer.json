@@ -38,7 +38,10 @@
         "bower-asset/timecircles": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "lajax/yii2-language-picker": "1.*"
+        "lajax/yii2-language-picker": "1.*",
+        "bower-asset/bootstrap": "~4.0.0@beta",
+        "yiisoft/yii2-bootstrap": "2.1.x-dev",
+        "nivans/yii2-bs4-breadcrumbs": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
