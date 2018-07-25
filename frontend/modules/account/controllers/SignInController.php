@@ -67,8 +67,7 @@ class SignInController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $model = Yii::$app->user->identity;
             $model->ip = Yii::$app->request->userIP;
-            $model->save();
-
+            $model->save();            
             return $this->goBack();
         } else {
             $model->password = '';
@@ -85,7 +84,7 @@ class SignInController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
+        return $this->redirect(['/account/sign-in/login']);
         return $this->goHome();
     }
 

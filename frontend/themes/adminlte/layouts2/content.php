@@ -4,18 +4,21 @@ use dmstr\widgets\Alert;
 
 ?>
 <div class="content-wrapper">
-    <section class="content-header" style="margin-bottom:50px;">
-        <?=
-            Breadcrumbs::widget(
-                [
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                ]
-            ) ?>         
+    <section class="content-header">
+    <?=
+       Breadcrumbs::widget(
+         [
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+         ]
+     ) ?>
+        
     </section>
 
-    <section class="content">
-        <?= Alert::widget() ?>
-        <?= $content ?>
+    <section>
+        <div class="container-fluid">
+             <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
     </section>
 </div>
 

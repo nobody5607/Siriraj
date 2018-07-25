@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Html;
-\frontend\assets\CustomStyleAsset::register($this);
+
 /* @var $this \yii\web\View */
 /* @var $content string */
+janpan\jn\assets\JScrollbarAssets::register($this);
 
-
-if (Yii::$app->controller->action->id === 'login') { 
+if (Yii::$app->controller->action->id === 'logins') { 
 /**
  * Do not use this code in your template. Remove it. 
  * Instead, use the code  $this->layout = '//main-login'; in your controller.
@@ -36,20 +36,14 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="skin-blue sidebar-mini fixed">
+    <body class="skin-blue layout-top-nav fixed">
+        
     <?php $this->beginBody() ?>
-    <div class="wrapper">
-
+    <div class="">
         <?= $this->render(
             'header.php',
             ['directoryAsset' => $directoryAsset]
-        ) ?>
-
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
+        ) ?>      
 
         <?= $this->render(
             'content.php',

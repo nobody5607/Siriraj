@@ -10,7 +10,9 @@ use yii\helpers\Html;
 $this->title = Yii::t('frontend', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="account-default-users">
+<div class="panel panel-default">
+    <div class="panel-heading"><?= Html::encode($this->title)?></div>
+<div class="panel-body">
     <h1><?= Html::encode($this->title) ?></h1>
     <?= $this->render('_search', ['model' => $searchModel]) ?>
 
@@ -29,4 +31,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'summary' => false,
     ]) ?>
+</div>
 </div>

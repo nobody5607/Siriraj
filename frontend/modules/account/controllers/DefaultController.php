@@ -50,7 +50,7 @@ class DefaultController extends Controller
     public function actionSettings()
     {
         $model = Yii::$app->user->identity->userProfile;
-
+       
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => Yii::$app->user->id]);
         } else {

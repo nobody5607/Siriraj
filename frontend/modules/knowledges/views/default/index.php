@@ -1,6 +1,6 @@
 <?php
     use yii\helpers\Html;
-    janpan\jn\assets\Bootstrap4Assets::register($this); 
+  
     $this->title = $title_arr['title'];
     foreach($breadcrumbs as $b){
       $this->params['breadcrumbs'][] = $b;  

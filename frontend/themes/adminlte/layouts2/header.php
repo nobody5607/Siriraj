@@ -15,26 +15,14 @@ use lo\modules\noty\Wrapper;
 AppAsset::register($this);
 janpan\jn\assets\JScrollbarAssets::register($this);
 ?>
-<?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body  >
-<?php $this->beginBody() ?>
-
-<div class="wrap">
+<header class="main-header">
     <?php NavBar::begin([
-        'brandLabel' => Html::img('/images/logo.png',['class'=>'rounded', 'style'=>'width:36px;']),
-        'renderInnerContainer' => false,
+        'brandLabel' =>"<div style='display: flex;flex-direction: row;'><div>".Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name, 'style'=>'    max-width: 100px;    margin-top: -10px;    width: 40px;    margin-right: 5px;'])."</div><div>LOGO</div></div>",
+        'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-dark bg-primary navbar-expand-md fixed-top' 
-        ]
+            'class' => 'navbar-inverse navbar-fixed-top',            
+        ],
+        'innerContainerOptions' => ['class' => 'container-fluid'],
         
     ]);
     $menuItems = [
@@ -69,36 +57,8 @@ janpan\jn\assets\JScrollbarAssets::register($this);
         ];
     }
     echo Nav::widget([        
-        'options' => ['class' => 'nav navbar-nav ml-auto'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => ArrayHelper::merge(NavItem::getMenuItems(), $menuItems),
     ]);
     NavBar::end() ?>
-    <div>
-        <?=         Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]); ?>
-    </div>
-    <div class="container-fluid" id="container">       
-        <?= Wrapper::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-6">
-                &copy; หน่วยงานของฉัน <?= date('Y') ?>
-            </div>
-            <div class="col-6 text-right">
-                
-            </div>
-        </div>
-
-    </div>
-</footer>
-
-<?php $this->endBody() ?>
-</body>
-</html>
-<?php $this->endPage() ?>
+  </header>

@@ -3,6 +3,20 @@ namespace frontend\modules\knowledges\classes;
 use yii\db\Exception;
 class JSection {
     
+    
+    /**
+     * 
+     * @param type $parent_id string '1'
+     * @return object or false
+     */
+    public static function getRootSection(){
+       try{
+            return self::getSessionByCondition('parent_id = 0', 'all');       
+       } catch (yii\db\Exception $ex){
+           return false;
+       }
+    }
+    
     /**
      * 
      * @param type $parent_id string '1'

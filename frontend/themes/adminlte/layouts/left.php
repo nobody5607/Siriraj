@@ -1,70 +1,95 @@
+<?php
+
+use backend\models\Log;
+use backend\widgets\Menu;
+
+/* @var $this \yii\web\View */
+?>
 <aside class="main-sidebar">
-
     <section class="sidebar">
-
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
-        <?= dmstr\widgets\Menu::widget(
-            [
-                'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-                'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'ห้องความรู้', 'icon' => 'dashboard', 'url' => ['/knowledges']],
-                    ['label' => 'Sign up', 'url' => ['/account/sign-in/signup'], 'visible' =>Yii::$app->user->isGuest],
-                    ['label' => 'Login', 'url' => ['/account/sign-in/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Some tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
+        <?= Menu::widget([
+            'options' => ['class' => 'sidebar-menu'],
+            'items' => [
+                [
+                    'label' => Yii::t('backend', 'Main'),
+                    'options' => ['class' => 'header'],
+                ],
+                [
+                    'label' => Yii::t('backend', 'Knowledges'),
+                    'url' => ['/knowledges/section'],
+                    'icon' => '<i class="fa fa-folder-open"></i>',
+                ],
+                [
+                    'label' => Yii::t('backend', 'Tags'),
+                    'url' => ['/tag/index'],
+                    'icon' => '<i class="fa fa-tags"></i>',
+                ],
+                [
+                    'label' => Yii::t('backend', 'Content'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-edit"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('backend', 'Article categories'), 'url' => ['/article-category/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                    ],
+                ],
+                [
+                    'label' => Yii::t('backend', 'System'),
+                    'options' => ['class' => 'header'],
+                ],
+                [
+                    'label' => Yii::t('backend', 'Users'),
+                    'url' => ['/account/default/users'],
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'visible' => Yii::$app->user->can('administrator'),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Other'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-terminal"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        [
+                            'label' => 'Gii',
+                            'url' => ['/gii'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => YII_ENV_DEV,
+                        ],
+                        ['label' => Yii::t('backend', 'File manager'), 'url' => ['/file-manager/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        [
+                            'label' => Yii::t('backend', 'DB manager'),
+                            'url' => ['/db-manager/default/index'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'System information'),
+                            'url' => ['/phpsysinfo/default/index'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ],
+                        ['label' => Yii::t('backend', 'Key storage'), 'url' => ['/key-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('backend', 'Cache'), 'url' => ['/service/cache'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('backend', 'Clear assets'), 'url' => ['/service/clear-assets'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        [
+                            'label' => Yii::t('backend', 'Logs'),
+                            'url' => ['/log/index'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'badge' => Log::find()->count(),
+                            'badgeOptions' => ['class' => 'label-danger'],
                         ],
                     ],
                 ],
-            ]
-        ) ?>
-
+            ],
+        ]) ?>
+     <div class="user-panel" style="position: absolute;bottom: 0;left: 10px;">
+            <div class="pull-left image">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <i class="fa fa-bars"></i>
+                </a>            
+            </div>
+        </div>
     </section>
-
 </aside>
