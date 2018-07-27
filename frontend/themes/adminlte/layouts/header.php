@@ -24,10 +24,9 @@ use yii\bootstrap\Nav;
 //            'active'=>(Yii::$app->controller->module->id == 'knowledges' && Yii::$app->controller->id == 'section') ? true : false],
 //    ]
 //]);
-    echo '
+    $search = '';
+    $search .= '
         <form class="navbar-form navbar-left" role="search">
-            
-        
             <div class="col-md-8">
                 <div class="input-group">
                 
@@ -35,27 +34,24 @@ use yii\bootstrap\Nav;
                     <input type="text" class="form-control" name="x" placeholder="ค้นหา">
                     <div class="input-group-btn search-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
-                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                            <span id="search_concept">เลือกประเภทไฟล์</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#contains">Contains</a></li>
-                          <li><a href="#its_equal">It\'s equal</a></li>
-                          <li><a href="#greather_than">Greather than ></a></li>
-                          <li><a href="#less_than">Less than < </a></li>
-                          <li class="divider"></li>
-                          <li><a href="#all">Anything</a></li>
-                        </ul>
+                           
+                        ';
+    $type= frontend\modules\knowledges\classes\JFiles::getTypeFile();
+            foreach($type as $t){
+                $search .= "<li data-id='{$t['id']}'><a href='#{$t['name']}' data-id='{$t['id']}'>{$t['name']}</a></li>";
+            }
+        $search .= '</ul>
                     </div>
                     <span class="input-group-btn">
                         <button class="btn btn-default  btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-            </div>
-         
-      
-        </form>';
-
-
+            </div></form>';
+            
+echo $search;
 
 echo \yii\bootstrap\Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
