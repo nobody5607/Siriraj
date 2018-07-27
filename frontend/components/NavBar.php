@@ -20,12 +20,12 @@ class NavBar extends BaseNavBar{
             'data-toggle' => 'collapse',
             'data-target' => "#{$this->containerOptions['id']}",
         ]); 
-        $html .= "<span style='margin-left:10px;'></span>";    
-        $html .= Html::button("{$screenReader}\n{$bar}\n{$bar}\n{$bar}", [
-            'class' => 'navbar-toggle',
-            'data-toggle' => 'push-menu',
-            'data-target' => "#{$this->containerOptions['id']}",
-        ]);
+//        $html .= "<span style='margin-left:10px;'></span>";    
+//        $html .= Html::button("{$screenReader}\n{$bar}\n{$bar}\n{$bar}", [
+//            'class' => 'navbar-toggle',
+//            'data-toggle' => 'push-menu',
+//            'data-target' => "#{$this->containerOptions['id']}",
+//        ]);
          
         return $html;    
     }

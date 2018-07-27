@@ -16,7 +16,7 @@ class SectionController extends \yii\web\Controller{
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
-                'pageSize' => 100,
+                'pageSize' => 10,
             ],
         ]);          
         return $this->render("index",[

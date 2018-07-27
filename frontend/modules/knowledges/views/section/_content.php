@@ -3,7 +3,8 @@
 ?>
 <div class="box box-widget">
         <div class="box-header with-border">
-            <div class="user-block">
+            <input type="checkbox"/>
+            <div class="user-block">                
                 <img class="img" src="<?= $folderImage?>" alt="User Image">
                 <span class="username"><a href="#"><?= $model['name']?></a></span>
                 <span class="description"><i class="fa fa-calendar"></i> <?= \appxq\sdii\utils\SDdate::mysql2phpDate($model['create_date'])?></span>

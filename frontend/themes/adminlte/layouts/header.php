@@ -6,93 +6,79 @@ use yii\bootstrap\Nav;
 ?>
 
 <header class="main-header">
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
-
+ 
 <?php
  NavBar::begin([
     'id' => 'main-nav-app',
-     'brandLabel' => 'My Company',
+     'brandLabel' => 'Siriraj',
      'brandUrl' => Yii::$app->homeUrl,
     'innerContainerOptions' => ['class' => 'container-fluid'],
     'options' => [
         'class' => 'page-container navbar navbar-inverse navbar-fixed-top',
-    ],
+    ],     
 ]);
+//echo Nav::widget([
+//    'options' => ['class' => 'navbar-nav navbar-left'],
+//    'items' => [        
+//        ['label' => Yii::t('appmenu','ห้องความรู้'), 'icon' => 'file-code-o', 'url' => ['/knowledges/section'],
+//            'active'=>(Yii::$app->controller->module->id == 'knowledges' && Yii::$app->controller->id == 'section') ? true : false],
+//    ]
+//]);
+    echo '
+        <form class="navbar-form navbar-left" role="search">
+            
+        
+            <div class="col-md-8">
+                <div class="input-group">
+                
+                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                    <input type="text" class="form-control" name="x" placeholder="ค้นหา">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#contains">Contains</a></li>
+                          <li><a href="#its_equal">It\'s equal</a></li>
+                          <li><a href="#greather_than">Greather than ></a></li>
+                          <li><a href="#less_than">Less than < </a></li>
+                          <li class="divider"></li>
+                          <li><a href="#all">Anything</a></li>
+                        </ul>
+                    </div>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default  btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+         
+      
+        </form>';
 
-echo Nav::widget([
-    'options' => ['class' => 'navbar-nav'],
-    'items' => [        
-        ['label' => Yii::t('appmenu','ห้องความรู้'), 'icon' => 'file-code-o', 'url' => ['/knowledges/section'],
-            'active'=>(Yii::$app->controller->module->id == 'knowledges' && Yii::$app->controller->id == 'section') ? true : false],
-    ]
-]);
+
+
 echo \yii\bootstrap\Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => isset(Yii::$app->params['navbarR']) ? Yii::$app->params['navbarR'] : [],
 ]);
 
 NavBar::end();
-?>
-     
+?>    
 </header>
-<?php \appxq\sdii\widgets\CSSRegister::begin();?>
-<style> 
-    .main-header .navbar{
-          /*margin-left: 0px;*/  
-    }
-    @media (min-width: 768px){
-        .sidebar-mini.sidebar-collapse .main-header .navbar {
-            /*margin-left: 0;*/
-        }
-    }
-    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-        background-color: #056298;
-    }
-    .navbar-inverse .navbar-toggle {
-        margin-top: 3px;
-    }
-    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: #056298;
-    }
-    @media (max-width: 767px){
-        .main-sidebar {
-            padding-top: 50px;
-        }
-        .fixed .content-wrapper, .fixed .right-side {
-            padding-top: 45px;
-        }
-    }
-   .content-header>.breadcrumb { 
-        left: 15px; 
-        padding-left: 10px; 
-        padding: 8px 15px;
-        list-style: none;
-        background-color: #f8f8f8;
-        border-radius: 4px;
-        border: 1px solid #e7e7e7;
-    }
-    .content-header>.breadcrumb>li+li:before {
-        content: '/\00a0';
-        color: #2f2f2f;
-    }
-    @media (max-width: 991px){
-        .content-header>.breadcrumb {           
-            background: #d3d5da;
-            padding-left: 10px;
-            border: 1px solid #c1bdbd;
-        }
-    }
-
-    .content-header>.breadcrumb>li>a {
-        color: #3c8dbc; 
-        font-family: sans-serif;
-        font-size: 12pt;
-    }
-    .breadcrumb > .active {
-        color: #222d32;
-        font-size: 12pt;
-    }
-
+<?php 
+    $this->registerJs("
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+		e.preventDefault();
+		var param = $(this).attr('href').replace('#','');
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
+    "); 
+?> 
+<?php\appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    
 
 </style>
-<?php \appxq\sdii\widgets\CSSRegister::end();?>
+<?php\appxq\sdii\widgets\CSSRegister::end();?>

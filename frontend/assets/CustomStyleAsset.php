@@ -18,6 +18,9 @@ class CustomStyleAsset extends AssetBundle
         
     ];
     public $depends = [
-         
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'common\assets\OpenSans',
+        'common\assets\FontAwesome',
     ];
 }
