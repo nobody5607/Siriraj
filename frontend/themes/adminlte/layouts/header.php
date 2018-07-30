@@ -14,7 +14,7 @@ use yii\bootstrap\Nav;
      'brandUrl' => Yii::$app->homeUrl,
     'innerContainerOptions' => ['class' => 'container-fluid'],
     'options' => [
-        'class' => 'page-container navbar navbar-inverse navbar-fixed-top',
+        'class' => 'page-container navbar navbar-inverse',
     ],     
 ]);
 //echo Nav::widget([
@@ -74,7 +74,20 @@ NavBar::end();
 ?> 
 <?php\appxq\sdii\widgets\CSSRegister::begin();?>
 <style>
+    .dropdown-menu{
+      background-color: #136ca0;
+          background-color: #136ca0;
+    }
+    .dropdown-menu>li>a {
+        color: #fff;
+    }
+    .dropdown-menu>li>a:hover {
+        background-color: #276b92;
+        color: #fff;
+    }
+    .header-bar{
+        -webkit-box-shadow:0 3px 2px -2px rgba(0,0,0,.1)
+    }
     
-
 </style>
 <?php\appxq\sdii\widgets\CSSRegister::end();?>

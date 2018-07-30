@@ -1,63 +1,111 @@
-<div class="col-md-6">
-    <!-- Box Comment -->
-    <div class="box box-widget">
-        <div class="box-header with-border">
-            <div class="user-block">
-                <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                <span class="description">Shared publicly - 7:30 PM Today</span>
-            </div>
-            <!-- /.user-block -->
-            <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
-                    <i class="fa fa-circle-o"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-            <!-- /.box-tools -->
+<!-- TO DO List -->
+<div class="box box-primary">
+    <div class="box-header ui-sortable-handle" style="cursor: move;">
+        <i class="ion ion-clipboard"></i>
+
+        <h3 class="box-title">To Do List</h3>
+
+        <div class="box-tools pull-right">
+            <ul class="pagination pagination-sm inline">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <!-- post text -->
-            <p>Far far away, behind the word mountains, far from the
-                countries Vokalia and Consonantia, there live the blind
-                texts. Separated they live in Bookmarksgrove right at</p>
-
-            <p>the coast of the Semantics, a large language ocean.
-                A small river named Duden flows by their place and supplies
-                it with the necessary regelialia. It is a paradisematic
-                country, in which roasted parts of sentences fly into
-                your mouth.</p>
-
-            <!-- Attachment -->
-            <div class="attachment-block clearfix">
-                <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-
-                <div class="attachment-pushed">
-                    <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
-
-                    <div class="attachment-text">
-                        Description about the attachment can be placed here.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
-                    </div>
-                    <!-- /.attachment-text -->
-                </div>
-                <!-- /.attachment-pushed -->
-            </div>
-            <!-- /.attachment-block -->
-
-            <!-- Social sharing buttons -->
-            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-            <span class="pull-right text-muted">45 likes - 2 comments</span>
-        </div>
-        <!-- /.box-body -->
-
-        <!-- /.box-footer -->
-
-        <!-- /.box-footer -->
     </div>
-    <!-- /.box -->
+    <!-- /.box-header -->
+    <div class="box-body">
+        <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+        <ul class="todo-list ui-sortable">
+            <li>
+                <!-- drag handle -->
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <!-- checkbox -->
+                <input type="checkbox" value="">
+                <!-- todo text -->
+                <span class="text">Design a nice theme</span>
+                <!-- Emphasis label -->
+                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                <!-- General tools such as edit or delete-->
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+            <li>
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input type="checkbox" value="">
+                <span class="text">Make the theme responsive</span>
+                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+            <li>
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+            <li>
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+            <li>
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input type="checkbox" value="">
+                <span class="text">Check your messages and notifications</span>
+                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+            <li>
+                <span class="handle ui-sortable-handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+                <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix no-border">
+        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+    </div>
 </div>
- 

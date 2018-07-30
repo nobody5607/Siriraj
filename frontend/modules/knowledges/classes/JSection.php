@@ -1,9 +1,9 @@
 <?php
 namespace frontend\modules\knowledges\classes;
 use yii\db\Exception;
-class JSection {
+class JSection extends \yii\base\Component{
     
-    
+    public $level_each_rows=[];
     /**
      * 
      * @param type $parent_id string '1'
@@ -16,8 +16,86 @@ class JSection {
            return false;
        }
     }
-    
+     
+    public static function getChildren($id){
+        try{
+            $section = \common\models\Sections::find()->where(['parent_id'=>$id])->all();
+            $datas = [];             
+             
+            foreach($section as $s){
+                $data = (new \yii\db\Query())
+                    ->select('@pv:=`id` as data_id, tbl_sections.*')
+                    ->from('tbl_sections')
+                    ->innerJoin("(select @pv:={$s['parent_id']})tmp")
+                    ->where("parent_id=@pv")->all(); 
+                $datas = \yii\helpers\ArrayHelper::merge($datas, $data);
+//                array_push($datas, $data); 
+            }
+            // \appxq\sdii\utils\VarDumper::dump($section);
+            return $section;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
     /**
+     * 
+     * @param type $menu_head
+     * @param type $section
+     * @param type $default != show default title
+     * @return type
+     */
+    public static function getTitle($parent_id){
+         $section = \common\models\Sections::findOne($parent_id);
+         return $section;
+    }
+    /**
+     * 
+     * @param type $parent_id id 
+     * @return boolean|array
+     */
+    public static function getBreadcrumb($parent_id){
+        try{
+            $breadcrumbs = [
+                ['label' => \Yii::t('knowledges', 'ห้องความรู้'), 'url' => ['/knowledges']]
+            ]; 
+            $sql="
+               SELECT c.*
+                FROM (
+                    SELECT
+                        @r AS _id,
+                        (SELECT @r := parent_id FROM tbl_sections WHERE `id` = _id) AS parent_id,
+                        @l := @l + 1 AS level
+                    FROM
+                        (SELECT @r := {$parent_id}, @l := 0) vars, tbl_sections m
+                    WHERE @r <> 0) d
+                JOIN tbl_sections c
+                ON d._id = c.id  
+                ORDER BY c.id ASC
+            ";
+            $data = \Yii::$app->db->createCommand($sql)->queryAll();
+            $breadcrumbs=[];            
+            if($data){                
+                $breadcrumbs[0]=['label' => \Yii::t('knowledges', 'ห้องความรู้'), 'url' => ['/knowledges/section']]; 
+                foreach($data as $key => $d){              
+                  $breadcrumbs[$key+1] = [
+                      'label' =>$d['name'], 
+                      'url' => ['/knowledges/section', 'id'=>$d['id']]];
+                }
+                
+                return $breadcrumbs;
+                
+            }else{
+                $breadcrumbs[0]=['label' => \Yii::t('knowledges', 'ห้องความรู้'), 'url' => ['/knowledges/section']]; 
+                \appxq\sdii\utils\VarDumper::dump($breadcrumbs);
+                return $breadcrumbs;
+            }
+                
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+
+        /**
      * 
      * @param type $parent_id string '1'
      * @return object or false
@@ -76,25 +154,7 @@ class JSection {
            return false;
        }
     }
-    /**
-     * 
-     * @param type $menu_head
-     * @param type $section
-     * @param type $default != show default title
-     * @return type
-     */
-    public static function setTitle($menu_head, $section, $default=''){
-        if($default != ''){
-            return ['name'=>'ห้องความรู้', 'url'=>'/knowledges', 'title'=>'ห้องความรู้', 'icon'=>'fa fa-home'];
-        }
-        $title_arr=[
-                'title'=> isset($menu_head['name']) ? $menu_head['name'] : 'ห้องความรู้',
-                'url'=> \yii\helpers\Url::to(['/knowledges','parent_id'=> isset($section['parent_id']) ? $section['parent_id'] : 0]),
-                'name'=>isset($menu_head['name']) ? $menu_head['name'] : 'ห้องความรู้',
-                'icon'=>isset($menu_head['icon']) ? $menu_head['icon'] : 'fa fa-home',
-        ];
-        return $title_arr;
-    }
+    
     public static function setBreadcrumbs($id){
         $data = self::getSectionById($id, 'one');        
         $breadcrumbs = [
@@ -135,4 +195,5 @@ class JSection {
        //
         return $breadcrumbs;
     }
+    
 }

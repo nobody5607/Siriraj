@@ -1,29 +1,33 @@
 <?php
-    $this->title= Yii::t('section','ห้องความรู้');
-    $this->params['breadcrumbs'][] = $this->title;
+    use yii\bootstrap\Html;
+    $this->title= Yii::t('section','ห้องความรู้');    
+    if($breadcrumb){
+       foreach($breadcrumb as $b){
+        $this->params['breadcrumbs'][] = $b;  
+      } 
+    }else{
+        $this->params['breadcrumbs'][]=$this->title;
+    }
 ?> 
 
 
 <div class="row header-bar">
     <div class="col-md-3 col-sm-6 header-bar-left">
-        <div>ห้องความรู้</div>
+        <div><i class="fa fa-<?= $title['icon'];?>"></i> <?= isset($title) ? Html::encode($title['name']) : 'ห้องความรู้'?></div>
     </div>
     <div class="col-md-9 col-sm-6"></div>
 </div>
 <div class="row content-bar">
     <div class="row padding-10">
-        <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3 text-center">
-            <button class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+        <div class="col-md-3 text-right">
+            <button class="btn btn-success btn-block"><i class="fa fa-plus"></i> Add</button>
         </div>
-        <div class="col-md-9 col-xs-9 col-lg-9 col-sm-9" style="padding-left: 26px; ">
-            <input type="checkbox"/> check all
-            <button class="btn btn-danger"><i class="fa fa-trash"></i> ลบ</button> 
+        <div class="col-md-9" style="padding-left: 26px; ">
+             
         </div>
     </div>
         <div class="col-md-3 col-border-right section-left">
-            <div class="box box-widget widget-user-2">           
-                <div class="box-footer no-padding">
-                    <?= \yii\widgets\ListView::widget([
+            <?= \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,
                             'options' => [
                                 'tag' => 'ul',
@@ -37,9 +41,7 @@
                             'itemView' => function ($model, $key, $index, $widget) {
                                 return $this->render('_item', ['model' => $model]);
                             },
-                        ]);?>            
-                </div>
-            </div>
+                        ]);?>       
             <!-- /.widget-user -->
         </div>
      
@@ -80,10 +82,29 @@
 
 <?php $this->registerJs("
     $('.padding-10').css({padding:'10px'});
+    $('.user-block .username, .user-block .description, .user-block .comment').css({
+            marginLeft: '5px'
+    });
+    $('.user-block a').css({color:'#444'});
+    $('.box-header.with-border').css({borderBottom:'1px solid #ffffff'});
+    $('.box').css({
+            
+            background: '#ffffff',
+            borderTop: '3px solid #fff',
+            borderBottom: '3px solid #fff',
+            marginBottom: '2px',
+            width: '100%',
+            boxshadow: 'none'
+    });
     web_device=function(){
+        $('.nav-stacked>li>a').css({
+            padding: '2px',
+            paddingLeft: '10px',
+            fontSize: '11pt'
+        });
         $('.content-header>.breadcrumb').css({
             position: 'fixed',
-            marginTop: '50px',
+            marginTop: '49px',
             top: '1px',
             right: '0',
             float: 'none',
@@ -106,12 +127,12 @@
             overflow: 'hidden'
         });
         $('.header-bar').css({
-            background: '#ecf0f58f',
+            background: '#fff',
             position: 'fixed',
             top: '90px',
             zIndex: '1',
             width: '100%',
-            paddingLeft: '10px',
+            padding: '10px',
             borderBottom: '1px solid #bebfbf2e',
         });
         $('.header-bar-left').css({
@@ -123,7 +144,7 @@
         $('.content-bar').css({
             position: 'fixed',
             zIndex: '1',
-            top: '135px',
+            top: '155px',
             left: '20px',
             background: '#fff',
             width: '100%',
@@ -152,9 +173,10 @@
         
     }
     mobile_device=function(){
+        $('.nav-stacked').css({background:'#fff'});
         $('.content-header>.breadcrumb').css({
             position: 'fixed',
-            marginTop: '50px',
+            marginTop: '49px',
             top: '1px',
             right: '0',
             float: 'none',
@@ -171,21 +193,33 @@
             fontSize: '12pt'
         });
          $('.header-bar').css({
-            background: 'rgb(236, 240, 245)',
+            background: '#fff',
             position: 'fixed',
-            top: '94px',
+            top: '93px',
             zIndex: '1',
             width: '100%',
-            paddingLeft: '10px',
+            padding: '10px',
             borderBottom: '1px solid rgba(190, 191, 191, 0.72)',
         });
         $('.header-bar-left').css({
-            textAlign: 'left',
+            textAlign: 'center',
             fontSize: '16pt',
             padding: '5px',
-            color: '#444'
+            color: '#444',
+            
         });
-        $('.content-bar').css({marginTop: '50px'});
+        $('ul.breadcrumb').css({
+            height:'43px',
+            whiteSpace:'nowrap',
+            overflow:'hidden'
+        });
+        
+        $('.content-bar').css({marginTop: '70px',    background: '#000'});
+        
+        $('.box .nav-stacked>li').css({
+            fontSize: '10pt'
+        });
+        $('.user-block .username, .box-body').css({fontSize: '10pt'});
     }
 
     //detect mobile device
