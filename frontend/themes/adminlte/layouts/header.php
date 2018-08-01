@@ -24,34 +24,7 @@ use yii\bootstrap\Nav;
 //            'active'=>(Yii::$app->controller->module->id == 'knowledges' && Yii::$app->controller->id == 'section') ? true : false],
 //    ]
 //]);
-    $search = '';
-    $search .= '
-        <form class="navbar-form navbar-left" role="search">
-            <div class="col-md-8">
-                <div class="input-group">
-                
-                    <input type="hidden" name="search_param" value="all" id="search_param">         
-                    <input type="text" class="form-control" name="x" placeholder="ค้นหา">
-                    <div class="input-group-btn search-panel">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
-                            <span id="search_concept">เลือกประเภทไฟล์</span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                           
-                        ';
-    $type= frontend\modules\knowledges\classes\JFiles::getTypeFile();
-            foreach($type as $t){
-                $search .= "<li data-id='{$t['id']}'><a href='#{$t['name']}' data-id='{$t['id']}'>{$t['name']}</a></li>";
-            }
-        $search .= '</ul>
-                    </div>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default  btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-                </div>
-            </div></form>';
-            
-echo $search;
+    
 
 echo \yii\bootstrap\Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
@@ -72,22 +45,11 @@ NavBar::end();
 	});
     "); 
 ?> 
-<?php\appxq\sdii\widgets\CSSRegister::begin();?>
+<?php \appxq\sdii\widgets\CSSRegister::begin();?>
 <style>
-    .dropdown-menu{
-      background-color: #136ca0;
-          background-color: #136ca0;
+    .content-header>.breadcrumb{
+       width: 98%;
     }
-    .dropdown-menu>li>a {
-        color: #fff;
-    }
-    .dropdown-menu>li>a:hover {
-        background-color: #276b92;
-        color: #fff;
-    }
-    .header-bar{
-        -webkit-box-shadow:0 3px 2px -2px rgba(0,0,0,.1)
-    }
-    
 </style>
-<?php\appxq\sdii\widgets\CSSRegister::end();?>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>
+ 
