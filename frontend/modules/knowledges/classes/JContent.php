@@ -32,6 +32,23 @@ class JContent {
             return false;
         }
     }
+    /**
+     * 
+     * @param type $id  section_id
+     * @return object or false
+     */
+    public static function getContentById($id){
+        try {
+            $content = \common\models\Contents::find()
+                    ->where('rstat not in(0,3)')
+                    ->andWhere('id=:id',[':id'=>$id])
+                    ->one();
+//            \appxq\sdii\utils\VarDumper::dump($content);
+            return $content;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
     
     public static function getIDContentBySectionIdAll($id){
        $section = JSection::getSectionById($id, 'all');

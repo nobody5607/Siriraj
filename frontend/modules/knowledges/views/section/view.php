@@ -80,7 +80,7 @@
                             </div>
                         </form>
                 </div>
-                 <?= $content_section->content;?>
+                 <?= $content_section->content;?> 
                 <?php 
                     
                     echo \yii\widgets\ListView::widget([
@@ -91,7 +91,7 @@
                             'id' => 'section-all',
                         ],
                         'itemOptions' => function($model) {
-                            return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'box box-widget'];
+                            return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'box-footer box-comments'];
                         },
                         'layout' => "{items}\n{pager}",
                         'itemView' => function ($model, $key, $index, $widget) {
@@ -105,3 +105,10 @@
         
     </div> 
 </div>
+<?php \appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    .box-comments {
+    background: #ffffff;
+}
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>

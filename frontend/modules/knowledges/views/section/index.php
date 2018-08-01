@@ -73,6 +73,7 @@
     <div class="col-md-9 section-right">
         <div class="box box-primary">
             <div class="box-body">
+                <br>
                 <?= $content_section->content;?>                
             </div>
         </div>

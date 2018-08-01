@@ -49,6 +49,8 @@ NavBar::end();
 <style>
     .content-header>.breadcrumb{
        width: 98%;
+       font-size: 12pt;
+       background:#d2d6de;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

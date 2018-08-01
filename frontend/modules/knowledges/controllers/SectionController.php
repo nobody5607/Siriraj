@@ -23,7 +23,7 @@ class SectionController extends \yii\web\Controller{
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 100,
             ],
         ]);          
          
@@ -45,7 +45,8 @@ class SectionController extends \yii\web\Controller{
         }
         $breadcrumb = JSection::getBreadcrumb($id);
         $title = JSection::getTitle($id);        
-        $content = \frontend\modules\knowledges\classes\JContent::getContentAll();
+        $content = \frontend\modules\knowledges\classes\JContent::getContentBySectionId($id);
+        //\appxq\sdii\utils\VarDumper::dump($content);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$section,
             'pagination' => [
@@ -55,7 +56,7 @@ class SectionController extends \yii\web\Controller{
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 100,
             ],
         ]);          
         return $this->render("view",[

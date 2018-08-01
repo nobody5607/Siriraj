@@ -1,21 +1,16 @@
 <?php 
     $folderImage = Yii::getAlias('@storageUrl/avatars/folder.png');
 ?>
-<div class="box-widget">
-        <div class="box-header with-border">
-            
-            <div class="user-block">                  
-                <span class="username" style="display:flex;">
-                    
-                    <a href="#" style="flex-grow: 2;">
-                        <?= $model['name'] ?>                         
-                    </a>
-                    <span class="description">
-                            <i class="fa fa-calendar"><?= \appxq\sdii\utils\SDdate::mysql2phpDate($model['create_date']) ?></i> 
-                    </span>
-                </span>
 
-            </div>
-        </div>
-       
-    </div>
+<div class="box-comment"> 
+    <a href="/knowledges/content/view?content_id=<?= $model['id']?>">
+    <?= \yii\helpers\Html::img('/images/logo.png', ['class'=>'img-circle img-sm'])?>
+    <div class="comment-text">
+        <span class="username">
+            <?= $model['name'] ?>
+            <span class="text-muted pull-right"><?= \appxq\sdii\utils\SDdate::mysql2phpDate($model['create_date']) ?></span>
+        </span>
+    </div> 
+    </a>    
+</div>
+ 
