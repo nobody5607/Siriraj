@@ -32,7 +32,8 @@ class ContentController extends Controller
         return $this->render("view",[
             'breadcrumb'=>$breadcrumb,
             'title'=>$content['name'],
-            'items'=>$items
+            'items'=>$items,
+            'file_type'=>$file_type
         ]);
         //$section_id = \Yii::$app->request->get('section_id', '');
     }
@@ -53,6 +54,24 @@ class ContentController extends Controller
              'dataProvider'=>$dataProvider
         ]);
         return \yii\helpers\Json::encode($html);
+    }
+    
+    public function actionGetData(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $type_id            = \Yii::$app->request->get('type_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$files,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        return $this->renderAjax("get-data",[
+             'dataProvider'=>$dataProvider
+        ]);
     }
     
 }
