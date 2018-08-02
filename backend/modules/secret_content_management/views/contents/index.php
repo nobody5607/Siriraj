@@ -16,7 +16,12 @@ $this->title = Yii::t('content', 'Contents Management');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="contents-index">
+<ul class="nav nav-tabs">
+    <li><a href="<?= Url::to(['/secret_content_management/sections'])?>">Section Private</a></li>
+    <li class="active"><a href="#">Content Private</a></li> 
+</ul> 
+<br>
+<div class="tab-content">
  
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -84,11 +89,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width:250px'],
                 'buttons' => [
                     'view' => function ($url, $model) {                        
-                        if ($model->public != 1) {
+                        if ($model->public != 2) {
                             return '';
                         }
                         $label = Yii::t('section', 'View');
-                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/view', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['contents/view', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-default btn-xs',
                                     'data-action'   => 'view',
@@ -96,11 +101,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                     },
                     'update' => function ($url, $model) {
-                        if ($model->public != 1) {
+                        if ($model->public != 2) {
                             return '';
                         }
                         $label = Yii::t('section', 'Update');
-                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/update', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['contents/update', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-warning btn-xs',
                                     'data-action'   => 'update',
@@ -109,11 +114,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     }, 
                    'delete' => function ($url, $model) {
                          
-                        if ($model->public != 1) {
+                        if ($model->public != 2) {
                             return '';
                         }                         
                         $label = Yii::t('section', 'Delete');
-                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/delete', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['contents/delete', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-danger btn-xs',
                                     'data-action'   => 'delete',

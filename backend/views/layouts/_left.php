@@ -23,7 +23,7 @@ use backend\widgets\Menu;
                 ],
                 [
                     'label' => Yii::t('backend', 'Secret Content Management'),
-                    'url' => ['/secret_content_management'],
+                    'url' => ['/secret_content_management/sections'],
                     'icon' => '<i class="fa fa-tags"></i>',
                 ],
                 [
