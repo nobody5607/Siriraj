@@ -9,14 +9,24 @@ use backend\models\Log;
 Yii::$app->name = 'Siriraj';
 /* @var $this \yii\web\View */
 ?>
+
 <header class="main-header">
     <?= Html::a('<span class="logo-mini"><i class="fa fa-diamond"></i></span><span class="logo-lg"><i class="fa fa-diamond"></i> ' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <?php 
+                        echo '<div class="navbar-text">';
+                        echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+                            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
+                        ]);
+                        echo '</div>';
+                ?>
                 <li class="dropdown tasks-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-warning"></i>
@@ -41,6 +51,7 @@ Yii::$app->name = 'Siriraj';
                         </li>
                     </ul>
                 </li>
+                
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
@@ -50,6 +61,7 @@ Yii::$app->name = 'Siriraj';
                         <?php endif ?>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
                     </a>
+                    
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
@@ -76,6 +88,7 @@ Yii::$app->name = 'Siriraj';
                     <?= Html::a('<i class="fa fa-cogs"></i>', ['/site/settings']) ?>
                 </li>
             </ul>
+            
         </div>
     </nav>
 </header>

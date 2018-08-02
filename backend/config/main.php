@@ -38,6 +38,31 @@ $config = [
         ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@backend/messages', // if advanced application, set @frontend/messages
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+        'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            'languages' => ['en-US', 'th'], // List of available languages (icons only)
+            'cookieName' => 'language', // Name of the cookie.
+            'expireDays' => 64, // The expiration time of the cookie is 64 days.
+            'callback' => function() {
+                if (!\Yii::$app->user->isGuest) {
+                    //		    $user = \Yii::$app->user->identity;
+                    //		    $user->language = \Yii::$app->language;
+                    //		    $user->save();
+                }
+            }
+        ],
         'request' => [
             
             'cookieValidationKey' => env('BACKEND_COOKIE_VALIDATION_KEY'),
@@ -60,6 +85,7 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        
         'treemanager' =>  [
             'class' => '\kartik\tree\Module',
             // other module settings, refer detailed documentation
