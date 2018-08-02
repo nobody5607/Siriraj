@@ -60,6 +60,10 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
+        ],
         'section_management' => [
             'class' => 'backend\modules\section_management\Module',
         ],

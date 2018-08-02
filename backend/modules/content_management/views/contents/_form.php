@@ -40,21 +40,32 @@ use backend\widgets\TinyMCECallback;
                     'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
                 ],
             ]) ?>
-
-	<?= $form->field($model, 'section_id')->textInput() ?>
+        <div class="form-group">
+            <?php
+            echo "<label>Section</label>";
+            echo \kartik\tree\TreeViewInput::widget([                
+                'name' => 'section_id',
+                'value' => $model->section_id, // preselected values
+                'query' => backend\modules\content_management\models\TreeSections::find()->addOrderBy('parent_id, id'), //\tests\models\Tree::find()->addOrderBy('root, lft'),
+                'headingOptions' => ['label' => 'Store'],
+                'rootOptions' => ['label' => '<i class="fa fa-tree text-success"></i>'],
+                'fontAwesome' => true,
+                'asDropdown' => true,
+                'multiple' => false,
+                'options' => ['disabled' => false, 'class'=>'test1']
+            ]);
+            ?>
+        </div> 
  
 
 	<?php 
             $model->public = ($model->public != '') ? $model->public : 1;
             echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])->label(false) 
-        ?>
-
-	<?= $form->field($model, 'content_date')->textInput() ?>
+        ?> 
 
     </div>
     <div class="modal-footer">
 	<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	<?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -66,6 +77,13 @@ use backend\widgets\TinyMCECallback;
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script>
+$('#modal-contents').bind('hidden.bs.modal', function() {
+    if(window.tinyMCE !== undefined && tinyMCE.editors.length){
+        for(e in tinyMCE.editors){
+            tinyMCE.editors[e].destroy();
+        }
+    }
+});     
 // JS script
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
     var $form = $(this);
