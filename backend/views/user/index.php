@@ -13,10 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <p>
-        <?= Html::a(Yii::t('backend', 'Create user'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('backend', 'Roles'), ['/rbac/access/role'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('backend', 'Permissions'), ['/rbac/access/permission'], ['class' => 'btn btn-success']) ?>
+    <p class="pull-right">
+        <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i> Create user'), ['create'], ['class' => 'btn btn-success']) ?>
+        
     </p>
 
     <?= GridView::widget([

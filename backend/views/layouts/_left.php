@@ -37,32 +37,54 @@ $actionID = Yii::$app->controller->action->id;
                     'active'=>($moduleID == 'secret_content_management') ? TRUE : FALSE,
                 ],
                 [
-                    'label' => Yii::t('backend', 'Content'),
-                    'url' => '#',
-                    'icon' => '<i class="fa fa-edit"></i>',
-                    'options' => ['class' => 'treeview'],
-                    'items' => [
-                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                        ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                        ['label' => Yii::t('backend', 'Article categories'), 'url' => ['/article-category/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                    ],
-                ],
-                [
-                    'label' => Yii::t('backend', 'System'),
-                    'options' => ['class' => 'header'],
-                ],
-                [
                     'label' => Yii::t('backend', 'Users'),
                     'url' => ['/user/index'],
                     'icon' => '<i class="fa fa-users"></i>',
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
+//                [
+//                    'label' => Yii::t('backend', 'Content'),
+//                    'url' => '#',
+//                    'icon' => '<i class="fa fa-edit"></i>',
+//                    'options' => ['class' => 'treeview'],
+//                    'items' => [
+//                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+//                        ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+//                        ['label' => Yii::t('backend', 'Article categories'), 'url' => ['/article-category/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+//                    ],
+//                ],
                 [
-                    'label' => Yii::t('backend', 'Other'),
+                    'label' => Yii::t('backend', 'System'),
+                    'options' => ['class' => 'header'],
+                ],
+                
+                [
+                    'label' => Yii::t('backend', 'Settings'),
                     'url' => '#',
-                    'icon' => '<i class="fa fa-terminal"></i>',
+                    'icon' => '<i class="fa fa-cog"></i>',
                     'options' => ['class' => 'treeview'],
                     'items' => [
+                            [
+                                'label' => 'Authentication',
+                                'url' => '#',
+                                'icon' => '<i class="fa fa-cogs"></i>',
+                                'options' => ['class' => 'treeview'],
+                                'items'=>[
+                                    [
+                                        'label' => 'Role',
+                                        'url' => ['/rbac/access/role'],
+                                        'icon' => '<i class="fa fa-angle-double-right"></i>',
+                                        'visible' => Yii::$app->user->can('administrator'),
+                                    ],
+                                    [
+                                        'label' => 'Permission',
+                                        'url' => ['/rbac/access/permission'],
+                                        'icon' => '<i class="fa fa-angle-double-right"></i>',
+                                        'visible' => Yii::$app->user->can('administrator'),
+                                    ]
+                                ],
+                            
+                            ],
                         [
                             'label' => 'Gii',
                             'url' => ['/gii'],
@@ -76,12 +98,12 @@ $actionID = Yii::$app->controller->action->id;
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
                             'visible' => Yii::$app->user->can('administrator'),
                         ],
-                        [
-                            'label' => Yii::t('backend', 'System information'),
-                            'url' => ['/phpsysinfo/default/index'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ],
+//                        [
+//                            'label' => Yii::t('backend', 'System information'),
+//                            'url' => ['/phpsysinfo/default/index'],
+//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                            'visible' => Yii::$app->user->can('administrator'),
+//                        ],
                         ['label' => Yii::t('backend', 'Key storage'), 'url' => ['/key-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                         ['label' => Yii::t('backend', 'Cache'), 'url' => ['/service/cache'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                         ['label' => Yii::t('backend', 'Clear assets'), 'url' => ['/service/clear-assets'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
