@@ -12,6 +12,14 @@ use dmstr\widgets\Alert;
                 ]
             ) ?>         
     </section>
+    <?php appxq\sdii\widgets\CSSRegister::begin();?>
+    <style>
+        .content-header>.breadcrumb>li+li:before {
+            content: '/\00a0';
+            color: #504d4d;
+        }
+    </style>
+    <?php appxq\sdii\widgets\CSSRegister::end();?>
 
     <section class="content">
         <?= Alert::widget() ?>

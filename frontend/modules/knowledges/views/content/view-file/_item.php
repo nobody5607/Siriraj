@@ -1,6 +1,9 @@
 <?php 
     use yii\helpers\Html;
-     
+    if(!Yii::$app->user->isGuest){
+        echo Html::checkbox('checked', '', []); 
+    }
+    
     if($model['file_type'] == '2'){
         //image
         $image = Html::img("/images/{$model['file_name_org']}", ['class'=>'img img-responsive img-rounded', 'style'=>'width:80px;']);

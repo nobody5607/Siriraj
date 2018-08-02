@@ -10,9 +10,10 @@ class ContentController extends Controller
     public function actionView()
     {
         $content_id         = \Yii::$app->request->get('content_id', '');
-        $content            =  JContent::getContentById($content_id);
-        //\appxq\sdii\utils\VarDumper::dump($id);
-        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);
+        $content            =  JContent::getContentById($content_id);         
+        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);       
+        $breadcrumb[] = ['label' =>$content['name']];       
+        //\appxq\sdii\utils\VarDumper::dump($breadcrumb);
         $file_type          = FileType::find()->all();
         $items              = [];
         foreach($file_type as $key=> $type){
@@ -37,6 +38,29 @@ class ContentController extends Controller
         ]);
         //$section_id = \Yii::$app->request->get('section_id', '');
     }
+    public function actionViewContentData(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $file_id            = \Yii::$app->request->get('file_id', '');
+        $filet_id           = \Yii::$app->request->get('filet_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);         
+        $breadcrumb[]       = ['label' =>$content['name'],'url' => ['/knowledges/content/view', 'content_id'=>$content['id']]];  
+        $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$files->all(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
+         
+        return $this->render("view-content-data",[
+            'breadcrumb'=>$breadcrumb,
+            'dataProvider'=>$dataProvider,
+            'dataDefault'=>$dataDefault
+        ]);
+    }
     public function actionGetView(){
         $content_id         = \Yii::$app->request->get('content_id', '');
         $type_id            = \Yii::$app->request->get('type_id', '');
@@ -55,7 +79,23 @@ class ContentController extends Controller
         ]);
         return \yii\helpers\Json::encode($html);
     }
-    
+    public function actionGetCountData(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $type_id            = \Yii::$app->request->get('type_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
+        $str = \Yii::t('content', 'ไฟล์');
+        if($type_id == 2){
+            $str = \Yii::t('content', 'ภาพ');
+        }
+        if($files){
+            return count($files)." {$str}";
+        }else{
+            return "0 {$str}";
+        }
+    }
     public function actionGetData(){
         $content_id         = \Yii::$app->request->get('content_id', '');
         $type_id            = \Yii::$app->request->get('type_id', '');
