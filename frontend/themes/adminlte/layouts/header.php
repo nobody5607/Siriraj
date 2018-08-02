@@ -17,6 +17,7 @@ use yii\bootstrap\Nav;
         'class' => 'page-container navbar navbar-inverse',
     ],     
 ]);
+
 //echo Nav::widget([
 //    'options' => ['class' => 'navbar-nav navbar-left'],
 //    'items' => [        
@@ -30,6 +31,12 @@ echo \yii\bootstrap\Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => isset(Yii::$app->params['navbarR']) ? Yii::$app->params['navbarR'] : [],
 ]);
+        echo '<div class="navbar-text pull-right">';
+        echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
+        ]);
+        echo '</div>';
 
 NavBar::end();
 ?>    

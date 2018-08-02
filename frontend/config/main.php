@@ -10,6 +10,8 @@ $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
+    'timeZone' => 'Asia/Bangkok',
+    'language' => 'en-US',
     'modules' => [
         'account' => [
             'class' => 'frontend\modules\account\Module',
@@ -22,6 +24,31 @@ $config = [
         ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/messages', // if advanced application, set @frontend/messages
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+       'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            'languages' => ['en-US', 'th'], // List of available languages (icons only)
+            'cookieName' => 'language', // Name of the cookie.
+            'expireDays' => 64, // The expiration time of the cookie is 64 days.
+            'callback' => function() {
+                if (!\Yii::$app->user->isGuest) {
+                    //		    $user = \Yii::$app->user->identity;
+                    //		    $user->language = \Yii::$app->language;
+                    //		    $user->save();
+                }
+            }
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => [
