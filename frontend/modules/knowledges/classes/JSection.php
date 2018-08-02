@@ -62,7 +62,7 @@ class JSection extends \yii\base\Component{
                     ->select('@pv:=`id` as data_id, tbl_sections.*')
                     ->from('tbl_sections')
                     ->innerJoin("(select @pv:={$s['parent_id']})tmp")
-                    ->where("parent_id=@pv")->all(); 
+                    ->where("parent_id=@pv")->all();  
                 $datas = \yii\helpers\ArrayHelper::merge($datas, $data);
 //                array_push($datas, $data); 
             }
@@ -72,6 +72,20 @@ class JSection extends \yii\base\Component{
             return false;
         }
     }
+        public static function getChildrenById($id) {
+        try {
+
+            $data = (new \yii\db\Query())
+                    ->select('@pv:=`id` as data_id, tbl_sections.*')
+                    ->from('tbl_sections')
+                    ->innerJoin("(select @pv:={$id})tmp")
+                    ->where("parent_id=@pv")->all();
+                    return $data;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+
     /**
      * 
      * @param type $menu_head

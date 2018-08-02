@@ -63,8 +63,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 ], 
 	    ],
 	]) ?>
+        
+        
+        
+        <div>
+            <h4>Parent</h4>
+            <?=  \yii\grid\GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    [
+                        'format'=>'raw',
+                        'label'=>'name',
+                        'value'=>function($model){
+                            if($model){
+                                return "<i class='fa {$model['icon']}'> {$model['name']}</i>";
+                            }
+                            
+                        }
+                    ],                     
+                ],
+            ]) ?>
+        </div>
     </div>
 </div>
+
+
+
 <?php 
 $this->registerCss("
     table.detail-view th {

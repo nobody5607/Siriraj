@@ -77,13 +77,23 @@ class SectionsController extends Controller
      */
     public function actionView($id)
     {
+        $child = \frontend\modules\knowledges\classes\JSection::getChildrenById($id);
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$child,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+        ]);
 	if (Yii::$app->getRequest()->isAjax) {
 	    return $this->renderAjax('view', [
 		'model' => $this->findModel($id),
+                'dataProvider'=>$dataProvider
 	    ]);
 	} else {
+            
 	    return $this->render('view', [
 		'model' => $this->findModel($id),
+                'dataProvider'=>$dataProvider
 	    ]);
 	}
     }
