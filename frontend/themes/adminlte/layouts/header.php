@@ -52,6 +52,7 @@ NavBar::end();
        font-size: 12pt;
        background:#d2d6de;
     }
+    
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
  

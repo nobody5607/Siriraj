@@ -19,3 +19,26 @@
 <div class="clearfix text-center">
     <button class="btn btn-sm btn-warning"><< ดูทั้งหมด >></button>
 </div>
+
+<?php 
+    echo yii\bootstrap\Modal::widget([
+        'size'=>"modal-lg",
+        'id'=>'modal-content'
+    ]);
+    echo $this->registerCss("
+        .modal-lg{
+            width: 95%;
+            right: 0%;
+        }
+        .navbar-inverse {
+            background-color: #3c8dbc;
+            border-color: #080808;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #ffffff;
+        }
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ffffff;
+        }
+    ");
+?>

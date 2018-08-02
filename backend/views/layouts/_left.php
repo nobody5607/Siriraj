@@ -9,19 +9,20 @@ use backend\widgets\Menu;
     <section class="sidebar">
         <?= Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => [
+            'items' => [                 
                 [
-                    'label' => Yii::t('backend', 'Main'),
-                    'options' => ['class' => 'header'],
-                ],
-                [
-                    'label' => Yii::t('backend', 'Menu'),
-                    'url' => ['/menu/index'],
+                    'label' => Yii::t('backend', 'Section Management'),
+                    'url' => ['/section_management/sections'],
                     'icon' => '<i class="fa fa-sitemap"></i>',
                 ],
                 [
-                    'label' => Yii::t('backend', 'Tags'),
-                    'url' => ['/tag/index'],
+                    'label' => Yii::t('backend', 'Content Management'),
+                    'url' => ['/content_management'],
+                    'icon' => '<i class="fa fa-tags"></i>',
+                ],
+                [
+                    'label' => Yii::t('backend', 'Secret Content Management'),
+                    'url' => ['/secret_content_management'],
                     'icon' => '<i class="fa fa-tags"></i>',
                 ],
                 [

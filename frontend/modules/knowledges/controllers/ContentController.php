@@ -40,7 +40,9 @@ class ContentController extends Controller
         $content_id         = \Yii::$app->request->get('content_id', '');
         $type_id            = \Yii::$app->request->get('type_id', '');
         $content            =  JContent::getContentById($content_id);
-        $files              = \common\models\Files::find()->where('content_id=:id AND rstat not in(0,3) AND public = 1', [':id'=>$content_id])->all();
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files,
             'pagination' => [

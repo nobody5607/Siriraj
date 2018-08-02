@@ -6,7 +6,7 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Url;
 use yii\log\Logger;
 use backend\models\Log;
-
+Yii::$app->name = 'Siriraj';
 /* @var $this \yii\web\View */
 ?>
 <header class="main-header">

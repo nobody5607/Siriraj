@@ -2,6 +2,8 @@
 
 use yii\bootstrap\Html;
 use backend\assets\AppAsset;
+use appxq\sdii\assets\notify\NotifyAsset;
+NotifyAsset::register($this);
 
 /* @var $this \yii\web\View */
 /* @var $content string */

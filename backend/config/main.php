@@ -60,6 +60,15 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'section_management' => [
+            'class' => 'backend\modules\section_management\Module',
+        ],
+        'content_management' => [
+            'class' => 'backend\modules\content_management\Module',
+        ],
+        'secret_content_management' => [
+            'class' => 'backend\modules\secret_content_management\Module',
+        ],
         'api' => [
             'class' => 'backend\modules\api\Api',
         ],
@@ -174,6 +183,25 @@ if (YII_ENV_DEV) {
             ],
         ],
     ];
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'generators' => [
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => [
+                    'SDII-CRUD-Ajax' => '@common/templates/sdii-crud-ajax',
+                    'SDII-CRUD' => '@common/templates/sdii-crud',
+                ]
+            ],
+            'model' => [
+                'class' => 'yii\gii\generators\model\Generator',
+                'templates' => [
+                    'SDII-Model' => '@common/templates/sdii-model',
+                ]
+            ],
+        ]
+    ];
+
 }
 
 return $config;
