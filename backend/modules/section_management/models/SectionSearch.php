@@ -41,7 +41,7 @@ class SectionSearch extends Sections
      */
     public function search($params)
     {
-        $query = Sections::find()->orderBy(['id'=>SORT_DESC]);
+        $query = Sections::find()->where('rstat not in(0,3)')->orderBy(['id'=>SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

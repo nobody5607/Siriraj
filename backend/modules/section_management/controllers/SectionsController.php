@@ -184,7 +184,17 @@ class SectionsController extends Controller
     {
 	if (Yii::$app->getRequest()->isAjax) {
 	    Yii::$app->response->format = Response::FORMAT_JSON;
-	    if ($this->findModel($id)->delete()) {
+            $model = $this->findModel($id);
+            $model->rstat = 3;
+            if($model->id == 0){
+                $result = [
+		    'status' => 'error',
+		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
+		    'data' => $id,
+		];
+		return $result;
+            }
+	    if ($model->save()) {
 		$result = [
 		    'status' => 'success',
 		    'action' => 'update',
@@ -209,8 +219,10 @@ class SectionsController extends Controller
 	if (Yii::$app->getRequest()->isAjax) {
 	    Yii::$app->response->format = Response::FORMAT_JSON;
 	    if (isset($_POST['selection'])) {
-		foreach ($_POST['selection'] as $id) {
-		    $this->findModel($id)->delete();
+		foreach ($_POST['selection'] as $id) {		     
+                    $model = $this->findModel($id);
+                    $model->rstat = 3;
+                    $model->save();
 		}
 		$result = [
 		    'status' => 'success',

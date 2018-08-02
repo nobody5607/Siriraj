@@ -86,7 +86,55 @@ $this->params['breadcrumbs'][] = $this->title;
 		'class' => 'appxq\sdii\widgets\ActionColumn',
 		'contentOptions' => ['style'=>'width:80px;text-align: center;'],
 		'template' => '{view} {update} {delete}',
-	    ],
+                'headerOptions' => ['style' => 'width:250px'],
+                'buttons' => [
+                    'view' => function ($url, $model) {                        
+                        if ($model->public != 1) {
+                            return '';
+                        }
+                        $label = Yii::t('section', 'View');
+                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/view', 'id' => $model->id]), [
+                                    'title'         => $label,
+                                    'class'         => 'btn btn-default btn-xs',
+                                    'data-action'   => 'view',
+                                    'data-pjax'     =>0
+                            ]);
+                    },
+                    'update' => function ($url, $model) {
+                        if ($model->public != 1) {
+                            return '';
+                        }
+                        $label = Yii::t('section', 'Update');
+                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/update', 'id' => $model->id]), [
+                                    'title'         => $label,
+                                    'class'         => 'btn btn-warning btn-xs',
+                                    'data-action'   => 'update',
+                                    'data-pjax'     =>0
+                            ]);
+                    }, 
+                   'delete' => function ($url, $model) {
+                         
+                        if ($model->public != 1) {
+                            return '';
+                        }
+                        $parent_id = "parent_{$model->parent_id}";
+                        
+                        if ($parent_id == 'parent_') {
+                            return '';
+                        }
+                        $label = Yii::t('section', 'Delete');
+                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/delete', 'id' => $model->id]), [
+                                    'title'         => $label,
+                                    'class'         => 'btn btn-danger btn-xs',
+                                    'data-action'   => 'delete',
+                                    'data-pjax'     =>0,
+                                    'data-confirm'  => Yii::t('section','Are you sure you want to delete this item?'),
+                                    'data-method'   => 'post'
+                            ]);
+                    },           
+            ]
+        ],
+                    
         ],
     ]); ?>
     <?php  Pjax::end();?>

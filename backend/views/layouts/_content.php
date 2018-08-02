@@ -33,7 +33,7 @@ use lo\modules\noty\Wrapper;
            <div class="box-body">
                <?php appxq\sdii\widgets\CSSRegister::begin();?>
                <style>
-                   .modal-lg{width: 95%;}
+                   .modal-lg{width: 90%;}
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
                 <?= $content ?>

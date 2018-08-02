@@ -3,6 +3,7 @@
 use yii\bootstrap\Html;
 use backend\assets\AppAsset;
 use appxq\sdii\assets\notify\NotifyAsset;
+appxq\sdii\assets\bootbox\BootBoxAsset::register($this);
 NotifyAsset::register($this);
 
 /* @var $this \yii\web\View */
