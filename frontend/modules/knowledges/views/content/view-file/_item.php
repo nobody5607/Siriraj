@@ -17,7 +17,7 @@
                 Your browser does not support the video tag.
             </video>
         ";
-        echo  Html::a($video, '#', ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);
+        echo  Html::a($video, ['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);
     }else if($model['file_type'] == '4'){
         //audio
         $sound = "
@@ -27,13 +27,13 @@
                 Your browser does not support the video tag.
             </audio>
         ";
-        echo  Html::a($sound, '#', ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);
+        echo  Html::a($sound, ['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);
     }else if($model['file_type'] == '5'){
         //docx or pdf
         $files= " 
             <div><i class='fa fa-file'></i> {$model['file_name_org']}</div>
         ";
-        echo  Html::a($files, '#', ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);    
+        echo  Html::a($files, ['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], ['class'=>'content-popup','data-id'=>$model['id'], 'title'=>$model['name']]);    
     }
 ?> 
  

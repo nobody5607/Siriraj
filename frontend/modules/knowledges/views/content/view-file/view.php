@@ -1,9 +1,29 @@
 <div class="row">
     <div class="col-md-8">
         <div class="row" style="margin-bottom:10px;">
+            <?php if($dataDefault['file_type'] == 2):?>
             <div class="col-md-6 col-md-offset-3">
                 <img class="img img-responsive img-rounded" src="/images/<?= $dataDefault['file_name_org']?>" style="width:1024px;">
             </div>
+            <?php elseif($dataDefault['file_type'] == 3):?>
+                <div class="col-md-6 col-md-offset-3">
+                    <video controls style="width:90%;margin:0 auto;">
+                        <source src='/videos/<?= $dataDefault['file_name_org']?>' type='video/mp4'>                 
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <?php elseif($dataDefault['file_type'] == 4):?>
+                <div class="col-md-6 col-md-offset-3">
+                    <audio controls style="width:90%;margin:0 auto;">
+                        <source src='/audio/<?= $dataDefault['file_name_org']?>' type='audio/mpeg'>                 
+                        Your browser does not support the video tag.
+                    </audio>
+                </div>
+            <?php else:?>
+                <div class="col-md-6 col-md-offset-3">
+                    <h1><i class="fa fa-file"></i> <?= $dataDefault['file_name_org']?></h1>
+                </div>
+            <?php endif;?>
         </div>
         <?=
         \yii\widgets\ListView::widget([
