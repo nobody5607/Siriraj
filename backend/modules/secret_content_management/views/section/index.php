@@ -1,4 +1,4 @@
-<?php     
+<?php
     use yii\bootstrap\Html;
     $this->title= Yii::t('section','คลังความรู้พิพิธภัณฑ์ศิริราช');    
     if($breadcrumb){
@@ -9,10 +9,10 @@
        // $this->params['breadcrumbs'][]=$this->title;
     }
 ?> 
- 
+
 
 <div class="row header-bar">
-    <div class="col-md-3 col-sm-6 header-bar-left" id="logo-bar">
+    <div class="col-md-3 col-sm-6 header-bar-left">
         <div>
             <?= \yii\helpers\Html::img('/images/1533128627373.jpg', ['class'=>'img img-responsive'])?>
         </div>
@@ -23,7 +23,7 @@
         ?>
              
         <form class="" role="search">
-            <div class="col-md-8" id="search-bar">
+            <div class="col-md-8">
                 <div class="input-group">
 
                     <input type="hidden" name="search_param" value="all" id="search_param">         

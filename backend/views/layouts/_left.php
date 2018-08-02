@@ -32,7 +32,7 @@ $actionID = Yii::$app->controller->action->id;
                 ],
                 [
                     'label' => Yii::t('backend', 'Secret Content Management'),
-                    'url' => ['/secret_content_management/sections'],
+                    'url' => ['/secret_content_management/section'],
                     'icon' => '<i class="fa fa-tags"></i>',
                     'active'=>($moduleID == 'secret_content_management') ? TRUE : FALSE,
                 ],

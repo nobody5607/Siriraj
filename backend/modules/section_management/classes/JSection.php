@@ -90,7 +90,7 @@ class JSection extends \yii\base\Component{
      * @param type $parent_id id 
      * @return boolean|array
      */
-    public static function getBreadcrumb($parent_id){
+    public static function getBreadcrumb($parent_id, $url=''){
         try{
             $breadcrumbs = [                
             ]; 
@@ -111,11 +111,11 @@ class JSection extends \yii\base\Component{
             $data = \Yii::$app->db->createCommand($sql)->queryAll();
             $breadcrumbs=[];            
             if($data){                
-               
+                $url = ($url == '') ? '/content_management/section/view' : $url;
                 foreach($data as $key => $d){              
                   $breadcrumbs[$key+1] = [
                       'label' =>$d['name'], 
-                      'url' => ['/content_management/section/view', 'id'=>$d['id']]];
+                      'url' => [$url, 'id'=>$d['id']]];
                 }
                 
                 return $breadcrumbs;

@@ -1,6 +1,6 @@
 <?php
  
-namespace backend\modules\content_management\controllers;
+namespace backend\modules\secret_content_management\controllers;
 use Yii;
 use common\models\Contents;
 use backend\modules\content_management\models\ContentSearch;
@@ -53,9 +53,9 @@ class SectionController extends \yii\web\Controller{
             $group_section = JSection::getSectionArrById($id);
             $section = JSection::getChildren($id);
         }
-        $breadcrumb = JSection::getBreadcrumb($id);
+        $breadcrumb = JSection::getBreadcrumb($id, '/secret_content_management/section/view');
         $title = JSection::getTitle($id);        
-        $content = \backend\modules\section_management\classes\JContent::getContentBySectionId($id);
+        $content = \backend\modules\section_management\classes\JContent::getContentBySectionId($id, 'private');
         //\appxq\sdii\utils\VarDumper::dump($content);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$section,
@@ -108,8 +108,8 @@ class SectionController extends \yii\web\Controller{
     }
     public function actionCreateContent(){  
         $sec_id                 = \Yii::$app->request->get('id', '');
+        $public                 = \Yii::$app->request->get('public', '1');
         $model                  = new \common\models\Contents();
-        $public                 = \Yii::$app->request->get('public', '1');         
         
         if ($model->load(Yii::$app->request->post())) {
             $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
@@ -142,13 +142,12 @@ class SectionController extends \yii\web\Controller{
         ]);
     }
     public function actionUpdateContent(){  
-        $id                     = \Yii::$app->request->get('id', '');
-        $model                  = \common\models\Contents::findOne($id);
-        $public                 = \Yii::$app->request->get('public', '1');
+        $id = \Yii::$app->request->get('id', '');
+        $model = \common\models\Contents::findOne($id);
         
         if ($model->load(Yii::$app->request->post())) {
             //$model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
-            $model->rstat       = 1; 
+            $model->rstat = 1; 
             $model->user_create = Yii::$app->user->id;
             $model->create_date = new \yii\db\Expression('NOW()');
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -170,8 +169,7 @@ class SectionController extends \yii\web\Controller{
             }
         }
         return $this->renderAjax('update-content',[
-            'model'=>$model,
-            'public'=>$public
+            'model'=>$model
         ]);
     }
     public function actionDeleteContent(){  

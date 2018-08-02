@@ -173,14 +173,14 @@
        //id = section_id
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
        $('#<?= $modal?>').modal('show');
-       $.get(url, {id:id,public:1}, function(res){
+       $.get(url, {id:id,public:2}, function(res){
            $('#<?= $modal?> .modal-content').html(res);
        });
    }
    callUpdate=function(url , id){
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
        $('#<?= $modal?>').modal('show');
-       $.get(url, {id:id,public:1}, function(res){
+       $.get(url, {id:id,public:2}, function(res){
            $('#<?= $modal?> .modal-content').html(res);
        });
    }

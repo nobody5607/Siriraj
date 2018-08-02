@@ -53,7 +53,8 @@ use backend\widgets\TinyMCECallback;
  
 
 	<?php 
-            $model->public = ($model->public != '') ? $model->public : 1;
+ 
+            $model->public = ($model->public != '') ? $model->public : isset($public) ? $public : '1';
             echo $form->field($model, 'public')
                     ->inline()
                     ->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])
