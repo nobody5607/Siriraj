@@ -44,7 +44,8 @@
         "kop/yii2-scroll-pager": "dev-master",
         "mycademy/yii2-bootstrap-tour": "dev-master",
         "richardfan1126/yii2-js-register": "*",
-        "dominus77/yii2-fontawesome-iconpicker": "*"
+        "dominus77/yii2-fontawesome-iconpicker": "*",
+        "kartik-v/yii2-tree-manager": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

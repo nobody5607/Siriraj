@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\section_management\controllers;
+namespace backend\modules\content_management\controllers;
 
 use Yii;
-use common\models\Sections;
-use backend\modules\section_management\models\SectionSearch;
+use common\models\Contents;
+use backend\modules\content_management\models\ContentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,9 +13,9 @@ use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
 
 /**
- * SectionController implements the CRUD actions for Sections model.
+ * ContentsController implements the CRUD actions for Contents model.
  */
-class SectionsController extends Controller
+class ContentsController extends Controller
 {
     public function behaviors()
     {
@@ -56,12 +56,12 @@ class SectionsController extends Controller
     }
     
     /**
-     * Lists all Sections models.
+     * Lists all Contents models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SectionSearch();
+        $searchModel = new ContentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -71,49 +71,40 @@ class SectionsController extends Controller
     }
 
     /**
-     * Displays a single Sections model.
+     * Displays a single Contents model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $child = \frontend\modules\knowledges\classes\JSection::getChildren($id);
-        $dataProvider = new \yii\data\ArrayDataProvider([
-            'allModels'=>$child,
-            'pagination' => [
-                'pageSize' => 100,
-            ],
-        ]);
 	if (Yii::$app->getRequest()->isAjax) {
 	    return $this->renderAjax('view', [
 		'model' => $this->findModel($id),
-                'dataProvider'=>$dataProvider
 	    ]);
 	} else {
-            
 	    return $this->render('view', [
 		'model' => $this->findModel($id),
-                'dataProvider'=>$dataProvider
 	    ]);
 	}
     }
 
     /**
-     * Creates a new Sections model.
+     * Creates a new Contents model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-	    $model = new Sections();
+	    $model = new Contents();
 
 	    if ($model->load(Yii::$app->request->post())) {
                 $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
                 $model->rstat = 1;
-                $model->forder =1;
-                $model->create_by = Yii::$app->user->id;
+//                $model-> =1;
+                $model->user_create = Yii::$app->user->id;
                 $model->create_date = new \yii\db\Expression('NOW()');
+                
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [
@@ -132,10 +123,8 @@ class SectionsController extends Controller
 		    return $result;
 		}
 	    } else {
-                $parent_section = Sections::find()->where('rstat not in(0,3)')->all();
 		return $this->renderAjax('create', [
 		    'model' => $model,
-                    'parent_section'=>$parent_section
 		]);
 	    }
 	} else {
@@ -144,7 +133,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Updates an existing Sections model.
+     * Updates an existing Contents model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -155,6 +144,11 @@ class SectionsController extends Controller
 	    $model = $this->findModel($id);
 
 	    if ($model->load(Yii::$app->request->post())) {
+                $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                $model->rstat = 1;
+//                $model-> =1;
+                $model->user_create = Yii::$app->user->id;
+                $model->create_date = new \yii\db\Expression('NOW()');
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [
@@ -173,10 +167,8 @@ class SectionsController extends Controller
 		    return $result;
 		}
 	    } else {
-		$parent_section = Sections::find()->where('rstat not in(0,3)')->all();
 		return $this->renderAjax('update', [
 		    'model' => $model,
-                    'parent_section'=>$parent_section
 		]);
 	    }
 	} else {
@@ -185,7 +177,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Deletes an existing Sections model.
+     * Deletes an existing Contents model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -219,7 +211,7 @@ class SectionsController extends Controller
 		    'data' => $id,
 		];
 		return $result;
-	    }
+	    } 
 	} else {
 	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
 	}
@@ -229,8 +221,8 @@ class SectionsController extends Controller
 	if (Yii::$app->getRequest()->isAjax) {
 	    Yii::$app->response->format = Response::FORMAT_JSON;
 	    if (isset($_POST['selection'])) {
-		foreach ($_POST['selection'] as $id) {		     
-                    $model = $this->findModel($id);
+		foreach ($_POST['selection'] as $id) {
+		    $model = $this->findModel($id);
                     $model->rstat = 3;
                     $model->save();
 		}
@@ -255,15 +247,15 @@ class SectionsController extends Controller
     }
     
     /**
-     * Finds the Sections model based on its primary key value.
+     * Finds the Contents model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sections the loaded model
+     * @return Contents the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sections::findOne($id)) !== null) {
+        if (($model = Contents::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

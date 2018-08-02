@@ -9,35 +9,29 @@ use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\section_management\models\SectionSearch */
+/* @var $searchModel backend\modules\content_management\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('section', 'Section Management');
+$this->title = Yii::t('content', 'Contents');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="sections-index">
-
-    
+<div class="contents-index">
+ 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php  Pjax::begin(['id'=>'sections-grid-pjax']);?>
+    <?php  Pjax::begin(['id'=>'contents-grid-pjax']);?>
     <?= GridView::widget([
-	'id' => 'sections-grid',
-	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['sections/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-sections']). ' ' .
-		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['sections/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-sections', 'disabled'=>true]),
+	'id' => 'contents-grid',
+	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['contents/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-contents']). ' ' .
+		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['contents/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-contents', 'disabled'=>true]),
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
-        'rowOptions'=>function($model, $key, $index, $grid){
-            if($model->public == 2){
-                return ['class'=>'danger'];
-            }
-        },
         'columns' => [
 	    [
 		'class' => 'yii\grid\CheckboxColumn',
 		'checkboxOptions' => [
-		    'class' => 'selectionSectionIds'
+		    'class' => 'selectionContentIds'
 		],
 		'headerOptions' => ['style'=>'text-align: center;'],
 		'contentOptions' => ['style'=>'width:40px;text-align: center;'],
@@ -48,22 +42,16 @@ $this->params['breadcrumbs'][] = $this->title;
 		'contentOptions' => ['style'=>'width:60px;text-align: center;'],
 	    ],
             [
-                'label'=>'icon',
-                'format'=>'raw',
-                'contentOptions'=>['style'=>'width:100px;text-align:center;'],
+                'contentOptions'=>['style'=>'width:250px'],
+                'attribute'=>'name',
                 'value'=>function($model){
-                    return "<i class='fa {$model->icon}'></i>";
+                    return $model['name'];
                 }
-            ],
-
-//            'id',
-            'name',
-//            'content:ntext',
-//            'list_content',
+            ], 
             [
-                'attribute'=>'create_by',
+                'attribute'=>'user_create',
                 'value'=>function($model){
-                    return \common\modules\cores\User::getProfileNameByUserId($model['create_by']);
+                    return \common\modules\cores\User::getProfileNameByUserId($model['user_create']);
                 }
             ],
             [
@@ -71,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>function($model){
                     return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
                 }
-            ], 
+            ],
             [
                 'format'=>'raw',
                 'contentOptions'=>['style'=>'width:100px;text-align:center;'],
@@ -80,12 +68,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     return ($model->public == 1) ? '<label class="label label-success">Public</label>' : '<label class="label label-danger">Private</label>';
                 }
             ],        
-            // 'forder',
-             
-            // 'rstat',
-            // 'icon',
-            // 'create_by',
+           // 'description:ntext',
+            //'section_id',
+            //'rstat',
+            // 'public',
+            // 'content_date',
             // 'create_date',
+            // 'user_create',
+            // 'thumn_image:ntext',
 
 	    [
 		'class' => 'appxq\sdii\widgets\ActionColumn',
@@ -98,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                         $label = Yii::t('section', 'View');
-                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/view', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/view', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-default btn-xs',
                                     'data-action'   => 'view',
@@ -110,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                         $label = Yii::t('section', 'Update');
-                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/update', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/update', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-warning btn-xs',
                                     'data-action'   => 'update',
@@ -121,14 +111,9 @@ $this->params['breadcrumbs'][] = $this->title;
                          
                         if ($model->public != 1) {
                             return '';
-                        }
-                        $parent_id = "parent_{$model->parent_id}";
-                        
-                        if ($parent_id == 'parent_') {
-                            return '';
-                        }
+                        }                         
                         $label = Yii::t('section', 'Delete');
-                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/delete', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['/content_management/contents/delete', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-danger btn-xs',
                                     'data-action'   => 'delete',
@@ -139,7 +124,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     },           
             ]
         ],
-                    
         ],
     ]); ?>
     <?php  Pjax::end();?>
@@ -147,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?=  ModalForm::widget([
-    'id' => 'modal-sections',
+    'id' => 'modal-contents',
     'size'=>'modal-lg',
 ]);
 ?>
@@ -156,44 +140,39 @@ $this->params['breadcrumbs'][] = $this->title;
     //'key' => 'bootstrap-modal',
     'position' => \yii\web\View::POS_READY
 ]); ?>
-<script>      
-    
+<script>
 // JS script
-$('#sections-grid-pjax').on('click', '#modal-addbtn-sections', function() {
-    modalSection($(this).attr('data-url'));
+$('#contents-grid-pjax').on('click', '#modal-addbtn-contents', function() {
+    modalContent($(this).attr('data-url'));
 });
 
-$('#sections-grid-pjax').on('click', '#modal-delbtn-sections', function() {
-    selectionSectionGrid($(this).attr('data-url'));
+$('#contents-grid-pjax').on('click', '#modal-delbtn-contents', function() {
+    selectionContentGrid($(this).attr('data-url'));
 });
 
-$('#sections-grid-pjax').on('click', '.select-on-check-all', function() {
+$('#contents-grid-pjax').on('click', '.select-on-check-all', function() {
     window.setTimeout(function() {
-	var key = $('#sections-grid').yiiGridView('getSelectedRows');
-	disabledSectionBtn(key.length);
+	var key = $('#contents-grid').yiiGridView('getSelectedRows');
+	disabledContentBtn(key.length);
     },100);
 });
 
-$('#sections-grid-pjax').on('click', '.selectionSectionIds', function() {
+$('#contents-grid-pjax').on('click', '.selectionContentIds', function() {
     var key = $('input:checked[class=\"'+$(this).attr('class')+'\"]');
-    disabledSectionBtn(key.length);
+    disabledContentBtn(key.length);
 });
 
-$('#sections-grid-pjax').on('dblclick', 'tbody tr', function() {
+$('#contents-grid-pjax').on('dblclick', 'tbody tr', function() {
     var id = $(this).attr('data-key');
-    //modalSection('<?= Url::to(['sections/update', 'id'=>''])?>'+id);
+    modalContent('<?= Url::to(['contents/update', 'id'=>''])?>'+id);
 });	
-//$('#sections-grid-pjax').on('click', 'thead tr th a', function() {
-//    let url = $(this).attr('href');
-//    alert(url);
-//    return false;
-//});
-$('#sections-grid-pjax').on('click', 'tbody tr td a', function() {
+
+$('#contents-grid-pjax').on('click', 'tbody tr td a', function() {
     var url = $(this).attr('href');
     var action = $(this).attr('data-action');
 
     if(action === 'update' || action === 'view') {
-	modalSection(url);
+	modalContent(url);
     } else if(action === 'delete') {
 	yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete this item?')?>', function() {
 	    $.post(
@@ -201,7 +180,7 @@ $('#sections-grid-pjax').on('click', 'tbody tr td a', function() {
 	    ).done(function(result) {
 		if(result.status == 'success') {
 		    <?= SDNoty::show('result.message', 'result.status')?>
-		    $.pjax.reload({container:'#sections-grid-pjax'});
+		    $.pjax.reload({container:'#contents-grid-pjax'});
 		} else {
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		}
@@ -214,25 +193,25 @@ $('#sections-grid-pjax').on('click', 'tbody tr td a', function() {
     return false;
 });
 
-function disabledSectionBtn(num) {
+function disabledContentBtn(num) {
     if(num>0) {
-	$('#modal-delbtn-sections').attr('disabled', false);
+	$('#modal-delbtn-contents').attr('disabled', false);
     } else {
-	$('#modal-delbtn-sections').attr('disabled', true);
+	$('#modal-delbtn-contents').attr('disabled', true);
     }
 }
 
-function selectionSectionGrid(url) {
+function selectionContentGrid(url) {
     yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
 	$.ajax({
 	    method: 'POST',
 	    url: url,
-	    data: $('.selectionSectionIds:checked[name=\"selection[]\"]').serialize(),
+	    data: $('.selectionContentIds:checked[name=\"selection[]\"]').serialize(),
 	    dataType: 'JSON',
 	    success: function(result, textStatus) {
 		if(result.status == 'success') {
 		    <?= SDNoty::show('result.message', 'result.status')?>
-		    $.pjax.reload({container:'#sections-grid-pjax'});
+		    $.pjax.reload({container:'#contents-grid-pjax'});
 		} else {
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		}
@@ -241,9 +220,9 @@ function selectionSectionGrid(url) {
     });
 }
 
-function modalSection(url) {
-    $('#modal-sections .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-    $('#modal-sections').modal('show')
+function modalContent(url) {
+    $('#modal-contents .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+    $('#modal-contents').modal('show')
     .find('.modal-content')
     .load(url);
 }

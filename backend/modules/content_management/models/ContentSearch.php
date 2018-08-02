@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\section_management\models;
+namespace backend\modules\content_management\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Sections;
+use common\models\Contents;
 
 /**
- * SectionSearch represents the model behind the search form about `common\models\Sections`.
+ * ContentSearch represents the model behind the search form about `common\models\Contents`.
  */
-class SectionSearch extends Sections
+class ContentSearch extends Contents
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SectionSearch extends Sections
     public function rules()
     {
         return [
-            [['id', 'list_content', 'parent_id', 'forder', 'public', 'rstat', 'create_by'], 'integer'],
-            [['name', 'content', 'icon', 'create_date'], 'safe'],
+            [['id', 'section_id', 'rstat', 'public', 'user_create'], 'integer'],
+            [['name', 'description', 'content_date', 'create_date', 'thumn_image'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SectionSearch extends Sections
      */
     public function search($params)
     {
-        $query = Sections::find()->where('public =1 AND rstat not in(0,3)')->orderBy(['forder'=>SORT_DESC]);
+        $query = Contents::find()->where('public =1 AND rstat not in(0,3)');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -60,18 +60,17 @@ class SectionSearch extends Sections
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'list_content' => $this->list_content,
-            'parent_id' => $this->parent_id,
-            'forder' => $this->forder,
-            'public' => $this->public,
+            'section_id' => $this->section_id,
             'rstat' => $this->rstat,
-            'create_by' => $this->create_by,
+            'public' => $this->public,
+            'content_date' => $this->content_date,
             'create_date' => $this->create_date,
+            'user_create' => $this->user_create,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'icon', $this->icon]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'thumn_image', $this->thumn_image]);
 
         return $dataProvider;
     }

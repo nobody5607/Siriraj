@@ -14,10 +14,11 @@ use backend\widgets\Menu;
                     'label' => Yii::t('backend', 'Section Management'),
                     'url' => ['/section_management/sections'],
                     'icon' => '<i class="fa fa-sitemap"></i>',
+                    //'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Content Management'),
-                    'url' => ['/content_management'],
+                    'url' => ['/content_management/contents'],
                     'icon' => '<i class="fa fa-tags"></i>',
                 ],
                 [

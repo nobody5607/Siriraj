@@ -53,10 +53,14 @@ class Contents extends \yii\db\ActiveRecord
             'description' => Yii::t('knowledges', 'Description'),
             'section_id' => Yii::t('knowledges', ' tbl_section'),
             'rstat' => Yii::t('knowledges', 'Rstat'),
-            'public' => Yii::t('knowledges', 'ห้อง public, private'),
+            'public' => Yii::t('knowledges', 'ห้อง public'),
             'content_date' => Yii::t('knowledges', 'Content Date'),
             'create_date' => Yii::t('knowledges', 'Create Date'),
             'user_create' => Yii::t('knowledges', 'User Create'),
         ];
+    }
+    public function getSections()
+    {
+        return $this->hasOne(Sections::class, ['id' => 'section_id']);
     }
 }
