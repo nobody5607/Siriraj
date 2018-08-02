@@ -1,7 +1,17 @@
 <?php
  
 namespace backend\modules\content_management\controllers;
+use Yii;
+use common\models\Contents;
+use backend\modules\content_management\models\ContentSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\Response;
+use appxq\sdii\helpers\SDHtml;
 use backend\modules\section_management\classes\JSection;
+
 class SectionController extends \yii\web\Controller{
     public function actionIndex(){    
         $id = \Yii::$app->request->get('id', '');         
@@ -45,7 +55,7 @@ class SectionController extends \yii\web\Controller{
         }
         $breadcrumb = JSection::getBreadcrumb($id);
         $title = JSection::getTitle($id);        
-        $content = \frontend\modules\knowledges\classes\JContent::getContentBySectionId($id);
+        $content = \backend\modules\section_management\classes\JContent::getContentBySectionId($id);
         //\appxq\sdii\utils\VarDumper::dump($content);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$section,
@@ -95,5 +105,71 @@ class SectionController extends \yii\web\Controller{
         return $this->renderAjax('update',[
             'model'=>$model
         ]);
+    }
+    public function actionUpdateContent(){  
+        $id = \Yii::$app->request->get('id', '');
+        $model = \common\models\Contents::findOne($id);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            //$model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $model->rstat = 1; 
+            $model->user_create = Yii::$app->user->id;
+            $model->create_date = new \yii\db\Expression('NOW()');
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if ($model->save()) {
+                $result = [
+                    'status' => 'success',
+                    'action' => 'update',
+                    'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
+                    'data' => $model,
+                ];
+                return $result;
+            } else {
+                $result = [
+                    'status' => 'error',
+                    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not update the data.'),
+                    'data' => $model,
+                ];
+                return $result;
+            }
+        }
+        return $this->renderAjax('update-content',[
+            'model'=>$model
+        ]);
+    }
+    public function actionDeleteContent(){  
+        
+        if (Yii::$app->getRequest()->isAjax) {
+            $id = \Yii::$app->request->post('id', '');
+	    Yii::$app->response->format = Response::FORMAT_JSON;
+            $model = \common\models\Contents::findOne($id);
+            $model->rstat = 3;
+            if($model->id == 0){
+                $result = [
+		    'status' => 'error',
+		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
+		    'data' => $id,
+		];
+		return $result;
+            }
+	    if ($model->save()) {
+		$result = [
+		    'status' => 'success',
+		    'action' => 'update',
+		    'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Deleted completed.'),
+		    'data' => $id,
+		];
+		return $result;
+	    } else {
+		$result = [
+		    'status' => 'error',
+		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
+		    'data' => $id,
+		];
+		return $result;
+	    } 
+	} else {
+	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
+	}
     }
 }

@@ -17,9 +17,22 @@
     </a> 
     <div>
         <?php
-        echo Html::button("<i class='fa fa-pencil'></i>", ['class' => 'btn btn-primary btn-xs', 'title' => Yii::t('appmenu', 'Edit')]);
+        echo Html::button("<i class='fa fa-pencil'></i>", [
+            'data-id' => $model['id'],
+            'data-action' => 'update',
+            'class' => 'btn btn-primary btn-xs btnCall',
+            'title' => Yii::t('appmenu', 'Edit'),
+            'data-url' => '/content_management/section/update-content'
+        ]);
         echo " ";
-        echo Html::button("<i class='fa fa-trash'></i>", ['class' => 'btn btn-danger btn-xs', 'title' => Yii::t('appmenu', 'Delete')]);
+         echo Html::button("<i class='fa fa-trash'></i>", [
+            'data-id' => $model['id'],
+            'data-action' => 'delete',
+            'class' => 'btn btn-danger btn-xs btnCall',
+            'title' => Yii::t('appmenu', 'Delete'),
+            'data-url' => '/content_management/section/delete-content',
+            'data-method'=>'POST'
+        ]);
         ?>
     </div>
 </div>

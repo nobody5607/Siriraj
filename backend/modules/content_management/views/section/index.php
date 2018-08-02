@@ -107,15 +107,21 @@
 
 <script>
    $('.btnCall').on('click', function(){
-       let id = $(this).attr('data-id');
-       let url = $(this).attr('data-url');
+       let id       = $(this).attr('data-id');
+       let url      = $(this).attr('data-url');
+       let action   = $(this).attr('data-action');        
+       if(action == 'update'){
+           callUpdate(url , id);
+       }
+       return false; 
+   });
+   callUpdate=function(url , id){
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
        $('#<?= $modal?>').modal('show');
        $.get(url, {id:id}, function(res){
            $('#<?= $modal?> .modal-content').html(res);
        });
-       return false; 
-   });
+   } 
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
 

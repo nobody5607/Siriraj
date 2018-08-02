@@ -139,14 +139,34 @@
 
 <script>
    $('.btnCall').on('click', function(){
-       let id = $(this).attr('data-id');
-       let url = $(this).attr('data-url');
+       let id       = $(this).attr('data-id');
+       let url      = $(this).attr('data-url');
+       let action   = $(this).attr('data-action');
+       
+       if(action == 'update'){
+           callUpdate(url , id);
+       }else if(action == 'delete'){
+           callDelete(url ,id);
+       }
+       
+       return false; 
+   });
+   callUpdate=function(url , id){
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
        $('#<?= $modal?>').modal('show');
        $.get(url, {id:id}, function(res){
            $('#<?= $modal?> .modal-content').html(res);
        });
-       return false; 
-   });
+   }
+   callDelete=function(url ,id){
+        yii.confirm('<?= Yii::t('user', 'Confirm Delete?')?>', function(){
+            $.post(url, {id:id}, function(result){
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            });
+        });      
+   }
 </script>
 <?php \richardfan\widget\JSRegister::end();?>

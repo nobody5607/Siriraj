@@ -23,7 +23,7 @@ class JContent {
     public static function getContentBySectionId($id){
         try {
             $content = \common\models\Contents::find()
-                    ->where('rstat not in(0,3)')
+                    ->where('rstat not in(0,3) AND public = 1')
                     ->andWhere('section_id=:id',[':id'=>$id])
                     ->all();
 //            \appxq\sdii\utils\VarDumper::dump($content);
