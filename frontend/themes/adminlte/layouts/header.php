@@ -52,6 +52,17 @@ NavBar::end();
        font-size: 12pt;
        background:#d2d6de;
     }
+    .navbar-nav > li > .dropdown-menu {
+        margin-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background: #276b92;
+        border: 1px solid #3c8dbc;
+    }
+    .dropdown-menu>li>a:hover {
+        background-color: #225979;
+        color: #333;
+    }
     
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
