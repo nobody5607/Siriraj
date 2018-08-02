@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
                 'contentOptions'=>['style'=>'width:100px;text-align:center;'],
                 'value'=>function($model){
-                    return "<i class='fa fa-{$model->icon}'></i>";
+                    return "<i class='fa {$model->icon}'></i>";
                 }
             ],
 

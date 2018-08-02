@@ -13,7 +13,7 @@ use dominus77\iconpicker\IconPicker;
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="sections-form">
+<div>
 
     <?php $form = ActiveForm::begin([
 	'id'=>$model->formName(),
@@ -25,10 +25,13 @@ use dominus77\iconpicker\IconPicker;
     </div>
 
     <div class="modal-body">
-	 
+	<div class="row"> 
 
-	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
-        <?= $form->field($model, 'icon')->widget(IconPicker::className(), [
+        <div class="col-md-8">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'icon')->widget(IconPicker::className(), [
             'options'=>['id'=>'icon-picker','class'=>'form-control'],
             'clientOptions' => [
                 'title' => 'Font Awesome Icon', // Popover title (optional) only if specified in the template
@@ -60,20 +63,22 @@ use dominus77\iconpicker\IconPicker;
                 ],
             ],
         ]); ?>
-        <?= $form->field($model, 'content')->widget(TinyMce::class, [
-        'language' => strtolower(substr(Yii::$app->language, 0, 2)),
-        'options'=>['id'=>'tests'],
-        'clientOptions' => [
-            'height'=> 250,
-            'plugins' => [
-                'advlist autolink lists link image charmap print preview anchor pagebreak',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table contextmenu paste code textcolor colorpicker',
-            ],
-            'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
-            'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
-        ],
-    ]) ?>
+        </div>
+        <div class="col-md-12">
+             <?= $form->field($model, 'content')->widget(TinyMce::class, [
+                'language' => strtolower(substr(Yii::$app->language, 0, 2)),
+                'options'=>['id'=>'tests'],
+                'clientOptions' => [
+                    'height'=> 250,
+                    'plugins' => [
+                        'advlist autolink lists link image charmap print preview anchor pagebreak',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table contextmenu paste code textcolor colorpicker',
+                    ],
+                    'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
+                    'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
+                ],
+            ]) ?>
 	<?php 
             $parent_list = \yii\helpers\ArrayHelper::map($parent_section, 'id', 'name');
             echo $form->field($model, 'parent_id')->dropDownList($parent_list,['prompt'=> Yii::t('section', 'Select Section')] );
@@ -81,16 +86,13 @@ use dominus77\iconpicker\IconPicker;
         ?>
         <?php 
             $model->public = ($model->public != '') ? $model->public : 1;
-            echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])->label(false) ?>
-
-	 
-
-	 
-
+            echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])->label(false) 
+        ?>
+        </div> 
+</div>
     </div>
     <div class="modal-footer">
 	<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	<?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

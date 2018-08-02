@@ -20,18 +20,60 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= DetailView::widget([
 	    'model' => $model,
 	    'attributes' => [
-		'id',
+		 
 		'name',
-		'content:ntext',
-		'list_content',
-		'parent_id',
-		'forder',
-		'public',
-		'rstat',
-		'icon',
-		'create_by',
-		'create_date',
+		[
+                    'format'=>'raw',                     
+                    'attribute'=>'name',
+                    'value'=>function($model){
+                        return $model->name;
+                    }
+                ],  
+		//'list_content',
+		//'parent_id',
+		 
+		[
+                    'format'=>'raw',
+                     
+                    'attribute'=>'public',
+                    'value'=>function($model){
+                        return ($model->public == 1) ? '<label class="label label-success">Public</label>' : '<label class="label label-danger">Private</label>';
+                    }
+                ],  		 
+		[
+                    'label'=>'icon',
+                    'format'=>'raw',
+                     
+                    'value'=>function($model){
+                        return "<i class='fa {$model->icon}'></i>";
+                    }
+                ],
+		[
+                    'attribute'=>'create_by',
+                    'value'=>function($model){
+                        return \common\modules\cores\User::getProfileNameByUserId($model['create_by']);
+                    }
+                ],
+                [
+                    'format'=>'raw',
+                    'attribute'=>'create_date',
+                    'value'=>function($model){
+                        return "<i class='fa fa-calendar'></i> ".appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
+                    }
+                ], 
 	    ],
 	]) ?>
     </div>
 </div>
+<?php 
+$this->registerCss("
+    table.detail-view th {
+            width: 20%;
+    }
+
+    table.detail-view td {
+            width: 80%;
+    }
+
+");
+?>
