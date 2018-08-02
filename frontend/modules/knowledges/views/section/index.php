@@ -11,7 +11,9 @@
 ?> 
 
 
-<div class="row header-bar">
+<div class="">
+    <div class="">
+        <div class="row header-bar">
     <div class="col-md-3 col-sm-6 header-bar-left">
         <div>
             <?= \yii\helpers\Html::img('images/1533128627373.jpg', ['class'=>'img img-responsive'])?>
@@ -22,8 +24,9 @@
             $type= frontend\modules\knowledges\classes\JFiles::getTypeFile();
         ?>
              
-        <form class="navbar-form navbar-left" role="search">
-            <div class="col-md-8">
+        <div class="box">
+            <div class="box-body">
+                <div class="col-md-8">
                 <div class="input-group">
 
                     <input type="hidden" name="search_param" value="all" id="search_param">         
@@ -43,7 +46,9 @@
                         <button class="btn btn-default  btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-            </div></form> 
+            </div>
+            </div>
+        </div> 
          
     </div>
 </div>
@@ -78,6 +83,8 @@
             </div>
         </div>
         
+    </div>
+</div>
     </div>
 </div>
  <?php 
