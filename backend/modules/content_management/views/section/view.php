@@ -85,7 +85,7 @@
                 </div>
                 <hr/>
                 <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
-                    <div style="text-align: right;">
+                    <div class="col-md-12" style="text-align: right;">
                         <?php  
                            echo Html::button("<i class='fa fa-pencil'></i>", 
                             [
@@ -101,6 +101,22 @@
                         <?= $content_section->content;?>
                     </div>
                 </div>
+                
+                <div class="pull-right" style="margin-bottom:20px;">
+                    <div class="col-md-12">
+                        <?php  
+                           echo Html::button("<i class='fa fa-plus'></i>", 
+                            [
+                                'data-id'=>$content_section['id'],
+                                'data-action'=>'create',
+                                'class'=>'btn btn-success btn-xs btnCall', 
+                                'title'=> Yii::t('appmenu', 'Create'),
+                                'data-url'=>'/content_management/section/create-content'
+                            ]);                                  
+                    ?> 
+                    </div>
+                </div>
+                <div class="clearfix"></div>
                 <?php 
                     
                     echo \yii\widgets\ListView::widget([
@@ -142,8 +158,10 @@
        let id       = $(this).attr('data-id');
        let url      = $(this).attr('data-url');
        let action   = $(this).attr('data-action');
-       
-       if(action == 'update'){
+       if(action == 'create'){
+           callCreate(url , id);
+       }
+       else if(action == 'update'){
            callUpdate(url , id);
        }else if(action == 'delete'){
            callDelete(url ,id);
@@ -151,6 +169,14 @@
        
        return false; 
    });
+   callCreate=function(url , id){
+       //id = section_id
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, {id:id}, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       });
+   }
    callUpdate=function(url , id){
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
        $('#<?= $modal?>').modal('show');

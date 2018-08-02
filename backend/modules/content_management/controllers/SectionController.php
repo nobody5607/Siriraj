@@ -106,6 +106,39 @@ class SectionController extends \yii\web\Controller{
             'model'=>$model
         ]);
     }
+    public function actionCreateContent(){  
+        $sec_id                 = \Yii::$app->request->get('id', '');
+        $model                  = new \common\models\Contents();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $model->rstat       = 1; 
+            $model->user_create = Yii::$app->user->id;
+            $model->create_date = new \yii\db\Expression('NOW()');
+            $model->section_id  = \Yii::$app->request->post('section_id', '');              
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if ($model->save()) {
+                $result = [
+                    'status' => 'success',
+                    'action' => 'update',
+                    'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
+                    'data' => $model,
+                ];
+                return $result;
+            } else {
+                $result = [
+                    'status' => 'error',
+                    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not update the data.'),
+                    'data' => $model,
+                ];
+                return $result;
+            }
+        }
+        return $this->renderAjax('create-content',[
+            'model'=>$model,
+            'sec_id'=>$sec_id
+        ]);
+    }
     public function actionUpdateContent(){  
         $id = \Yii::$app->request->get('id', '');
         $model = \common\models\Contents::findOne($id);
