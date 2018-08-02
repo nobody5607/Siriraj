@@ -26,9 +26,9 @@ $actionID = Yii::$app->controller->action->id;
                 ],
                 [
                     'label' => Yii::t('backend', 'Content Management'),
-                    'url' => ['/content_management/contents'],
+                    'url' => ['/content_management/section'],
                     'icon' => '<i class="fa fa-tags"></i>',
-                    'active'=>($moduleID == 'content_management' && $controllerID == 'contents') ? TRUE : FALSE,
+                    'active'=>($moduleID == 'content_management' && $controllerID == 'section') ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('backend', 'Secret Content Management'),
