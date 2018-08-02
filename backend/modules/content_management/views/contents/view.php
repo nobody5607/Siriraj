@@ -33,19 +33,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],		 
 		[
                     'format'=>'raw',
-                    'contentOptions'=>['style'=>'width:100px;text-align:center;'],
+                    'contentOptions'=>['style'=>'width:100px;'],
                     'attribute'=>'public',
                     'value'=>function($model){
                         return ($model->public == 1) ? '<label class="label label-success">Public</label>' : '<label class="label label-danger">Private</label>';
                     }
-                ],  		 
+                ],  
+                [
+                    'attribute'=>'user_create',
+                    'value'=>function($model){
+                        return \common\modules\cores\User::getProfileNameByUserId($model['user_create']);
+                    }
+                ],        
 		[
                     'attribute'=>'create_date',
                     'value'=>function($model){
                         return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
                     }
                 ],
-		'user_create',
+		 
 		'thumn_image:ntext',
 	    ],
 	]) ?>

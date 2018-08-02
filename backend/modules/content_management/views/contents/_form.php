@@ -24,22 +24,6 @@ use backend\widgets\TinyMCECallback;
     </div>
 
     <div class="modal-body">
-	 
-	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
-        <?= $form->field($model, 'description')->widget(TinyMce::class, [
-                'language' => strtolower(substr(Yii::$app->language, 0, 2)),
-                'options'=>['id'=>'tests'],
-                'clientOptions' => [
-                    'height'=> 250,
-                    'plugins' => [
-                        'advlist autolink lists link image charmap print preview anchor pagebreak',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table contextmenu paste code textcolor colorpicker',
-                    ],
-                    'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
-                    'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
-                ],
-            ]) ?>
         <div class="form-group">
             <?php
             echo "<label>Section</label>";
@@ -56,11 +40,29 @@ use backend\widgets\TinyMCECallback;
             ]);
             ?>
         </div> 
+	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+        <?= $form->field($model, 'description')->widget(TinyMce::class, [
+                'language' => strtolower(substr(Yii::$app->language, 0, 2)),
+                'options'=>['id'=>'tests'],
+                'clientOptions' => [
+                    'height'=> 250,
+                    'plugins' => [
+                        'advlist autolink lists link image charmap print preview anchor pagebreak',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table contextmenu paste code textcolor colorpicker',
+                    ],
+                    'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
+                    'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
+                ],
+            ]) ?>
+
  
 
 	<?php 
             $model->public = ($model->public != '') ? $model->public : 1;
-            echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])->label(false) 
+            echo $form->field($model, 'public')
+                    ->inline()
+                    ->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])
         ?> 
 
     </div>

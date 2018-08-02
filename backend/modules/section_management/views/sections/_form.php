@@ -86,7 +86,7 @@ use dominus77\iconpicker\IconPicker;
         ?>
         <?php 
             $model->public = ($model->public != '') ? $model->public : 1;
-            echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])->label(false) 
+            echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])
         ?>
         </div> 
 </div>
