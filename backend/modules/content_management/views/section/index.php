@@ -73,12 +73,49 @@
     <div class="col-md-9 section-right">
         <div class="box box-primary">
             <div class="box-body">
-                <br>
-                <?= $content_section->content;?>                
+                <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
+                    <div style="text-align: right;">
+                        <?php  
+                           echo Html::button("<i class='fa fa-pencil'></i>", 
+                            [
+                                'data-id'=>$content_section['id'],
+                                'data-action'=>'update',
+                                'class'=>'btn btn-primary btn-xs btnCall', 
+                                'title'=> Yii::t('appmenu', 'Edit'),
+                                'data-url'=>'/content_management/section/update'
+                            ]);                                  
+                        ?> 
+                    </div>
+                    <div id="content-html">                         
+                        <?= $content_section->content;?>
+                    </div>
+                </div>             
             </div>
         </div>
         
     </div>
 </div>
+<?php 
+    $modal = "modal-contents";
+    echo appxq\sdii\widgets\ModalForm::widget([
+        'id' => 'modal-contents',
+        'size'=>'modal-lg',
+    ]);
+    ?>
+<?php \richardfan\widget\JSRegister::begin();?>
+ 
 
+<script>
+   $('.btnCall').on('click', function(){
+       let id = $(this).attr('data-id');
+       let url = $(this).attr('data-url');
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, {id:id}, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       });
+       return false; 
+   });
+</script>
+<?php \richardfan\widget\JSRegister::end();?>
 
