@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?= Url::to(['/secret_content_management/sections'])?>">Section Private</a></li>
-    <li class="active"><a href="#">Content Private</a></li> 
+    <li><a href="<?= Url::to(['/secret_content_management/sections'])?>"><i class="fa fa-folder-open"></i>  Section Private</a></li>
+    <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Content Private</a></li> 
 </ul> 
 <br>
 <div class="tab-content">

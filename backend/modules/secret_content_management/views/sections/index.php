@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Section Private</a></li>
-    <li><a href="<?= Url::to(['/secret_content_management/contents'])?>">Content Private</a></li> 
+    <li class="active"><a href="#"><i class="fa fa-folder-open"></i>  Section Private</a></li>
+    <li><a href="<?= Url::to(['/secret_content_management/contents'])?>"><i class="fa fa-folder-open"></i>  Content Private</a></li> 
 </ul> 
 <br>
 <div class="tab-content">  
@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                         $label = Yii::t('section', 'View');
-                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/view', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-eye"></span> ' . $label, yii\helpers\Url::to(['sections/view', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-default btn-xs',
                                     'data-action'   => 'view',
@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                         $label = Yii::t('section', 'Update');
-                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/update', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-pencil"></span> ' . $label, yii\helpers\Url::to(['sections/update', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-warning btn-xs',
                                     'data-action'   => 'update',
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                         $label = Yii::t('section', 'Delete');
-                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['/section_management/sections/delete', 'id' => $model->id]), [
+                        return Html::a('<span class="fa fa-trash"></span> ' . $label, yii\helpers\Url::to(['sections/delete', 'id' => $model->id]), [
                                     'title'         => $label,
                                     'class'         => 'btn btn-danger btn-xs',
                                     'data-action'   => 'delete',

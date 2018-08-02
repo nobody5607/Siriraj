@@ -103,8 +103,8 @@ class ContentsController extends Controller
                 $model->rstat = 1;
 //                $model-> =1;
                 $model->user_create = Yii::$app->user->id;
-                $model->create_date = new \yii\db\Expression('NOW()');
-                
+                $model->create_date = new \yii\db\Expression('NOW()');  
+                $model->section_id = Yii::$app->request->post('section_id', '');
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [
@@ -149,6 +149,7 @@ class ContentsController extends Controller
 //                $model-> =1;
                 $model->user_create = Yii::$app->user->id;
                 $model->create_date = new \yii\db\Expression('NOW()');
+                $model->section_id = Yii::$app->request->post('section_id', '');
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [

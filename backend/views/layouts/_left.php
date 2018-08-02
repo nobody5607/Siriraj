@@ -2,6 +2,9 @@
 
 use backend\models\Log;
 use backend\widgets\Menu;
+$moduleID = Yii::$app->controller->module->id;
+$controllerID = Yii::$app->controller->id;
+$actionID = Yii::$app->controller->action->id;
 
 /* @var $this \yii\web\View */
 ?>
@@ -9,22 +12,29 @@ use backend\widgets\Menu;
     <section class="sidebar">
         <?= Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => [                 
+            'items' => [  
+                [
+                    'label' => Yii::t('backend', 'Main'),
+                    'options' => ['class' => 'header'],
+                ],
                 [
                     'label' => Yii::t('backend', 'Section Management'),
                     'url' => ['/section_management/sections'],
                     'icon' => '<i class="fa fa-sitemap"></i>',
+                    'active'=>($moduleID == 'section_management' && $controllerID == 'sections') ? TRUE : FALSE,
                     //'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Content Management'),
                     'url' => ['/content_management/contents'],
                     'icon' => '<i class="fa fa-tags"></i>',
+                    'active'=>($moduleID == 'content_management' && $controllerID == 'contents') ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('backend', 'Secret Content Management'),
                     'url' => ['/secret_content_management/sections'],
                     'icon' => '<i class="fa fa-tags"></i>',
+                    'active'=>($moduleID == 'secret_content_management') ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('backend', 'Content'),
