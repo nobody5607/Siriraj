@@ -30,7 +30,7 @@ use backend\widgets\TinyMCECallback;
             'options' => ['id' => 'tests'],
             'clientOptions' => [
                 'height' => 250,
-                'plugins' => [
+                  'plugins' => [
                     'advlist autolink lists link image charmap print preview anchor pagebreak',
                     'searchreplace visualblocks code fullscreen',
                     'insertdatetime media table contextmenu paste code textcolor colorpicker',

@@ -14,6 +14,7 @@
 <?= appxq\sdii\widgets\ModalForm::widget([
     'id' => 'modal-contents',
     'size'=>'modal-lg',
+    'options'=>['tabindex' => false]
 ]);?>
 
 <div class="row header-bar">

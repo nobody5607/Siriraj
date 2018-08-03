@@ -100,6 +100,7 @@
     echo appxq\sdii\widgets\ModalForm::widget([
         'id' => 'modal-contents',
         'size'=>'modal-lg',
+        'options'=>['tabindex' => false]
     ]);
     ?>
 <?php \richardfan\widget\JSRegister::begin();?>
