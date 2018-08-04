@@ -36,7 +36,7 @@ class Contents extends \yii\db\ActiveRecord
             [['id'], 'required'],
             [['id', 'section_id', 'rstat', 'public', 'user_create'], 'integer'],
             [['description'], 'string'],
-            [['content_date', 'create_date'], 'safe'],
+            [['content_date', 'create_date','thumn_image'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['id'], 'unique'],
         ];

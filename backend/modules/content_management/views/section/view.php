@@ -52,7 +52,7 @@
                             'itemOptions' => function($model) {
                                 return ['tag'=>'li','data-id' => $model['id'], 'class' => 'section-items'];
                             },
-                            'emptyText'=> \yii\helpers\Html::a('Back', Yii::$app->request->referrer, ['data-url'=>$back, 'id'=>'backs']),        
+                            'emptyText'=> \yii\helpers\Html::a('Back', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs']),        
                             'layout' => "{pager}\n{items}\n",
                             'itemView' => function ($model, $key, $index, $widget) {
                                return $this->render('_item', ['model' => $model]);

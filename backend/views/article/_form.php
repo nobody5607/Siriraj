@@ -50,7 +50,7 @@ use dosamigos\tinymce\TinyMce;
                 'insertdatetime media table contextmenu paste code textcolor colorpicker',
             ],
             'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
-            'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
+            'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['/file-manager/frame']),
         ],
     ]) ?>
 

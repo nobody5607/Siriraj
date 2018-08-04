@@ -16,7 +16,7 @@ use lo\modules\noty\Wrapper;
             <h1>
                 <?php
                 if ($this->title !== null) {
-                    echo Html::encode($this->title);
+                    echo Html::encode($this->title);    
                 } else {
                     echo Inflector::camel2words(Inflector::id2camel($this->context->module->id));
                     echo ($this->context->module->id !== Yii::$app->id) ? '<small>Module</small>' : '';
@@ -29,8 +29,8 @@ use lo\modules\noty\Wrapper;
 
     <section class="content">
         <?= Wrapper::widget() ?>
-        <div class="box">
-           <div class="box-body">
+        <div > 
+           <div>
                <?php appxq\sdii\widgets\CSSRegister::begin();?>
                <style>
                    .modal-lg{width: 90%;}
