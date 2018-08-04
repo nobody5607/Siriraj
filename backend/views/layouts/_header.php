@@ -55,7 +55,7 @@ Yii::$app->name = 'Siriraj';
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
-                            <img src="<?= Yii::getAlias('@storageUrl/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="user-image" alt>
+                            <img src="<?= Yii::getAlias('@storageUrl/images/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="user-image" alt>
                         <?php else: ?>
                             <img src="<?= Yii::$app->homeUrl . '/static/img/default.png' ?>" class="user-image" alt>
                         <?php endif ?>
@@ -65,7 +65,7 @@ Yii::$app->name = 'Siriraj';
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
-                                <img src="<?= Yii::getAlias('@storageUrl/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="img-circle" alt>
+                                <img src="<?= Yii::getAlias('@storageUrl/images/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="img-circle" alt>
                             <?php else: ?>
                                 <img src="<?= Yii::$app->homeUrl . '/static/img/default.png' ?>" class="img-circle" alt>
                             <?php endif ?>
@@ -76,7 +76,7 @@ Yii::$app->name = 'Siriraj';
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <?= Html::a(Yii::t('backend', 'Profile'), ['/user/update', 'id' => Yii::$app->user->id], ['class' => 'btn btn-default btn-flat']) ?>
+                                <?= Html::a(Yii::t('backend', 'Profile'), ['/user/profile'], ['class' => 'btn btn-default btn-flat']) ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(Yii::t('backend', 'Logout'), ['/site/logout'], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']) ?>

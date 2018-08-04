@@ -41,9 +41,9 @@ class UserProfile extends ActiveRecord
                 'class' => UploadBehavior::class,
                 'attributes' => [
                     'avatar_path' => [
-                        'path' => '@storage/avatars',
-                        'tempPath' => '@storage/tmp',
-                        'url' => Yii::getAlias('@storageUrl/avatars'),
+                        'path' => '@storage/web/images/avatars',
+                        'tempPath' => '@storage/web/tmp',
+                        'url' => Yii::getAlias('@storageUrl/web/images/avatars'),
                     ],
                 ],
             ],

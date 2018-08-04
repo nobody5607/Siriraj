@@ -100,6 +100,34 @@ class UserController extends Controller
             'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name'),
         ]);
     }
+    
+    public function actionProfile()
+    {
+        $id = isset(Yii::$app->user->id) ? Yii::$app->user->id : '';        
+        $user = new UserForm();
+        $user->setModel($this->findModel($id));
+        $profile = UserProfile::findOne($id);
+
+        if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
+            
+            $isValid = $user->validate();
+            $isValid = $profile->validate() && $isValid;
+            
+            if ($isValid) {
+                $user->save(false);
+                
+                $profile->save(false);
+
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('profile', [
+            'user' => $user,
+            'profile' => $profile,
+            'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name'),
+        ]);
+    }
 
     /**
      * Deletes an existing User model.

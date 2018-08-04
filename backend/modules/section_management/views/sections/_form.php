@@ -65,7 +65,7 @@ use dominus77\iconpicker\IconPicker;
         ]); ?>
         </div>
         <div class="col-md-12">
-             <?= $form->field($model, 'content')->widget(TinyMce::class, [
+          <?= $form->field($model, 'content')->widget(TinyMce::class, [
                 'language' => strtolower(substr(Yii::$app->language, 0, 2)),
                 'options'=>['id'=>'tests'],
                 'clientOptions' => [
@@ -76,9 +76,10 @@ use dominus77\iconpicker\IconPicker;
                         'insertdatetime media table contextmenu paste code textcolor colorpicker',
                     ],
                     'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
-                    'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['file-manager/frame']),
+                    'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['/file-manager/frame']),
                 ],
             ]) ?>
+             
 	<?php 
             $parent_list = \yii\helpers\ArrayHelper::map($parent_section, 'id', 'name');
             echo $form->field($model, 'parent_id')->dropDownList($parent_list,['prompt'=> Yii::t('section', 'Select Section')] );
@@ -104,7 +105,7 @@ use dominus77\iconpicker\IconPicker;
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script>
-$('#modal-sections').bind('hidden.bs.modal', function() {
+$('#modal-contents').bind('hidden.bs.modal', function() {
     if(window.tinyMCE !== undefined && tinyMCE.editors.length){
         for(e in tinyMCE.editors){
             tinyMCE.editors[e].destroy();
@@ -120,6 +121,10 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
     ).done(function(result) {
         if(result.status == 'success') {
             <?= SDNoty::show('result.message', 'result.status')?>
+            $(document).find('#modal-contents').modal('hide');
+            setTimeout(function(){
+                location.reload();
+            },1000);
             if(result.action == 'create') {
                 //$(\$form).trigger('reset');
                 $(document).find('#modal-sections').modal('hide');
@@ -128,6 +133,7 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
                 $(document).find('#modal-sections').modal('hide');
                 $.pjax.reload({container:'#sections-grid-pjax'});
             }
+            
         } else {
             <?= SDNoty::show('result.message', 'result.status')?>
         } 

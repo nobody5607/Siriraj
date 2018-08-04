@@ -29,7 +29,19 @@
         <div class="col-md-3 col-border-right section-left">
             <div class="box box-primary">
                 <div class="box-body">
-                    
+                    <div class="text-left">
+                        <?php  
+                           echo Html::button("<i class='fa fa-plus'></i>", 
+                            [
+                                'data-id'=>$content_section['id'],
+                                'data-parent_id'=>Yii::$app->request->get('id', '0'),
+                                'data-action'=>'create-section',
+                                'class'=>'btn btn-success btnCall', 
+                                'title'=> Yii::t('appmenu', 'Create'),
+                                'data-url'=>'/section_management/sections/create'
+                            ]);                                  
+                        ?> 
+                    </div><hr>
                     <?= \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,
                             'options' => [
@@ -118,6 +130,7 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
+                
                 <?php 
                     
                     echo \yii\widgets\ListView::widget([
@@ -166,10 +179,30 @@
            callUpdate(url , id);
        }else if(action == 'delete'){
            callDelete(url ,id);
+       }else if(action == 'update-section'){
+           let parent_id = $(this).attr('data-parent_id');           
+           callUpdateSection(url, id, parent_id);
+       }else if(action == 'create-section'){
+           let parent_id = $(this).attr('data-parent_id');           
+           callCreateSection(url, id, parent_id);
        }
        
        return false; 
    });
+   callCreateSection=function(url, id, parent_id){
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, {id:id, parent_id:parent_id}, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       });
+   }
+   callUpdateSection=function(url, id, parent_id){
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, {id:id, parent_id:parent_id}, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       });
+   }
    callCreate=function(url , id){
        //id = section_id
        $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');

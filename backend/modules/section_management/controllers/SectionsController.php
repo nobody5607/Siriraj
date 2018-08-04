@@ -107,13 +107,14 @@ class SectionsController extends Controller
     {
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = new Sections();
-
+            $parent_id = Yii::$app->request->get('parent_id', '');
 	    if ($model->load(Yii::$app->request->post())) {
                 $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
                 $model->rstat = 1;
                 $model->forder =1;
                 $model->create_by = Yii::$app->user->id;
                 $model->create_date = new \yii\db\Expression('NOW()');
+                
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [
@@ -133,6 +134,7 @@ class SectionsController extends Controller
 		}
 	    } else {
                 $parent_section = Sections::find()->where('rstat not in(0,3)')->all();
+                $model->parent_id = $parent_id;
 		return $this->renderAjax('create', [
 		    'model' => $model,
                     'parent_section'=>$parent_section
@@ -152,6 +154,8 @@ class SectionsController extends Controller
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
+            $parent_id = Yii::$app->request->get('parent_id', '');
+             
 	    $model = $this->findModel($id);
 
 	    if ($model->load(Yii::$app->request->post())) {
@@ -174,6 +178,7 @@ class SectionsController extends Controller
 		}
 	    } else {
 		$parent_section = Sections::find()->where('rstat not in(0,3)')->all();
+                $model->parent_id = $parent_id; 
 		return $this->renderAjax('update', [
 		    'model' => $model,
                     'parent_section'=>$parent_section

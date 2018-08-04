@@ -40,7 +40,7 @@ class SiteController extends Controller
             ],
             'fileapi-upload' => [
                 'class' => FileAPIUpload::class,
-                'path' => '@storage/tmp',
+                'path' => '@storage/web/images/avatars',
             ],
         ];
     }   
