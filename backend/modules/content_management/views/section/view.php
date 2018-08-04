@@ -185,6 +185,9 @@
        }else if(action == 'create-section'){
            let parent_id = $(this).attr('data-parent_id');           
            callCreateSection(url, id, parent_id);
+       }else if(action == 'delete-section'){
+//           let parent_id = $(this).attr('data-parent_id');           
+           callDeleteSection(url, id);
        }
        
        return false; 
@@ -219,6 +222,16 @@
        });
    }
    callDelete=function(url ,id){
+        yii.confirm('<?= Yii::t('user', 'Confirm Delete?')?>', function(){
+            $.post(url, {id:id}, function(result){
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            });
+        });      
+   }
+   callDeleteSection=function(url ,id){
         yii.confirm('<?= Yii::t('user', 'Confirm Delete?')?>', function(){
             $.post(url, {id:id}, function(result){
                 <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>

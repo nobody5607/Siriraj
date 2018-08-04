@@ -33,7 +33,7 @@ use yii\helpers\Html;
             'data-action' => 'delete-section',
             'class' => 'btn btn-danger btn-xs btnCall',
             'title' => Yii::t('appmenu', 'Delete'),
-            'data-url' => '/content_management/section/delete-content',
+            'data-url' => '/section_management/sections/update',
             'data-method' => 'POST'
         ]);
         ?>
