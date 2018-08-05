@@ -34,8 +34,16 @@ use lo\modules\noty\Wrapper;
                <?php appxq\sdii\widgets\CSSRegister::begin();?>
                <style>
                    .modal-lg{width: 90%;}
+                   .content-header>.breadcrumb{font-size:12pt;}
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
+               <?php 
+                    echo appxq\sdii\widgets\ModalForm::widget([
+                        'id' => 'modal-contents',
+                        'size'=>'modal-lg',
+                        'options'=>['tabindex' => false]
+                    ]);
+               ?>
                 <?= $content ?>
             </div>
         </div>

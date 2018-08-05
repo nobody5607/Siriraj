@@ -13,7 +13,7 @@
 <?php if(!isset($_GET['id'])):?>
 <div class="row header-bar">
     <?= $this->render('_logo');?>
-    <div class="col-md-9 col-sm-6">
+    <div class="col-md-9 col-sm-6" style="padding: 0;">
         <?= $this->render('_searchbar');?>  
     </div>      
 </div>
@@ -37,12 +37,7 @@
 
 <?php 
     $modal = "modal-contents";
-    echo appxq\sdii\widgets\ModalForm::widget([
-        'id' => 'modal-contents',
-        'size'=>'modal-lg',
-        'options'=>['tabindex' => false]
-    ]);
-    ?>
+?>
 <?php \richardfan\widget\JSRegister::begin();?>
 
 <script>

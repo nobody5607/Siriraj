@@ -70,7 +70,8 @@ if ($breadcrumb) {
 
             }
             load_content_data();
-            load_data();
+            load_data();            
+            
         </script>
         <?php \richardfan\widget\JSRegister::end(); ?>
     <?php endif; ?>

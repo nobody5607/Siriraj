@@ -33,7 +33,7 @@ class Contents extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
+            [['name','thumn_image'], 'required'],
             [['id', 'section_id', 'rstat', 'public', 'user_create'], 'integer'],
             [['description'], 'string'],
             [['content_date', 'create_date','thumn_image'], 'safe'],

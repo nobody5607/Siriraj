@@ -153,5 +153,29 @@ class ContentManagementController extends Controller
         }
     }
     
+    public function actionViewFile(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $file_id            = \Yii::$app->request->get('file_id', '');
+        $filet_id           = \Yii::$app->request->get('filet_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);         
+        $breadcrumb[]       = ['label' =>$content['name'],'url' => ['/content_management/content/view', 'content_id'=>$content['id']]];  
+        $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$files->all(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
+         
+        return $this->renderAjax("view-file/index",[
+            'breadcrumb'=>$breadcrumb,
+            'dataProvider'=>$dataProvider,
+            'dataDefault'=>$dataDefault
+        ]); 
+    }
+    
     
 }

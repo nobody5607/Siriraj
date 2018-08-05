@@ -58,9 +58,37 @@
                 'data-method' => 'POST'
             ]);
         $taga .= "</div>";
-    $taga .=  Html::a($link, 
-    ['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], 
-    ['class'=>'content-popup','data-id'=>$model['id']]);
+    $taga .=  Html::a($link,'#' ,
+    //['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], 
+    [
+        'id'=>"btn-{$model['id']}",
+        'data-action'=>'view-file',
+        'class'=>'content-popup btnCall',
+        'data-id'=>$model['id'],
+        'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
+    ]);
     echo $taga;
 ?> 
 <?php $this->registerCss("a{color:#000;}")?>
+<?php 
+    $modal = "modal-contents";
+?>
+<?php \richardfan\widget\JSRegister::begin();?>
+<script>
+   $('#btn-<?= $model['id']?>').on('click', function(){
+       let id       = $(this).attr('data-id');
+       let url      = $(this).attr('data-url');
+       let action   = $(this).attr('data-action');
+       let params = {id:id};
+       get_form(url, params);
+       return false;
+   });
+   get_form=function(url , params){
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, params, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       });
+   } 
+</script>
+<?php \richardfan\widget\JSRegister::end();?>

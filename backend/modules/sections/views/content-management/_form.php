@@ -10,6 +10,7 @@ janpan\jn\assets\croppie\JCroppieAssets::register($this);
 /* @var $this yii\web\View */
 /* @var $model common\models\Contents */
 /* @var $form yii\bootstrap\ActiveForm */
+$this->title = Yii::t('content', 'Content');
 
 ?>
 
@@ -21,7 +22,7 @@ janpan\jn\assets\croppie\JCroppieAssets::register($this);
 
     <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 class="modal-title" id="itemModalLabel">Contents</h4>
+        <h4 class="modal-title" id="itemModalLabel"><b><?= Html::encode($this->title);?></b></h4>
     </div>
 
     <div class="modal-body">
@@ -76,7 +77,10 @@ janpan\jn\assets\croppie\JCroppieAssets::register($this);
 
     </div>
     <div class="modal-footer">
-	<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+       <div class="col-md-6 col-md-offset-3">
+                <?= Html::submitButton("Submit", ['class'=>'btn btn-primary btn-block btn-lg'])?>
+                <?php // Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-lg' : 'btn btn-primary btn-block btn-lg']) ?>
+        </div>  
     </div>
 
     <?php ActiveForm::end(); ?>
