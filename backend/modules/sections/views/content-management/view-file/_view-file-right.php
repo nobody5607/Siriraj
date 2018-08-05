@@ -1,10 +1,12 @@
 <div class="col-md-4 view-file-right">
-    <label>คำอธิบาย</label>
+    <label><i class="fa fa-info-circle" aria-hidden="true"></i> คำอธิบาย</label>
     <div>
         <small><?= $dataDefault['description'] ?></small>
-    </div><hr/>
+    </div> 
     <div>
-        <label>ภาพโดย : </label> <small><?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?></small>
+        <label>
+            <i class="fa fa-user" aria-hidden="true"></i> ภาพโดย : <?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?> s
+        </label>    
     </div><hr/>
     <div>
         <label>ขนาด</label>

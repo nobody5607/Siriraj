@@ -9,6 +9,7 @@ if ($breadcrumb) {
         $this->params['breadcrumbs'][] = $b;
     }
 }
+$modal = "modal-contents";
 ?>
 <?php foreach ($file_type as $key => $f): ?>
     <?php if ($key > 0): ?>
@@ -36,7 +37,14 @@ if ($breadcrumb) {
                     </div>                     
                     <div class="box-footer read-all">
                         <div class="text-center">
-                            <a href="/knowledges/content/view-content-data?content_id=<?= $_GET['content_id'] ?>&file_id=1&filet_id=<?= $f['id'] ?>" ><< ดูทั้งหมด >></a>
+                          <?=  Html::a('<< View All >>','#' , [
+                                'id'=>"btn-{$f['id']}",
+                                'data-action'=>'view-file',
+                                'class'=>'content-popup btnCall',
+                                'data-id'=>$f['id'],
+                                'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=1&filet_id={$f['id']}"
+                            ]);?>
+                             
                         </div>
                     </div>
                      
@@ -45,6 +53,21 @@ if ($breadcrumb) {
         </div>
         <?php \richardfan\widget\JSRegister::begin(); ?>
         <script>
+            $('#btn-<?= $f['id']?>').on('click', function(){
+                let id       = $(this).attr('data-id');
+                let url      = $(this).attr('data-url');
+                let action   = $(this).attr('data-action');
+                let params = {id:id};
+                get_form(url, params);
+                return false;
+            });
+            get_form=function(url , params){
+                $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+                $('#<?= $modal?>').modal('show');
+                $.get(url, params, function(res){
+                    $('#<?= $modal?> .modal-content').html(res);
+                });
+            } 
             load_data = function () {
                 let url = '/sections/content-management/view-data-content'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
