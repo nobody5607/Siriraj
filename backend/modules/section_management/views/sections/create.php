@@ -10,11 +10,13 @@ $this->title = Yii::t('section', 'Create Sections');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('section', 'Sections'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sections-create">
+<div class="box box-default">
 
-    <?= $this->render('_form', [
-        'parent_section'=>$parent_section,
-        'model' => $model,
-    ]) ?>
-
+    <div class="box-body">
+         <?= $this->render('_form', [
+            'parent_section'=>$parent_section,
+            'model' => $model,
+        ]) ?>
+    </div>
 </div>
+

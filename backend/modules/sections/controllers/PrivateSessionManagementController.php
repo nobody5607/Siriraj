@@ -22,7 +22,7 @@ class PrivateSessionManagementController extends Controller
         $public = isset($content_section) ? '2' : '1';
        // \appxq\sdii\utils\VarDumper::dump($content_section['id']); 
          
-        $breadcrumb = JSection::getBreadcrumb($id);
+        $breadcrumb = JSection::getBreadcrumb($id, '/sections/private-session-management');
         $title = JSection::getTitle($id);        
         $content = ($id != '') ? JContent::getContentBySectionId($id, 2) : JContent::getContentAll(2);
         

@@ -35,6 +35,10 @@ use lo\modules\noty\Wrapper;
                <style>
                    .modal-lg{width: 90%;}
                    .content-header>.breadcrumb{font-size:12pt;}
+                   .box .box-default {
+                        border: none;
+                        box-shadow: 0px 0px 1px #cacaca;
+                    }
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
                <?php 
@@ -49,3 +53,4 @@ use lo\modules\noty\Wrapper;
         </div>
     </section>
 </div>
+ 

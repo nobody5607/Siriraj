@@ -61,7 +61,7 @@
                     'data-action' => 'create-content',
                     'class' => 'btn btn-success btnCall',
                     'title' => Yii::t('appmenu', 'Create'),
-                    'data-url' => '/sections/content-management/create'
+                    'data-url' => '/sections/private-content-management/create'
                 ]);
             ?> 
         </div>

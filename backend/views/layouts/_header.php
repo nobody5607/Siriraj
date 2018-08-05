@@ -20,12 +20,12 @@ Yii::$app->name = 'Siriraj';
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <?php 
-                        echo '<div class="navbar-text">';
+                        echo '<li class="navbar-text">';
                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
                             'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
                             'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
                         ]);
-                        echo '</div>';
+                        echo '</li>';
                 ?>
                 <li class="dropdown tasks-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
