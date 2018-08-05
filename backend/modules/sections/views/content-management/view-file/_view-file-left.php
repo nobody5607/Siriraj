@@ -3,7 +3,19 @@
         <div class="box-body">
             <div class="row" style="margin-bottom:10px;">
                 <div class="col-md-6 col-md-offset-3">
-                    <img class="img img-responsive img-rounded" src="/images/<?= $dataDefault['file_name_org'] ?>" style="width:1024px;">
+                    <?php 
+                        if($dataDefault['file_type'] == '2'){
+                            echo yii\helpers\Html::img("/images/{$dataDefault['file_name_org']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
+                        }elseif ($dataDefault['file_type'] == 3) {
+                            echo"
+                                <video style='width:100%' controls>
+                                    <source src='/videos/{$dataDefault['file_name_org']}' type='video/mp4'>                 
+                                    Your browser does not support the video tag.
+                                </video>
+                            ";
+                        }
+                    ?>
+ 
                 </div>
             </div>
             <?=
