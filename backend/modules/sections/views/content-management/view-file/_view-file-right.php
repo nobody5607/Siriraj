@@ -16,26 +16,40 @@
         </label>    
     </div>
      
-    <div>
-        <label>ขนาด</label>
-        <?php 
-
-        $name = "radiotest";
-        $items = [
-            1 => "Extra small  590 x 338px. (7.07x4.69 in.) 72 dpi/0.2 MP",
-            2 => "Small  728 x 484 px. (7.09x4.71 in.) 72 dpi/0.4 MP ",
-            3 => "Medium 2124 x 1414 px. (10.11x6.72 in.) 72 dpi/0.4 MP ",
-            4 => "Large  6162 x 4097 px. (20.54x13.66 in.) 300 dpi/25.2 MP "];
-        $selection = 1;
-
+            <div style="margin-top:20px;">
+        <div>
+            <?php
+            echo Html::button("<i class='fa fa-plus'></i>", [
+                //'data-id' => $data_id,
+                // 'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : 0,
+                'data-action' => 'update',
+                'class' => 'btn btn-success btnCall',
+                'title' => Yii::t('appmenu', 'Create'),
+                'data-url' => '/sections/session-management/update'
+            ]);
+            ?> 
+        </div>
+        
+         
+        <?php
+        
+        //appxq\sdii\utils\VarDumper::dump($dataDefault);
+        $name       = "radiotest";
+        $items      = yii\helpers\ArrayHelper::map($choice, 'id', 'label');
+        $default    = backend\modules\sections\classes\JContent::getChoiceDefault($dataDefault['content_id']);
+        $selection = isset($default['id']) ? $default['id'] : '1';         
+        echo Html::label(Yii::t('file','Size'));
         echo Html::radioList($name, $selection, $items, [
             'item' => function ($index, $label, $name, $checked, $value) {
-                $disabled = false; // replace with whatever check you use for each item
-                return "<div>" . Html::radio($name, $checked, [
-                            'value' => $value,
-                            'label' => Html::encode($label),
-                            'disabled' => $disabled,
-                        ]) . "</div>";
+                $disabled = false;  
+                return $this->render('_radio-list-item',[
+                    'index'=>$index,
+                    'label'=>$label,
+                    'name'=>$name,
+                    'checked'=>$checked,
+                    'value'=>$value,
+                    'disabled'=>$disabled
+                ]);                
             },
         ]);
         ?>

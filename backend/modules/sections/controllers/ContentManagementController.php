@@ -160,7 +160,7 @@ class ContentManagementController extends Controller
         $filet_id           = \Yii::$app->request->get('filet_id', '');
         $content            =  JContent::getContentById($content_id);
         $breadcrumb         = JSection::getBreadcrumb($content['section_id']);         
-        $breadcrumb[]       = ['label' =>$content['name'],'url' => ['/content_management/content/view', 'content_id'=>$content['id']]];  
+        $breadcrumb[]       = ['label' =>$content['name'],'url' => ['/sections/content-management/view', 'content_id'=>$content['id']]];  
         $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),
@@ -169,12 +169,19 @@ class ContentManagementController extends Controller
             ],
         ]);
         $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
-         
+        
+        
+        /* add template */
+        $addTemplate    = JContent::addTemplate($content_id);
+        $choice         = JContent::getChoice($content_id);
+        
+        //\appxq\sdii\utils\VarDumper::dump($check_choice);
         return $this->render("view-file/index",[
             'breadcrumb'=>$breadcrumb,
             'dataProvider'=>$dataProvider,
             'dataDefault'=>$dataDefault,
-            'title'=>$content['name']
+            'title'=>$content['name'],
+            'choice'=>$choice
         ]); 
     }
     

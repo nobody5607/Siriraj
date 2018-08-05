@@ -2,6 +2,47 @@
 namespace backend\modules\sections\classes;
 use yii\db\Exception; 
 class JContent {
+    
+    /**
+     * 
+     * @param type $content_id
+     */
+    public static function addTemplate($content_id){
+        $check_choice = \common\models\ContentChoice::find()->where(['content_id'=>$content_id])->one();
+        if(!$check_choice){
+            $template = \common\models\Templates::find()->all();
+            foreach($template as $t){
+                $model                  = new \common\models\ContentChoice();
+                $model->content_id      = $content_id;
+                $model->type            = $t['type'];
+                $model->label           = $t['label'];
+                $model->default         = $t['default'];
+                $model->forder          = $t['forder'];
+                $model->save();
+            }
+        }
+    }
+    /**
+     * 
+     * @param type $content_id
+     */
+    public static function getChoice($content_id){        
+        try {
+            $choice = \common\models\ContentChoice::find()->where(['content_id'=>$content_id])->all();
+            return $choice;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+    public static function getChoiceDefault($content_id){        
+        try {
+            $choice = \common\models\ContentChoice::find()->where(['content_id'=>$content_id, 'default'=>1])->one();
+            return $choice;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+    
     /**
      * 
      * @return object or false

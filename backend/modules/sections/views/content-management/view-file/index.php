@@ -15,7 +15,7 @@ $modal = "modal-contents";
 
 <div class="row">
     <?= $this->render('_view-file-left', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault]) ?>
-    <?= $this->render('_view-file-right', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault]) ?>
+    <?= $this->render('_view-file-right', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault, 'choice'=>$choice]) ?>
 
 </div>
  

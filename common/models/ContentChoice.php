@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "tbl_content_choice".
  *
+ * @property int $id
  * @property int $content_id
  * @property string $type
  * @property string $label
@@ -29,7 +30,7 @@ class ContentChoice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['default', 'forder'], 'integer'],
+            [['content_id', 'default', 'forder'], 'integer'],
             [['type'], 'string', 'max' => 100],
             [['label'], 'string', 'max' => 255],
         ];
@@ -41,6 +42,7 @@ class ContentChoice extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => Yii::t('app', 'ID'),
             'content_id' => Yii::t('app', 'Content ID'),
             'type' => Yii::t('app', 'Type'),
             'label' => Yii::t('app', 'Label'),

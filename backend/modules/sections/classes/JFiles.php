@@ -10,4 +10,5 @@ class JFiles {
            return $type;
        }
     }
+     
 }
