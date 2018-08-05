@@ -7,22 +7,26 @@ use backend\modules\sections\classes\JSection;
 use backend\modules\sections\classes\JContent;
 use common\models\Sections;
 use Yii;
-class SessionManagementController extends Controller
+class PrivateSessionManagementController extends Controller
 { 
     public function actionIndex(){    
         $id = \Yii::$app->request->get('id', '');        
         if($id){
-            $content_section = JSection::getSectionById($id);
-            $section = JSection::getChildren($id);            
+            $content_section = JSection::getSectionById($id, '', '1');
+            $section = JSection::getChildren($id); 
+             
         }else{
-            $content_section = JSection::getRoot(); 
+            $content_section = JSection::getRoot(2); 
             $section = JSection::getRootSection(); 
         }
-        $public = isset($content_section) ? '1' : '2';
-        
+        $public = isset($content_section) ? '2' : '1';
+       // \appxq\sdii\utils\VarDumper::dump($content_section['id']); 
+         
         $breadcrumb = JSection::getBreadcrumb($id);
         $title = JSection::getTitle($id);        
-        $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1);        
+        $content = ($id != '') ? JContent::getContentBySectionId($id, 2) : JContent::getContentAll(2);
+        
+        
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$section,
             'pagination' => [
@@ -75,8 +79,10 @@ class SessionManagementController extends Controller
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');             
+            $parent_id = Yii::$app->request->get('parent_id', '');
+            $public = Yii::$app->request->get('public', '');   
 	    $model =  Sections::findOne($id);
+            $model->public = $public;
 	    if ($model->load(Yii::$app->request->post())) {		 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Update data complete'), $model);

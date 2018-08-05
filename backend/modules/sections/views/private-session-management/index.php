@@ -29,8 +29,9 @@
             'contentProvider'=>$contentProvider, 
             'data_id'=> isset($_GET['id']) ? $_GET['id'] : $content_section['id'], 
             'parent_id'=>$content_section['id'],
-            'public'=>$public,
-            'content_section'=>$content_section]
+            'content_section'=>$content_section,
+            'public'=>$public
+         ]
     );?>    
 </div>
  
@@ -47,7 +48,8 @@
        let url      = $(this).attr('data-url');
        let action   = $(this).attr('data-action');
        let parent_id = $(this).attr('data-parent_id'); 
-       let params   = {id:id, parent_id:parent_id};
+       let public   = $(this).attr('public'); 
+       let params   = {id:id, parent_id:parent_id, public:public};
        if(action == 'delete'){
            delete_form(url , id);
        }else{

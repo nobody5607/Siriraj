@@ -10,9 +10,9 @@ class JSection extends \yii\base\Component{
      * 
      * @return object
      */
-    public static function getRoot(){
+    public static function getRoot($public = ''){
        try{
-            return self::getSessionByCondition('parent_id is null', 'one');       
+            return self::getSessionByCondition('parent_id is null', 'one', $public);       
        } catch (yii\db\Exception $ex){
            return false;
        }
@@ -152,9 +152,10 @@ class JSection extends \yii\base\Component{
      * @param type string type = 'all' , 'one'
      * @return boolean
      */
-    private static function getSessionByCondition($condition, $type='all'){
+    private static function getSessionByCondition($condition, $type='all', $public=''){
         try{
-            $data = \common\models\Sections::find()->where('rstat not in(0,3) and public = 1');  
+            $public = ($public != "") ? $public : '1';
+            $data = \common\models\Sections::find()->where("rstat not in(0,3) and public = {$public}");  
             if(!empty($condition)){
                 $section = $data->andWhere($condition);
             }
@@ -185,10 +186,11 @@ class JSection extends \yii\base\Component{
      * @param type $parent_id string '1'
      * @return object or false
      */
-    public static function getSectionById($id, $type='one'){
+    public static function getSectionById($id, $type='one', $public=""){
        try{
             $condition=['id' => $id];
-            return self::getSessionByCondition($condition, $type);       
+            $type = ($type != "") ? $type : 'one';
+            return self::getSessionByCondition($condition, $type, $public);       
        } catch (yii\db\Exception $ex){
            return false;
        }

@@ -1,11 +1,12 @@
 <?php
     use yii\helpers\Html;
     $section_obj = \common\models\Sections::findOne($data_id);   
-     
+    //appxq\sdii\utils\VarDumper::dump($section_obj);
 ?>
-<div class="col-md-9 section-right"> 
-    <?php if($public == '1'): ?>
-    <div class="box box-primary">
+<div class="col-md-9 section-right">
+    
+    <?php if($public == '2'): ?>
+        <div class="box box-primary">
         <div class="box-header">
             <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
             <?php if(isset($_GET['id'])):?>
@@ -16,7 +17,6 @@
         </div>
         <div class="box-body">            
             <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
-                 
                 <div style="margin-bottom: -25px;">
                     <div class="pull-left">
                         <div>
@@ -33,30 +33,31 @@
                         <?php                                     
                             echo Html::button("<i class='fa fa-pencil'></i>", [
                                 'data-id' => $data_id,
+                                'public'=>'2',
                                 'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : 0,
                                 'data-action' => 'update',
                                 'class' => 'btn btn-primary btn-xs btnCall',
                                 'title' => Yii::t('appmenu', 'Edit'),
-                                'data-url' => '/sections/session-management/update'
+                                'data-url' => '/sections/private-session-management/update'
                             ]);
                         ?> 
                     </div>
                 </div>
                 <div class="clearfix"><hr/></div>
                 <div id="content-html">                    
-                    <?= $content_section->content; ?>
+                    <?= isset($content_section->content) ? $content_section->content : ''; ?>
                 </div> 
             </div>             
         </div>
     </div>
     <?php endif; ?>
-     
     <div class="clearfix"></div>
     <div class="box box-primary">
         <div class="box-header">
             <?php
                 echo Html::button("<i class='fa fa-plus'></i>", [
                     'data-id' => $content_section['id'],
+                    'public'=>'2',
                     'data-action' => 'create-content',
                     'class' => 'btn btn-success btnCall',
                     'title' => Yii::t('appmenu', 'Create'),

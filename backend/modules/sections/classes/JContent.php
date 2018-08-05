@@ -47,10 +47,17 @@ class JContent {
      * 
      * @return object or false
      */
-    public static function getContentAll(){
+    public static function getContentAll($type = ""){
         try {
-            $content = \common\models\Contents::find()->where('rstat not in(0,3)')->all();
-            return $content;
+            $data = \common\models\Contents::find()
+                    ->where('rstat not in(0,3)');                    
+                     
+            if($type == '2'){
+                $content = $data->andWhere(['public'=>2]);//private
+            }else{
+                $content = $data->andWhere(['public'=>1]);//public
+            }
+            return $content->all();
         } catch (Exception $ex) {
             return false;
         }
@@ -64,16 +71,13 @@ class JContent {
         try {
             $data = \common\models\Contents::find()
                     ->where('rstat not in(0,3)')
-                    ->andWhere('section_id=:id',[':id'=>$id]);                    
-                     
-            if($type == 'private'){
+                    ->andWhere('section_id=:id',[':id'=>$id]);   
+            if($type == '2'){
                 $content = $data->andWhere(['public'=>2]);//private
             }else{
                 $content = $data->andWhere(['public'=>1]);//public
-            }
-            
-//            \appxq\sdii\utils\VarDumper::dump($content);
-            return $content->all();;
+            } 
+            return $content->all();
         } catch (Exception $ex) {
             return false;
         }

@@ -21,21 +21,17 @@ $actionID = Yii::$app->controller->action->id;
                     'label' => Yii::t('backend', 'Section Management'),
                     'url' => ['/sections/session-management'],
                     'icon' => '<i class="fa fa-sitemap"></i>',
-                    'active'=>($moduleID == 'section_management' && $controllerID == 'sections') ? TRUE : FALSE,
+                    'active'=>($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
                     //'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
-                    'label' => Yii::t('backend', 'Content Management'),
-                    'url' => ['/content_management/section'],
-                    'icon' => '<i class="fa fa-tags"></i>',
-                    'active'=>($moduleID == 'content_management' && $controllerID == 'section') ? TRUE : FALSE,
+                    'label' => Yii::t('backend', 'Private Section Management'),
+                    'url' => ['/sections/private-session-management'],
+                    'icon' => '<i class="fa fa-lock"></i>',
+                    'active'=>($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
+                    //'visible' => Yii::$app->user->can('administrator'),
                 ],
-                [
-                    'label' => Yii::t('backend', 'Secret Content Management'),
-                    'url' => ['/secret_content_management/section'],
-                    'icon' => '<i class="fa fa-tags"></i>',
-                    'active'=>($moduleID == 'secret_content_management') ? TRUE : FALSE,
-                ],
+                 
                 [
                     'label' => Yii::t('backend', 'Users'),
                     'url' => ['/user/index'],
