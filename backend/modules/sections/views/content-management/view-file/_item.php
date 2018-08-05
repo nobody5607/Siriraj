@@ -42,7 +42,7 @@
             $taga .= Html::button("<i class='fa fa-pencil'></i>", [
                 //'data-id' => $model['id'],
                 //'data-parent_id' => Yii::$app->request->get('id', '0'),
-                'data-action' => 'update-section',
+                'data-action' => 'update-size',
                 'class' => 'btn btn-primary btn-xs btnCall',
                 'title' => Yii::t('appmenu', 'Edit'),
                 'data-url' => '/sections/session-management/update'
@@ -65,16 +65,8 @@
         'data-action'=>'view-file',
         'class'=>'content-popup btnCall',
         'data-id'=>$model['id'],
-        'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
+        //'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
     ]);
     echo $taga;
 ?> 
 <?php $this->registerCss("a{color:#000;}")?>
-<?php 
-    $modal = "modal-contents";
-?>
-<?php \richardfan\widget\JSRegister::begin();?>
-<script>
-    
-</script>
-<?php \richardfan\widget\JSRegister::end();?>

@@ -22,9 +22,9 @@
             echo Html::button("<i class='fa fa-plus'></i>", [
                 //'data-id' => $data_id,
                 // 'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : 0,
-                'data-action' => 'update',
+                'data-action' => 'create',
                 'class' => 'btn btn-success btnCall',
-                'title' => Yii::t('appmenu', 'Create'),
+                'title' => Yii::t('appmenu', 'Add'),
                 'data-url' => '/sections/session-management/update'
             ]);
             ?> 
@@ -70,3 +70,7 @@
    }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end();?>
+
+<?php 
+    $modal = "modal-contents";
+?>

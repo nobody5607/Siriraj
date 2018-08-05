@@ -26,9 +26,9 @@ class JContent {
      * 
      * @param type $content_id
      */
-    public static function getChoice($content_id){        
+    public static function getChoice($content_id, $type){        
         try {
-            $choice = \common\models\ContentChoice::find()->where(['content_id'=>$content_id])->all();
+            $choice = \common\models\ContentChoice::find()->where(['content_id'=>$content_id, 'type'=>$type])->all();
             return $choice;
         } catch (Exception $ex) {
             return false;

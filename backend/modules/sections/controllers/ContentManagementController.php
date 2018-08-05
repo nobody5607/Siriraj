@@ -173,9 +173,8 @@ class ContentManagementController extends Controller
         
         /* add template */
         $addTemplate    = JContent::addTemplate($content_id);
-        $choice         = JContent::getChoice($content_id);
-        
-        //\appxq\sdii\utils\VarDumper::dump($check_choice);
+        $choice         = JContent::getChoice($content_id, $filet_id);
+                //\appxq\sdii\utils\VarDumper::dump($check_choice);
         return $this->render("view-file/index",[
             'breadcrumb'=>$breadcrumb,
             'dataProvider'=>$dataProvider,
