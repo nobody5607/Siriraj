@@ -37,7 +37,7 @@ $modal = "modal-contents";
                     </div>                     
                     <div class="box-footer read-all">
                         <div class="text-center">
-                          <?=  Html::a('<< View All >>',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=1&filet_id={$f['id']}" , [
+                          <?=  Html::a('<< View All >>',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
                                 'id'=>"btn-{$f['id']}",
                                 'data-action'=>'view-file',
                                 'class'=>'content-popup btnCall',
