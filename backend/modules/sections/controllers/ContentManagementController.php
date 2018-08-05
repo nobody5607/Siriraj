@@ -110,4 +110,48 @@ class ContentManagementController extends Controller
 	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
 	}
     }
+    
+    //get content
+    public function actionViewDataContent(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $type_id            = \Yii::$app->request->get('type_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$files,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        return $this->renderAjax("view-data-content",[
+             'dataProvider'=>$dataProvider
+        ]);
+    }
+    public function actionGetCountData(){
+        $content_id         = \Yii::$app->request->get('content_id', '');
+        $type_id            = \Yii::$app->request->get('type_id', '');
+        $content            =  JContent::getContentById($content_id);
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
+        $str = \Yii::t('content', 'ไฟล์');
+        if($type_id == 2){
+            $str = \Yii::t('content', 'ภาพ');
+        }
+        if($files){
+            return count($files)." {$str}";
+        }else{
+            if(count($files) == 0){
+                $html = "";
+                //$html .= "<script>$('.read-all').remove();</script>";
+                $html .= "0 {$str}";
+                return $html;
+            }
+            
+        }
+    }
+    
+    
 }
