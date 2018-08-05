@@ -37,12 +37,12 @@ $modal = "modal-contents";
                     </div>                     
                     <div class="box-footer read-all">
                         <div class="text-center">
-                          <?=  Html::a('<< View All >>','#' , [
+                          <?=  Html::a('<< View All >>',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=1&filet_id={$f['id']}" , [
                                 'id'=>"btn-{$f['id']}",
                                 'data-action'=>'view-file',
                                 'class'=>'content-popup btnCall',
                                 'data-id'=>$f['id'],
-                                'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=1&filet_id={$f['id']}"
+                                 
                             ]);?>
                              
                         </div>
@@ -53,14 +53,7 @@ $modal = "modal-contents";
         </div>
         <?php \richardfan\widget\JSRegister::begin(); ?>
         <script>
-            $('#btn-<?= $f['id']?>').on('click', function(){
-                let id       = $(this).attr('data-id');
-                let url      = $(this).attr('data-url');
-                let action   = $(this).attr('data-action');
-                let params = {id:id};
-                get_form(url, params);
-                return false;
-            });
+             
             get_form=function(url , params){
                 $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
                 $('#<?= $modal?>').modal('show');

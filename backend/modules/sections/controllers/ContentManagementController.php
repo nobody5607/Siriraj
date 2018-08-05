@@ -165,15 +165,16 @@ class ContentManagementController extends Controller
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 100,
             ],
         ]);
         $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
          
-        return $this->renderAjax("view-file/index",[
+        return $this->render("view-file/index",[
             'breadcrumb'=>$breadcrumb,
             'dataProvider'=>$dataProvider,
-            'dataDefault'=>$dataDefault
+            'dataDefault'=>$dataDefault,
+            'title'=>$content['name']
         ]); 
     }
     

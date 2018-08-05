@@ -1,15 +1,24 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b>&times;</b></button>
-    <h4 class="modal-title" id="itemModalLabel"><b>Sections</b></h4>
-</div>
-<div class="modal-body">
+<?php
 
-    <div class="row">
-        <?= $this->render('_view-file-left',['dataProvider'=>$dataProvider,'dataDefault'=>$dataDefault])?>
-        <?= $this->render('_view-file-right',['dataProvider'=>$dataProvider,'dataDefault'=>$dataDefault])?>
-        
-    </div>
+use yii\bootstrap\Html;
+use kartik\tabs\TabsX;
+
+$this->title = Yii::t('section', $title);
+if ($breadcrumb) {
+    foreach ($breadcrumb as $b) {
+        $this->params['breadcrumbs'][] = $b;
+    }
+}
+$modal = "modal-contents";
+?>
+
+
+<div class="row">
+    <?= $this->render('_view-file-left', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault]) ?>
+    <?= $this->render('_view-file-right', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault]) ?>
+
 </div>
+ 
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     @media (min-width: 992px)
@@ -22,6 +31,10 @@
             padding-top: 10px;
             padding-left: 25px;
         }
+    }
+    .box.box-primary {
+        border: none;
+        box-shadow: 0px 0px 1px #cacaca;
     }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>
