@@ -22,15 +22,24 @@ use appxq\sdii\helpers\SDHtml;
     </div>
 
     <div class="modal-body"> 
-        <?php
-            $file_type = \common\models\FileType::find()->all();
-            $items = yii\helpers\ArrayHelper::map($file_type, 'id', 'name');
-        ?>
-	<?= $form->field($model, 'type')->dropDownList($items, [''])?>
-	<?= $form->field($model, 'label')->textInput(['maxlength' => true]) ?>
-	<?= $form->field($model, 'default')->textInput() ?>
-	<?= $form->field($model, 'forder')->textInput() ?>
-
+        <div class="row">
+            <?php
+                $file_type = \common\models\FileType::find()->all();
+                $items = yii\helpers\ArrayHelper::map($file_type, 'id', 'name');
+            ?> 	
+            <div class="col-md-6">
+                <?= $form->field($model, 'label')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'forder')->textInput() ?>
+            </div>
+            <div class="col-md-12">
+                <?php
+                    $items = ['0'=>'Not Default','1'=>'Default'];
+                    echo $form->field($model, 'default')->radioList($items, []); 
+                ?>
+            </div>
+        </div>    
     </div>
     <div class="modal-footer">
 	<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -63,6 +72,9 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
                 $(document).find('#modal-content-choice').modal('hide');
                 $.pjax.reload({container:'#content-choice-grid-pjax'});
             }
+            setTimeout(function(){
+                location.reload();
+            },1000);
         } else {
             <?= SDNoty::show('result.message', 'result.status')?>
         } 

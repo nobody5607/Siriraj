@@ -96,26 +96,26 @@ class FileManagementController extends Controller
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-	    $model = new ContentChoice();
-
+	    $model              = new ContentChoice();
+            $content_id         = \Yii::$app->request->get('content_id', '');
+            $filet_id           = \Yii::$app->request->get('filet_id', '');
+            $model->content_id  = $content_id;
+            $model->type        = $filet_id;
 	    if ($model->load(Yii::$app->request->post())) {
-		Yii::$app->response->format = Response::FORMAT_JSON;
-		if ($model->save()) {
-		    $result = [
-			'status' => 'success',
-			'action' => 'create',
-			'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		} else {
-		    $result = [
-			'status' => 'error',
-			'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not create the data.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		}
+                if($model->default == 1){
+                    //default
+                    $choice = ContentChoice::find()->where(['content_id'=>$model->content_id, 'type'=>$model->type])->all();
+                    foreach($choice as $c){
+                        $c->default = 0;
+                        $c->update();
+                    }
+                    //\Yii::$app->db->createCommand()->update($table, $columns, $condition, $params);
+                }  
+		if ($model->save()) {		 
+                    return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
+                } else {
+                    return \janpan\jn\classes\JResponse::getError(Yii::t('app', 'Can not update the data.'), $model);
+                }
 	    } else {
 		return $this->renderAjax('create', [
 		    'model' => $model,
@@ -136,25 +136,22 @@ class FileManagementController extends Controller
     {
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = $this->findModel($id);
-
-	    if ($model->load(Yii::$app->request->post())) {
-		Yii::$app->response->format = Response::FORMAT_JSON;
-		if ($model->save()) {
-		    $result = [
-			'status' => 'success',
-			'action' => 'update',
-			'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		} else {
-		    $result = [
-			'status' => 'error',
-			'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not update the data.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		}
+	    if ($model->load(Yii::$app->request->post())) { 
+                if($model->default == 1){
+                    $choice = ContentChoice::find()->where(['content_id'=>$model->content_id, 'type'=>$model->type])->all();
+                    foreach($choice as $c){
+                        $c->default = 0;
+                        $c->update();
+                    }
+                    //default
+                    //ContentChoice::updateAll(['default'=>0, 'type'=>$model->type, 'content_id'=>$model->content_id]); 
+                    //\Yii::$app->db->createCommand()->update($table, $columns, $condition, $params);
+                }  
+		if ($model->save()) {		 
+                    return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
+                } else {
+                    return \janpan\jn\classes\JResponse::getError(Yii::t('app', 'Can not update the data.'), $model);
+                }
 	    } else {
 		return $this->renderAjax('update', [
 		    'model' => $model,
@@ -171,25 +168,15 @@ class FileManagementController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-	if (Yii::$app->getRequest()->isAjax) {
-	    Yii::$app->response->format = Response::FORMAT_JSON;
-	    if ($this->findModel($id)->delete()) {
-		$result = [
-		    'status' => 'success',
-		    'action' => 'update',
-		    'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Deleted completed.'),
-		    'data' => $id,
-		];
-		return $result;
+	if (Yii::$app->getRequest()->isAjax) { 
+            $id = \Yii::$app->request->post('id', '');
+            $model = $this->findModel($id); 
+	    if ($model->delete()) {		 
+                return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Deleted completed.'), $model);
 	    } else {
-		$result = [
-		    'status' => 'error',
-		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
-		    'data' => $id,
-		];
-		return $result;
+		return \janpan\jn\classes\JResponse::getError(Yii::t('app', 'Can not delete the data.'), $model);
 	    }
 	} else {
 	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');

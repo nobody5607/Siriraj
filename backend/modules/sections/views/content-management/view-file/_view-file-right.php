@@ -20,12 +20,12 @@
         <div>
             <?php
             echo Html::button("<i class='fa fa-plus'></i>", [
-                //'data-id' => $data_id,
-                // 'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : 0,
-                'data-action' => 'create',
-                'class' => 'btn btn-success btnCall',
+                'content-id' => isset($_GET['content_id']) ? $_GET['content_id'] : '',
+                'filet-id'=> isset($_GET['filet_id']) ? $_GET['filet_id'] : '',
+                'data-action' => 'create-choice',
+                'class' => 'btn btn-success btnCalls',
                 'title' => Yii::t('appmenu', 'Add'),
-                'data-url' => '/sections/session-management/update'
+                'data-url' => '/sections/file-management/create'
             ]);
             ?> 
         </div>
