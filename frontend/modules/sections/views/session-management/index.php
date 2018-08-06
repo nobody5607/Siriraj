@@ -2,7 +2,8 @@
     use yii\bootstrap\Html;    
     \janpan\jn\assets\ListdataAsset::register($this);
     \janpan\jn\assets\EzfToolAsset::register($this);
-    $this->title= Yii::t('section',$title);    
+    $this->title= Yii::t('section', ($title != '') ? $title : 'Session'); 
+    //appxq\sdii\utils\VarDumper::dump($title);
     if($breadcrumb){
        foreach($breadcrumb as $b){
         $this->params['breadcrumbs'][] = $b;  
