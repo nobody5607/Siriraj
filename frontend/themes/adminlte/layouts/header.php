@@ -14,7 +14,7 @@ use yii\bootstrap\Nav;
      'brandUrl' => Yii::$app->homeUrl,
     'innerContainerOptions' => ['class' => 'container-fluid'],
     'options' => [
-        'class' => 'page-container navbar navbar-inverse',
+        'class' => 'page-container navbar navbar-inverse navbar-fixed-top',
     ],     
 ]);
 
@@ -57,7 +57,19 @@ NavBar::end();
     .content-header>.breadcrumb{
        width: 98%;
        font-size: 12pt;
-       background:#d2d6de;
+       background-color: #f8f8f8;
+    }
+    .content-header>.breadcrumb {
+        top: 60px;
+        /* background: #ececec; */
+        box-shadow:none;
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        
+        border-radius: 4px;
+        border: 1px solid #e7e7e7;
+        width: 73%;
     }
     .navbar-nav > li > .dropdown-menu {
         margin-top: 0;
@@ -70,7 +82,7 @@ NavBar::end();
         background-color: #225979;
         color: #333;
     }
-    
+     
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
  

@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i>'), ['create'], ['class' => 'btn btn-success']) ?>
     </div>
     <div class="box-body">
-        <?= GridView::widget([
+        <div class="">
+            <?=            appxq\sdii\widgets\GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
@@ -67,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]) ?>
+        </div>
     </div>
 </div>
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>

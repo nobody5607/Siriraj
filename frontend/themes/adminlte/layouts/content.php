@@ -4,7 +4,7 @@ use dmstr\widgets\Alert;
 
 ?>
 <div class="content-wrapper">
-    <section class="content-header" style="margin-bottom:50px;">
+    <section class="content-header" style="margin-bottom:75px;">
         <?=
             Breadcrumbs::widget(
                 [

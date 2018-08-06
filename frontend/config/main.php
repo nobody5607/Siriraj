@@ -13,6 +13,9 @@ $config = [
     'timeZone' => 'Asia/Bangkok',
     'language' => 'en-US',
     'modules' => [
+        'sections' => [
+            'class' => 'frontend\modules\sections\Module',
+        ],
         'account' => [
             'class' => 'frontend\modules\account\Module',
         ],
