@@ -80,9 +80,7 @@ NavBar::end();
         background-color: #225979;
         color: #333;
     }
-    .box-body { 
-        padding: 0px;
-    }
+    
      
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

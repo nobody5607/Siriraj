@@ -97,6 +97,8 @@
             margin-left: 90px;
         }
     }
-
+.box-body { 
+        padding: 0px;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
