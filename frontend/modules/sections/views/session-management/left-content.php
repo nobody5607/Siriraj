@@ -3,49 +3,28 @@ use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use yii\helpers\Html;
 
-\janpan\jn\assets\ListdataAsset::register($this);
-\janpan\jn\assets\EzfToolAsset::register($this);
- $section_obj = \common\models\Sections::findOne($data_id);   
+
+  
 ?>
 
-<section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
-    <div id="items-side-scroll" class="row">
-        <div class="col-lg-12">
-            <div class=" sidebar-nav-title" >
-                <?php if(!isset($_GET['id'])):?>
-                    <?= \yii\helpers\Html::img('/images/1533128627373.jpg', ['class' => 'img img-responsive', 'style'=>'width:100%']) ?>
-                <?php else:?>
-                <div class="container">
-                     
-                        <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
-                     
-                </div>
-                <?php endif; ?>
-                 
-            </div>
-            <?php // $this->render('_search', ['model' => $searchModel]);  ?>
-            <div id="ezf-items">
-                <?=
-                ListView::widget([
-                    'id'=>'ezf_dad',
-                    'dataProvider' => $dataProvider,
-                    'itemOptions' => ['class' => 'item dads-children'],
-                    'layout'=>'<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
-                    'itemView' => function ($model, $key, $index, $widget){
-                        return $this->render('_left-content-item', [
-                            'model' => $model,
-                            'key' => $key,
-                            'index' => $index,
-                            //'widget' => $widget,
-                            'ezf_id' => $model['id'],
-                        ]);
-                    },
-                ])
-                ?>
-            </div>
-        </div>
-    </div>
-</section>
+<?=
+ListView::widget([
+    'id' => 'ezf_dad',
+    'dataProvider' => $dataProvider,
+    'itemOptions' => ['class' => 'item dads-children'],
+    'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+    'itemView' => function ($model, $key, $index, $widget) {
+        return $this->render('_left-content-item', [
+                    'model' => $model,
+                    'key' => $key,
+                    'index' => $index,
+                    //'widget' => $widget,
+                    'ezf_id' => $model['id'],
+        ]);
+    },
+    'emptyText'=> '&nbsp;&nbsp;&nbsp;&nbsp;'.\yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> Back', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'btn btn-default btn-sm']),
+])
+?>
  
 
 
@@ -135,11 +114,29 @@ use yii\helpers\Html;
 
 <?php appxq\sdii\widgets\CSSRegister::begin();?>
 <style>
-    .list-view .item a.media { 
+/*    .list-view .item a.media { 
         border-bottom-style: dashed;
     }
     .items-sidebar.navbar-collapse{ 
         background-color: #fff; 
     }
+    .list-view .item a.media{
+        padding: 5px;         
+        font-size: 14px;
+    }
+    @media (min-width: 768px){
+        .items-sidebar.navbar-collapse{
+            width: 245px;
+        }
+        .content-wrapper { 
+            background-color: #ffffff;
+        }
+    }
+    @media (min-width: 992px)
+    {
+        .col-md-offset-2 {
+            margin-left: 17.5%;
+        }
+    }*/
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end();?>
