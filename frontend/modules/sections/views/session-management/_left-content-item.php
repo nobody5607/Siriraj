@@ -14,7 +14,7 @@ $url = "/sections/session-management?id={$model['id']}";
     <div class="media-body"> 
         
         <p class="list-group-item-text"> 
-            <div class=""><i class="fa <?= $model['icon']?>"></i> <?= Html::encode($model->name) ?> </div>
+        <div class=""><i style="font-size:20px;" class="fa <?= $model['icon']?>"></i> <?= Html::encode($model->name) ?> </div>
         </p>
         
     </div>

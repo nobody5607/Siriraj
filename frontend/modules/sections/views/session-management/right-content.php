@@ -5,6 +5,10 @@
 ?>
 <?php if(!isset($_GET['id'])):?>
 <div>
+    <div>
+        <?php echo $this->render('carousel');?>  
+    </div>
+    <br>
     <?php echo $this->render('_searchbar');?>  
 </div>
 <div class="clearfix" style="margin-bottom:10px;"></div>

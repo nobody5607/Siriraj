@@ -22,7 +22,7 @@
                     <?= \yii\helpers\Html::img('/images/1533128627373.jpg', ['class' => 'img img-responsive', 'style'=>'width:100%']) ?>
                 <?php else:?>
                 <div class="container" style="padding-top: 10px;">                     
-                    <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>                     
+                    <h4 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>                     
                 </div>
                 <?php endif; ?>
                  
@@ -223,10 +223,16 @@
         box-shadow: 0px 0px 1px #cacaca;
     }
     @media (min-width: 768px){
-       #items-views {
-            margin-left: 350px;            
-       } 
-    }
+        #items-views {
+            margin-left: 250px;            
+        }
+        .list-view .item a.media { 
+            font-size: 14px;
+        }
+        .items-sidebar.navbar-collapse{
+            width: 255px;
+        } 
+    } 
     
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

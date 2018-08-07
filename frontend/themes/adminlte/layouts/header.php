@@ -54,21 +54,23 @@ NavBar::end();
 ?> 
 <?php \appxq\sdii\widgets\CSSRegister::begin();?>
 <style>
-     
-    .content-header>.breadcrumb {
-        top: 60px;
-        box-shadow:none;
-        padding: 8px 15px;
-        margin-bottom: 20px;
-        list-style: none;
-        border-radius: 4px;
-        border: 1px solid #e7e7e7; 
-        font-size: 12pt;
-        background-color: #f8f8f8;
-        float: none;
-            width: 98%;
-         
-    }
+    @media (min-width: 768px){
+      .content-header>.breadcrumb {
+            top: 60px;
+            box-shadow:none;
+            padding: 8px 15px;
+            margin-bottom: 20px;
+            list-style: none;
+            border-radius: 4px;
+            border: 1px solid #e7e7e7; 
+            font-size: 12pt;
+            background-color: #f8f8f8;
+            float: none;
+            left: 261px;
+
+        }   
+    } 
+    
     .navbar-nav > li > .dropdown-menu {
         margin-top: 0;
         border-top-left-radius: 0;

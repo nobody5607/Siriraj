@@ -46,7 +46,8 @@
         "richardfan1126/yii2-js-register": "*",
         "dominus77/yii2-fontawesome-iconpicker": "*",
         "kartik-v/yii2-tree-manager": "@dev",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kv4nt/yii2-owl-carousel2": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
