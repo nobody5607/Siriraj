@@ -64,12 +64,13 @@
                 echo \yii\widgets\ListView::widget([
                     'dataProvider' => $contentProvider,
                     'options' => [
-                        'tag' => 'div',
-                        'class' => 'content-list',
+                        'tag' => 'ul',
+                        'class' => 'products-list product-list-in-box',
                         'id' => 'section-all',
+                        'style'=>'padding: 2px;'
                     ],
                     'itemOptions' => function($model) {
-                        return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'box-footer box-comments'];
+                        return ['tag' => 'li', 'data-id' => $model['id'], 'class' => 'item'];
                     },
                     'layout' => "{items}\n{pager}",
                     'itemView' => function ($model, $key, $index, $widget) {
