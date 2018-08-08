@@ -18,19 +18,19 @@
     <div id="items-side-scroll" class="row">
         <div class="col-md-12">
             <?php if(!isset($_GET['id'])):?>  
-            <div class=" sidebar-nav-title" style="background:#fff;padding:10px;">
+            <div class="sidebar-nav-title sidebars">
             <?php else:?>
-                <div class=" sidebar-nav-title">
+                <div class=" sidebar-nav-title ">
             <?php endif; ?>    
                 <?php if(!isset($_GET['id'])):?>                
                     <?= \yii\helpers\Html::img('/images/logosirirajweb3.png', 
                             ['class' => 'img img-responsive', 'style'=>'width:100px;margin: 0 auto;']) ?>
                 <?php else:?>
                 <div style="padding: 10px;    border-bottom: 1px solid #1b1b1b63;">      
-                    <h5 style="color:#ddd;"><?= "<i style='font-size:22px;' class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h5>                     
+                    <h5 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h5>                     
                         <?php
                         if (isset($_GET['id'])) {
-                            echo Html::a('<i class="fa fa-bank" style="font-size:20px;"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
+                            echo Html::a('<i class="fa fa-bank"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
                         }
                         ?>
            
@@ -56,7 +56,8 @@
                 'data_id'=> $data_id, 
                 'parent_id'=>$content_section['id'],
                 'public'=>$public,
-                'content_section'=>$content_section]
+                'content_section'=>$content_section,
+                'dataProvider'=>$dataProvider]    
         );?>    
     </div>
     
@@ -226,29 +227,4 @@
             }
         ");
     }
-?>
-<?php \appxq\sdii\widgets\CSSRegister::begin();?>
-<style>
-    .box.box-primary {
-        border: none;
-        box-shadow: 0px 0px 1px #cacaca;
-    }
-    @media (min-width: 768px){
-        #items-views {
-            margin-left: 250px;            
-        }
-        .list-view .item a.media { 
-            font-size: 14px;
-        }
-        .items-sidebar.navbar-collapse{
-            width: 255px;
-        } 
-        .content-header>.breadcrumb {          
-            left: 250px;
-            margin-left: 12px;
-      } 
-    } 
-     
-</style>
-<?php \appxq\sdii\widgets\CSSRegister::end();?>
-
+?> 

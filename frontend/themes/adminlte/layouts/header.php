@@ -80,7 +80,29 @@ NavBar::end();
         background-color: #225979;
         color: #333;
     }
-    
+    .box.box-primary {
+        border: none;
+        box-shadow: 0px 0px 5px #a7a7a7;
+    }
+    @media (min-width: 768px){
+        #items-views {
+            margin-left: 250px;            
+        }
+        .list-view .item a.media { 
+            font-size: 14px;
+        }
+        .items-sidebar.navbar-collapse{
+            width: 255px;
+        } 
+        .content-header>.breadcrumb {          
+            left: 250px;
+            margin-left: 12px;
+      } 
+    } 
+    .sidebars{
+        background:#fff;
+        padding:10px;
+    }
      
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

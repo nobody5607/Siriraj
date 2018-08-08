@@ -44,6 +44,22 @@
     <?php endif; ?>
      
     <div class="clearfix"></div>
+    <div>
+         <?php
+            echo $this->render('right-content-dynamic',[
+                'contentProvider'=>$contentProvider, 
+                'data_id'=> $data_id, 
+                'parent_id'=>$content_section['id'],
+                'public'=>$public,
+                'content_section'=>$content_section,
+                'dataProvider'=>$dataProvider]    
+        );?>    
+    </div>
+
+    
+    
+    <div class="clearfix"></div>
+    
     <div class="box box-primary">
         
         <div class="box-body">
@@ -70,28 +86,3 @@
     </div>
 
 </div>
- 
-<?php \appxq\sdii\widgets\CSSRegister::begin();?>
-<style>
-    .box-comments {
-        background: #ffffff;
-    }
-    @media (min-width: 768px){
-        .dl-horizontal dt {
-            float: left;
-            width: 80px;
-            overflow: hidden;
-            clear: left;
-            text-align: right;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .dl-horizontal dd {
-            margin-left: 90px;
-        }
-    }
-.box-body { 
-        padding: 0px;
-    }
-</style>
-<?php \appxq\sdii\widgets\CSSRegister::end();?>
