@@ -139,8 +139,8 @@ use dominus77\iconpicker\IconPicker;
                 $form.attr('action'), //serialize Yii2 form
                 $form.serialize()
                 ).done(function (result) {
-            if (result.status == 'success') {
-<?= SDNoty::show('result.message', 'result.status') ?>
+            if (result.status == 'success') {//console.log(result);return false;
+                <?= SDNoty::show('result.message', 'result.status') ?>
                 $(document).find('#modal-contents').modal('hide');
                 setTimeout(function () {
                     location.reload();

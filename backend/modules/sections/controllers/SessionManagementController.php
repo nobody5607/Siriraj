@@ -75,8 +75,10 @@ class SessionManagementController extends Controller
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');             
+            $parent_id = Yii::$app->request->get('parent_id', '');     
+            
 	    $model =  Sections::findOne($id);
+             
 	    if ($model->load(Yii::$app->request->post())) {		 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Update data complete'), $model);

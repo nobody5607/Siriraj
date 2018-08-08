@@ -33,7 +33,7 @@
                         <?php                                     
                             echo Html::button("<i class='fa fa-pencil'></i>", [
                                 'data-id' => $data_id,
-                                'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : 0,
+                                'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : '',
                                 'data-action' => 'update',
                                 'class' => 'btn btn-primary btn-xs btnCall',
                                 'title' => Yii::t('appmenu', 'Edit'),
