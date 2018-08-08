@@ -85,6 +85,7 @@ NavBar::end();
         box-shadow: 0px 0px 5px #a7a7a7;
     }
     @media (min-width: 768px){
+        
         #items-views {
             margin-left: 250px;            
         }
@@ -94,10 +95,7 @@ NavBar::end();
         .items-sidebar.navbar-collapse{
             width: 255px;
         } 
-        .content-header>.breadcrumb {          
-            left: 250px;
-            margin-left: 12px;
-      } 
+        
     } 
     .sidebars{
         background:#fff;

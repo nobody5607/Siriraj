@@ -225,6 +225,12 @@
                     left: 0px;
                 }
             }
+            @media (min-width: 768px){
+                .content-header>.breadcrumb {          
+                    left: 250px;
+                    margin-left: 12px;
+              }
+            }
         ");
     }
 ?> 
