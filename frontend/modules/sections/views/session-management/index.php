@@ -16,13 +16,24 @@
 ?>  
  <section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
     <div id="items-side-scroll" class="row">
-        <div class="col-lg-12">
-            <div class=" sidebar-nav-title" >
-                <?php if(!isset($_GET['id'])):?>
-                    <?= \yii\helpers\Html::img('/images/1533128627373.jpg', ['class' => 'img img-responsive', 'style'=>'width:100%']) ?>
+        <div class="col-md-12">
+            <?php if(!isset($_GET['id'])):?>  
+            <div class=" sidebar-nav-title" style="background:#fff;padding:10px;">
+            <?php else:?>
+                <div class=" sidebar-nav-title">
+            <?php endif; ?>    
+                <?php if(!isset($_GET['id'])):?>                
+                    <?= \yii\helpers\Html::img('/images/logosirirajweb3.png', 
+                            ['class' => 'img img-responsive', 'style'=>'width:100px;margin: 0 auto;']) ?>
                 <?php else:?>
-                <div class="container" style="padding-top: 10px;">                     
-                    <h4 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>                     
+                <div style="padding: 10px;    border-bottom: 1px solid #1b1b1b63;">      
+                    <h5 style="color:#ddd;"><?= "<i style='font-size:22px;' class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h5>                     
+                        <?php
+                        if (isset($_GET['id'])) {
+                            echo Html::a('<i class="fa fa-bank" style="font-size:20px;"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
+                        }
+                        ?>
+           
                 </div>
                 <?php endif; ?>
                  

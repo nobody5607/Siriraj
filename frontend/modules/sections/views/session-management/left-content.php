@@ -22,10 +22,11 @@ ListView::widget([
                     'ezf_id' => $model['id'],
         ]);
     },
-    'emptyText'=> '&nbsp;&nbsp;&nbsp;&nbsp;'.\yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> Back', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'btn btn-default btn-sm']),
+    //'emptyText'=>'',
+    'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> ย้อนกลับ', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #dddddd;padding:5px;position: absolute;    margin-top: 5px;']),
 ])
 ?>
- 
+
 
 
 
@@ -57,5 +58,8 @@ ListView::widget([
             margin-left: 17.5%;
         }
     }*/
+.dads-children:hover {
+    background-color: #222d32;
+}
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end();?>
