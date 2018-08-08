@@ -5,10 +5,7 @@
 ?>
 <?php if(!isset($_GET['id'])):?>
 <div>
-    <div>
-        <?php echo $this->render('carousel');?>  
-    </div>
-    <br>
+    
     <?php echo $this->render('_searchbar');?>  
 </div>
 <div class="clearfix" style="margin-bottom:10px;"></div>
@@ -16,29 +13,20 @@
 <div class="col-md-12 section-right">      
     <?php if($public == '1'): ?>
     <div class="box box-primary">
-        <div class="box-header">            
-                <?php if (isset($_GET['id'])): ?>
-                    <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
+            <?php if (isset($_GET['id'])): ?>
+                <div class="box-header">   
+                    <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}" ?></h4>
                     <div class="row">                     
-                        <?= $this->render('_searchbar');?>
+                        <?= $this->render('_searchbar'); ?>
                     </div>
-                <?php else: ?>
-                    
-                <?php endif; ?>
-                    
-            
-        </div>
+                </div>            
+            <?php else: ?>
+
+            <?php endif; ?>                   
+        
         <div class="box-body">            
             <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
-                <div style="margin-bottom: -25px;font-size: 12px;">
-                    <div class="pull-left">
-                        <div class="container">
-                            <i class="fa fa-calendar"> วันที่สร้าง:</i>
-                            <?= appxq\sdii\utils\SDdate::mysql2phpDate($section_obj['create_date'])?> &nbsp;
-                            <i class="fa fa-user"> โดย: </i>
-                            <?= common\modules\cores\User::getProfileNameByUserId($section_obj['create_by']) ?>
-                        </div>                        
-                    </div>
+                <div style="margin-bottom: -25px;font-size: 12px;">                   
                     
                 </div>
                 

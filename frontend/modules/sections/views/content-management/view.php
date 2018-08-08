@@ -71,12 +71,4 @@ $modal = "modal-contents";
         <?php \richardfan\widget\JSRegister::end(); ?>
     <?php endif; ?>
 <?php endforeach; ?> 
-
-<?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
-<style>
-    .box.box-primary {
-        border: none;
-        box-shadow: 0px 0px 1px #cacaca;
-    }
-</style>
-<?php \appxq\sdii\widgets\CSSRegister::end(); ?>
+<?= $this->render('view-file/style')?>

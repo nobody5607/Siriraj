@@ -38,3 +38,4 @@ $modal = "modal-contents";
     }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>
+<?= $this->render('style')?>

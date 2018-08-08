@@ -65,9 +65,7 @@ NavBar::end();
             border: 1px solid #e7e7e7; 
             font-size: 12pt;
             background-color: #f8f8f8;
-            float: none;
-            left: 261px;
-
+            float: none; 
         }   
     } 
     

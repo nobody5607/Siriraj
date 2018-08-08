@@ -232,8 +232,12 @@
         .items-sidebar.navbar-collapse{
             width: 255px;
         } 
+        .content-header>.breadcrumb {          
+            left: 250px;
+            margin-left: 12px;
+      } 
     } 
-    
+     
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
 
