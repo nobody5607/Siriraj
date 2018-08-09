@@ -59,13 +59,8 @@
     
     
     <div class="clearfix"></div>
-    
-    <div class="box box-primary">
-        
-        <div class="box-body">
-            
-            <?php
-                echo \yii\widgets\ListView::widget([
+    <?php
+                 \yii\widgets\ListView::widget([
                     'dataProvider' => $contentProvider,
                     'options' => [
                         'tag' => 'ul',
@@ -82,7 +77,12 @@
                     },
                 ]);
             ?>
+<!--    <div class="box box-primary">
+        
+        <div class="box-body">
+            
+            
         </div>
-    </div>
+    </div>-->
 
 </div>
