@@ -24,7 +24,7 @@
             <?php endif; ?>    
                 <?php if(!isset($_GET['id'])):?>                
                     <?= \yii\helpers\Html::img('/images/logosirirajweb3.png', 
-                            ['class' => 'img img-responsive', 'style'=>'width:100px;margin: 0 auto;']) ?>
+                            ['class' => 'img img-responsive', 'style'=>'width:80px;margin: 0 auto;']) ?>
                 <?php else:?>
                 <div style="padding:10px;border-bottom: 1px solid #1b1b1b63;">      
                     <h5 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h5>                     
