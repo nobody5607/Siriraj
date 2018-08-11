@@ -114,8 +114,13 @@ $this->registerJs("
         border-color: #24678e;
     }
     .panel-default {
-        background: #64708e;
+        background: #8693b5;
         border-color: #64708e;
+    }
+    .panel-default .panel-heading{
+        border-bottom: 1px solid #394c7b;
+        background: #3f5386;
+        color: #edba23;
     }
     .content-wrapper{
         /*background: #fff;*/
@@ -132,7 +137,7 @@ $this->registerJs("
     }
     .box.box-primary {
         box-shadow: 0px 0px 5px #a7a7a7;
-        background: #64708e;
+        background: #8693b5;
     }
     .box-header.with-border{
         border-bottom: 1px solid #394c7b;
@@ -140,7 +145,7 @@ $this->registerJs("
         color: #edba23;
     }
     .product-list-in-box>.item {
-        background: #64708e;
+        background: #8693b5;
         border-bottom: 1px solid #2a334c38;
     }
     .item a{color:#fff;}
