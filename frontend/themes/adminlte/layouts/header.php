@@ -113,15 +113,7 @@ $this->registerJs("
         background-color: #2a95d1;
         border-color: #24678e;
     }
-    .panel-default {
-        background: #8693b5;
-        border-color: #64708e;
-    }
-    .panel-default .panel-heading{
-        border-bottom: 1px solid #394c7b;
-        background: #3f5386;
-        color: #edba23;
-    }
+    
     .content-wrapper{
         /*background: #fff;*/
         background: #ededed;
