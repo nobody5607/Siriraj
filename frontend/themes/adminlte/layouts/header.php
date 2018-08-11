@@ -114,12 +114,12 @@ $this->registerJs("
         border-color: #24678e;
     }
     .panel-default {
-        background: #344453;
-        border-color: #344453;
+        background: #64708e;
+        border-color: #64708e;
     }
     .content-wrapper{
         /*background: #fff;*/
-        background: #6184acad;
+        background: #ededed;
     }
     .list-view .item a.media { 
         border-bottom: 1px solid #4e6a8a29;
@@ -135,8 +135,8 @@ $this->registerJs("
         background: #64708e;
     }
     .box-header.with-border{
-        border-bottom: 1px solid #344453;
-        background: #344453;
+        border-bottom: 1px solid #394c7b;
+        background: #3f5386;
         color: #edba23;
     }
     .product-list-in-box>.item {
