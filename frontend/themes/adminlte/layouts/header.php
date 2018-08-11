@@ -110,16 +110,16 @@ $this->registerJs("
     }
 
     .navbar-inverse {
-        background-color: #2e6c91;
+        background-color: #2a95d1;
         border-color: #24678e;
     }
     .panel-default {
-        background: #2e6c91;
-        border-color: #256084;
+        background: #344453;
+        border-color: #344453;
     }
     .content-wrapper{
         /*background: #fff;*/
-        background: #183f6d59;
+        background: #6184acad;
     }
     .list-view .item a.media { 
         border-bottom: 1px solid #4e6a8a29;
@@ -132,15 +132,15 @@ $this->registerJs("
     }
     .box.box-primary {
         box-shadow: 0px 0px 5px #a7a7a7;
-        background: #7e8fbb;
+        background: #64708e;
     }
     .box-header.with-border{
-        border-bottom: 1px solid #223962;
-        background: #2e6c91;
-        color: #FFC107;
+        border-bottom: 1px solid #344453;
+        background: #344453;
+        color: #edba23;
     }
     .product-list-in-box>.item {
-        background: #7e8fbb;
+        background: #64708e;
         border-bottom: 1px solid #2a334c38;
     }
     .item a{color:#fff;}
