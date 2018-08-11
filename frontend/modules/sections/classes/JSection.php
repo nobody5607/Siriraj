@@ -197,8 +197,4 @@ class JSection extends \yii\base\Component{
        }
     }
     
-    
-    
-    
-    
 }

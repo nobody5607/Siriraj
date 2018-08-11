@@ -4,27 +4,30 @@
      
 ?>
 <?php if(!isset($_GET['id'])):?>
-<div>
-    
-    <?php echo $this->render('_searchbar');?>  
-</div>
-<div class="clearfix" style="margin-bottom:10px;"></div>
+    <div>
+
+        <?php echo $this->render('_searchbar');?>  
+    </div>
+    <div class="clearfix" style="margin-bottom:10px;"></div>
+<?php else:?>
+    <div class="row" style="margin-bottom: 10px;margin-top: 5px;">                     
+        <div class="col-md-12">
+            <?= $this->render('_searchbar'); ?>
+        </div>
+    </div>    
 <?php endif; ?> 
 <div class="col-md-12 section-right">      
     <?php if($public == '1'): ?>
-    <div class="box box-primary">
+    <div class="panel panel-default">
             <?php if (isset($_GET['id'])): ?>
-                <div class="box-header">   
-                    <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}" ?></h4>
-                    <div class="row">                     
-                        <?= $this->render('_searchbar'); ?>
-                    </div>
+                <div class="panel-heading">   
+                    <?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}" ?>
                 </div>            
             <?php else: ?>
 
             <?php endif; ?>                   
         
-        <div class="box-body">            
+        <div class="panel-body">            
             <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
                 <div style="margin-bottom: -25px;font-size: 12px;">                   
                     

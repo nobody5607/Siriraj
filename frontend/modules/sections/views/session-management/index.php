@@ -14,7 +14,7 @@
     $data_id = isset($_GET['id']) ? $_GET['id'] : $content_section['id'];
     $section_obj = \common\models\Sections::findOne($data_id);  
 ?>  
- <section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
+<section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
     <div id="items-side-scroll" class="row">
         <div class="col-md-12">
             <?php if(!isset($_GET['id'])):?>  

@@ -101,6 +101,9 @@ NavBar::end();
         background:#fff;
         padding:10px;
     }
+    .content-wrapper{
+        /*background: #fff;*/
+    }
      
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

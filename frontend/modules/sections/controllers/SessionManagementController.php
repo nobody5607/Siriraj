@@ -3,8 +3,8 @@
 namespace frontend\modules\sections\controllers;
 
 use yii\web\Controller;
-use backend\modules\sections\classes\JSection;
-use backend\modules\sections\classes\JContent;
+use frontend\modules\sections\classes\JSection;
+use frontend\modules\sections\classes\JContent;
 use common\models\Sections;
 use Yii;
 class SessionManagementController extends Controller
@@ -43,6 +43,26 @@ class SessionManagementController extends Controller
             'title'=>($title['id']==0) ? '' : $title['name'],
             'content_section'=>$content_section,
             'public'=>$public
+        ]);
+    }
+    
+    public function actionGetDynamicItem(){
+        $id = \Yii::$app->request->get('id', '');
+        $data = \frontend\modules\sections\classes\JSectionQuery::getSectionAll($id);         
+        
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$data,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        if(!$data){
+            return '';
+        }
+          
+        return $this->renderAjax("items/get-dynamic-item",[
+            'dataProvider'=>$dataProvider,
+            'data'=>$data
         ]);
     }
      
