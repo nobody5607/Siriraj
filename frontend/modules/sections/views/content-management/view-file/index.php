@@ -5,9 +5,9 @@ use kartik\tabs\TabsX;
 
 $this->title = Yii::t('section', $title);
 if ($breadcrumb) {
-    foreach ($breadcrumb as $b) {
-        $this->params['breadcrumbs'][] = $b;
-    }
+    echo janpan\jn\widgets\BreadcrumbsWidget::widget([
+            'breadcrumb'=>$breadcrumb
+        ]);
 }
 $modal = "modal-contents";
 ?>

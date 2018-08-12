@@ -121,7 +121,10 @@ class JSection extends \yii\base\Component{
                 foreach($data as $key => $d){              
                   $breadcrumbs[$key+1] = [
                       'label' =>$d['name'], 
-                      'url' => [$url, 'id'=>$d['id']]];
+                      'url' => [$url, 'id'=>$d['id']],
+                      'icon'=>"{$d['icon']}"
+                      ];
+                      
                 }
                 
                 return $breadcrumbs;

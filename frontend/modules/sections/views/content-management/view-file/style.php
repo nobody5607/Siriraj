@@ -11,5 +11,14 @@
             background:blue;
       }   
     } 
+    @media only screen and (min-width: 768px){
+        .cd-breadcrumb, .cd-multi-steps {
+            width: 100%;
+            max-width: 100%;           
+            margin-left: 0px;
+            border: 1px solid #e7e7e7;
+        }
+    }
+
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
