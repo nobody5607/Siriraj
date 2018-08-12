@@ -2,9 +2,7 @@
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use yii\helpers\Html;
-
-
-  
+ 
 ?>
 
 <?=

@@ -50,6 +50,7 @@
     <div class="clearfix"></div>
     <div>
          <?php
+//         appxq\sdii\utils\VarDumper::dump($contentProvider);
             echo $this->render('right-content-dynamic',[
                 'contentProvider'=>$contentProvider, 
                 'data_id'=> $data_id, 
@@ -64,22 +65,22 @@
     
     <div class="clearfix"></div>
     <?php
-                 \yii\widgets\ListView::widget([
-                    'dataProvider' => $contentProvider,
-                    'options' => [
-                        'tag' => 'ul',
-                        'class' => 'products-list product-list-in-box',
-                        'id' => 'section-all',
-                        'style'=>'padding: 2px;'
-                    ],
-                    'itemOptions' => function($model) {
-                        return ['tag' => 'li', 'data-id' => $model['id'], 'class' => 'item'];
-                    },
-                    'layout' => "{items}\n{pager}",
-                    'itemView' => function ($model, $key, $index, $widget) {
-                        return $this->render('_right_content_item', ['model' => $model]);
-                    },
-                ]);
+//                 \yii\widgets\ListView::widget([
+//                    'dataProvider' => $contentProvider,
+//                    'options' => [
+//                        'tag' => 'ul',
+//                        'class' => 'products-list product-list-in-box',
+//                        'id' => 'section-all',
+//                        'style'=>'padding: 2px;'
+//                    ],
+//                    'itemOptions' => function($model) {
+//                        return ['tag' => 'li', 'data-id' => $model['id'], 'class' => 'item'];
+//                    },
+//                    'layout' => "{items}\n{pager}",
+//                    'itemView' => function ($model, $key, $index, $widget) {
+//                        return $this->render('_right_content_item', ['model' => $model]);
+//                    },
+//                ]);
             ?>
 <!--    <div class="box box-primary">
         

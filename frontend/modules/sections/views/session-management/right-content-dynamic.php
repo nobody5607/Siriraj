@@ -1,6 +1,8 @@
 <?php 
     use yii\helpers\Html;
-    use yii\widgets\ListView;
+    use yii\widgets\ListView; 
+//    appxq\sdii\utils\VarDumper::dump($contentProvider);
+//appxq\sdii\utils\VarDumper::dump($contentProvider);
 ?>
 <div id="dynamic-content">
     <?php 

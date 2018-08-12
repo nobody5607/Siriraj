@@ -47,71 +47,6 @@ class ContentManagementController extends Controller
         ]);
         //$section_id = \Yii::$app->request->get('section_id', '');   
     }
-
-//    public function actionCreate(){  
-//        $section_id                 = \Yii::$app->request->get('id', '');//section_id
-//        $model                  = new  Contents();
-//        $public                 = \Yii::$app->request->get('public', '1');         
-//        
-//        if ($model->load(Yii::$app->request->post())) {
-//            $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
-//            $model->rstat       = 1; 
-//            $model->user_create = Yii::$app->user->id;
-//            $model->create_date = new \yii\db\Expression('NOW()');
-//            $model->section_id = \Yii::$app->request->post('section_id', '');
-//            if ($model->save()) {
-//                return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Create data complete'), $model);
-//            } else {
-//                return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Create Error!'));
-//            }
-//        }
-//        return $this->renderAjax('create',[
-//            'model'=>$model,
-//            'sec_id'=>$section_id,
-//            'public'=>$public
-//        ]);
-//    }
-//    public function actionUpdate(){  
-//        $id                 = \Yii::$app->request->get('id', '');//content_id        
-//        $public                 = \Yii::$app->request->get('public', '1');   
-//        $model                  = Contents::findOne($id);
-//         
-//        if ($model->load(Yii::$app->request->post())) { 
-//            $model->rstat       = 1; 
-//            $model->user_create = Yii::$app->user->id;
-//            $model->create_date = new \yii\db\Expression('NOW()');
-//            $model->section_id = \Yii::$app->request->post('section_id', '');
-//            if ($model->save()) {//\appxq\sdii\utils\VarDumper::dump($_POST);
-//                return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Create data complete'), $model);
-//            } else {
-//                return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Create Error!'));
-//            }
-//        }
-//        return $this->renderAjax('update',[
-//            'model'=>$model,
-//            'sec_id'=>$model['section_id'],
-//            'public'=>$public
-//        ]);
-//    }
-//    public function actionDelete(){          
-//        if (Yii::$app->getRequest()->isAjax) {
-//            $id             = \Yii::$app->request->post('id', '');	     
-//            $model          =  Contents::findOne($id);            
-//            $model->rstat   = 3;
-//            if($model->id == 0){
-//                return \janpan\jn\classes\JResponse::getError(\Yii::t('content', 'Delete Error!'));
-//            }
-//	    if ($model->save()) {
-//                return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Delete data complete'), $model);
-//            } else {
-//                return \janpan\jn\classes\JResponse::getError(\Yii::t('content', 'Delete Error!'));
-//            }
-//        } else {
-//	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
-//	}
-//    }
-    
-    //get content
     public function actionViewDataContent(){
         $content_id         = \Yii::$app->request->get('content_id', '');
         $type_id            = \Yii::$app->request->get('type_id', '');
@@ -159,8 +94,9 @@ class ContentManagementController extends Controller
         $file_id            = \Yii::$app->request->get('file_id', '');
         $filet_id           = \Yii::$app->request->get('filet_id', '');
         $content            =  JContent::getContentById($content_id);
-        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);         
-        $breadcrumb[]       = ['label' =>$content['name'],'url' => ['/sections/content-management/view', 'content_id'=>$content['id']]];  
+        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);   
+        
+        $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/content-management/view?content_id={$content['id']}"]];  
         $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),

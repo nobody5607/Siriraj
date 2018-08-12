@@ -19,7 +19,10 @@ $modal = "modal-contents";
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
-                     
+                    <div class="box-header">
+                        <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?>                         
+                        <small class="label bg-blue-active" id="label_<?= $f['id'] ?>">17</small>
+                    </div> 
                     <div class="box-body">
                         <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
                     </div>                     

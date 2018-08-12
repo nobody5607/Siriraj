@@ -111,7 +111,21 @@ $this->registerJs("
 
     .navbar-inverse {
         background-color: #3867d6;
+        box-shadow: 0px 2px 2px #00000057;
         border-color: #24678e;
+    }
+    .btn-primary {
+        background-color: #3867d6;
+        border-color: #2e66ea;
+        box-shadow: 0px 2px 2px #00000057;
+    }
+    .btn-primary:hover {
+        background-color: #2957c5;
+        border-color: #3867d6;
+    }
+    .box-header {
+        background: #e8e8e8;
+        border-bottom: 1px solid #d1d1d2;
     }
     
     .content-wrapper{

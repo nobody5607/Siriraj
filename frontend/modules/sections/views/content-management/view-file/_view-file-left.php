@@ -1,5 +1,9 @@
 <div class="col-md-8 view-file-left">
     <div class="box box-primary">
+        <div class="box-header">
+            <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
+            <?= $dataDefault['name'] ?>
+        </div> 
         <div class="box-body">
             <div class="row" style="margin-bottom:10px;">
                 <div class="col-md-6 col-md-offset-3">
@@ -38,7 +42,7 @@
             <div class="clearfix"></div>
             <?php if (!Yii::$app->user->isGuest) { ?>
                 <div class="btnCart text-center" style="margin-top:50px;margin-bottom:50px;">
-                    <button class="btn btn-success">เลือกลงตะกร้า</button>
+                    <button class="btn btn-success btn-lg"><i class="fa fa-shopping-cart" aria-hidden="true"></i> เลือกลงตะกร้า</button>
                 </div>
             <?php } ?>
         </div>
