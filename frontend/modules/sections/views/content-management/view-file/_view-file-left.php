@@ -22,8 +22,13 @@
  
                 </div>
             </div>
-            <?=
-            \yii\widgets\ListView::widget([
+            <div class="col-md-12">
+                <label class="pull-right" style="cursor:pointer;" id="label-<?= $dataDefault['id']?>">
+                    <input type="checkbox"  id="checkbox" name="selectAll" data-id="<?= $dataDefault['id']?>"/> Select All
+                </label>
+            </div>
+            <?php             
+            echo \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
                 'options' => [
                     'tag' => 'div',
@@ -41,13 +46,55 @@
             ?>
             <div class="clearfix"></div>
             <?php if (!Yii::$app->user->isGuest) { ?>
-                <div class="btnCart text-center" style="margin-top:50px;margin-bottom:50px;">
-                    <button class="btn btn-success btn-lg"><i class="fa fa-shopping-cart" aria-hidden="true"></i> เลือกลงตะกร้า</button>
+                <div class="text-center" style="margin-top:50px;margin-bottom:50px;">
+                    <button class="btn btn-success btn-lg" id="btnCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> เลือกลงตะกร้า</button>
                 </div>
             <?php } ?>
         </div>
     </div>
 </div>
+<?php richardfan\widget\JSRegister::begin();?>
+<script>
+    $('#btnCart').on('click', function(){
+        let checkboxValues = [];
+        $('input[type="checkbox"]:checked').each(function(index, elem) {
+            checkboxValues.push($(elem).attr('data-id'));
+        });
+       let id_str = checkboxValues.toString();
+       let url = "/sections/cart/add-cart";
+       $.post(url, {id:id_str}, function(data){
+//           alert(data);
+           $('#globalCart').html(data);
+       });
+       return false; 
+    });
+    
+    $('input[name="selectAll"]').change(function() {
+        let id = $(this).attr('data-id');
+        if($(this).is(":checked")) {            
+            //console.log('check');
+            
+            $('#label-'+id).css({background:'#3867d6', color:'#fff', padding:'5px'});
+            $('.checkbox').each(function () { //loop through each checkbox
+                $(this).attr('checked', true); //check 
+            });
+        }else{
+            //console.log('uncheck');
+            $('.checkbox').each(function () { //loop through each checkbox
+                $(this).attr('checked', false); //uncheck              
+            });
+            
+            $('#label-'+id).css({background:'transparent', color:'#000', padding:'5px'});
+        }
+        //$('#textbox1').val($(this).is(':checked'));        
+    });
+    
+    
+     
+    
+</script>
+<?php richardfan\widget\JSRegister::end();?>
+
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
      

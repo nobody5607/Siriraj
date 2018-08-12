@@ -124,7 +124,7 @@ $this->registerJs("
         border-color: #3867d6;
     }
     .box-header {
-        background: #e8e8e8;
+        background: #f5f5f5;
         border-bottom: 1px solid #d1d1d2;
     }
     
@@ -153,6 +153,7 @@ $this->registerJs("
     }
     .product-list-in-box>.item {
         border-bottom: 1px solid #2a334c38;
+        border-bottom-style: dashed;
     }
     .item a{color:#333;}
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{
@@ -168,6 +169,7 @@ $this->registerJs("
     }
     .products-list .product-info{
         font-size:14px;
+        line-height: 35px;
     }
     .products-list .product-img img{
         width: 35px;
@@ -185,6 +187,12 @@ $this->registerJs("
         #items-views {
             margin-top: 30px;
         }
+    }
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+            background-color: #3867d6;
+    }
+    .navbar-nav > li > .dropdown-menu{
+        background-color: #3867d6;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>

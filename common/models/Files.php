@@ -35,7 +35,7 @@ class Files extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
+//            [['id'], 'required'],
             [['id', 'rstat', 'content_id', 'public'], 'integer'],
             [['meta_text'], 'string'],
             [['name', 'file_type', 'description', 'file_name', 'file_thumbnail', 'file_name_org'], 'string', 'max' => 255],
