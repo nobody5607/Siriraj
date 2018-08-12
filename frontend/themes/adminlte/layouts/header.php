@@ -144,9 +144,7 @@ $this->registerJs("
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{
         background-color: #6200ee;
     }
-    .box-footer {
-        background-color: #3867d6;
-    }
+    
     .box-footer a{
         color:#fff;
     }

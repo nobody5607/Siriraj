@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 $url = "/sections/session-management?id={$model['id']}"; 
 ?>
 
-<div class="col-md-4" id="<?= $model->id?>" data-id="<?= $model->id?>" style="padding: 5px;">
+<div class="col-md-12" id="<?= $model->id?>" data-id="<?= $model->id?>" style="padding: 5px;">
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa <?= $model->icon ?>"></i> <?= $model->name; ?></h3>
@@ -33,7 +33,9 @@ $url = "/sections/session-management?id={$model['id']}";
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center" style="">
-            <a href="<?= $url?>" class="media" style="position: relative;">More</a>
+            <div class="col-md-4 col-md-offset-4">
+                <a href="<?= $url?>" class="btn btn-primary btn-block" style="position: relative;">More</a>
+            </div>
         </div>
         <!-- /.box-footer -->
     </div>
