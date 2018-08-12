@@ -110,7 +110,7 @@ $this->registerJs("
     }
 
     .navbar-inverse {
-        background-color: #6200ee;
+        background-color: #3867d6;
         border-color: #24678e;
     }
     
@@ -143,6 +143,12 @@ $this->registerJs("
     .item a{color:#333;}
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{
         background-color: #6200ee;
+    }
+    .box-footer {
+        background-color: #3867d6;
+    }
+    .box-footer a{
+        color:#fff;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
