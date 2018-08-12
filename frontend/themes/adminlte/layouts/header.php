@@ -106,7 +106,7 @@ $this->registerJs("
 
     .items-sidebar.navbar-collapse{
         border-right: 1px solid #969494a8;
-        background-color: #eaeff5;
+        background-color: #34393d;
     }
 
     .navbar-inverse {
@@ -119,13 +119,13 @@ $this->registerJs("
         background: #ededed;
     }
     .list-view .item a.media { 
-        border-bottom: 1px solid #4e6a8a29;
-        color: #474a4c;
+        border-bottom: 1px solid #2f3031;
+        color: #fff;
         font-weight: bold;
     }
     .list-view .item a.media:hover {
         text-decoration: none;
-        background-color: #6200ee;
+        background-color: #484d50;
         color: #fff;
     }
     .box.box-primary {
