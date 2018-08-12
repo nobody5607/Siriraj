@@ -133,9 +133,9 @@ $this->registerJs("
          
     }
     .box-header.with-border{
-        border-bottom: 1px solid #394c7b;
-        background: #6200ee;
-        color: #fff;
+        color: #333;
+        background-color: #f5f5f5;
+        border-color: #ddd;
     }
     .product-list-in-box>.item {
         border-bottom: 1px solid #2a334c38;
@@ -160,6 +160,11 @@ $this->registerJs("
     .products-list .product-img img{
         width: 35px;
         height: 35px;
+    }
+    .panel-default > .panel-heading {
+        color: #fff;
+        background-color: #6200ee;
+        border-color: #ddd;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
