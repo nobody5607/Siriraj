@@ -150,6 +150,17 @@ $this->registerJs("
     .box-footer a{
         color:#fff;
     }
+    .box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title{
+        font-size:14px;
+        font-weight: bold;
+    }
+    .products-list .product-info{
+        font-size:14px;
+    }
+    .products-list .product-img img{
+        width: 35px;
+        height: 35px;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
  
