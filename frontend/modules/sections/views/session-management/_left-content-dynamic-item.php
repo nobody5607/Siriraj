@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 $url = "/sections/session-management?id={$model['id']}"; 
 ?>
 
-<div class="col-md-12" id="<?= $model->id?>" data-id="<?= $model->id?>" style="padding: 5px;">
+<div class="col-md-6" id="<?= $model->id?>" data-id="<?= $model->id?>" style="padding: 5px;">
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa <?= $model->icon ?>"></i> <?= $model->name; ?></h3>

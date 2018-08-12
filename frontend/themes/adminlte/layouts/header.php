@@ -12,7 +12,7 @@ use yii\bootstrap\Nav;
     <?php
     NavBar::begin([
         'id' => 'main-nav-app',
-        'brandLabel' => 'Siriraj',
+        'brandLabel' => 'SIRIRAJ MUSEUM',
         'brandUrl' => Yii::$app->homeUrl,
         'innerContainerOptions' => ['class' => 'container-fluid'],
         'options' => [
@@ -110,7 +110,7 @@ $this->registerJs("
     }
 
     .navbar-inverse {
-        background-color: #2a95d1;
+        background-color: #6200ee;
         border-color: #24678e;
     }
     
@@ -121,27 +121,29 @@ $this->registerJs("
     .list-view .item a.media { 
         border-bottom: 1px solid #4e6a8a29;
         color: #474a4c;
+        font-weight: bold;
     }
     .list-view .item a.media:hover {
-            text-decoration: none;
-            background-color: #2f6586;
-            color: #fff;
+        text-decoration: none;
+        background-color: #6200ee;
+        color: #fff;
     }
     .box.box-primary {
         box-shadow: 0px 0px 5px #a7a7a7;
-        background: #8693b5;
+         
     }
     .box-header.with-border{
         border-bottom: 1px solid #394c7b;
-        background: #3f5386;
-        color: #edba23;
+        background: #6200ee;
+        color: #fff;
     }
     .product-list-in-box>.item {
-        background: #8693b5;
         border-bottom: 1px solid #2a334c38;
     }
-    .item a{color:#fff;}
-
+    .item a{color:#333;}
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{
+        background-color: #6200ee;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
  
