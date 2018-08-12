@@ -166,6 +166,11 @@ $this->registerJs("
         background-color: #6200ee;
         border-color: #ddd;
     }
+    @media screen and (max-width: 768px){
+        section {
+            padding: 0em 0;
+        }
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
  

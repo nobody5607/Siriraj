@@ -112,8 +112,9 @@ class JSection extends \yii\base\Component{
             $breadcrumbs=[];
             $url = ($url == '') ? '/sections/session-management' : $url;
             $breadcrumbs[] = [
-                'label' =>'Session Management', 
-                 'url' =>$url
+                'label' =>'Home', 
+                'url' =>$url,
+                'icon'=>'fa-bank'
             ];
             if($data){                
                 

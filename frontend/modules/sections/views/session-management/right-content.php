@@ -16,7 +16,8 @@
         </div>
     </div>    
 <?php endif; ?> 
-<div class="col-md-12 section-right">      
+<div class="col-md-12 section-right"> 
+    
     <?php if($public == '1'): ?>
     <div class="panel panel-default">
             <?php if (isset($_GET['id'])): ?>

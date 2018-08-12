@@ -4,16 +4,21 @@
     \janpan\jn\assets\EzfToolAsset::register($this);
     $this->title= Yii::t('section', ($title != '') ? $title : 'Session'); 
     //appxq\sdii\utils\VarDumper::dump($title);
-    if($breadcrumb){
-       foreach($breadcrumb as $b){
-        $this->params['breadcrumbs'][] = $b;  
-      } 
+    if($breadcrumb){        
+       // \appxq\sdii\utils\VarDumper::dump($breadcrumb);
+        echo janpan\jn\widgets\BreadcrumbsWidget::widget([
+            'breadcrumb'=>$breadcrumb
+        ]);
+//       foreach($breadcrumb as $b){
+//        $this->params['breadcrumbs'][] = $b;  
+//       } 
     }else{
        // $this->params['breadcrumbs'][]=$this->title;
     }
     $data_id = isset($_GET['id']) ? $_GET['id'] : $content_section['id'];
     $section_obj = \common\models\Sections::findOne($data_id);  
 ?>  
+
 <section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
     <div id="items-side-scroll" class="row">
         <div class="col-md-12">
@@ -234,3 +239,4 @@
         ");
     }
 ?> 
+
