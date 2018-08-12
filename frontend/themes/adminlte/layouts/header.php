@@ -89,7 +89,8 @@ $this->registerJs("
     @media (min-width: 768px){
 
         #items-views {
-            margin-left: 250px;            
+            margin-left: 250px;
+            margin-top: 25px;
         }
         .list-view .item a.media { 
             font-size: 14px;
