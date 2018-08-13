@@ -1,7 +1,14 @@
 <?php 
     use yii\helpers\Html;
     if(!Yii::$app->user->isGuest){
-        echo Html::checkbox('checked', '', ['data-id'=>$model['id'] , 'class'=>'checkbox', 'name'=>"check[]"]); 
+        //echo Html::checkbox('checked', '', ['data-id'=>$model['id'] , 'class'=>'checkbox', 'name'=>"check[]"]); 
+        echo "
+          <label class='container' >
+                <input type='checkbox'  class='checkbox' name='check[]' data-id={$model['id']}>
+                <span class='checkmark'></span>
+          </label>  
+        ";
+        
     }
     if($model['file_type'] == '2'){
         //image

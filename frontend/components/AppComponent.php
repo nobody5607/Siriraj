@@ -13,13 +13,14 @@ class AppComponent extends Component{
         }
     }
     public static function navbarRightMenu() {
+        $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 0;
         $userProfile = isset(Yii::$app->user->identity->userProfile) ? Yii::$app->user->identity->userProfile : '';
         if (Yii::$app->user->isGuest) {
             Yii::$app->params['navbarR'][] = ['label' => '<i class="fa fa-user-plus"></i> '.Yii::t('chanpan', 'Create new account'), 'encode' => FALSE, 'url' => ['/account/sign-in/signup']];
             Yii::$app->params['navbarR'][] = ['label' => '<i class="fa fa-sign-in"></i> '.Yii::t('chanpan', 'Login'), 'encode' => FALSE, 'url' => ['/account/sign-in/login']];
         } else {
             Yii::$app->params['navbarR'][] = [
-                'label' => '<i class="fa fa-shopping-cart"></i> <span class="label label-warning" id="globalCart">0</span>', 'encode' => FALSE, 'url' => ['/account/sign-in/signup']];
+                'label' => '<i class="fa fa-shopping-cart"></i> <span class="label label-danger" id="globalCart">'.$cart.'</span>', 'encode' => FALSE, 'url' => ['/account/sign-in/signup']];
             $avatar_url = Yii::getAlias('@storageUrl') . '/avatars/noimage.png';
             if(isset($userProfile->avatar_path) && !empty($userProfile->avatar_path)){
                 $avatar_url = Yii::getAlias('@storageUrl/avatars').'/'.$userProfile->avatar_path;

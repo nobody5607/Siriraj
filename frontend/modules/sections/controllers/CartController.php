@@ -23,7 +23,12 @@ class CartController extends Controller
             $data['image'] = $model->file_name_org;
             \frontend\modules\sections\classes\JCart::addCart($v, $data, $qty, "add");
         }
-        echo count(Yii::$app->session["cart"]);
+        $count_cart = [
+            'count'=>count(Yii::$app->session["cart"]),
+            'res'=> Yii::$app->session["cart"]
+        ];
+        return \janpan\jn\classes\JResponse::getSuccess(Yii::t('cart', 'Add cart success'), $count_cart, 'cart');
+         
         //print_r(Yii::$app->session["cart"]);        return;
          
     }
