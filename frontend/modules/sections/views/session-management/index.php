@@ -183,7 +183,7 @@
        });
    } 
    delete_form=function(url, id){
-        yii.confirm('<?= Yii::t('user', 'Confirm Delete?') ?>', function(){
+        bootbox.confirm('<?= Yii::t('user', 'Confirm Delete?') ?>', function(){
             $.post(url, {id:id}, function(result){
                 <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
                 setTimeout(function(){

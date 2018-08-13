@@ -171,10 +171,7 @@ $this->registerJs("
         font-size:14px;
         line-height: 35px;
     }
-    .products-list .product-img img{
-        width: 35px;
-        height: 35px;
-    }
+    
     .panel-default > .panel-heading {
         color: #fff;
         background-color: #6200ee;
@@ -193,6 +190,11 @@ $this->registerJs("
     }
     .navbar-nav > li > .dropdown-menu{
         background-color: #3867d6;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        color: #fff;
+        background-color: #2b56bb;
+        padding-top: 15px;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>

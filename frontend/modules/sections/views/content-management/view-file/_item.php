@@ -4,7 +4,7 @@
         //echo Html::checkbox('checked', '', ['data-id'=>$model['id'] , 'class'=>'checkbox', 'name'=>"check[]"]); 
         echo "
           <label class='container' >
-                <input type='checkbox'  class='checkbox' name='check[]' data-id={$model['id']}>
+                <input type='checkbox'  class='checkbox' name='check_str' data-id={$model['id']}>
                 <span class='checkmark'></span>
           </label>  
         ";

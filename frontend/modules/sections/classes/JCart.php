@@ -9,7 +9,7 @@ class JCart {
 
     public static function addCart($id, $arrData, $amount, $action) {
         $session = Yii::$app->session;   
-        
+        $id = isset($arrData['id']) ? $arrData['id'] : '';
         $name = isset($arrData['name']) ? $arrData['name'] : '';
         $detail = isset($arrData['detail']) ? $arrData['detail'] : '';
         $price = isset($arrData['price']) ? $arrData['price'] : '';
@@ -17,6 +17,7 @@ class JCart {
         
         if (!isset($session["cart"])) {
             $cart[$id] = [
+                'id'=>$id,
                 'pro_name' => $name,
                 'pro_detail' => $detail,
                 'pro_price' => $price,
@@ -32,6 +33,7 @@ class JCart {
                 switch ($action) {
                     case "add":
                         $cart[$id] = [
+                            'id'=>$id,
                             'pro_name' => $name,
                             'pro_detail' => $detail,
                             'pro_price' => $price,
@@ -44,6 +46,7 @@ class JCart {
                         break;
                     case "del":
                         $cart[$id] = [
+                            'id'=>$id,
                             'pro_name' => $name,
                             'pro_detail' => $detail,
                             'pro_price' => $price,
@@ -57,6 +60,7 @@ class JCart {
             } else {
                 //echo "OK".$cart[$id]["amount"];exit();
                 $cart[$id] = [
+                    'id'=>$id,
                     'pro_name' => $name,
                     'pro_detail' => $detail,
                     'pro_price' => $price,

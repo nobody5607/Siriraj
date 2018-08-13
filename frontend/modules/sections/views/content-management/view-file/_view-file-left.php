@@ -141,11 +141,14 @@
             checkboxValues.push($(elem).attr('data-id'));
         });
        let id_str = checkboxValues.toString();
-       let url = "/sections/cart/add-cart";
+       let url = "/sections/cart/add-cart";         
        $.post(url, {id:id_str}, function(res){
            if(res['status'] == 'success'){
                $('#globalCart').html(res['data']['count']);
                <?= \appxq\sdii\helpers\SDNoty::show('res.message', 'res.status') ?>
+               setTimeout(function(){
+                  location.reload();     
+               },1000);
            }
            
        });
@@ -155,8 +158,7 @@
     $('input[name="selectAll"]').change(function() {
         let id = $(this).attr('data-id');
         if($(this).is(":checked")) {            
-            //console.log('check');
-            
+             
             $('#label-'+id).css({background:'#3867d6', color:'#fff', padding:'5px'});
             $('.checkbox').each(function () { //loop through each checkbox
                 $(this).attr('checked', true); //check 

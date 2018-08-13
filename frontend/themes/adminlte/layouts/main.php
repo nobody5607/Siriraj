@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 \frontend\assets\CustomStyleAsset::register($this);
 \appxq\sdii\assets\notify\NotifyAsset::register($this);
+\appxq\sdii\assets\bootbox\BootBoxAsset::register($this);
 /* @var $this \yii\web\View */
 /* @var $content string */
 

@@ -5,8 +5,32 @@ use Yii;
  
 class CartController extends Controller
 {
-    public function actionIndex(){
-        return $this->render("index");
+    public function actionMyCart(){        
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => Yii::$app->session["cart"],
+            'sort' => [
+                'attributes'=>['pro_name', 'pro_detail','pro_price', 'amount' , 'sum']
+            ],
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+        ]);
+        $breadcrumbs=[];
+        $breadcrumbs[] = [
+                'label' =>'Home', 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+        ];
+        $breadcrumbs[] = [
+                'label' =>'MyCart', 
+                //'url' =>'#',
+                'icon'=>'fa-shopping-cart'
+        ];
+//        \appxq\sdii\utils\VarDumper::dump($dataProvider);
+        return $this->render('my-cart',[
+           'dataProvider' => $dataProvider,
+           'breadcrumb'=>$breadcrumbs 
+        ]);
     }
     public function actionAddCart(){
         header('Access-Control-Allow-Origin: *');  
@@ -17,6 +41,7 @@ class CartController extends Controller
         $data = [];
         foreach($id_arr as $v){
             $model = \common\models\Files::find()->where(["id"=>$v])->one();
+            $data['id']   = $model->id;  
             $data['name'] = $model->name;
             $data['detail'] = $model->description;
             $data['price'] = 10;
@@ -37,20 +62,20 @@ class CartController extends Controller
             echo count(Yii::$app->session["cart"]);
         }
     }
-    public function actionDeletecart($id){
-        $data = Yii::$app->session["cart"];
+    public function actionDeleteCart(){
+        $data = \Yii::$app->session["cart"];
+        $id = \Yii::$app->request->post('id', '');
         $out = [];
-          
+        
         foreach($data as $k=>$v){
             if($id == $k){
-               
+                \frontend\modules\sections\classes\JCart::addCart($id, $data, 1, 'del');
             }else{
                $out[$k] = $v;
             }
         }
         Yii::$app->session["cart"] = $out;
-        //\appxq\sdii\utils\VarDumper::dump(Yii::$app->session["cart"]);
-        return $this->redirect(["index"]);
+        return \janpan\jn\classes\JResponse::getSuccess("Delete successfully"); 
         
     }
     public function actionChange(){

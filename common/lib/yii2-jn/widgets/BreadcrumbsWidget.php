@@ -25,7 +25,7 @@ class BreadcrumbsWidget extends \yii\base\Widget{
                             $html .= Html::a("<i class='fa {$icon}'></i> {$label}", ["{$url}"], ['']);
                         }                        
                     }else{
-                        $html .= Html::a("<i class='fa fa-bank'></i> {$label}", "#", ['']);
+                        $html .= Html::a("<i class='fa {$icon}'></i> {$label}", "#", ['']);
                     }
                     
                 $html .= Html::endTag("li"); 
