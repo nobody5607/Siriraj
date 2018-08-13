@@ -19,11 +19,12 @@
                 'dataProvider' => $dataProvider,
                 'columns' => [
                   [
+                      'format'=>'raw',
                       'contentOptions'=>['style'=>'width:50px;'],
                       'attribute'=>'id',
                       'label'=> Yii::t('order','Order Id'),
                       'value'=>function($model){
-                        return $model->id;
+                        return Html::a("{$model->id}", ["/sections/order/order-detail?order_id={$model->id}"], ['']);
                       }
                   ],
                   [
