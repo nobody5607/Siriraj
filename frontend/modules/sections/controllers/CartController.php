@@ -16,20 +16,24 @@ class CartController extends Controller
             ],
         ]);
         $breadcrumbs=[];
-        $breadcrumbs[] = [
+        $breadcrumbs_arr = [
+            [
                 'label' =>'Home', 
                 'url' =>'/sections/session-management',
                 'icon'=>'fa-bank'
+            ],
+            [
+                    'label' =>'MyCart'
+            ]
         ];
-        $breadcrumbs[] = [
-                'label' =>'MyCart', 
-                //'url' =>'#',
-                'icon'=>'fa-shopping-cart'
-        ];
-//        \appxq\sdii\utils\VarDumper::dump($dataProvider);
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        } 
+         
         return $this->render('my-cart',[
            'dataProvider' => $dataProvider,
-           'breadcrumb'=>$breadcrumbs 
+           'breadcrumb'=>$breadcrumbs,
+           'count'=> count(Yii::$app->session["cart"])
         ]);
     }
     public function actionAddCart(){
@@ -57,11 +61,7 @@ class CartController extends Controller
         //print_r(Yii::$app->session["cart"]);        return;
          
     }
-    public function actionChecksession(){
-        if(!empty(Yii::$app->session["cart"])){
-            echo count(Yii::$app->session["cart"]);
-        }
-    }
+
     public function actionDeleteCart(){
         $data = \Yii::$app->session["cart"];
         $id = \Yii::$app->request->post('id', '');
@@ -77,23 +77,72 @@ class CartController extends Controller
         Yii::$app->session["cart"] = $out;
         return \janpan\jn\classes\JResponse::getSuccess("Delete successfully"); 
         
-    }
-    public function actionChange(){
-        $id = Yii::$app->request->get("id","");
-        $amount = Yii::$app->request->get("amount","1");
-        $model = Product::find()->where(["id"=>$id])->one();
-        if(!empty($model)){
-            $data = Yii::$app->session["cart"][$id]["amount"];
-           
-            if($amount > $data){
-                \frontend\assets\Cart::addCart($id, $model, $amount, "add");
-            }else{
-                \frontend\assets\Cart::addCart($id, $model, $amount, "del");
+    }     
+    
+    public function actionMyCheckOut(){
+        $step = Yii::$app->request->get('step');
+        $user_id = Yii::$app->user->id;
+        $breadcrumbs=[];
+        $breadcrumbs_arr = [
+            [
+                'label' =>'Home', 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+            ],
+            [
+                    'label' =>'MyCart',
+                    'url' => [
+                        0 => '/sections/cart/my-cart'
+                        //'id' => '1'
+                    ],                
+                    'icon'=>'fa-shopping-cart'
+            ],
+            [
+                'label' =>'Checkout',
+            ],
+        ];
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        } 
+        
+        if($step == 1){            
+            $model = \common\models\Shipper::find()->where(['user_id'=>$user_id])->one();
+            if(!$model){
+                $model = new \common\models\Shipper();
             }
-             print_r(Yii::$app->session["cart"][$id]);exit();
-             echo \frontend\assets\Cart::sumCart();
-             //print_r(Yii::$app->session["cart"]);exit();
-        }//end if
+            if($model->load(Yii::$app->request->post())){
+                if($model->validate() && $model->save()){
+                    //\appxq\sdii\utils\VarDumper::dump(Yii::$app->session["cart"]);                   
+                       $order = new \common\models\Order();
+                       $order->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                       $order->create_date = new \yii\db\Expression('NOW()');
+                       $order->status = 1;
+                       $order->user_id = $user_id;
+                       if($order->save()){
+                           foreach(Yii::$app->session["cart"] as $key=>$v){
+                                $order_detail=new \common\models\OrderDetail();
+                                $order_detail->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                                $order_detail->order_id = $order->id;
+                                $order_detail->product_id = $v['id'];
+                                $order_detail->price = $v['sum'];
+                                $order_detail->quantity = $v['amount'];
+                                if($order_detail->save()){
+                                    //delete cart
+                                    \frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"] , 1, 'del');
+                                }
+                            }
+                            Yii::$app->session["cart"] = [];
+                            return \janpan\jn\classes\JResponse::getSuccess("Successfully");
+                            //success
+                        } 
+                } 
+            }
+            return $this->render('step1',[
+                'model'=>$model,
+                'breadcrumb'=>$breadcrumbs
+            ]);
+        }
+        
     }
      
 }

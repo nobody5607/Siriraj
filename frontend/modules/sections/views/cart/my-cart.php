@@ -66,15 +66,17 @@
             </div>
         </div>
         <!-- /.box-body -->
+        <?php if($count):?>
         <div class="panel-footer text-center" style="">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <a href="/sections/session-management?id=10" class="btn btn-warning btn-block btn-lg" style="position: relative;">
+                    <a href="/sections/cart/my-check-out?step=1" class="btn btn-warning btn-block btn-lg" style="position: relative;">
                         <i class="fa fa-shopping-cart"></i> Checkout
                     </a>
                 </div>
             </div>
         </div>
+        <?php endif;?>
         <!-- /.box-footer -->
     </div>
 </div>

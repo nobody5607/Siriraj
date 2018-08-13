@@ -22,6 +22,7 @@ class SessionManagementController extends Controller
         $public = isset($content_section) ? '1' : '2';
         
         $breadcrumb = JSection::getBreadcrumb($id);
+//        \appxq\sdii\utils\VarDumper::dump($breadcrumb);
         $title = JSection::getTitle($id);        
         $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1); 
        

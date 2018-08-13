@@ -28,7 +28,7 @@ class AppComponent extends Component{
             $avatar_img = '<img class="img-circle" width="18" src="'.$avatar_url.'"/>'; 
             Yii::$app->params['navbarR'][] = ['label' => $avatar_img.' '. (isset($userProfile['firstname'])?$userProfile['firstname'].' '.$userProfile['lastname']:'Unknown'), 'encode' => FALSE, 'items' => [
                     ['label' => '<i class="fa fa-user"></i> '.Yii::t('appmenu', 'My Profile'), 'encode' => FALSE, 'url' => ['/account/default/settings']],
-                    ['label' => '<i class="fa fa-check-square-o"></i> '.Yii::t('appmenu', 'My Orders'), 'encode' => FALSE, 'url' => ['/account/default/settings']],
+                    ['label' => '<i class="fa fa-check-square-o"></i> '.Yii::t('appmenu', 'My Orders'), 'encode' => FALSE, 'url' => ['/sections/order/my-order']],
                     ['label' => '<i class="fa fa-unlock-alt"></i> '.Yii::t('appmenu', 'Logout'), 'encode' => FALSE, 'url' => ['/account/sign-in/logout'], 'linkOptions' => ['data-method' => 'post']],
             ]];
             
