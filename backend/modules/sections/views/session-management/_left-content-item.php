@@ -4,8 +4,8 @@
 
 <div class="flex-container">
     <div class="flex-drag">
-        <span>
-            <i class='fa fa-ellipsis-v'></i> <i class='fa fa-ellipsis-v'></i>
+        <span>            
+            <span><i class="fa fa-bars draggable"></i></span>
         </span>          
     </div>
     <div class="flex-2">

@@ -1,5 +1,7 @@
 <?php     
     use yii\bootstrap\Html;    
+        \janpan\jn\assets\ListdataAsset::register($this);
+    \janpan\jn\assets\EzfToolAsset::register($this);
     $this->title= Yii::t('section',$title);    
     if($breadcrumb){
        foreach($breadcrumb as $b){
@@ -43,6 +45,19 @@
 <?php \richardfan\widget\JSRegister::begin();?>
 
 <script>
+    $('#ezf_dad').dad({
+        draggable:'.draggable',
+        callback:function(e){
+            var positionArray = [];
+            $('#ezf_dad').find('.dads-children').each(function(){
+                positionArray.push($(this).attr('data-id'));
+            });
+            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder'])?>',{data:positionArray.toString()},function(result){
+                console.log(result);
+                return false;
+            });
+        }
+    });
    $('.btnCall').on('click', function(){
        let id       = $(this).attr('data-id');
        let url      = $(this).attr('data-url');
@@ -88,4 +103,4 @@
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
-
+ 

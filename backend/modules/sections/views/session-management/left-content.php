@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ListView;
 ?>
 <div class="col-md-3 col-border-right section-left">
     <div class="box-body">
@@ -17,23 +18,26 @@ use yii\helpers\Html;
             ?> 
         </div> <br/>
         <?=
-        \yii\widgets\ListView::widget([
-            'dataProvider' => $dataProvider,
-            'options' => [
-                'tag' => 'ul',
-                'class' => 'nav nav-stacked',
-                'id' => 'section-all',
-            ],
-            'itemOptions' => function($model) {
-                return ['tag' => 'li', 'data-id' => $model['id'], 'class' => 'section-items'];
-            },
-            'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> Back', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'btn btn-warning btn-sm']),        
-            'layout' => "{pager}\n{items}\n",
-            'itemView' => function ($model, $key, $index, $widget) {
-                return $this->render('_left-content-item', ['model' => $model]);
-            },
-        ]);
-        ?>     
+            ListView::widget([
+                'id' => 'ezf_dad',
+                'dataProvider' => $dataProvider,                 
+                'itemOptions' => function($model){
+                    return ['class' => 'item dads-children', 'data-id'=>$model->id];
+                },
+                'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_left-content-item', [
+                                'model' => $model,
+                                'key' => $key,
+                                'index' => $index,
+                                //'widget' => $widget,
+                                'ezf_id' => $model['id'],
+                    ]);
+                },
+                //'emptyText'=>'',
+                'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> ย้อนกลับ', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #dddddd;padding:5px;position: absolute;    margin-top: 5px;']),
+            ])
+            ?>  
     </div>
 </div>   
 

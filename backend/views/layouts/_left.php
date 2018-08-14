@@ -40,7 +40,7 @@ $actionID = Yii::$app->controller->action->id;
                 ],
                  
                 [
-                    'label' => Yii::t('backend', 'Users'),
+                    'label' => Yii::t('backend', 'Users Management'),
                     'url' => ['/user/index'],
                     'icon' => '<i class="fa fa-users"></i>',
                     'visible' => Yii::$app->user->can('administrator'),

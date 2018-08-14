@@ -115,4 +115,19 @@ class SessionManagementController extends Controller
 	}
     }
     
+    public function actionForder(){
+         
+        $data = Yii::$app->request->post('data' , '');
+        $data = explode(',', $data);
+        $default = 10;
+        foreach($data as $id){
+            if($id != ""){
+                $model = Sections::find()->where(['id'=>$id])->one();
+                $model->forder = $default;
+                $default += 10;
+                $model->save();
+            }
+        }
+    }     
+    
 }

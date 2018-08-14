@@ -97,50 +97,7 @@ class OrderManagementController extends Controller
 	}
     }
 
-    /**
-     * Creates a new Order model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-	if (Yii::$app->getRequest()->isAjax) {
-	    $model = new Order();
-
-	    if ($model->load(Yii::$app->request->post())) {
-		Yii::$app->response->format = Response::FORMAT_JSON;
-		if ($model->save()) {
-		    $result = [
-			'status' => 'success',
-			'action' => 'create',
-			'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		} else {
-		    $result = [
-			'status' => 'error',
-			'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not create the data.'),
-			'data' => $model,
-		    ];
-		    return $result;
-		}
-	    } else {
-		return $this->renderAjax('create', [
-		    'model' => $model,
-		]);
-	    }
-	} else {
-	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
-	}
-    }
-
-    /**
-     * Updates an existing Order model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
+     
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
