@@ -35,7 +35,7 @@ $actionID = Yii::$app->controller->action->id;
                     'label' => Yii::t('backend', 'Order Management'),
                     'url' => ['/order'],
                     'icon' => '<i class="fa fa-shopping-cart"></i>',
-                    'active'=>($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
+                    'active'=>($moduleID == 'order') ? TRUE : FALSE,
                     //'visible' => Yii::$app->user->can('administrator'),
                 ],
                  
