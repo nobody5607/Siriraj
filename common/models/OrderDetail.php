@@ -28,7 +28,7 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [             
-            [['id', 'order_id', 'product_id','quantity'], 'integer'],
+            [['id', 'order_id', 'product_id','quantity','size'], 'integer'],
             [['price'], 'number'],
             [['id'], 'unique'],
         ];
@@ -51,6 +51,9 @@ class OrderDetail extends \yii\db\ActiveRecord
  
     public function getFiles() {
         return $this->hasOne(Files::className(), ['id' => 'product_id']);
+    }
+    public function getOrder() {
+        return $this->hasOne(Order::className(), ['id' => 'order_id']);
     }
 
 }

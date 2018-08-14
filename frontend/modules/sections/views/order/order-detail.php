@@ -51,10 +51,10 @@
                     ],         
                     [
                         'contentOptions'=>['style'=>'width:50px;'],
-                        'attribute'=>'price',
-                        'label'=> Yii::t('order','Price'),
+                        'attribute'=>'size',
+                        'label'=> Yii::t('order','Size'),
                         'value'=>function($model){
-                          return number_format($model->price , 2);
+                          return $model->size;
                         }
                     ],
                     [
@@ -65,6 +65,20 @@
                           return  $model->quantity;
                         }
                     ],
+                    [
+                        'contentOptions'=>['style'=>'width:50px;text-align:center;'],
+                        'class' => 'yii\grid\ActionColumn',
+                        'header'=>'Action',
+                        'template'=>'{delete}',
+                        'buttons'=>[
+                          'delete' => function($url,$model,$key){
+                               $status = isset($model->order->status) ? $model->order->status : '2';
+                               if($status == 1){
+                                  return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'], 'class'=>'btn btn-danger btn-sm btn-delete']);
+                              }
+                            }
+                        ]
+                  ],
                 ],
                           
             ]) ?>
@@ -73,6 +87,31 @@
         
     </div>
 </div>
+
+<?php \richardfan\widget\JSRegister::begin();?>
+<script>
+    $('.btn-delete').on('click', function(){
+        let id=$(this).attr('data-id');
+        let url = '/sections/order/delet-order-detail';
+        
+        yii.confirm('<?= Yii::t('cart', 'Are you sure you want to delete this item?')?>', function() {
+            $.post(url, {id:id}, function(data){
+                if(data['status'] == 'success'){
+                    <?= \appxq\sdii\helpers\SDNoty::show('data.message', 'data.status') ?>
+                    setTimeout(function(){
+                        location.reload();
+                    },1000);
+                }
+            });
+        })
+        
+        
+        return false;
+    });
+</script>
+<?php \richardfan\widget\JSRegister::end();?>
+
+
 <?php \appxq\sdii\widgets\CSSRegister::begin()?>
 <style>
     @media only screen and (min-width: 768px){

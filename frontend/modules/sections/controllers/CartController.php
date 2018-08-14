@@ -38,8 +38,10 @@ class CartController extends Controller
     }
     public function actionAddCart(){
         header('Access-Control-Allow-Origin: *');  
-        $id = Yii::$app->request->post("id","");
-        $qty = Yii::$app->request->post("qty","1");
+        $id     = Yii::$app->request->post("id","");
+        $qty    = Yii::$app->request->post("qty","1");
+        $size   = Yii::$app->request->post("size","");
+        
         
         $id_arr = explode(',', $id);
         $data = [];
@@ -50,12 +52,15 @@ class CartController extends Controller
             $data['detail'] = $model->description;
             $data['price'] = 10;
             $data['image'] = $model->file_name_org;
+            $data['size']=$size;
+             
             \frontend\modules\sections\classes\JCart::addCart($v, $data, $qty, "add");
         }
         $count_cart = [
             'count'=>count(Yii::$app->session["cart"]),
             'res'=> Yii::$app->session["cart"]
         ];
+        //\appxq\sdii\utils\VarDumper::dump($count_cart);
         return \janpan\jn\classes\JResponse::getSuccess(Yii::t('cart', 'Add cart success'), $count_cart, 'cart');
          
         //print_r(Yii::$app->session["cart"]);        return;
@@ -126,6 +131,7 @@ class CartController extends Controller
                                 $order_detail->product_id = $v['id'];
                                 $order_detail->price = $v['sum'];
                                 $order_detail->quantity = $v['amount'];
+                                $order_detail->size = $v['size'];
                                 if($order_detail->save()){
                                     //delete cart
                                     \frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"] , 1, 'del');

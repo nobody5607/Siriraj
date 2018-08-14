@@ -105,9 +105,13 @@ $this->registerJs("
     }
 
     .items-sidebar.navbar-collapse{
-        border-right: 1px solid #969494a8;
-        background-color: #34393d;
+            border-right:1px solid #dedede;
+            background-color: #34393d;
+            background-image: url(<?= "/images/bg.jpg"?>);
+            background-attachment: fixed;
+            background-size: contain;
     }
+    
 
     .navbar-inverse {
         background-color: #3867d6;
@@ -133,14 +137,15 @@ $this->registerJs("
         background: #ededed;
     }
     .list-view .item a.media { 
-        border-bottom: 1px solid #2f3031;
+        border-bottom: 1px solid #3e3e3e3b;
         color: #fff;
         font-weight: bold;
     }
     .list-view .item a.media:hover {
         text-decoration: none;
-        background-color: #484d50;
+        background-color: #4e4e4e;
         color: #fff;
+        /* opacity: 0.5; */
     }
     .box.box-primary {
         box-shadow: 0px 0px 5px #a7a7a7;

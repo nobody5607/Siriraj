@@ -141,8 +141,10 @@
             checkboxValues.push($(elem).attr('data-id'));
         });
        let id_str = checkboxValues.toString();
-       let url = "/sections/cart/add-cart";         
-       $.post(url, {id:id_str}, function(res){
+       if(!id_str){return false;}
+       let url = "/sections/cart/add-cart";  
+       let size = $('.check-size:checked').val();
+       $.post(url, {id:id_str, size:size}, function(res){
            if(res['status'] == 'success'){
                $('#globalCart').html(res['data']['count']);
                <?= \appxq\sdii\helpers\SDNoty::show('res.message', 'res.status') ?>
@@ -181,10 +183,6 @@
 <?php richardfan\widget\JSRegister::end();?>
 
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
-<style>
-     
-    .view-file-left{
-        border-right: 1px solid #ecf0f5;
-    } 
+<style> 
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>

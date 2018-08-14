@@ -14,16 +14,19 @@ class JCart {
         $detail = isset($arrData['detail']) ? $arrData['detail'] : '';
         $price = isset($arrData['price']) ? $arrData['price'] : '';
         $image = isset($arrData['image']) ? $arrData['image'] : '';
+        $size = isset($arrData['size']) ? $arrData['size'] : '';
+        
         
         if (!isset($session["cart"])) {
             $cart[$id] = [
-                'id'=>$id,
-                'pro_name' => $name,
-                'pro_detail' => $detail,
-                'pro_price' => $price,
-                'image' => $image,                
-                'amount' => (int) $amount,
-                'sum' => (int)$amount * $price
+                'id'            =>$id,
+                'pro_name'      => $name,
+                'pro_detail'    => $detail,
+                'pro_price'     => $price,
+                'image'         => $image,                
+                'amount'        => (int) $amount,
+                'sum'           => (int)$amount * $price,
+                'size'          =>    $size
             ];
             
         } else {
@@ -33,41 +36,41 @@ class JCart {
                 switch ($action) {
                     case "add":
                         $cart[$id] = [
-                            'id'=>$id,
-                            'pro_name' => $name,
-                            'pro_detail' => $detail,
-                            'pro_price' => $price,
-                            'image' => $image,
-//                            'imagePath' => $arrData->imagePath,
-                            'amount' => (int) $cart[$id]["amount"] + 1,
-                            'sum' => ((int) $cart[$id]["amount"] + 1) * $price
+                            'id'            =>$id,
+                            'pro_name'      => $name,
+                            'pro_detail'    => $detail,
+                            'pro_price'     => $price,
+                            'image'         => $image, 
+                            'amount'        => (int) $cart[$id]["amount"] + 1,
+                            'sum'           => ((int) $cart[$id]["amount"] + 1) * $price,
+                            'size'          =>    $size
                         ];
                         
                         break;
                     case "del":
                         $cart[$id] = [
-                            'id'=>$id,
-                            'pro_name' => $name,
-                            'pro_detail' => $detail,
-                            'pro_price' => $price,
-                            'image' => $image,
-                            //'imagePath' => $arrData->imagePath,
-                            'amount' => (int) $cart[$id]["amount"] - 1,
-                            'sum' => ((int) $cart[$id]["amount"] - 1) * $price
+                            'id'            =>$id,
+                            'pro_name'      => $name,
+                            'pro_detail'    => $detail,
+                            'pro_price'     => $price,
+                            'image'         => $image, 
+                            'amount'        => (int) $cart[$id]["amount"] - 1,
+                            'sum'           => ((int) $cart[$id]["amount"] - 1) * $price,
+                            'size'          =>    $size
                         ];
                         break;
                 }
             } else {
                 //echo "OK".$cart[$id]["amount"];exit();
                 $cart[$id] = [
-                    'id'=>$id,
-                    'pro_name' => $name,
-                    'pro_detail' => $detail,
-                    'pro_price' => $price,
-                    'image' => $image,
-                    //'imagePath' => $arrData->imagePath,
-                    'amount' => (int) $amount,
-                    'sum' => $amount * $price
+                    'id'            =>$id,
+                    'pro_name'      => $name,
+                    'pro_detail'    => $detail,
+                    'pro_price'     => $price,
+                    'image'         => $image, 
+                    'amount'        => (int) $amount,
+                    'sum'           => $amount * $price,
+                    'size'          =>    $size
                 ];
             }
         }
