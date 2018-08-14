@@ -225,4 +225,13 @@ class FileManagementController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionUploadFile()
+    {
+        $file_type = Yii::$app->request->get('id', '');
+        $model = new \common\models\Files();
+        return $this->renderAjax('upload-file' , [
+            'model'=>$model
+        ]);
+    }
 }

@@ -1,6 +1,21 @@
+<?php 
+    use yii\helpers\Html;
+?>
 <div class="col-md-8 view-file-left">
     <div class="box box-primary">
         <div class="box-body">
+            <span class="pull-right">
+                            <?php
+                                echo Html::button("<i class='fa fa-plus'></i>", [
+                                    'data-id' => $dataDefault['file_type'],
+                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                    'data-action' => 'create',
+                                    'class' => 'btn btn-success btnCreateFile',
+                                    'title' => Yii::t('appmenu', 'Create'),
+                                    'data-url' => '/sections/session-management/create'
+                                ]);
+                            ?> 
+                        </span>
             <div class="row" style="margin-bottom:10px;">
                 <div class="col-md-6 col-md-offset-3">
                     <?php 
@@ -52,3 +67,21 @@
     } 
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>
+
+<?php 
+    $modal = "modal-contents";
+?>
+<?php \richardfan\widget\JSRegister::begin(); ?>
+    <script>
+        $('.btnCreateFile').on('click', function(){
+           let id = $(this).attr('data-id');
+            $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+            $('#<?= $modal?>').modal('show');
+            let url = '/sections/file-management/upload-file';
+            $.get(url,{id:id}, function(res){
+                $('#<?= $modal?> .modal-content').html(res);
+            });
+           return false;
+        });
+    </script>
+<?php \richardfan\widget\JSRegister::end(); ?>

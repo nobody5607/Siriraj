@@ -19,18 +19,7 @@ $modal = "modal-contents";
                     <div class="box-header">
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small id="label_<?= $f['id'] ?>">ภาพ</small>
-                        <span class="pull-right">
-                            <?php
-                                echo Html::button("<i class='fa fa-plus'></i>", [
-                                    //'data-id' => $data_id,
-                                    //'data-parent_id' => Yii::$app->request->get('id', '0'),
-                                    'data-action' => 'create-section',
-                                    'class' => 'btn btn-success btnCall',
-                                    'title' => Yii::t('appmenu', 'Create'),
-                                    'data-url' => '/sections/session-management/create'
-                                ]);
-                            ?> 
-                        </span>
+                        
                     </div>
                     <div class="box-body">
                         <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
