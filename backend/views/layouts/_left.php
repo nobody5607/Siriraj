@@ -31,6 +31,13 @@ $actionID = Yii::$app->controller->action->id;
                     'active'=>($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
                     //'visible' => Yii::$app->user->can('administrator'),
                 ],
+                [
+                    'label' => Yii::t('backend', 'Order Management'),
+                    'url' => ['/order'],
+                    'icon' => '<i class="fa fa-shopping-cart"></i>',
+                    'active'=>($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
+                    //'visible' => Yii::$app->user->can('administrator'),
+                ],
                  
                 [
                     'label' => Yii::t('backend', 'Users'),
@@ -38,35 +45,13 @@ $actionID = Yii::$app->controller->action->id;
                     'icon' => '<i class="fa fa-users"></i>',
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
-//                [
-//                    'label' => Yii::t('backend', 'Content'),
-//                    'url' => '#',
-//                    'icon' => '<i class="fa fa-edit"></i>',
-//                    'options' => ['class' => 'treeview'],
-//                    'items' => [
-//                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                        ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                        ['label' => Yii::t('backend', 'Article categories'), 'url' => ['/article-category/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                    ],
-//                ],
                 [
-                    'label' => Yii::t('backend', 'System'),
-                    'options' => ['class' => 'header'],
-                ],
-                
-                [
-                    'label' => Yii::t('backend', 'Settings'),
+                    'label' => Yii::t('backend', 'Authentication'),
                     'url' => '#',
-                    'icon' => '<i class="fa fa-cog"></i>',
+                    'icon' => '<i class="fa fa-cogs"></i>',
                     'options' => ['class' => 'treeview'],
                     'items' => [
-                            [
-                                'label' => 'Authentication',
-                                'url' => '#',
-                                'icon' => '<i class="fa fa-cogs"></i>',
-                                'options' => ['class' => 'treeview'],
-                                'items'=>[
-                                    [
+                           [
                                         'label' => 'Role',
                                         'url' => ['/rbac/access/role'],
                                         'icon' => '<i class="fa fa-angle-double-right"></i>',
@@ -78,9 +63,40 @@ $actionID = Yii::$app->controller->action->id;
                                         'icon' => '<i class="fa fa-angle-double-right"></i>',
                                         'visible' => Yii::$app->user->can('administrator'),
                                     ]
-                                ],
-                            
-                            ],
+                    ],
+                ],
+                [
+                    'label' => Yii::t('backend', 'System'),
+                    'options' => ['class' => 'header'],
+                ],
+                
+                [
+                    'label' => Yii::t('backend', 'Settings'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-cog"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+//                            [
+//                                'label' => 'Authentication',
+//                                'url' => '#',
+//                                'icon' => '<i class="fa fa-cogs"></i>',
+//                                'options' => ['class' => 'treeview'],
+//                                'items'=>[
+//                                    [
+//                                        'label' => 'Role',
+//                                        'url' => ['/rbac/access/role'],
+//                                        'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                                        'visible' => Yii::$app->user->can('administrator'),
+//                                    ],
+//                                    [
+//                                        'label' => 'Permission',
+//                                        'url' => ['/rbac/access/permission'],
+//                                        'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                                        'visible' => Yii::$app->user->can('administrator'),
+//                                    ]
+//                                ],
+//                            
+//                            ],
                         [
                             'label' => 'Gii',
                             'url' => ['/gii'],
