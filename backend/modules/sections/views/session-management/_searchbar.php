@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <?php
-    $type = frontend\modules\knowledges\classes\JFiles::getTypeFile();
+    $type = backend\modules\sections\classes\JFiles::getTypeFile();
     ?>
 
     <form class="" role="search">

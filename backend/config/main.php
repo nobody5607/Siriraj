@@ -85,6 +85,9 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'order' => [
+            'class' => 'backend\modules\order\Module',
+        ],
         'sections' => [
             'class' => 'backend\modules\sections\Module',
         ],
@@ -92,15 +95,15 @@ $config = [
             'class' => '\kartik\tree\Module',
             // other module settings, refer detailed documentation
         ],
-        'section_management' => [
-            'class' => 'backend\modules\section_management\Module',
-        ],
-        'content_management' => [
-            'class' => 'backend\modules\content_management\Module',
-        ],
-        'secret_content_management' => [
-            'class' => 'backend\modules\secret_content_management\Module',
-        ],
+//        'section_management' => [
+//            'class' => 'backend\modules\section_management\Module',
+//        ],
+//        'content_management' => [
+//            'class' => 'backend\modules\content_management\Module',
+//        ],
+//        'secret_content_management' => [
+//            'class' => 'backend\modules\secret_content_management\Module',
+//        ],
         'api' => [
             'class' => 'backend\modules\api\Api',
         ],
