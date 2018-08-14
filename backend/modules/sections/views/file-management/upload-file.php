@@ -22,7 +22,7 @@
 <div class="modal-body"> 
     <?php 
         echo $form->field($model, 'name[]')->widget(FileInput::classname(), [
-            'options' => ['multiple' => true, 'accept' => 'image/*'],
+            'options' => ['multiple' => true],//'accept' => 'image*'
             'pluginOptions' => ['previewFileType' => 'image']
         ])->label(false);
     ?>
