@@ -6,6 +6,7 @@ use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
 use dosamigos\tinymce\TinyMce;
 use backend\widgets\TinyMCECallback;
+use backend\modules\sections\classes\JSection;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contents */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -28,7 +29,7 @@ use backend\widgets\TinyMCECallback;
             <?php
                 echo "<label>Section</label>";
                 $model->section_id = (isset($sec_id)) ? $sec_id : '';
-                $section_arr    = backend\modules\section_management\classes\JSection::getSectionById($model->section_id);
+                $section_arr    = JSection::getSectionById($model->section_id);
                 $section        = isset($section_arr) ? $section_arr['name'] : '';
                 echo Html::textInput('section', $section, ['readonly'=>'readonly', 'class'=>'form-control']);
                 echo Html::hiddenInput('section_id', $model->section_id);

@@ -45,8 +45,6 @@
                             return 'ยังไม่ชำระเงิน';
                         }else if($model->status == 2){
                             return 'ชำระเงินแล้ว';
-                        }else if($model->status == 2){
-                             return 'จัดส่งแล้ว';
                         }
                       }
                   ],

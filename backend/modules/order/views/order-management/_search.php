@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\section_management\models\SectionSearch */
+/* @var $model backend\modules\order\models */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="sections-search">
+<div class="order-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -28,25 +28,13 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'user_id') ?>
 
-    <?= $form->field($model, 'content') ?>
+    <?= $form->field($model, 'create_date') ?>
 
-    <?= $form->field($model, 'list_content') ?>
+    <?= $form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'parent_id') ?>
-
-    <?php // echo $form->field($model, 'forder') ?>
-
-    <?php // echo $form->field($model, 'public') ?>
-
-    <?php // echo $form->field($model, 'rstat') ?>
-
-    <?php // echo $form->field($model, 'icon') ?>
-
-    <?php // echo $form->field($model, 'create_by') ?>
-
-    <?php // echo $form->field($model, 'create_date') ?>
+    <?= $form->field($model, 'admin_id') ?>
 
     <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-6">

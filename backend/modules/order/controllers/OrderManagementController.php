@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\section_management\controllers;
+namespace backend\modules\order\controllers;
 
 use Yii;
-use common\models\Sections;
-use backend\modules\section_management\models\SectionSearch;
+use common\models\Order;
+use backend\modules\order\models;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,9 +13,9 @@ use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
 
 /**
- * SectionController implements the CRUD actions for Sections model.
+ * OrderManagementController implements the CRUD actions for Order model.
  */
-class SectionsController extends Controller
+class OrderManagementController extends Controller
 {
     public function behaviors()
     {
@@ -56,12 +56,12 @@ class SectionsController extends Controller
     }
     
     /**
-     * Lists all Sections models.
+     * Lists all Order models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SectionSearch();
+        $searchModel = new models();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -71,50 +71,43 @@ class SectionsController extends Controller
     }
 
     /**
-     * Displays a single Sections model.
+     * Displays a single Order model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $child = \frontend\modules\knowledges\classes\JSection::getChildren($id);
-        $dataProvider = new \yii\data\ArrayDataProvider([
-            'allModels'=>$child,
+        $model = \common\models\OrderDetail::find()->where(['order_id'=>$id]);
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $model,
             'pagination' => [
                 'pageSize' => 100,
             ],
         ]);
 	if (Yii::$app->getRequest()->isAjax) {
 	    return $this->renderAjax('view', [
-		'model' => $this->findModel($id),
-                'dataProvider'=>$dataProvider
+		'dataProvider' => $dataProvider,
+                'model' => $model->one(),
 	    ]);
 	} else {
-            
 	    return $this->render('view', [
-		'model' => $this->findModel($id),
-                'dataProvider'=>$dataProvider
+		'dataProvider' => $dataProvider,
+                'model' => $model->one(),
 	    ]);
 	}
     }
 
     /**
-     * Creates a new Sections model.
+     * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-	    $model = new Sections();
-            $parent_id = Yii::$app->request->get('parent_id', '');
+	    $model = new Order();
+
 	    if ($model->load(Yii::$app->request->post())) {
-                $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
-                $model->rstat = 1;
-                $model->forder =1;
-                $model->create_by = Yii::$app->user->id;
-                $model->create_date = new \yii\db\Expression('NOW()');
-                
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if ($model->save()) {
 		    $result = [
@@ -133,11 +126,8 @@ class SectionsController extends Controller
 		    return $result;
 		}
 	    } else {
-                $parent_section = Sections::find()->where('rstat not in(0,3)')->all();
-                $model->parent_id = $parent_id;
 		return $this->renderAjax('create', [
 		    'model' => $model,
-                    'parent_section'=>$parent_section
 		]);
 	    }
 	} else {
@@ -146,7 +136,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Updates an existing Sections model.
+     * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -154,34 +144,29 @@ class SectionsController extends Controller
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');
-             
 	    $model = $this->findModel($id);
 
-	    if ($model->load(Yii::$app->request->post())) {
-		Yii::$app->response->format = Response::FORMAT_JSON;
+	    if ($model->load(Yii::$app->request->post())) {	
+                $invoice= \common\models\Invoice::find()->where(['order_id'=>$id])->one();
+                if(!$invoice){
+                    $invoice = new \common\models\Invoice();
+                    $invoice->id = 'INV'.\appxq\sdii\utils\SDUtility::getMillisecTime();
+                }
+                $invoice->order_id = $id;
+                $invoice->create_date = new \yii\db\Expression('NOW()');
+                $invoice->admin_id = Yii::$app->user->id;
+                $invoice->user_id = $model->user_id;
 		if ($model->save()) {
-		    $result = [
-			'status' => 'success',
-			'action' => 'update',
-			'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Data completed.'),
-			'data' => $model,
-		    ];
-		    return $result;
+                    if($model->status != 1){
+                         $invoice->save();
+                    }                   
+		   return \janpan\jn\classes\JResponse::getSuccess("Update successfully", $model);
 		} else {
-		    $result = [
-			'status' => 'error',
-			'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not update the data.'),
-			'data' => $model,
-		    ];
-		    return $result;
+		   return \janpan\jn\classes\JResponse::getError("Update successfully"); 
 		}
 	    } else {
-		$parent_section = Sections::find()->where('rstat not in(0,3)')->all();
-                $model->parent_id = $parent_id; 
 		return $this->renderAjax('update', [
 		    'model' => $model,
-                    'parent_section'=>$parent_section
 		]);
 	    }
 	} else {
@@ -190,54 +175,41 @@ class SectionsController extends Controller
     }
 
     /**
-     * Deletes an existing Sections model.
+     * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-	if (Yii::$app->getRequest()->isAjax) {
-	    Yii::$app->response->format = Response::FORMAT_JSON;
-            $model = $this->findModel($id);
-            $model->rstat = 3;
-            if($model->id == 0){
-                $result = [
-		    'status' => 'error',
-		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
-		    'data' => $id,
-		];
-		return $result;
+	//$id = \Yii::$app->request->post('id', '');
+        $order = \common\models\Order::find()->where(['id'=>$id])->one();        
+        if($order->delete()){
+            $detail = \common\models\OrderDetail::find()->where(['order_id'=>$id])->all();
+            foreach($detail as $d){
+                $d->delete();
             }
-	    if ($model->save()) {
-		$result = [
-		    'status' => 'success',
-		    'action' => 'update',
-		    'message' => SDHtml::getMsgSuccess() . Yii::t('app', 'Deleted completed.'),
-		    'data' => $id,
-		];
-		return $result;
-	    } else {
-		$result = [
-		    'status' => 'error',
-		    'message' => SDHtml::getMsgError() . Yii::t('app', 'Can not delete the data.'),
-		    'data' => $id,
-		];
-		return $result;
-	    }
-	} else {
-	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
-	}
+            return \janpan\jn\classes\JResponse::getSuccess("Delete successfully"); 
+        }else{
+            return \janpan\jn\classes\JResponse::getError("Delete error"); 
+        }
+    }
+    public function actionDeletOrderDetail(){   
+        $id = \Yii::$app->request->post('id', '');
+        $model = \common\models\OrderDetail::find()->where(['id'=>$id])->one();
+        if($model->delete()){
+            return \janpan\jn\classes\JResponse::getSuccess("Delete successfully"); 
+        }else{
+            return \janpan\jn\classes\JResponse::getError("Delete error"); 
+        }        
     }
 
     public function actionDeletes() {
 	if (Yii::$app->getRequest()->isAjax) {
 	    Yii::$app->response->format = Response::FORMAT_JSON;
 	    if (isset($_POST['selection'])) {
-		foreach ($_POST['selection'] as $id) {		     
-                    $model = $this->findModel($id);
-                    $model->rstat = 3;
-                    $model->save();
+		foreach ($_POST['selection'] as $id) {
+		    $this->findModel($id)->delete();
 		}
 		$result = [
 		    'status' => 'success',
@@ -260,15 +232,15 @@ class SectionsController extends Controller
     }
     
     /**
-     * Finds the Sections model based on its primary key value.
+     * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sections the loaded model
+     * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sections::findOne($id)) !== null) {
+        if (($model = Order::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

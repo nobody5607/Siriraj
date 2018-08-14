@@ -15,6 +15,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        return $this->redirect(['/order/order-management']);
         return $this->render('index');
     }
 }

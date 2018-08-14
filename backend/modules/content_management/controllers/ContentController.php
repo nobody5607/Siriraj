@@ -2,8 +2,8 @@
 
 namespace backend\modules\content_management\controllers;
 use yii\web\Controller; 
-use backend\modules\section_management\classes\JSection;
-use frontend\modules\knowledges\classes\JContent;
+use backend\modules\sections\classes\JSection;
+use backend\modules\sections\classes\JContent;
 use common\models\FileType;
 class ContentController extends Controller
 {

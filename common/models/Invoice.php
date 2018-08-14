@@ -30,8 +30,8 @@ class Invoice extends \yii\db\ActiveRecord
     {
         return [
             
-            [['user_id', 'status', 'admin_id'], 'integer'],
-            [['create_date'], 'safe'],
+            [['user_id', 'admin_id'], 'integer'],
+            [['create_date','order_id'], 'safe'],
             [['id'], 'string', 'max' => 50],
             [['id'], 'unique'],
         ];

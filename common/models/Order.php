@@ -47,4 +47,7 @@ class Order extends \yii\db\ActiveRecord
             'status' => Yii::t('order', '1 รอจัดส่ง  2 จัดส่งแล้ว'),
         ];
     }
+    public function getUser() {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }
