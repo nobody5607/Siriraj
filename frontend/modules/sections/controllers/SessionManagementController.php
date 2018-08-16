@@ -10,6 +10,9 @@ use Yii;
 class SessionManagementController extends Controller
 { 
     public function actionIndex(){    
+        
+        \frontend\modules\sections\classes\JCounter::saveCounter();
+                
         $id = \Yii::$app->request->get('id', '');        
         if($id){
             $content_section = JSection::getSectionById($id);

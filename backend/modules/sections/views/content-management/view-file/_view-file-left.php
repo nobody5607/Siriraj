@@ -3,6 +3,10 @@
 ?>
 <div class="col-md-8 view-file-left">
     <div class="box box-primary">
+        <div class="box-header">
+            <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
+            <h4><?= $dataDefault['name'] ?></h4>
+        </div> 
         <div class="box-body">
             <span class="pull-right">
                             <?php

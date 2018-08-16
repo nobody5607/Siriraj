@@ -85,6 +85,9 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'viewcountermanagement' => [
+            'class' => 'backend\modules\viewcountermanagement\Module',
+        ],
         'order' => [
             'class' => 'backend\modules\order\Module',
         ],

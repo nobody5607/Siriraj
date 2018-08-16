@@ -46,6 +46,12 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
+                    'label' => Yii::t('backend', 'View Counter Management'),
+                    'url' => ['/viewcountermanagement/view-count'],
+                    'icon' => '<i class="fa fa-eye"></i>',
+                    'visible' => Yii::$app->user->can('administrator'),
+                ],
+                [
                     'label' => Yii::t('backend', 'Authentication'),
                     'url' => '#',
                     'icon' => '<i class="fa fa-cogs"></i>',
