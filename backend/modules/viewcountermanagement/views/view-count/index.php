@@ -48,7 +48,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'ip',
             'view_count',
             
-            //'user_id',
+            [
+                'attribute'=>'user_id',
+                'label'=>'Name',
+                'value'=>function($model){
+                    if(!$model->user_id){
+                        return 'User';
+                    }
+                    $name = $model->user->userProfile->firstname. " " . $model->user->userProfile->lastname;
+                    return $name;
+                }
+            ],
             [
                 'format'=>'raw',
                 'attribute'=>'create_date',

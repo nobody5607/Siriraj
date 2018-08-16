@@ -48,4 +48,8 @@ class View extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
         ];
     }
+    
+    public function getUser() {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }
