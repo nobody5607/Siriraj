@@ -74,20 +74,7 @@
 ]);
 ?>
 <script>
-    $('.page-column').addClass('items-views');     
-    $('#ezf_dad').dad({
-        draggable:'.draggable',
-        callback:function(e){
-            var positionArray = [];
-            $('#ezf_dad').find('.dads-children').each(function(){
-                positionArray.push($(this).attr('data-key'));
-            });
-
-            $.post('<?= \yii\helpers\Url::to(['/ezforms2/data-lists/order-update'])?>',{position:positionArray},function(result){
-
-            });
-        }
-    });
+    $('.page-column').addClass('items-views');    
 
     itemsSidebar();
 
