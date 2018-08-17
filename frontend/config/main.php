@@ -49,7 +49,7 @@ $config = [
         ],
        'languagepicker' => [
             'class' => 'lajax\languagepicker\Component',
-            'languages' => ['en-US', 'th'], // List of available languages (icons only)
+            'languages' => ['en-US', 'th-TH'], // List of available languages (icons only)
             'cookieName' => 'language', // Name of the cookie.
             'expireDays' => 64, // The expiration time of the cookie is 64 days.
             'callback' => function() {
@@ -88,6 +88,7 @@ $config = [
         'urlManager' => require __DIR__ . '/_urlManager.php',
         'cache' => require __DIR__ . '/_cache.php',
     ],
+    
     'as beforeAction' => [
         'class' => 'common\behaviors\LastActionBehavior',
     ],
@@ -97,6 +98,10 @@ $config = [
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
+    $config['bootstrap']['log'] = [
+        'class' => 'common\components\LanguageSelector',
+        'supportedLanguages' => ['en-US', 'th-TH'], //กำหนดรายการภาษาที่ support หรือใช้ได้
+    ];
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         'allowedIPs' => ['127.0.0.1', '::1', '192.168.*.*'],

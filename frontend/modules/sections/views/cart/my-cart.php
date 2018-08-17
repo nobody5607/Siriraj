@@ -1,6 +1,6 @@
 <?php 
     use yii\helpers\Html;
-    $this->title = Yii::t('cart', 'MyCart');
+    $this->title = Yii::t('appmenu', 'My Cart');
     if($breadcrumb){
         echo janpan\jn\widgets\BreadcrumbsWidget::widget([
             'breadcrumb'=>$breadcrumb
@@ -10,7 +10,7 @@
 <div class="col-md-12" id="10" data-id="10" style="padding: 5px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-shopping-cart"></i> รถเข็นของฉัน</div>             
+            <div class="panel-title"><i class="fa fa-shopping-cart"></i> <?= Html::encode($this->title)?></div>             
         </div>
         <!-- /.box-header -->
         <div class="panel-body" style="">
@@ -29,7 +29,7 @@
                   ],
                   [
                       'attribute'=>'pro_name',
-                      'label'=> Yii::t('cart','Name'),
+                      'label'=> Yii::t('cart','Item'),
                       'value'=>'pro_name'
                   ],
                   [
@@ -38,21 +38,22 @@
                       'value'=>'pro_name'
                   ],
                   [
+                      'contentOptions'=>['style'=>'width:50px;text-align:center;'],
                       'attribute'=>'amount',
-                      'label'=> Yii::t('cart','Amount'),
+                      'label'=> Yii::t('cart','Quantity'),
                       'value'=>'amount'
                   ],
-                  [
-                      'attribute'=>'sum',
-                      'label'=> Yii::t('cart','Price'),
-                      'value'=>function($model){
-                          return number_format($model['sum'], 2);
-                      }
-                  ],
+//                  [
+//                      'attribute'=>'sum',
+//                      'label'=> Yii::t('cart','Price'),
+//                      'value'=>function($model){
+//                          return number_format($model['sum'], 2);
+//                      }
+//                  ],
                   [
                         'contentOptions'=>['style'=>'width:50px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',
-                        'header'=>'Action',
+                        'header'=>'',
                         'template'=>'{delete}',
                         'buttons'=>[
                           'delete' => function($url,$model,$key){
@@ -71,7 +72,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="/sections/cart/my-check-out?step=1" class="btn btn-warning btn-block btn-lg" style="position: relative;">
-                        <i class="fa fa-shopping-cart"></i> Checkout
+                        <i class="fa fa-shopping-cart"></i> <?= Yii::t('cart', 'Checkout Now')?>
                     </a>
                 </div>
             </div>
@@ -110,6 +111,11 @@
             max-width: 100%;    
             margin-left: 0; 
         }
+    }
+    .btn-warning{
+        border: solid 1px #da7c0c;
+        background: #f78d1d;
+        background: -webkit-gradient(linear,left top,left bottom,from(#faa51a),to(#f47a20));
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

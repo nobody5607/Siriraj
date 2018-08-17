@@ -18,12 +18,12 @@ class CartController extends Controller
         $breadcrumbs=[];
         $breadcrumbs_arr = [
             [
-                'label' =>'Home', 
+                'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
                 'icon'=>'fa-bank'
             ],
             [
-                    'label' =>'MyCart'
+                'label' => \Yii::t('cart', 'My Cart')
             ]
         ];
         foreach($breadcrumbs_arr as $key=>$v){

@@ -46,7 +46,7 @@ class SiteController extends Controller
     }   
     public function actionTest()
     {
-        return $this->render('test');
+        echo \Yii::t('chanpan', 'First name');
     }
     public function beforeAction($action)
     {

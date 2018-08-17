@@ -12,5 +12,12 @@ return [
     'My Profile'=>'ข้อมูลส่วนตัว',
     'My Orders'=>'ข้อมูลการสั่งซื้อ',
     'Logout'=>'ออกจากระบบ',
+    'Item'=>'รายการ',
+    'Quantity'=>'จำนวน',
+    'Detail'=>'รายละเอียด',
+    'Checkout Now'=>'ชำระเงิน',
+    'Are you sure you want to delete this item?'=>'คุณแน่ใจหรือว่าต้องการลบรายการนี้หรือไม่?',
+    'Home'=>'หน้าแรก',
+    
 ];
 

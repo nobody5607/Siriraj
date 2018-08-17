@@ -38,7 +38,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->redirect(['/knowledges/section']);
+        return $this->redirect(['/sections/session-management']);
         return $this->render('index');
     }
 
