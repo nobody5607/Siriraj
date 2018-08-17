@@ -18,6 +18,15 @@ return [
     'Checkout Now'=>'Checkout Now',
     'Are you sure you want to delete this item?'=>'Are you sure you want to delete this item?',
     'Home'=>'Home',
+    'Shipping address'=>'Shipping address',
+    'Firstname'=>'Firstname',
+    'Lastname'=>'Lastname',
+    'Address'=>'Address',
+    'Tel'=>'Tel',
+    'Note'=>'Note',
+    'Next'=>'Next',
+    'Checkout'=>'Checkout',
+    
     
 ];
 

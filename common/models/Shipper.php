@@ -32,8 +32,7 @@ class Shipper extends \yii\db\ActiveRecord
             [['id', 'user_id'], 'integer'],
             [['companey_name','firstname','lastname','note'], 'string'],
             [['tel'], 'string', 'max' => 10],
-            [['firstname','lastname'], 'string', 'max' => 100],
-             
+            [['firstname','lastname'], 'string', 'max' => 100],             
             [['id'], 'unique'],
         ];
     }
@@ -48,6 +47,11 @@ class Shipper extends \yii\db\ActiveRecord
             'companey_name' => Yii::t('order', 'Companey Name'),
             'tel' => Yii::t('order', 'Tel'),
             'user_id' => Yii::t('order', 'User ID'),
+            'Address'=>Yii::t('cart', 'Address'),
+            'firstname'=>Yii::t('cart', 'Firstname'),
+            'lastname'=>Yii::t('cart', 'Lastname'),
+            'tel'=>Yii::t('cart', 'Tel'),
+            'note'=>Yii::t('cart', 'Note'),
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-$this->title = Yii::t('backend', 'Shipping address');
+$this->title = Yii::t('cart', 'Shipping address');
 
 if($breadcrumb){
         echo janpan\jn\widgets\BreadcrumbsWidget::widget([

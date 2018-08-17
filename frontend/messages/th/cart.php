@@ -18,6 +18,14 @@ return [
     'Checkout Now'=>'ชำระเงิน',
     'Are you sure you want to delete this item?'=>'คุณแน่ใจหรือว่าต้องการลบรายการนี้หรือไม่?',
     'Home'=>'หน้าแรก',
+    'Shipping address'=>'ที่อยู่สำหรับจัดส่ง',
+    'Firstname'=>'ชื่อ',
+    'Lastname'=>'นามสกุล',
+    'Address'=>'ที่อยู่',
+    'Tel'=>'เบอร์โทรศัพท์',
+    'Note'=>'หมายเหตุ',
+    'Next'=>'ถัดไป',
+    'Checkout'=>'ชำระเงิน',
     
 ];
 

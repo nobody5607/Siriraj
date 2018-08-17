@@ -12,27 +12,14 @@ use appxq\sdii\helpers\SDNoty;
     ]); ?>
     <?= $form->field($model, 'firstname')->textInput()?>
     <?= $form->field($model, 'lastname')->textInput()?>
-    <?= $form->field($model, 'companey_name')->textarea()?>  
+    <?= $form->field($model, 'companey_name')->textarea()->label(Yii::t('cart', 'Address'))?>  
     <?= $form->field($model, 'tel')->widget(\yii\widgets\MaskedInput::className(), [
     'mask' => '9999999999']);?>
-    <?= $form->field($model, 'note')->widget(\dosamigos\tinymce\TinyMce::class, [
-                'language' => strtolower(substr(Yii::$app->language, 0, 2)),
-                'options'=>['id'=>'tests'],
-                'clientOptions' => [
-                    'height'=> 150,
-                    'plugins' => [
-                        'advlist autolink lists link image charmap print preview anchor pagebreak',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table contextmenu paste code textcolor colorpicker',
-                    ],
-                    'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
-                    //'file_picker_callback' => \backend\widgets\TinyMCECallback::getFilePickerCallback(['/file-manager/frame']),
-                ],
-            ]) ?>
+    <?= $form->field($model, 'note')->textarea()?>
     <div class="form-group">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <?= Html::submitButton(Yii::t('backend', 'Next'), ['class' => 'btn btn-primary btn-block btn-lg']) ?>
+                <?= Html::submitButton(Yii::t('cart', 'Next'), ['class' => 'btn btn-primary btn-block btn-lg']) ?>
             </div>
         </div>
     </div>
