@@ -22,21 +22,21 @@ $actionID = Yii::$app->controller->action->id;
                     'url' => ['/sections/session-management'],
                     'icon' => '<i class="fa fa-sitemap"></i>',
                     'active'=>($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
-                    //'visible' => Yii::$app->user->can('administrator'),
+                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ],
                 [
                     'label' => Yii::t('backend', 'Private Section Management'),
                     'url' => ['/sections/private-session-management'],
                     'icon' => '<i class="fa fa-lock"></i>',
                     'active'=>($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
-                    //'visible' => Yii::$app->user->can('administrator'),
+                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('secret')),
                 ],
                 [
                     'label' => Yii::t('backend', 'Order Management'),
                     'url' => ['/order/order-management'],
                     'icon' => '<i class="fa fa-shopping-cart"></i>',
                     'active'=>($moduleID == 'order') ? TRUE : FALSE,
-                    //'visible' => Yii::$app->user->can('administrator'),
+                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ],
                  
                 [
@@ -56,6 +56,7 @@ $actionID = Yii::$app->controller->action->id;
                     'url' => '#',
                     'icon' => '<i class="fa fa-cogs"></i>',
                     'options' => ['class' => 'treeview'],
+                    'visible' => Yii::$app->user->can('administrator'),
                     'items' => [
                            [
                                         'label' => 'Role',
@@ -74,6 +75,7 @@ $actionID = Yii::$app->controller->action->id;
                 [
                     'label' => Yii::t('backend', 'System'),
                     'options' => ['class' => 'header'],
+                    'visible' => Yii::$app->user->can('administrator'),
                 ],
                 
                 [
@@ -81,6 +83,7 @@ $actionID = Yii::$app->controller->action->id;
                     'url' => '#',
                     'icon' => '<i class="fa fa-cog"></i>',
                     'options' => ['class' => 'treeview'],
+                    'visible' => Yii::$app->user->can('administrator'),
                     'items' => [
 //                            [
 //                                'label' => 'Authentication',

@@ -18,6 +18,11 @@ class ArticleController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' =>\backend\components\Rbac::getRbac(),
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -34,6 +39,7 @@ class ArticleController extends Controller
      */
     public function actionIndex()
     {
+      // \backend\components\Rbac::getRbac();
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

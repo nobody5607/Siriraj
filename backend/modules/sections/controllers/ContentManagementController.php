@@ -13,7 +13,16 @@ use common\models\FileType;
  */
 class ContentManagementController extends Controller
 {
- 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' => \backend\components\Rbac::getRbac(),
+            ]
+        ];
+    }
     public function actionIndex()
     {
         return $this->render('index');

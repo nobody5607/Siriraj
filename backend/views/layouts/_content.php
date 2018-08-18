@@ -41,6 +41,7 @@ use lo\modules\noty\Wrapper;
                     }
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
+               
                <?php 
                     echo appxq\sdii\widgets\ModalForm::widget([
                         'id' => 'modal-contents',

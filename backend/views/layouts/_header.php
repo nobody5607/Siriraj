@@ -10,6 +10,7 @@ Yii::$app->name = 'SIRIRAJ';
 /* @var $this \yii\web\View */
 ?>
 
+
 <header class="main-header">
     <?= Html::a('<span class="logo-mini"><i class="fa fa-diamond"></i></span><span class="logo-lg"><i class="fa fa-diamond"></i> ' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
     <nav class="navbar navbar-static-top" role="navigation">

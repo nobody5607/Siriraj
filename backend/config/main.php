@@ -10,7 +10,7 @@ $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute' => 'site/settings',
+    'defaultRoute' => 'site/index',
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -21,7 +21,7 @@ $config = [
                     'baseUrl' => '@storageUrl',
                     'basePath' => '@storage',
                     'path' => '/',
-                    'access' => ['read' => 'manager', 'write' => 'manager'],
+                    'access' => ['read' => 'administrator', 'write' => 'administrator'],
                     'options' => [
                        'attributes' => [
                             [
@@ -151,42 +151,42 @@ $config = [
             ],
         ],
     ],
-    'as globalAccess' => [
-        'class' => 'common\behaviors\GlobalAccessBehavior',
-        'rules' => [
-            [
-                'controllers' => ['site'],
-                'allow' => true,
-                'actions' => ['login'],
-                'roles' => ['?'],
-            ],
-            [
-                'controllers' => ['site'],
-                'allow' => true,
-                'actions' => ['logout'],
-                'roles' => ['@'],
-            ],
-            [
-                'controllers' => ['site'],
-                'allow' => true,
-                'actions' => ['error'],
-                'roles' => ['?', '@'],
-            ],
-            [
-                'controllers' => ['user'],
-                'allow' => true,
-                'roles' => ['administrator'],
-            ],
-            [
-                'controllers' => ['user'],
-                'allow' => false,
-            ],
-            [
-                'allow' => true,
-                'roles' => ['manager'],
-            ],
-        ],
-    ],
+//    'as globalAccess' => [
+//        'class' => 'common\behaviors\GlobalAccessBehavior',
+//        'rules' => [
+//            [
+//                'controllers' => ['site'],
+//                'allow' => true,
+//                'actions' => ['login'],
+//                'roles' => ['?'],
+//            ],
+//            [
+//                'controllers' => ['site'],
+//                'allow' => true,
+//                'actions' => ['logout'],
+//                'roles' => ['@'],
+//            ],
+//            [
+//                'controllers' => ['site'],
+//                'allow' => true,
+//                'actions' => ['error'],
+//                'roles' => ['?', '@'],
+//            ],
+//            [
+//                'controllers' => ['user'],
+//                'allow' => true,
+//                'roles' => ['administrator'],
+//            ],
+//            [
+//                'controllers' => ['user'],
+//                'allow' => false,
+//            ],
+////            [
+////                'allow' => true,
+////                'roles' => ['administrator'],
+////            ],
+//        ],
+//    ],
     'as beforeAction' => [
         'class' => 'common\behaviors\LastActionBehavior',
     ],

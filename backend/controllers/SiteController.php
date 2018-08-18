@@ -20,10 +20,26 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' => [                    
+                    [
+                        //'controllers' => ['site'],
+                        'allow' => true,
+                        'actions' => ['login'],
+                        //'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -44,9 +60,10 @@ class SiteController extends Controller
             ],
         ];
     }   
-    public function actionTest()
+    public function actionIndex()
     {
-        echo \Yii::t('chanpan', 'First name');
+        
+       return $this->render('index');
     }
     public function beforeAction($action)
     {
@@ -57,16 +74,19 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+        
+        if (!Yii::$app->user->isGuest) {            
+            return $this->goHome();            
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post())) {
+            //\appxq\sdii\utils\VarDumper::dump(Yii::$app->request->post());
+            if($model->login()){
+                return $this->goHome();
+            }
         } else {
             $model->password = '';
-
             return $this->render('login', ['model' => $model]);
         }
     }
