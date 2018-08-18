@@ -25,10 +25,16 @@ class SiteController extends Controller
                 //'only' => ['index'],
                 'rules' => [                    
                     [
-                        //'controllers' => ['site'],
+                        'controllers' => ['site'],
                         'allow' => true,
                         'actions' => ['login'],
                         //'roles' => ['?'],
+                    ],
+                    [
+                        'controllers' => ['site'],
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
                     ],
                     [
                         'allow' => true,
@@ -80,11 +86,11 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             //\appxq\sdii\utils\VarDumper::dump(Yii::$app->request->post());
-            if($model->login()){
+            
                 return $this->goHome();
-            }
+             
         } else {
             $model->password = '';
             return $this->render('login', ['model' => $model]);
