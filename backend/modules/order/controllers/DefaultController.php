@@ -13,6 +13,22 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' => \backend\components\Rbac::getRbac(),
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
     public function actionIndex()
     {
         return $this->redirect(['/order/order-management']);

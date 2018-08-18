@@ -17,24 +17,14 @@ use appxq\sdii\helpers\SDHtml;
  */
 class ViewCountController extends Controller
 {
-    public function behaviors()
+     public function behaviors()
     {
         return [
-/*	    'access' => [
-		'class' => AccessControl::className(),
-		'rules' => [
-		    [
-			'allow' => true,
-			'actions' => ['index', 'view'], 
-			'roles' => ['?', '@'],
-		    ],
-		    [
-			'allow' => true,
-			'actions' => ['view', 'create', 'update', 'delete', 'deletes'], 
-			'roles' => ['@'],
-		    ],
-		],
-	    ],*/
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' => \backend\components\Rbac::getRbac(),
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

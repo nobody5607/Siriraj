@@ -9,6 +9,16 @@ use common\models\Sections;
 use Yii;
 class PrivateSessionManagementController extends Controller
 { 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                //'only' => ['index'],
+                'rules' => \backend\components\Rbac::getRbac(),
+            ]
+        ];
+    }
     public function actionIndex(){    
         $id = \Yii::$app->request->get('id', '');        
         if($id){
