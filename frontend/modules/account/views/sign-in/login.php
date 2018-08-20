@@ -34,16 +34,16 @@ $fieldOptions2 = [
          
         <?= $form
             ->field($model, 'identity', $fieldOptions1)            
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('appmenu','Username or e-mail')) ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('user','Username or e-mail')) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
             
-            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')])->label(Yii::t('user','Password')) ?>
 
         <div class="row">
             <div class="col-xs-12">
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('user','Remember me next time')) ?>
             </div>
             <!-- /.col -->
             <div class="col-xs-12">
