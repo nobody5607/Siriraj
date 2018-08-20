@@ -137,18 +137,17 @@
     
     <div class="row"> 
         <div class="col-md-12">
+            <?php if (!Yii::$app->user->isGuest):  ?>
             <div class="box box-primary">
                 <div class="box-body">
                     <h3 class="text-center">ขอความอนุเคราะห์ภาพหรือข้อมูล โปรดปฏิบัติตามกติกา ดังนี้ </h3>
                     <div>
-                        <p>1. <i class="fa fa-check"></i> คลิกเลือกภาพหรือข้อมูลที่ต้องการ ลง เลือกลงตะกร้า</p> 
+                        <p>1. <i class="fa fa-check-square-o"></i> คลิกเลือกภาพหรือข้อมูลที่ต้องการ ลง เลือกลงตะกร้า</p> 
                         <p>2. ระบบจะรวบรวมข้อมูล ออกเป็นแบบฟอร์มให้ท่านกรอกคำร้องขอ</p>
                         <p>3. เมื่อเจ้าหน้าที่ได้รับอีเมล์ จะติดต่อกลับ เพื่อตกลงวิธีส่งมอบข้อมูล</p>
                     </div>
                 </div>
-            </div>
-            <?php if (!Yii::$app->user->isGuest):  ?>
-        
+            </div>           
             <?php endif; ?>
         </div>
     </div>
