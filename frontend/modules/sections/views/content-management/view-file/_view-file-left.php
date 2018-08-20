@@ -96,6 +96,7 @@
  
                 </div>
             </div>
+            <?php if(!Yii::$app->user->isGuest):?>
             <div class="col-md-12">
                 <div class="col-md-12">
                     <div class="col-md-12">
@@ -107,6 +108,7 @@
                     </div>
                 </div>  
             </div><br>
+            <?php endif;?>
             <?php             
             echo \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
