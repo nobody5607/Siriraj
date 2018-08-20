@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model frontend\modules\account\models\SignupForm */
 
-$this->title = Yii::t('frontend', 'Signup');
+$this->title = Yii::t('user', 'Sign up');
 
 ?>
 <div class="container" style="margin-top:30px;">
@@ -33,7 +33,7 @@ $this->title = Yii::t('frontend', 'Signup');
     </div>
     <div class="panel-footer">
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('frontend', 'Signup'), ['class' => 'btn btn-success btn-block']) ?>
+            <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
         </div>
     </div>
 </div>
