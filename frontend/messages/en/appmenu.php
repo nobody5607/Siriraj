@@ -12,5 +12,8 @@ return [
     'My Profile'=>'My Profile',
     'My Orders'=>'My Orders',
     'Logout'=>'Logout',
+    'Login'=>'Login',
+    'Create new account'=>'Create new account',
+    
 ];
 
