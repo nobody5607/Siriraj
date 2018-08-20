@@ -9,10 +9,13 @@ use yii\widgets\ActiveForm;
 /* @var $model frontend\modules\account\models\SignupForm */
 
 $this->title = Yii::t('frontend', 'Signup');
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<?php $form = ActiveForm::begin() ?>
-<div class="panel panel-default">
+<div class="container" style="margin-top:30px;">
+    <div class="row">
+        <?php $form = ActiveForm::begin() ?>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
     <div class="panel-heading"><?= Html::encode($this->title) ?></div>
     <div class="panel-body">
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
@@ -30,8 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="panel-footer">
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('frontend', 'Signup'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(Yii::t('frontend', 'Signup'), ['class' => 'btn btn-success btn-block']) ?>
         </div>
     </div>
 </div>
+        </div>
 <?php ActiveForm::end() ?>
+    </div>
+</div>
