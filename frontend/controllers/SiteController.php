@@ -36,6 +36,9 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+    public function actionTest(){
+        return $this->render('test');
+    }
     public function actionIndex()
     {
         return $this->redirect(['/sections/session-management']);

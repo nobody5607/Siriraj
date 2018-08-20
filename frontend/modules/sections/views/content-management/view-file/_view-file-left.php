@@ -83,7 +83,17 @@
                 <div class="col-md-6 col-md-offset-3">
                     <?php 
                         if($dataDefault['file_type'] == '2'){
-                            echo yii\helpers\Html::img("/images/{$dataDefault['file_name_org']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
+                            echo \janpan\jn\widgets\ZoomImageWidget::widget([
+                                'data'=>[           
+                                    'image'=>"/images/{$dataDefault['file_name_org']}",
+                                    'options'=>[
+                                        'id'=>"zoom",
+                                        'class'=>'img img-responsive',
+                                        'style'=>'width:1024px',
+                                    ]
+                                ]
+                            ]);
+                            //echo yii\helpers\Html::img("/images/{$dataDefault['file_name_org']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
                         }elseif ($dataDefault['file_type'] == 3) {
                             echo"
                                 <video style='width:100%' controls>
