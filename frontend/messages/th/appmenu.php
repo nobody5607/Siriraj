@@ -14,5 +14,9 @@ return [
     'Logout'=>'ออกจากระบบ',
     'Login'=>'เข้าสู่ระบบ',
     'Create new account'=>'สร้างบัญชีผู้ใช้ใหม่',
+    'Log into your account'=>'ลงชื่อเข้าใช้บัญชีของคุณ',
+    'Username or e-mail'=>'ชื่อผู้ใช้งานหรืออีเมล',
+    'Password'=>'รหัสผ่าน',
+    'Don\'t have an account, create a new account here'=>'ยังไม่มีบัญชีสร้างบัญชีใหม่ที่นี่'
 ];
 

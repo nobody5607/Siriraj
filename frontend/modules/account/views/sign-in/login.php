@@ -26,16 +26,15 @@ $fieldOptions2 = [
     <div class="row" style="margin-top:100px;">
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-primary">
-    <div class="panel-heading">Log into your  account</div>
+            <div class="panel-heading"><?= Yii::t('appmenu','Log into your account')?></div>
     <div class="panel-body">
         
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
          
         <?= $form
-            ->field($model, 'identity', $fieldOptions1)
-            
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+            ->field($model, 'identity', $fieldOptions1)            
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('appmenu','Username or e-mail')) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
@@ -48,7 +47,7 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-xs-12">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton(Yii::t('appmenu','Login'), ['class' => 'btn btn-primary btn-block btn-flat btn-lg', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>
@@ -67,7 +66,7 @@ $fieldOptions2 = [
 
         <!--<a href="#">I forgot my password</a>-->
         <br>
-        <a href="/account/sign-in/signup" class="text-center">Don't have an account, create a new account here</a>
+        <a href="/account/sign-in/signup" class="text-center"><?= Yii::t('appmenu', 'Don\'t have an account, create a new account here')?></a>
 
     </div>
     <!-- /.login-box-body -->
