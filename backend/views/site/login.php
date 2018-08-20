@@ -7,7 +7,7 @@ use yii\bootstrap\Html;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model common\models\LoginForm */
 
-$this->title = Yii::t('backend', 'Sign in');
+$this->title = Yii::t('backend', 'Log into your  account');
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['body-class'] = 'login-page';
 ?>
@@ -27,7 +27,7 @@ $this->params['body-class'] = 'login-page';
         </div>
 
         <div class="footer">
-            <?= Html::submitButton('Sign me in', ['class' => 'btn btn-primary btn-flat btn-block']) ?>
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-flat btn-block']) ?>
         </div>
 
         <?php ActiveForm::end() ?>
