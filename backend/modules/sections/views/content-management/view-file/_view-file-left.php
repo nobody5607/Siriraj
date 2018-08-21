@@ -26,7 +26,17 @@
                 <div class="col-md-6 col-md-offset-3">
                     <?php 
                         if($dataDefault['file_type'] == '2'){
-                            echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
+                            echo \janpan\jn\widgets\ZoomImageWidget::widget([
+                                'data'=>[
+                                    'id'=>$dataDefault['id'],
+                                    'image'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",
+                                    'options'=>[
+                                        'class'=>'img img-responsive','style'=>"width:1024px;",
+                                        'id'=>$dataDefault['id'],
+                                    ]
+                                ]
+                            ]);
+                           // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
                         }elseif ($dataDefault['file_type'] == 3) {
                             echo"
                                 <video style='width:100%' controls>
