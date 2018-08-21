@@ -20,7 +20,7 @@ $modal = "modal-contents";
 </div>
 <?php richardfan\widget\JSRegister::begin();?>
 <script>
-    $('.btnCall').on('click', function(){
+    $('.btnDelete').on('click', function(){
         let action = $(this).attr('data-action');
         let id       = $(this).attr('data-id');
         

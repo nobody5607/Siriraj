@@ -38,13 +38,12 @@
         ";   
     }
     $taga = "";
-    $taga .= "<div style='margin-bottom:10px;text-align:center;'>";
-            
+    $taga .= "<div style='margin-bottom:10px;text-align:center;'>";            
             $taga .= Html::button("<i class='fa fa-trash'></i>", [
                  'data-id' => $model['id'],
                 //'data-parent_id' => Yii::$app->request->get('id', '0'),
                 'data-action' => 'delete',
-                'class' => 'btn btn-danger btn-xs btnCall',
+                'class' => 'btn btn-danger btn-xs btnDelete',
                 'title' => Yii::t('appmenu', 'Delete'),
                 'data-url' => '/sections/file-management/delete-file',
                 'data-method' => 'POST'
