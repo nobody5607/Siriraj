@@ -18,7 +18,30 @@ $modal = "modal-contents";
     <?= $this->render('_view-file-right', ['dataProvider' => $dataProvider, 'dataDefault' => $dataDefault, 'choice'=>$choice]) ?>
 
 </div>
- 
+<?php richardfan\widget\JSRegister::begin();?>
+<script>
+    $('.btnCall').on('click', function(){
+        let action = $(this).attr('data-action');
+        let id       = $(this).attr('data-id');
+        
+        let url      = $(this).attr('data-url');
+        if(action == 'delete'){
+            yii.confirm('<?= Yii::t('file', 'Confirm Delete?') ?>', function(){
+                $.post(url, {id:id}, function(result){                    
+                    <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+                    $('#img-'+id).remove();
+//                    setTimeout(function(){
+//                        location.reload();
+//                    },1000);
+                });
+            });   
+        }
+        
+        return false;
+    });
+    
+</script>
+<?php richardfan\widget\JSRegister::end();?>
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     @media (min-width: 992px)

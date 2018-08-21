@@ -31,7 +31,7 @@
                                     'id'=>$dataDefault['id'],
                                     'image'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",
                                     'options'=>[
-                                        'class'=>'img img-responsive','style'=>"width:1024px;",
+                                        'class'=>'img img-responsive img-rounded','style'=>"width:1024px;",
                                         'id'=>$dataDefault['id'],
                                     ]
                                 ]
@@ -58,7 +58,7 @@
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;height: 80px;'];
+                    return ['tag' => 'div','id'=>"img-{$model['id']}", 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;height: 80px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {

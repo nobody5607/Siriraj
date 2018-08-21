@@ -230,7 +230,7 @@ class FileManagementController extends Controller
         
         if (Yii::$app->request->isPost) {            
             $folderName             = \appxq\sdii\utils\SDUtility::getMillisecTime();
-            $files                 = UploadedFile::getInstancesByName('name');
+            $files                 = UploadedFile::getInstancesByName('name');             
             if($file_type == '2'){//image                
                 $uploadImages = \backend\modules\sections\classes\JFiles::uploadImage($model, $files, $content_id, $folderName);
                 if($uploadImages){
@@ -244,6 +244,26 @@ class FileManagementController extends Controller
         return $this->renderAjax('upload-file' , [
             'model'=>$model
         ]);
+    }
+    public function actionDeleteFile(){
+        try {
+            $id= Yii::$app->request->post('id', '');
+            $model = \common\models\Files::find()->where(['id'=>$id])->one();
+            //\appxq\sdii\utils\VarDumper::dump($id);
+
+            $filename = Yii::getAlias('@storage') . "{$model->dir_path}/{$model->file_name}";
+            //\appxq\sdii\utils\VarDumper::dump($filename);
+            $thumbnail = Yii::getAlias('@storage') . "{$model->dir_path}/thumbnail/{$model->file_name}";
+            if ($model->delete()) {
+                @unlink($filename);
+                @unlink($thumbnail);
+                return \janpan\jn\classes\JResponse::getSuccess("Delete Success");
+            } else {
+                return \janpan\jn\classes\JResponse::getError("Error");
+            }
+        } catch (\yii\db\Exception $ex) {
+            
+        }
     }
      
     

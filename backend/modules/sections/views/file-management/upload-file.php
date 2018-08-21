@@ -46,7 +46,7 @@
 </div>
 <div class="modal-footer">
     <div class="col-md-4 col-md-offset-4">
-        <?= Html::submitButton('Submit',['class'=>'btn btn-primary btn-lg btn-block']) ?>
+        <?= Html::submitButton('Submit',['class'=>'btn btn-primary btn-lg btn-block btnSubmit']) ?>
     </div>
 </div>
 
@@ -57,14 +57,17 @@
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script>   
-    
+    $('.btnSubmit').prop('disabled', true);
     $("#input-705").fileinput({         
     }).on("filebatchselected", function(event, files) {
         //$("#input-705").fileinput("upload");
+        $('.btnSubmit').prop('disabled', false);
     });
     
 // JS script
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
+    $('.btnSubmit').prop('disabled', true);
+     
     var $form = $(this);
     var formData = new FormData($(this)[0]);
     $.ajax({
@@ -76,6 +79,7 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
         cache: false,         
         enctype: 'multipart/form-data',
         success:function(result){
+           $('.btnSubmit').prop('disabled', false);
            if(result.status == 'success') {
                 <?= SDNoty::show('result.message', 'result.status')?>           
                 setTimeout(function(){

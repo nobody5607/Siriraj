@@ -21,22 +21,33 @@ class JFiles {
      * @param type $content_id content id
      * @param type $path @storageUrl/images/...
      * @param type $defaultFile default filename
+     * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile){
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path=''){
         try{
-            $files = new \common\models\Files();
-            $files->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
-            $files->name = $fileName;
-            $files->description = "";
-            $files->rstat = 1;
-            $files->file_name = $fileName;
-            $files->file_thumbnail = $fileName;
-            $files->file_name_org = $defaultFile;
-            $files->content_id = $content_id;
-            $files->user_create = \Yii::$app->user->id;
-            $files->create_date = new \yii\db\Expression('NOW()');
-            $files->file_path = $path;
-            $files->file_type = $model->file_type;
+            $meta = [];
+            if(!empty($file->type)){
+                $meta['type']=$file->type;
+            }
+            if(!empty($file->size)){
+                $meta['size']=$file->size;
+            }
+            
+            $files                  = new \common\models\Files();
+            $files->id              = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $files->name            = $fileName;
+            $files->description     = "";
+            $files->rstat           = 1;
+            $files->file_name       = $fileName;
+            $files->file_thumbnail  = $fileName;
+            $files->file_name_org   = $defaultFile;
+            $files->content_id      = $content_id;
+            $files->user_create     = \Yii::$app->user->id;
+            $files->create_date     = new \yii\db\Expression('NOW()');
+            $files->file_path       = $path;
+            $files->file_type       = $model->file_type;
+            $files->meta_text       = SDUtility::array2String($meta);
+            $files->dir_path        = $dir_path;
             $files->save();
         } catch (Exception $ex) {
             return FALSE;
@@ -70,7 +81,7 @@ class JFiles {
                     $path = Yii::getAlias('@storage') . "/web/images/{$folderName}";
                     self::CreateDir($path); //create folder
 
-                    foreach ($images as $file) {
+                    foreach ($images as $file) {                     
                         $fileName = $file->baseName . '.' . $file->extension;
                         $realFileName = md5(SDUtility::getMillisecTime() . time()) . '.' . $file->extension;
                         $filePath = "{$path}/{$realFileName}";
@@ -80,7 +91,7 @@ class JFiles {
                             $image->save($path . '/thumbnail/' . $realFileName);
                             //save tbl_files
                             $viewPath = Yii::getAlias('@storageUrl') . "/web/images/{$folderName}";
-                            self::Save($model, $realFileName, $content_id, $viewPath, $fileName);
+                            self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "/web/images/{$folderName}");
                         }
                     }
                     return true;
