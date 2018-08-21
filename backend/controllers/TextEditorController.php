@@ -20,7 +20,7 @@ class TextEditorController extends Controller
         return [
             'image-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadFileAction',
-                'url' => Yii::getAlias('@storageUrl') . '/images', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/images', // Directory URL address, where files are stored.
                 'path' => '@storage/web/images', // Or absolute path to directory where files are stored.
                     'validatorOptions' => [
                       'maxWidth' => 3000,
@@ -29,7 +29,7 @@ class TextEditorController extends Controller
             ],
             'file-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadFileAction',
-                'url' => Yii::getAlias('@storageUrl') . '/files', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/files', // Directory URL address, where files are stored.
                 'path' => '@storage/web/files', // Or absolute path to directory where files are stored.
                 'uploadOnlyImage' => false,
                 'validatorOptions' => [
@@ -38,19 +38,19 @@ class TextEditorController extends Controller
             ],
             'files-get' => [
                 'class' => 'appxq\sdii\action\GetAction',
-                'url' => Yii::getAlias('@storageUrl') . '/files', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/files', // Directory URL address, where files are stored.
                 'path' => '@storage/web/files', // Or absolute path to directory where files are stored.
                 'type' => \appxq\sdii\action\GetAction::TYPE_FILES,
             ],
             'images-get' => [
                 'class' => 'appxq\sdii\action\GetAction',
-                'url' => Yii::getAlias('@storageUrl') . '/images', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/images', // Directory URL address, where files are stored.
                 'path' => '@storage/web/images', // Or absolute path to directory where files are stored.
                 'type' => \appxq\sdii\action\GetAction::TYPE_IMAGES,
             ],
             'image-upload-froala' => [
                 'class' => '\appxq\sdii\action\UploadFileAction',
-                'url' => Yii::getAlias('@storageUrl') . '/images/', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/images/', // Directory URL address, where files are stored.
                 'path' => '@storage/web/images/', // Or absolute path to directory where files are stored.
                     'validatorOptions' => [
                       'maxWidth' => 3000,
@@ -59,7 +59,7 @@ class TextEditorController extends Controller
             ],
             'file-upload-froala' => [
                 'class' => '\appxq\sdii\action\UploadFileAction',
-                'url' => Yii::getAlias('@storageUrl') . '/files/', // Directory URL address, where files are stored.
+                'url' => Yii::getAlias('@storageUrl') . '/web/files/', // Directory URL address, where files are stored.
                 'path' => '@storage/web/files/', // Or absolute path to directory where files are stored.
                 'uploadOnlyImage' => false,
                 'validatorOptions' => [

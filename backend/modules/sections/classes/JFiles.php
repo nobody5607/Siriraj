@@ -79,7 +79,7 @@ class JFiles {
                             $image->resize(100);
                             $image->save($path . '/thumbnail/' . $realFileName);
                             //save tbl_files
-                            $viewPath = Yii::getAlias('@storageUrl') . "/images/{$folderName}";
+                            $viewPath = Yii::getAlias('@storageUrl') . "/web/images/{$folderName}";
                             self::Save($model, $realFileName, $content_id, $viewPath, $fileName);
                         }
                     }
