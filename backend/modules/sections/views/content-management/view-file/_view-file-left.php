@@ -55,11 +55,7 @@
             ]);
             ?>
             <div class="clearfix"></div>
-            <?php if (!Yii::$app->user->isGuest) { ?>
-                <div class="btnCart text-center" style="margin-top:50px;margin-bottom:50px;">
-                    <button class="btn btn-success">เลือกลงตะกร้า</button>
-                </div>
-            <?php } ?>
+            
         </div>
     </div>
 </div>

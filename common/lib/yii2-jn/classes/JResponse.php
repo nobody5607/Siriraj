@@ -32,7 +32,7 @@ class JResponse {
         self::init();
         $result = [
             'status' => 'error',
-            'message' => "<strong><i class='glyphicon glyphicon-warning-sign'></i> Success!</strong> {$message}",
+            'message' => "<strong><i class='glyphicon glyphicon-warning-sign'></i> Error!</strong> {$message}",
             'data' => $model,
         ];
         return $result;

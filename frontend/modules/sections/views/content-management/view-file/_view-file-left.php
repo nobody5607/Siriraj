@@ -107,17 +107,17 @@
                 </div>
             </div>
             <?php if(!Yii::$app->user->isGuest):?>
-            <div class="col-md-12">
-                <div class="col-md-12">
+                <div class="col-md-12" style="display:none;">
                     <div class="col-md-12">
-                        <label class='container' >
-                            <input type='checkbox'  id='checkbox' name='selectAll' data-id="<?= $dataDefault['id']?>">
-                            <span class='checkmark'></span>
-                            <span style="width: 100px;position: absolute;top: -14px;font-size: 14px;left: 30px;">Select all</span>
-                        </label>
-                    </div>
-                </div>  
-            </div><br>
+                        <div class="col-md-12">
+                            <label class='container' >
+                                <input type='checkbox'  id='checkbox' name='selectAll' data-id="<?= $dataDefault['id']?>">
+                                <span class='checkmark'></span>
+                                <span style="width: 100px;position: absolute;top: -14px;font-size: 14px;left: 30px;">Select all</span>
+                            </label>
+                        </div>
+                    </div>  
+                </div><br>
             <?php endif;?>
             <?php             
             echo \yii\widgets\ListView::widget([
@@ -128,7 +128,7 @@
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;height: 80px;'];
+                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {

@@ -4,13 +4,14 @@ $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/params.php'
 );
-
+use developeruz\db_rbac\Yii2DbRbac;
 $config = [
     'id' => 'app-backend',
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute' => 'site/index',
+    'defaultRoute' => 'sections/session-management',
+    'language'=>'th-TH',
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -87,6 +88,9 @@ $config = [
     'modules' => [
         'viewcountermanagement' => [
             'class' => 'backend\modules\viewcountermanagement\Module',
+        ],
+        'auth' => [
+            'class' => 'backend\modules\auth\Module',
         ],
         'order' => [
             'class' => 'backend\modules\order\Module',

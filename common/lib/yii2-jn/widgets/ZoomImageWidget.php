@@ -13,10 +13,11 @@ class ZoomImageWidget extends \yii\base\Widget{
          $html .= Html::img($this->data['image'], $this->data['options']);
          $js="
              $('#".$this->data['options']['id']."').elevateZoom({
-                    zoomType: 'inner',
+                    zoomType: 'inner',//'lens',
                     cursor: 'crosshair',
                     zoomWindowFadeIn: 500, //500
                     zoomWindowFadeOut: 750 //750
+                   //lensSize    : 200,
                });
          ";
          $view->registerJs($js);
