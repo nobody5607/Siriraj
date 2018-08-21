@@ -2,7 +2,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
-            <?= $dataDefault['name'] ?>
+            <?= $dataDefault['file_name_org'] ?>
         </div> 
         <div class="box-body">
             
@@ -85,7 +85,7 @@
                         if($dataDefault['file_type'] == '2'){
                             echo \janpan\jn\widgets\ZoomImageWidget::widget([
                                 'data'=>[           
-                                    'image'=>"/images/{$dataDefault['file_name_org']}",
+                                    'image'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",
                                     'options'=>[
                                         'id'=>"zoom",
                                         'class'=>'img img-responsive',

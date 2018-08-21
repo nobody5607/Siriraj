@@ -23,8 +23,9 @@ class ContentManagementController extends Controller
         $content = JContent::getContentById($content_id);
         $breadcrumb = JSection::getBreadcrumb($content['section_id']);
         $breadcrumb[] = ['label' => $content['name']];
-        //\appxq\sdii\utils\VarDumper::dump($breadcrumb);
+        
         $file_type = FileType::find()->all();
+         
         $items = [];
         foreach ($file_type as $key => $type) {
             if ($key == 0) {
@@ -52,7 +53,7 @@ class ContentManagementController extends Controller
         $type_id            = \Yii::$app->request->get('type_id', '');
         $content            =  JContent::getContentById($content_id);
         $files              = \common\models\Files::find()
-                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',
                         [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files,
@@ -69,7 +70,7 @@ class ContentManagementController extends Controller
         $type_id            = \Yii::$app->request->get('type_id', '');
         $content            =  JContent::getContentById($content_id);
         $files              = \common\models\Files::find()
-                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',
                         [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
         $str = \Yii::t('content', 'ไฟล์');
         if($type_id == 2){
@@ -97,7 +98,7 @@ class ContentManagementController extends Controller
         $breadcrumb         = JSection::getBreadcrumb($content['section_id']);   
         
         $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/content-management/view?content_id={$content['id']}"]];  
-        $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
+        $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),
             'pagination' => [
