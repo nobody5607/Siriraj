@@ -36,8 +36,8 @@ class Files extends \yii\db\ActiveRecord
     {
         return [
 //            [['id'], 'required'],
-            [['id', 'rstat', 'content_id', 'public'], 'integer'],
-            [['meta_text'], 'string'],
+            [['id', 'rstat', 'content_id', 'public','user_create'], 'integer'],
+            [['meta_text','file_path'], 'string'],
             [['name', 'file_type', 'description', 'file_name', 'file_thumbnail', 'file_name_org'], 'string', 'max' => 255],
             [['id'], 'unique'],
         ];

@@ -11,6 +11,10 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
+//upload images
+use yii\web\UploadedFile;
+use yii\helpers\BaseFileHelper;
+
 
 /**
  * FileManagementController implements the CRUD actions for ContentChoice model.
@@ -216,13 +220,75 @@ class FileManagementController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+    public function Save($model, $fileName, $content_id, $path){
+        $files = new \common\models\Files();
+        $files->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+        $files->name = $fileName;
+        $files->description = "";
+        $files->rstat = 1;
+        $files->file_name = $fileName;
+        $files->file_thumbnail = $fileName;
+        $files->file_name_org = $fileName;
+        $files->content_id = $content_id;
+        $files->user_create = \Yii::$app->user->id;
+        $files->create_date = new \yii\db\Expression('NOW()');
+        $files->file_path = $path;
+        $files->file_type = $model->file_type;
+        $files->save();
+    }
     public function actionUploadFile()
     {
-        $file_type = Yii::$app->request->get('id', '');
+        $file_type = Yii::$app->request->get('file_type', '');
+        $content_id = Yii::$app->request->get('content_id', '');
         $model = new \common\models\Files();
+        $model->file_type       = $file_type;
+        
+        if (Yii::$app->request->isPost) {            
+            $folderName             = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            if($file_type == '2'){
+                //image
+                $images                 = UploadedFile::getInstancesByName('name');
+                if ($images) {
+                    $path               = Yii::getAlias('@storage')."/web/images/{$folderName}";
+                    $this->CreateDir($path);//create folder
+
+                    foreach ($images as $file){
+                        $fileName       = $file->baseName . '.' . $file->extension;
+                        $realFileName   = md5(\appxq\sdii\utils\SDUtility::getMillisecTime().time()) . '.' . $file->extension;
+                        $filePath       = "{$path}/{$realFileName}";
+                        if($file->saveAs($filePath)){//save image                            
+                            $image                  = \Yii::$app->image->load($filePath);
+                            $image->resize(100);
+                            $image->save($path.'/thumbnail/'.$realFileName);
+                            //save tbl_files
+                            $viewPath               = Yii::getAlias('@storageUrl')."/images/{$folderName}";
+                            $this->Save($model, $realFileName, $content_id, $viewPath);
+                        }
+                    }
+                    return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success");
+                }
+            }//upload image
+            
+            
+        }
+        
         return $this->renderAjax('upload-file' , [
             'model'=>$model
         ]);
     }
+     
+    public function CreateDir($path){
+        if($path != NULL){ 
+            if(BaseFileHelper::createDirectory($path,0777)){
+                BaseFileHelper::createDirectory($path.'/thumbnail',0777);
+            }
+        }
+        return;
+   }
+   private function removeUploadDir($dir){
+        BaseFileHelper::removeDirectory($dir);
+  }
+
+    
+    
 }

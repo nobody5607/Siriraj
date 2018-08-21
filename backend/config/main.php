@@ -11,7 +11,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'sections/session-management',
-    'language'=>'th-TH',
+    'language'=>'th',
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -37,8 +37,12 @@ $config = [
                 ],
             ],
         ],
-    ],
+    ], 
     'components' => [
+        'image' => [  
+            'class' => 'yii\image\ImageDriver',
+            'driver' => 'GD',  //GD or Imagick
+        ],
         'i18n' => [
             'translations' => [
                 '*' => [

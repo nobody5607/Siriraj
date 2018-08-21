@@ -169,4 +169,7 @@ class SiteController extends Controller
 
         return $this->render('settings', ['model' => $model]);
     }
+    public function actionTest(){
+        return $this->render('test');
+    }
 }

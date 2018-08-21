@@ -1,15 +1,14 @@
 <?php 
     use yii\helpers\Html;
-     
     if($model['file_type'] == '2'){
         //image
         $link  = "";        
-        $link .= Html::img("/images/{$model['file_name_org']}", 
+        $link .= Html::img("{$model['file_path']}/{$model['file_name']}", 
                 [
                     'class'=>'img img-responsive img-rounded',
                     'style'=>'width:100px;height: 100px;'
                 ]);
-        $link .= "<div>{$model['name']}</div>";
+       // $link .= "<div>{$model['name']}</div>";
     }else if($model['file_type'] == '3'){
         //video
         $link = "";

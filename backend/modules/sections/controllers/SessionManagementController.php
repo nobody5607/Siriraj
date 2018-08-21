@@ -26,8 +26,9 @@ class SessionManagementController extends Controller
             $content_section = JSection::getSectionById($id);
             $section = JSection::getChildren($id);            
         }else{
-            $content_section = JSection::getRoot(); 
+            $content_section = JSection::getRoot();            
             $section = JSection::getRootSection(); 
+            
             
         }
         $public = isset($content_section) ? '1' : '2';
