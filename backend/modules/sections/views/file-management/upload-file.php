@@ -20,7 +20,7 @@
 </div>
 
 <div class="modal-body"> 
-    <?= $form->field($model, 'name')->textInput()?>
+    <?php //$form->field($model, 'name')->textInput()?>
     <?php 
     $url_upload = "";
     if($model->file_type == 2){

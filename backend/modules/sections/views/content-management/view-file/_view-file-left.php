@@ -6,7 +6,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
-            <h4><?php//$dataDefault['name'] ?></h4>
+            <h4><?= $dataDefault['file_name_org'] ?></h4>
         </div> 
         <div class="box-body">
             <span class="pull-right">
