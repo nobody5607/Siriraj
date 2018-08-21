@@ -39,9 +39,10 @@ class JSection extends \yii\base\Component{
      * @param type $parent_id string '1'
      * @return object or false
      */
-    public static function getRootSection(){
+    public static function getRootSection($public='1'){
+       $public = isset($public) ? $public : '1';
        try{
-            return self::getSessionByCondition('parent_id = 0', 'all');       
+            return self::getSessionByCondition('parent_id = 0', 'all',$public);       
        } catch (yii\db\Exception $ex){
            return false;
        }
@@ -53,8 +54,10 @@ class JSection extends \yii\base\Component{
     }
     
     public static function getChildren($id){
+        
         try{
             $section = \common\models\Sections::find()->where(['parent_id'=>$id])->andWhere('rstat not in(0,3)')->all();
+           
             $datas = [];             
              
             foreach($section as $s){

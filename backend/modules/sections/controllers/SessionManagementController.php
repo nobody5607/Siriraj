@@ -28,6 +28,7 @@ class SessionManagementController extends Controller
         }else{
             $content_section = JSection::getRoot(); 
             $section = JSection::getRootSection(); 
+            
         }
         $public = isset($content_section) ? '1' : '2';
         
@@ -59,12 +60,14 @@ class SessionManagementController extends Controller
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');             
+            $parent_id = Yii::$app->request->get('parent_id', '');
+            $public = Yii::$app->request->get('public', '');  
 	    $model =  new Sections();
             $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $model->rstat       = 1; 
             $model->create_by = Yii::$app->user->id;
-            $model->create_date = new \yii\db\Expression('NOW()');            
+            $model->create_date = new \yii\db\Expression('NOW()');  
+            $model->public = $public;
 	    if ($model->load(Yii::$app->request->post())) {		 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Create data complete'), $model);

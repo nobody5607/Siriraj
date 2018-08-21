@@ -22,12 +22,15 @@ class PrivateSessionManagementController extends Controller
     public function actionIndex(){    
         $id = \Yii::$app->request->get('id', '');        
         if($id){
-            $content_section = JSection::getSectionById($id, '', '1');
+            $content_section = JSection::getSectionById($id, '', '2');
+            //\appxq\sdii\utils\VarDumper::dump($content_section);
             $section = JSection::getChildren($id); 
+            
              
         }else{
             $content_section = JSection::getRoot(2); 
-            $section = JSection::getRootSection(); 
+            $section = JSection::getRootSection(2); 
+            
         }
         $public = isset($content_section) ? '2' : '1';
        // \appxq\sdii\utils\VarDumper::dump($content_section['id']); 

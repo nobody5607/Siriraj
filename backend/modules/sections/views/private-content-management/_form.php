@@ -47,21 +47,12 @@ $this->title = Yii::t('content', 'Content');
             </div>
             <div class="col-md-12">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
-            <?= $form->field($model, 'description')->widget(TinyMce::class, [
-                    'language' => strtolower(substr(Yii::$app->language, 0, 2)),
-                    'options'=>['id'=>'tests'],
-                    'clientOptions' => [
-                        'height'=> 250,
-                        'plugins' => [
-                            'advlist autolink lists link image charmap print preview anchor pagebreak',
-                            'searchreplace visualblocks code fullscreen',
-                            'insertdatetime media table contextmenu paste code textcolor colorpicker',
-                        ],
-                        'toolbar' => 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor',
-                        'file_picker_callback' => TinyMCECallback::getFilePickerCallback(['/file-manager/frame']),
-                    ],
-                ]) ?>
-
+                <?php  echo $form->field($model, 'description')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [
+                        'toolbar_size'=>'lg',
+                        'options'=>['class'=>'eztemplate'],
+                    ]);//->hint('Default Template <a class="btn btn-warning btn-xs btn-template" data-widget="{tab-widget}">Use Default</a>'); 
+                ?>
+            
 
 
             <?php 

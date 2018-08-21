@@ -10,6 +10,7 @@ use yii\helpers\Html;
                 'data-id' => $data_id,
                 'data-parent_id' => Yii::$app->request->get('id', '0'),
                 'data-action' => 'create-section',
+                'public'=>'2',
                 'class' => 'btn btn-success btnCall',
                 'title' => Yii::t('appmenu', 'Create'),
                 'data-url' => '/sections/session-management/create'
