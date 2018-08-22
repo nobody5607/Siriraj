@@ -14,6 +14,7 @@ use appxq\sdii\helpers\SDHtml;
 //upload images
 use yii\web\UploadedFile;
 use yii\helpers\BaseFileHelper;
+use yii\image\drivers\Image;
 
 
 /**
@@ -229,14 +230,50 @@ class FileManagementController extends Controller
         $model->file_type       = $file_type;
         
         if (Yii::$app->request->isPost) {            
-            $folderName             = \appxq\sdii\utils\SDUtility::getMillisecTime();
-            $files                 = UploadedFile::getInstancesByName('name');             
-            if($file_type == '2'){//image                
-                $uploadImages = \backend\modules\sections\classes\JFiles::uploadImage($model, $files, $content_id, $folderName);
-                if($uploadImages){
-                    return \janpan\jn\classes\JResponse::getSuccess("Upload Image Succes");
-                }
-            }//upload image
+            $folderName                 = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $files                      = UploadedFile::getInstancesByName('name'); 
+            
+            if ($files) {
+                    $folder             = "/web/files";
+                    $path               = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
+                    \backend\modules\sections\classes\JFiles::CreateDir($path); //create folder
+                    $watermark = \backend\models\Watermark::find()->where(['default'=>1])->one();
+                    //\appxq\sdii\utils\VarDumper::dump($files);
+                    foreach ($files as $file) {                        
+                        $fileName       = $file->baseName . '.' . $file->extension;
+                        $realFileName   = md5($folderName . time());// . '.' . $file->extension;
+                        $filePath       = "{$path}/{$realFileName}";
+                        $fileType       = explode('/', $file->type);
+                        $thumbnail      = "{$path}/thumbnail/{$realFileName}.jpg"; 
+                        if($fileType[0] === 'image'){//images 
+                            $obj_img = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);    
+                            if($obj_img){
+                                $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";
+                                \backend\modules\sections\classes\JFiles::Save($model, "{$realFileName}.{$obj_img['type']}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
+                            }                            
+                        }
+                        
+                        
+                        
+//                        if ($file->saveAs($filePath)) {//save image    
+//                            if($fileType[0] === 'image'){//images                                 
+//                                $thumbnail = "{$path}/thumbnail/{$realFileName}.jpg"; 
+//                                $sql = "magick convert {$filePath} -resize 200x200 {$thumbnail}";
+//                                exec($sql, $out, $retval);
+//                                if($fileType[1] === 'tiff'){
+//                                    $sql = "magick convert {$filePath} -resize 200x200 {$thumbnail}";
+//                                    exec($sql, $out, $retval);
+//                                }
+//                                
+//                                 
+//                            }
+//                            $viewPath = Yii::getAlias('@storageUrl') . "/web/files/{$folderName}";
+//                            \backend\modules\sections\classes\JFiles::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "/web/images/{$folderName}");
+//                        } 
+                    }
+                    return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success");
+                } 
+                
             
             
         }

@@ -9,32 +9,33 @@ use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\sections\models\FileSearch */
+/* @var $searchModel backend\models\DocsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('content', 'Content Choices');
+$this->title = Yii::t('doc', 'Docs');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="content-choice-index">
+<div class="box box-primary">
 
-    <div class="sdbox-header">
+    <div class="box-header">
 	<h3><?=  Html::encode($this->title) ?></h3>
     </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php  Pjax::begin(['id'=>'content-choice-grid-pjax']);?>
+    <div class="box-body">
+         <?php  Pjax::begin(['id'=>'docs-grid-pjax']);?>
     <?= GridView::widget([
-	'id' => 'content-choice-grid',
-	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['content-choice/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-content-choice']). ' ' .
-		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['content-choice/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-content-choice', 'disabled'=>true]),
+	'id' => 'docs-grid',
+	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['docs/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-docs']). ' ' .
+		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['docs/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-docs', 'disabled'=>true]),
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
         'columns' => [
 	    [
 		'class' => 'yii\grid\CheckboxColumn',
 		'checkboxOptions' => [
-		    'class' => 'selectionContentChoiceIds'
+		    'class' => 'selectionDocIds'
 		],
 		'headerOptions' => ['style'=>'text-align: center;'],
 		'contentOptions' => ['style'=>'width:40px;text-align: center;'],
@@ -45,12 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		'contentOptions' => ['style'=>'width:60px;text-align: center;'],
 	    ],
 
-            'id',
-            'content_id',
-            'type',
-            'label',
-            'default',
-            // 'forder',
+            //'id',
+            //'content:ntext',
+            'title',
+            //'group',
+            [
+                'attribute'=>'group',
+                'filter'=> \yii\helpers\ArrayHelper::map(\backend\models\Docs::find()->asArray()->all(), 'group', 'group'),
+            ],
 
 	    [
 		'class' => 'appxq\sdii\widgets\ActionColumn',
@@ -60,11 +63,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <?php  Pjax::end();?>
+    </div>
 
 </div>
 
 <?=  ModalForm::widget([
-    'id' => 'modal-content-choice',
+    'id' => 'modal-docs',
     'size'=>'modal-lg',
 ]);
 ?>
@@ -75,37 +79,37 @@ $this->params['breadcrumbs'][] = $this->title;
 ]); ?>
 <script>
 // JS script
-$('#content-choice-grid-pjax').on('click', '#modal-addbtn-content-choice', function() {
-    modalContentChoice($(this).attr('data-url'));
+$('#docs-grid-pjax').on('click', '#modal-addbtn-docs', function() {
+    modalDoc($(this).attr('data-url'));
 });
 
-$('#content-choice-grid-pjax').on('click', '#modal-delbtn-content-choice', function() {
-    selectionContentChoiceGrid($(this).attr('data-url'));
+$('#docs-grid-pjax').on('click', '#modal-delbtn-docs', function() {
+    selectionDocGrid($(this).attr('data-url'));
 });
 
-$('#content-choice-grid-pjax').on('click', '.select-on-check-all', function() {
+$('#docs-grid-pjax').on('click', '.select-on-check-all', function() {
     window.setTimeout(function() {
-	var key = $('#content-choice-grid').yiiGridView('getSelectedRows');
-	disabledContentChoiceBtn(key.length);
+	var key = $('#docs-grid').yiiGridView('getSelectedRows');
+	disabledDocBtn(key.length);
     },100);
 });
 
-$('#content-choice-grid-pjax').on('click', '.selectionContentChoiceIds', function() {
+$('#docs-grid-pjax').on('click', '.selectionDocIds', function() {
     var key = $('input:checked[class=\"'+$(this).attr('class')+'\"]');
-    disabledContentChoiceBtn(key.length);
+    disabledDocBtn(key.length);
 });
 
-$('#content-choice-grid-pjax').on('dblclick', 'tbody tr', function() {
+$('#docs-grid-pjax').on('dblclick', 'tbody tr', function() {
     var id = $(this).attr('data-key');
-    modalContentChoice('<?= Url::to(['content-choice/update', 'id'=>''])?>'+id);
+    modalDoc('<?= Url::to(['docs/update', 'id'=>''])?>'+id);
 });	
 
-$('#content-choice-grid-pjax').on('click', 'tbody tr td a', function() {
+$('#docs-grid-pjax').on('click', 'tbody tr td a', function() {
     var url = $(this).attr('href');
     var action = $(this).attr('data-action');
 
     if(action === 'update' || action === 'view') {
-	modalContentChoice(url);
+	modalDoc(url);
     } else if(action === 'delete') {
 	yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete this item?')?>', function() {
 	    $.post(
@@ -113,7 +117,7 @@ $('#content-choice-grid-pjax').on('click', 'tbody tr td a', function() {
 	    ).done(function(result) {
 		if(result.status == 'success') {
 		    <?= SDNoty::show('result.message', 'result.status')?>
-		    $.pjax.reload({container:'#content-choice-grid-pjax'});
+		    $.pjax.reload({container:'#docs-grid-pjax'});
 		} else {
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		}
@@ -126,25 +130,25 @@ $('#content-choice-grid-pjax').on('click', 'tbody tr td a', function() {
     return false;
 });
 
-function disabledContentChoiceBtn(num) {
+function disabledDocBtn(num) {
     if(num>0) {
-	$('#modal-delbtn-content-choice').attr('disabled', false);
+	$('#modal-delbtn-docs').attr('disabled', false);
     } else {
-	$('#modal-delbtn-content-choice').attr('disabled', true);
+	$('#modal-delbtn-docs').attr('disabled', true);
     }
 }
 
-function selectionContentChoiceGrid(url) {
-        yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
+function selectionDocGrid(url) {
+    yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
 	$.ajax({
 	    method: 'POST',
 	    url: url,
-	    data: $('.selectionContentChoiceIds:checked[name=\"selection[]\"]').serialize(),
+	    data: $('.selectionDocIds:checked[name=\"selection[]\"]').serialize(),
 	    dataType: 'JSON',
 	    success: function(result, textStatus) {
 		if(result.status == 'success') {
 		    <?= SDNoty::show('result.message', 'result.status')?>
-		    $.pjax.reload({container:'#content-choice-grid-pjax'});
+		    $.pjax.reload({container:'#docs-grid-pjax'});
 		} else {
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		}
@@ -153,9 +157,9 @@ function selectionContentChoiceGrid(url) {
     });
 }
 
-function modalContentChoice(url) {
-    $('#modal-content-choice .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-    $('#modal-content-choice').modal('show')
+function modalDoc(url) {
+    $('#modal-docs .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+    $('#modal-docs').modal('show')
     .find('.modal-content')
     .load(url);
 }

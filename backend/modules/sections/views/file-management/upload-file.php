@@ -23,17 +23,19 @@
     <?php //$form->field($model, 'name')->textInput()?>
     <?php 
     $url_upload = "";
+    $accept = '';
     if($model->file_type == 2){
-        $url_upload = Url::to(['/sections/file-management/upload-image-ajax']);
-    }
+        $url_upload = Url::to(['/sections/file-management/upload-file']);
+        //$accept = 'image/*';
+    } 
     
     echo FileInput::widget([
         'name' => 'name[]',
-        'options' => ['multiple' => true,'accept' => 'image/*', 'id'=>'input-705'],
+        'options' => ['multiple' => true,'id'=>'input-705'],
         'pluginOptions' => [
             'uploadAsync'=> false,
             'showUpload'=> false, // hide upload button
-            'showRemove'=> false, // hide remove button
+            //'showRemove'=> false, // hide remove button
             'uploadUrl' => $url_upload,
             'minFileCount'=> 1,
             'maxFileCount' => 100,
@@ -57,7 +59,7 @@
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script>   
-    $('.btnSubmit').prop('disabled', true);
+   // $('.btnSubmit').prop('disabled', true);
     $("#input-705").fileinput({         
     }).on("filebatchselected", function(event, files) {
         //$("#input-705").fileinput("upload");
@@ -66,8 +68,7 @@
     
 // JS script
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
-    $('.btnSubmit').prop('disabled', true);
-     
+    //$('.btnSubmit').prop('disabled', true);     
     var $form = $(this);
     var formData = new FormData($(this)[0]);
     $.ajax({
@@ -83,14 +84,13 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
            if(result.status == 'success') {
                 <?= SDNoty::show('result.message', 'result.status')?>           
                 setTimeout(function(){
-                    location.reload();
+                    //location.reload();
                 },1000);
             } else {
                 <?= SDNoty::show('result.message', 'result.status')?>
             } 
         }
-    });
-    
+    });    
      
     return false;
 });

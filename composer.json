@@ -49,7 +49,10 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kv4nt/yii2-owl-carousel2": "*",
         "vova07/yii2-imperavi-widget": "*",
-        "yurkinx/yii2-image": "dev-master"
+        "yurkinx/yii2-image": "dev-master",
+        "trntv/yii2-aceeditor": "dev-master",
+        "yiisoft/yii2-imagine": "*",
+        "tpmanc/yii2-imagick": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

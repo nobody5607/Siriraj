@@ -67,7 +67,55 @@ class JFiles {
         }
         return FALSE;
    }
-   /**
+    /**
+     * 
+     * @param type $file UploadedFile::getInstancesByName('name')
+     * @param type $filePath /var/www/xx
+     * @param string $fileType /obj
+     * @param type $thumbnail 
+     * @param type $watermark /model
+     * @return boolean
+     */
+    public static function uploadImage($file, $filePath, $fileType,$thumbnail, $watermark){
+          try{
+              $default_type = ['jpg','png','gif','jpeg'];
+              $type = "";
+              $sql = "";
+              $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
+              //\appxq\sdii\utils\VarDumper::dump($mark);
+              if(in_array($fileType[1], $default_type)){
+                  if($fileType[1] == "jpeg"){
+                      $fileType[1]="jpg";
+                  }                  
+                  if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
+                      $type = $fileType[1];
+                      $sql  = "magick convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}";
+                      $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
+                      exec($wm, $out, $retval);                      
+                   }
+              }else{
+                 if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
+                      $type = "jpg";
+                      $sql  = "magick convert {$filePath}.jpg -resize 200x200 {$thumbnail}";                    
+                      $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.jpg";
+                      exec($wm, $out, $retval);
+                      @unlink("{$filePath}.{$fileType[1]}");
+                 } 
+              }
+              
+              exec($sql, $out, $retval);
+              if ($retval == '0') {
+                  return ["type"=>$type];
+              }else{
+                  return FALSE;
+              }
+              
+        } catch (Exception $ex) {
+              return false;
+          }
+    }
+    
+    /**
     * 
     * @param type $model model files
     * @param type $images UploadedFile::getInstancesByName('name')
@@ -75,23 +123,21 @@ class JFiles {
     * @param $folderName folder name
     * @return boolean
     */
-    public static function uploadImage($model, $images, $content_id, $folderName){
+    public static function uploadDocx($model, $files, $content_id, $folderName){
           try{
-              if ($images) {
-                    $path = Yii::getAlias('@storage') . "/web/images/{$folderName}";
+              if ($files) {
+                    $folder = "/web/files";
+                    $path = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
                     self::CreateDir($path); //create folder
 
-                    foreach ($images as $file) {                     
+                    foreach ($files as $file) {                     
                         $fileName = $file->baseName . '.' . $file->extension;
                         $realFileName = md5(SDUtility::getMillisecTime() . time()) . '.' . $file->extension;
                         $filePath = "{$path}/{$realFileName}";
-                        if ($file->saveAs($filePath)) {//save image                            
-                            $image = \Yii::$app->image->load($filePath);
-                            $image->resize(100);
-                            $image->save($path . '/thumbnail/' . $realFileName);
+                        if ($file->saveAs($filePath)) {//save image                          
                             //save tbl_files
-                            $viewPath = Yii::getAlias('@storageUrl') . "/web/images/{$folderName}";
-                            self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "/web/images/{$folderName}");
+                            $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";
+                            self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
                         }
                     }
                     return true;
@@ -102,5 +148,8 @@ class JFiles {
               return false;
           }
     }
+    
+    
+    
      
 }

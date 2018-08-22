@@ -4,7 +4,7 @@
     if($model['file_type'] == '2'){
         //image
         $link  = "";        
-        $link .= Html::img("{$model['file_path']}/{$model['file_name']}", 
+        $link .= Html::img("{$model['file_path']}/thumbnail/{$model['file_name']}", 
                 [
                     'class'=>'img img-responsive img-rounded',
                     'style'=>'width:100px;height: 80px;'
