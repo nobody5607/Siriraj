@@ -144,7 +144,7 @@ class ContentManagementController extends Controller
         $type_id            = \Yii::$app->request->get('type_id', '');
         $content            =  JContent::getContentById($content_id);
         $files              = \common\models\Files::find()
-                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3) AND public = 1',
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',
                         [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
         $str = \Yii::t('content', 'ไฟล์');
         if($type_id == 2){

@@ -5,10 +5,6 @@
 <div class="col-md-8 view-file-left">
     <div class="box box-primary">
         <div class="box-header">
-            <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
-            <h4><?= $dataDefault['file_name_org'] ?></h4>
-        </div> 
-        <div class="box-body">
             <span class="pull-right">
                             <?php
                                 echo Html::button("<i class='fa fa-plus'></i>", [
@@ -21,7 +17,11 @@
                                     'data-url' => '/sections/session-management/create'
                                 ]);
                             ?> 
-                        </span>
+            </span>
+            <h4><?= $dataDefault['file_name_org'] ?></h4>
+        </div> 
+        <div class="box-body">
+            
             <div class="row" style="margin-bottom:10px;">
                 <div class="col-md-6 col-md-offset-3">
                     <?php 

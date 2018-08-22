@@ -40,7 +40,8 @@
     $taga = "";
     $taga .= "<div style='margin-bottom:10px;text-align:center;'>";            
             $taga .= Html::button("<i class='fa fa-trash'></i>", [
-                 'data-id' => $model['id'],
+                'data-id' => $model['id'],
+                'id'=>$model['id'],
                 //'data-parent_id' => Yii::$app->request->get('id', '0'),
                 'data-action' => 'delete',
                 'class' => 'btn btn-danger btn-xs btnDelete',
@@ -50,14 +51,34 @@
             ]);
         $taga .= "</div>";
     $taga .=  Html::a($link,"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ,
-    //['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], 
     [
         'id'=>"btn-{$model['id']}",
         'data-action'=>'view-file',
-        'class'=>'content-popup btnCall',
+        'class'=>'content-popup btnCall text-left',
         'data-id'=>$model['id'],
+        'style'=>'margin-top: 5px;',
         //'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
     ]);
     echo $taga;
-?> 
+?>
+
+
+
 <?php $this->registerCss("a{color:#000;}")?>
+
+<?php $this->registerJs("
+    $('#".$model['id']."').on('click', function(){         
+        let action = $(this).attr('data-action');
+        let id       = $(this).attr('data-id');
+        let url      = $(this).attr('data-url');
+        yii.confirm('". Yii::t('file', 'Confirm Delete?')."', function(){
+            $.post(url, {id:id}, function(result){                    
+               ".\appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')."
+               $('#img-".$model['id']."').remove();
+            });
+        });
+        return false;   
+    });
+")?>
+ 
+

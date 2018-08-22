@@ -48,7 +48,7 @@ class JFiles {
             $files->file_type       = $model->file_type;
             $files->meta_text       = SDUtility::array2String($meta);
             $files->dir_path        = $dir_path;
-            $files->save();
+            return $files->save();
         } catch (Exception $ex) {
             return FALSE;
         }
@@ -137,10 +137,10 @@ class JFiles {
                         if ($file->saveAs($filePath)) {//save image                          
                             //save tbl_files
                             $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";
-                            self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
+                            //self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
                         }
                     }
-                    return true;
+                    return ['type'=>$file->extension];
                     //return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success");
                 }
                 return false;

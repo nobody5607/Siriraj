@@ -26,18 +26,30 @@
     $accept = '';
     if($model->file_type == 2){
         $url_upload = Url::to(['/sections/file-management/upload-file']);
-        //$accept = 'image/*';
+        $accept = 'image/*';
+    }else if($model->file_type == 5){//document
+        //appxq\sdii\utils\VarDumper::dump($model->file_type);
+        $accept = '*';
     } 
-    
+//    echo FileInput::widget([
+//        'options' => ['multiple' => true,'id'=>'input-705','accept'=>$accept],
+//        'name' => 'name[]',
+//        'pluginOptions' => [
+//            'maxFileCount' => 100,
+//            'uploadAsync'=> false,
+//            'showUpload'=> false, // hide upload button
+//            'showRemove'=> false, // hide remove button
+//        ]    
+//    ]);
     echo FileInput::widget([
         'name' => 'name[]',
-        'options' => ['multiple' => true,'id'=>'input-705'],
+        'options' => ['multiple' => true,'id'=>'input-705','accept'=>$accept],
         'pluginOptions' => [
             'uploadAsync'=> false,
             'showUpload'=> false, // hide upload button
-            //'showRemove'=> false, // hide remove button
+            'showRemove'=> false, // hide remove button
             'uploadUrl' => $url_upload,
-            'minFileCount'=> 1,
+            'minFileCount'=> 0,
             'maxFileCount' => 100,
              
         ]
@@ -68,7 +80,7 @@
     
 // JS script
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
-    //$('.btnSubmit').prop('disabled', true);     
+     $('.btnSubmit').prop('disabled', true);     
     var $form = $(this);
     var formData = new FormData($(this)[0]);
     $.ajax({

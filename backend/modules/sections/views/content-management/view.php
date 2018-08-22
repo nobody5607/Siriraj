@@ -17,23 +17,37 @@ $modal = "modal-contents";
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
+                        <span class="pull-right">
+                            <?php
+                                echo yii\helpers\Html::button("<i class='fa fa-plus'></i>", [
+                                    'data-id' => $f['id'],
+                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                    'file_type'=>$f['id'],
+                                    'data-action' => 'create',
+                                    'class' => 'btn btn-success btnCreateFile',
+                                    'title' => Yii::t('appmenu', 'Create'),
+                                    'data-url' => '/sections/session-management/create'
+                                ]);
+                            ?> 
+                        </span>
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small id="label_<?= $f['id'] ?>">ภาพ</small>
+                        <small id="label_<?= $f['id'] ?>"><?= Yii::t('file','Image')?></small>
                         
                     </div>
                     <div class="box-body">
                         <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
                     </div>                     
                     <div class="box-footer read-all">
-                        <div class="text-center">
-                          <?=  Html::a('<< View All >>',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
-                                'id'=>"btn-{$f['id']}",
-                                'data-action'=>'view-file',
-                                'class'=>'content-popup btnCall',
-                                'data-id'=>$f['id'],
-                                 
-                            ]);?>
-                             
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <?=  Html::a('View All',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
+                                    'id'=>"btn-{$f['id']}",
+                                    'data-action'=>'view-file',
+                                    'class'=>'content-popup btnCall btn btn-default btn-block',
+                                    'data-id'=>$f['id'],
+
+                                ]);?>
+                            </div>
                         </div>
                     </div>
                      
@@ -41,8 +55,7 @@ $modal = "modal-contents";
             </div> 
         </div>
         <?php \richardfan\widget\JSRegister::begin(); ?>
-        <script>
-             
+        <script>            
             get_form=function(url , params){
                 $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
                 $('#<?= $modal?>').modal('show');
@@ -66,9 +79,10 @@ $modal = "modal-contents";
                 let url = '/sections/content-management/get-count-data'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "label_<?= $f['id'] ?>";
-
+                
                 let params = {content_id: content_id, type_id: "<?= $f['id'] ?>"};
                 $.get(url, params, function (data) {
+                    //console.log(data);
                     $('#' + select_id).html(data);
                 });
                 return false;
@@ -82,6 +96,27 @@ $modal = "modal-contents";
     <?php endif; ?>
 <?php endforeach; ?> 
 
+        
+
+<?php richardfan\widget\JSRegister::begin();?>
+ <script>
+     $('.btnCreateFile').on('click', function(){
+                let id = $(this).attr('data-id');
+                let content_id = '<?= Yii::$app->request->get('content_id', '') ?>';
+                $('#<?= $modal ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+                $('#<?= $modal ?>').modal('show');
+                let url = '/sections/file-management/upload-file';
+                let file_type = $(this).attr('file_type');
+                
+                $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
+                    $('#<?= $modal ?> .modal-content').html(res);
+                });
+               return false;
+    }); 
+ </script>
+<?php richardfan\widget\JSRegister::end();?>        
+
+        
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     .box.box-primary {

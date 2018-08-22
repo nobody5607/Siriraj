@@ -1,14 +1,15 @@
 <?php 
     use yii\helpers\Html;
+     
     if($model['file_type'] == '2'){
         //image
         $link  = "";        
-        $link .= Html::img("{$model['file_path']}/{$model['file_name']}", 
+        $link .= Html::img("{$model['file_path']}/thumbnail/{$model['file_name']}", 
                 [
                     'class'=>'img img-responsive img-rounded',
-                    'style'=>'width:100px;height: 100px;'
+                    'style'=>'width:100px;height: 80px;'
                 ]);
-         $link .= "<div>{$model['file_name_org']}</div>";
+        $link .= "<div>{$model['file_name_org']}</div>";
     }else if($model['file_type'] == '3'){
         //video
         $link = "";
@@ -37,15 +38,14 @@
         ";   
     }
     $taga = "";
-    $taga .= "<div style='margin-bottom:10px;text-align:center;'>";
-            
+    $taga .= "<div style='margin-bottom:10px;text-align:center;'>";            
             $taga .= Html::button("<i class='fa fa-trash'></i>", [
-                //'data-id' => $model['id'],
+                 'data-id' => $model['id'],
                 //'data-parent_id' => Yii::$app->request->get('id', '0'),
                 'data-action' => 'delete',
-                'class' => 'btn btn-danger btn-xs btnCall',
+                'class' => 'btn btn-danger btn-xs btnDelete',
                 'title' => Yii::t('appmenu', 'Delete'),
-                'data-url' => '/sections/session-management/delete',
+                'data-url' => '/sections/file-management/delete-file',
                 'data-method' => 'POST'
             ]);
         $taga .= "</div>";
@@ -56,16 +56,8 @@
         'data-action'=>'view-file',
         'class'=>'content-popup btnCall',
         'data-id'=>$model['id'],
-        'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
+        //'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
     ]);
     echo $taga;
 ?> 
 <?php $this->registerCss("a{color:#000;}")?>
-<?php 
-    $modal = "modal-contents";
-?>
-<?php \richardfan\widget\JSRegister::begin();?>
-<script>
-    
-</script>
-<?php \richardfan\widget\JSRegister::end();?>
