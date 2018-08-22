@@ -58,10 +58,13 @@ class JFiles {
      * @param type $path Yii::getAlias('@storage') . "/web/images/{$folderName}";
      * @return type boolean true or false
      */
-    public static function CreateDir($path){
+    public static function CreateDir($path, $thum=true){
         if($path != NULL){ 
-            if(BaseFileHelper::createDirectory($path,0777)){
-                BaseFileHelper::createDirectory($path.'/thumbnail',0777);
+            if(BaseFileHelper::createDirectory($path,0777, true)){
+                if($thum){
+                    BaseFileHelper::createDirectory($path.'/thumbnail',0777, true);
+                }
+                
                 return TRUE;
             }
         }
@@ -123,32 +126,43 @@ class JFiles {
     * @param $folderName folder name
     * @return boolean
     */
-    public static function uploadDocx($model, $files, $content_id, $folderName){
-          try{
-              if ($files) {
-                    $folder = "/web/files";
-                    $path = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
-                    self::CreateDir($path); //create folder
-
-                    foreach ($files as $file) {                     
-                        $fileName = $file->baseName . '.' . $file->extension;
-                        $realFileName = md5(SDUtility::getMillisecTime() . time()) . '.' . $file->extension;
-                        $filePath = "{$path}/{$realFileName}";
-                        if ($file->saveAs($filePath)) {//save image                          
-                            //save tbl_files
-                            $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";
-                            //self::Save($model, $realFileName, $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
-                        }
-                    }
-                    return ['type'=>$file->extension];
-                    //return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success");
-                }
-                return false;
-          } catch (Exception $ex) {
-              return false;
-          }
+    public static function uploadDocx($file,$filePath){
+        if ($file->saveAs("{$filePath}.{$file->extension}")) {//save image
+            return ['type'=>$file->extension];
+        }     
     }
     
+    
+    public static function uploadVideo($file,$filePath,$watermark){
+        $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
+        $path = "{$filePath}.{$file->extension}";
+        $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
+        if ($file->saveAs($path)) {//save image
+               set_time_limit(1200);
+                //$command = "ffmpeg -i {$path} -ss 00:00:00 -t 00:00:10 -async 1 {$filePath}.mp4 -y";
+                $command = "ffmpeg -i {$path} -i {$mark} -ss 00:00:00 -t 00:05:00 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {$filePath}.mp4 -y";
+                exec($command, $output, $return_var);
+                if ($return_var === 0) {
+                    @unlink($path);
+                }
+                 
+            return ['type'=>'mp4'];
+        }  
+         
+    }
+    
+    public static function lengthName($gname){         
+        $checkthai = preg_replace('/[^ก-๙]/ u', '', $gname);;
+        
+        $len = 12;
+        if ($checkthai != '') {
+            $len = $len * 3;
+        }
+        if (strlen($gname) > $len) {
+            $gname = substr($gname, 0, $len) . '...';
+        }
+        return $gname;
+    }
     
     
      

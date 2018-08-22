@@ -236,24 +236,35 @@ class FileManagementController extends Controller
             if ($files) {
                     $folder             = "/web/files";
                     $path               = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
-                    \backend\modules\sections\classes\JFiles::CreateDir($path); //create folder
+                    if($file_type == '2'){
+                        \backend\modules\sections\classes\JFiles::CreateDir($path, true); //create folder
+                    }else{
+                        \backend\modules\sections\classes\JFiles::CreateDir($path, false); //create folder
+                    }
                     $watermark = \backend\models\Watermark::find()->where(['default'=>1])->one();
                     $out=[];
+                    $obj=['type'=>''];
                     foreach ($files as $file) {                        
                         $fileName       = $file->baseName . '.' . $file->extension;
                         $realFileName   = md5($folderName . time());// . '.' . $file->extension;
                         $filePath       = "{$path}/{$realFileName}";
                         $fileType       = explode('/', $file->type);
                         $thumbnail      = "{$path}/thumbnail/{$realFileName}.jpg";                        
-                        $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";  
-                        if($fileType[0] === 'image'){//images 
+                        $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";                          
+                        
+                        if($fileType[0] === 'image'){//images                             
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);                            
                         }else if($fileType[0] === 'application'){
-                           $obj = \backend\modules\sections\classes\JFiles::uploadDocx($model, $files, $content_id, $folderName);
+                           $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
+                        }else if($fileType[0] === 'video'){
+                           //$folderName = 10000001 
+                           $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark);
+                           //\appxq\sdii\utils\VarDumper::dump($obj);
+                        }else{
+                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }
                         
                         $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$realFileName}.{$obj['type']}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
-                        
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

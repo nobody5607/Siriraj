@@ -40,9 +40,16 @@
                         }elseif ($dataDefault['file_type'] == 3) {
                             echo"
                                 <video style='width:100%' controls>
-                                    <source src='/videos/{$dataDefault['file_name_org']}' type='video/mp4'>                 
+                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='video/mp4'>                 
                                     Your browser does not support the video tag.
                                 </video>
+                            ";
+                        }elseif ($dataDefault['file_type'] == 4) {
+                            echo"
+                                <audio style='width:100%' controls>
+                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='audio/mpeg'>                 
+                                    Your browser does not support the audio tag.
+                                </audio>
                             ";
                         }
                     ?>

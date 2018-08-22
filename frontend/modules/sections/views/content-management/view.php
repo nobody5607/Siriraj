@@ -27,15 +27,16 @@ $modal = "modal-contents";
                         <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
                     </div>                     
                     <div class="box-footer read-all">
-                        <div class="text-center">
-                          <?=  Html::a('<< View All >>',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
-                                'id'=>"btn-{$f['id']}",
-                                'data-action'=>'view-file',
-                                'class'=>'content-popup btnCall',
-                                'data-id'=>$f['id'],
-                                 
-                            ]);?>
-                             
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <?=  Html::a('View All',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
+                                    'id'=>"btn-{$f['id']}",
+                                    'data-action'=>'view-file',
+                                    'class'=>'content-popup btnCall btn btn-primary btn-block',
+                                    'data-id'=>$f['id'],
+
+                                ]);?>
+                            </div>
                         </div>
                     </div>
                      

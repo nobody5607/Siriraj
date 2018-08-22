@@ -22,7 +22,7 @@ use appxq\sdii\helpers\SDHtml;
     </div>
 
     <div class="modal-body">
-	<?php //$form->field($model, 'id')->textInput() ?>
+	<?php echo $form->field($model, 'id')->textInput() ?>
 
  
 

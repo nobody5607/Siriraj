@@ -24,10 +24,14 @@
     <?php 
     $url_upload = "";
     $accept = '';
-    if($model->file_type == 2){
+    if($model->file_type == 2 || $model->file_type == 6){
         $url_upload = Url::to(['/sections/file-management/upload-file']);
         $accept = 'image/*';
-    }else if($model->file_type == 5){//document
+    }
+    else if($model->file_type == 3){//วีดีโอ (ตัดต่อ)
+        $accept = 'video/*';
+    }
+    else if($model->file_type == 5){//document
         //appxq\sdii\utils\VarDumper::dump($model->file_type);
         $accept = '*';
     } 

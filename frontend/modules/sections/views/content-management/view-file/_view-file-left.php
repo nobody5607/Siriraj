@@ -80,26 +80,33 @@
             
             
             <div class="row" style="margin-bottom:10px;">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-2">
                     <?php 
                         if($dataDefault['file_type'] == '2'){
                             echo \janpan\jn\widgets\ZoomImageWidget::widget([
-                                'data'=>[           
+                                'data'=>[
+                                    'id'=>$dataDefault['id'],
                                     'image'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",
                                     'options'=>[
-                                        'id'=>"zoom",
-                                        'class'=>'img img-responsive',
-                                        'style'=>'width:1024px',
+                                        'class'=>'img img-responsive img-rounded','style'=>"width:1024px;",
+                                        'id'=>$dataDefault['id'],
                                     ]
                                 ]
                             ]);
-                            //echo yii\helpers\Html::img("/images/{$dataDefault['file_name_org']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
+                           // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
                         }elseif ($dataDefault['file_type'] == 3) {
                             echo"
                                 <video style='width:100%' controls>
-                                    <source src='/videos/{$dataDefault['file_name_org']}' type='video/mp4'>                 
+                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='video/mp4'>                 
                                     Your browser does not support the video tag.
                                 </video>
+                            ";
+                        }elseif ($dataDefault['file_type'] == 4) {
+                            echo"
+                                <audio style='width:100%' controls>
+                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='audio/mpeg'>                 
+                                    Your browser does not support the audio tag.
+                                </audio>
                             ";
                         }
                     ?>
