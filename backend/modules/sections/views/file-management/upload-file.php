@@ -84,7 +84,7 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
            if(result.status == 'success') {
                 <?= SDNoty::show('result.message', 'result.status')?>           
                 setTimeout(function(){
-                    //location.reload();
+                    location.reload();
                 },1000);
             } else {
                 <?= SDNoty::show('result.message', 'result.status')?>
