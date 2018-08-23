@@ -140,10 +140,13 @@ class JFiles {
         if ($file->saveAs($path)) {//save image
                set_time_limit(1200);
                 //$command = "ffmpeg -i {$path} -ss 00:00:00 -t 00:00:10 -async 1 {$filePath}.mp4 -y";
-                $command = "ffmpeg -i {$path} -i {$mark} -ss 00:00:00 -t 00:05:00 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {$filePath}.mp4 -y";
+                $command = "ffmpeg -i {$path} -i {$mark} -ss 00:00:00 -t 00:05:00 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {$filePath}_mark.mp4 -y";
                 exec($command, $output, $return_var);
+                //\appxq\sdii\utils\VarDumper::dump($return_var);
                 if ($return_var === 0) {
-                    @unlink($path);
+                    if($file->extension != "mp4"){
+                        @unlink($path);
+                    }                    
                 }
                  
             return ['type'=>'mp4'];

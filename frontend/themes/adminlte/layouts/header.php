@@ -107,7 +107,7 @@ $this->registerJs("
     .items-sidebar.navbar-collapse{
             border-right:1px solid #dedede;
             background-color: #34393d;
-            background-image: url(<?= "/images/bg.jpg"?>);
+            /*background-image: url(<?= "/images/bg.jpg"?>);*/
             background-attachment: fixed;
             background-size: contain;
     }

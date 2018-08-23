@@ -72,5 +72,40 @@ class SessionManagementController extends Controller
             'data'=>$data
         ]);
     }
-     
+    
+    public function actionSearch(){
+        $type_id    = Yii::$app->request->get('type_id', '');
+        $txtsearch = Yii::$app->request->get('txtsearch', '');
+        $fileType = \common\models\FileType::findOne($type_id);
+        $data = \common\models\Files::find();
+        $model = $data->where('file_name_org LIKE :file_name OR meta_text LIKE :meta_text',[
+            ':file_name'=>"%{$txtsearch}%",
+            ':meta_text'=>"%{$txtsearch}%",
+             
+        ]);
+        $types = ['1', 'all'];
+        if(!in_array($type_id, $types)){
+            $model=$data->andWhere("file_type=:file_type", [":file_type"=>$type_id]);  
+            //\appxq\sdii\utils\VarDumper::dump($type_id);
+        }
+         
+         
+                
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 15,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,  
+                ]
+            ],
+        ]);            
+        return $this->render("searchs/search",[
+            'dataProvider'=>$dataProvider,
+            'txtsearch'=> isset($txtsearch) ? $txtsearch : '',
+            'fileType'=>$fileType
+        ]); 
+    }
 }

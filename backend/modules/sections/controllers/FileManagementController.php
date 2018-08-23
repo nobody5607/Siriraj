@@ -250,7 +250,8 @@ class FileManagementController extends Controller
                         $filePath       = "{$path}/{$realFileName}";
                         $fileType       = explode('/', $file->type);
                         $thumbnail      = "{$path}/thumbnail/{$realFileName}";                        
-                        $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";                          
+                        $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
+                        $fileNames      = "{$realFileName}.{$obj['type']}";
                         
                         if($fileType[0] === 'image'){//images                             
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);                            
@@ -259,12 +260,13 @@ class FileManagementController extends Controller
                         }else if($fileType[0] === 'video'){
                            //$folderName = 10000001 
                            $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark);
+                           $fileNames = "{$realFileName}_mark.{$obj['type']}";
                            //\appxq\sdii\utils\VarDumper::dump($obj);
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$realFileName}.{$obj['type']}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

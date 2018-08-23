@@ -194,6 +194,10 @@
                     margin-top:-25px;
                } 
             }
+            .dropdown-menu>li>a:hover {
+                background-color: #225979;
+                color: #fff;
+            }
         ");
     }else{
         //appxq\sdii\utils\VarDumper::dump($data_id);
