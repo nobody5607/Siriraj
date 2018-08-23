@@ -4,6 +4,7 @@ $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/params.php'
 );
+ 
 use developeruz\db_rbac\Yii2DbRbac;
 $config = [
     'id' => 'app-backend',
@@ -90,6 +91,12 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'template' => [
+            'class' => 'backend\modules\template\Module',
+        ],
+        'cores' => [
+            'class' => 'backend\modules\cores\Module',
+        ],
         'viewcountermanagement' => [
             'class' => 'backend\modules\viewcountermanagement\Module',
         ],
@@ -115,9 +122,9 @@ $config = [
 //        'secret_content_management' => [
 //            'class' => 'backend\modules\secret_content_management\Module',
 //        ],
-        'api' => [
-            'class' => 'backend\modules\api\Api',
-        ],
+//        'api' => [
+//            'class' => 'backend\modules\api\Api',
+//        ],
         'db-manager' => [
             'class' => 'bs\dbManager\Module',
             // path to directory for the dumps
@@ -147,7 +154,7 @@ $config = [
             ],
         ],
         'rbac' => [
-            'class' => 'developeruz\db_rbac\Yii2DbRbac',
+            'class' => 'backend\modules\cores\JYii2DbRbac',
             'as access' => [
                 'class' => 'common\behaviors\GlobalAccessBehavior',
                 'rules' => [

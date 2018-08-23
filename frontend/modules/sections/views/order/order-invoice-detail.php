@@ -43,11 +43,11 @@
             <tbody>
                 <?php foreach($order as $key=>$value):?>
                     <tr>
-                        <td><?= $value->files->name?></td>
-                        <td><?= $value->files->meta_text?></td>
-                        <td><?= $value->files->description?></td>
-                        <td><?= $value->size?></td>
-                        <td><?= $value->quantity?></td>
+                        <td><?= isset($value->files->file_name_org) ? $value->files->file_name_org : ''?></td>
+                        <td><?= isset($value->files->meta_text) ? $value->files->meta_text : ''?></td>
+                        <td><?= isset($value->files->description) ? $value->files->description : ''?></td>
+                        <td><?= isset($value->size) ? $value->size : ''?></td>
+                        <td><?= isset($value->quantity) ? $value->quantity : ''?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>   

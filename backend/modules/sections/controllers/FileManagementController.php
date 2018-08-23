@@ -249,7 +249,7 @@ class FileManagementController extends Controller
                         $realFileName   = md5($folderName . time());// . '.' . $file->extension;
                         $filePath       = "{$path}/{$realFileName}";
                         $fileType       = explode('/', $file->type);
-                        $thumbnail      = "{$path}/thumbnail/{$realFileName}.jpg";                        
+                        $thumbnail      = "{$path}/thumbnail/{$realFileName}";                        
                         $viewPath = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";                          
                         
                         if($fileType[0] === 'image'){//images                             

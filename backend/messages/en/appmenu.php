@@ -30,6 +30,30 @@ return [
     'Item Alias'=>'Item Alias',
     'Authentication'=>'Authentication',
     'Tables Fields'=>'Tables Fields',
-    'Firstname'=>'Firstname'
+    'Firstname'=>'Firstname',
+    
+    
+    'Watermark'=>'Watermark',
+    'Request Form'=>'Request Form',
+    'Templates'=>'Templates',
+    'Settings'=>'Settings',
+    'System'=>'System',
+    'Authentication'=>'Authentication',
+    'Website Traffic Statistics'=>'Website Traffic Statistics',
+    'Permission'=>'Permission',
+    'Role'=>'Role',
+    'Users Management'=>'Users Management',
+    'Order Management'=>'Order Management',
+    'Private Section Management'=>'Private Section Management',
+    'Section Management'=>'Section Management',
+    'Main'=>'Main',
+    
+    'File manager'=>'File manager',
+    'Key storage'=>'Key storage',
+    'Cache'=>'Cache',
+    'Clear assets'=>'Clear assets',
+    'Logs'=>'Logs',
+    'DB manager'=>'DB manager',
+    'Gii'=>'Gii',
 ];
 

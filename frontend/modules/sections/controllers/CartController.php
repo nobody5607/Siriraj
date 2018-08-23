@@ -48,7 +48,7 @@ class CartController extends Controller
         foreach($id_arr as $v){
             $model = \common\models\Files::find()->where(["id"=>$v])->one();
             $data['id']   = $model->id;  
-            $data['name'] = $model->name;
+            $data['name'] = $model->file_name_org;
             $data['detail'] = $model->description;
             $data['price'] = 10;
             $data['image'] = $model->file_name_org;

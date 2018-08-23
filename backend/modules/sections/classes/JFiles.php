@@ -92,14 +92,14 @@ class JFiles {
                   }                  
                   if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = $fileType[1];
-                      $sql  = "magick convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}";
+                      $sql  = "magick convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}.{$fileType[1]}";
                       $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                       exec($wm, $out, $retval);                      
                    }
               }else{
                  if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = "jpg";
-                      $sql  = "magick convert {$filePath}.jpg -resize 200x200 {$thumbnail}";                    
+                      $sql  = "magick convert {$filePath}.jpg -resize 200x200 {$thumbnail}.{$type}";                    
                       $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.jpg";
                       exec($wm, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");

@@ -180,10 +180,12 @@ class ContentManagementController extends Controller
         ]);
         $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
         if($file_id == ''){
-            $dataDefault = \common\models\Files::find()->where(['file_type'=>$filet_id])->one();
+            $dataDefault = \common\models\Files::find()
+                    ->where(['file_type'=>$filet_id, 'content_id'=>$content_id])->one();
+            
         }
-        //\appxq\sdii\utils\VarDumper::dump($dataDefault);
         
+        //\appxq\sdii\utils\VarDumper::dump($dataDefault);
         
         
         /* add template */
