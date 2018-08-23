@@ -74,3 +74,22 @@
 <?php 
     $modal = "modal-contents";
 ?>
+<?php \richardfan\widget\JSRegister::begin();?>
+
+<script>
+   $(".btnCalls").on('click', function(){
+       let id       = $(this).attr('data-id');
+       let url      = $(this).attr('data-url');
+       let filet_id   = $(this).attr('filet-id');
+       let content_id = $(this).attr('content-id'); 
+       let params   = {filet_id:filet_id, content_id:content_id};
+       $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+       $('#<?= $modal?>').modal('show');
+       $.get(url, params, function(res){
+           $('#<?= $modal?> .modal-content').html(res);
+       }); 
+       return false; 
+   });
+      
+</script>
+<?php \richardfan\widget\JSRegister::end();?>

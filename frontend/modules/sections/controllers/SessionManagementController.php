@@ -89,8 +89,6 @@ class SessionManagementController extends Controller
             //\appxq\sdii\utils\VarDumper::dump($type_id);
         }
          
-         
-                
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [

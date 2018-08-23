@@ -115,7 +115,7 @@ class JSection extends \yii\base\Component{
             $breadcrumbs=[];
             $url = ($url == '') ? '/sections/session-management' : $url;
             $breadcrumbs[] = [
-                'label' =>'Session Management', 
+                'label' => \Yii::t('section','Session Management'), 
                  'url' =>$url
             ];
             if($data){                

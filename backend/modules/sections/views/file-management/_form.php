@@ -35,7 +35,7 @@ use appxq\sdii\helpers\SDHtml;
             </div>
             <div class="col-md-12">
                 <?php
-                    $items = ['0'=>'Not Default','1'=>'Default'];
+                    $items = ['1'=>'Yes','0'=>'No'];
                     echo $form->field($model, 'default')->radioList($items, []); 
                 ?>
             </div>

@@ -65,7 +65,7 @@
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div','id'=>"img-{$model['id']}", 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;height: 80px;'];
+                    return ['tag' => 'div','id'=>"img-{$model['id']}", 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-4 col-xs-6','style'=>'margin-bottom:150px;height: 80px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {

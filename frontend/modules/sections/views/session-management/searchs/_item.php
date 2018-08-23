@@ -3,6 +3,10 @@
     $link_url = "/sections/content-management/view-file?content_id={$model->content_id}&file_id={$model->id}&filet_id={$model->file_type}";
     $meta_text = appxq\sdii\utils\SDUtility::string2Array($model['meta_text']);
     
+    $content = \backend\modules\sections\classes\JContent::getContentById($model->content_id);
+    $breadcrumb = \backend\modules\sections\classes\JSection::getBreadcrumb($content['section_id']);
+    $breadcrumb[] = ['label' => $content['name'], 'url' => ['/sections/content-management/view', 'content_id' => $content['id']]];
+    
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -14,6 +18,9 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body" style="">
+        <?php echo janpan\jn\widgets\BreadcrumbsWidget::widget([
+            'breadcrumb'=>$breadcrumb
+        ]); ?>
         <?php if($model->file_type == "2"):?>
         <a href="<?= $link_url?>" target="_blank">
             <div class="media">

@@ -1,4 +1,5 @@
-<div style="margin-top:40px;"></div>
+<div class="row">
+    <div style="margin-top:40px;"></div>
 
 <div class="clearfix">
     <?= $this->render('_searchbar',['txtsearch'=>$txtsearch,'fileType'=>$fileType]); ?>
@@ -41,3 +42,18 @@
        ]);
     ?> 
 </div>
+</div>
+<?php    appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    @media only screen and (min-width: 768px)
+    {
+        .cd-breadcrumb, .cd-multi-steps {
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0px;
+            border: 1px solid #ffffff;
+            background:#fff;
+        }
+    }
+</style>
+<?php    appxq\sdii\widgets\CSSRegister::end()?>
