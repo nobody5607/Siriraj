@@ -31,6 +31,7 @@ class Watermark extends \yii\db\ActiveRecord
         return [
             [['file_id', 'default'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255],
+            [['detail','code'], 'string'],
         ];
     }
 
@@ -45,6 +46,7 @@ class Watermark extends \yii\db\ActiveRecord
             'path' => Yii::t('doc', 'Path'),
             'file_id' => Yii::t('doc', 'File ID'),
             'default' => Yii::t('doc', 'Default'),
+            'code' => Yii::t('doc', 'Code'),
         ];
     }
 }

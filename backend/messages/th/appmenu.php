@@ -53,5 +53,7 @@ return [
     'Logs'=>'ลอก',
     'DB manager'=>'จัดการฐานข้อมูล',
     'Gii'=>'กิล',
+    'Watermark Image'=>'ลายน้ำรูป',
+    'Watermark Video'=>'ลายน้ำวีดีโอ',
 ];
 

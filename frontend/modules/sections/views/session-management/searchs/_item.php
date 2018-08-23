@@ -5,8 +5,13 @@
     
     $content = \backend\modules\sections\classes\JContent::getContentById($model->content_id);
     $breadcrumb = \backend\modules\sections\classes\JSection::getBreadcrumb($content['section_id']);
-    $breadcrumb[] = ['label' => $content['name'], 'url' => ['/sections/content-management/view', 'content_id' => $content['id']]];
     
+    $breadcrumb[] = ['label' => $content['name'], 'url' => ['/sections/content-management/view?content_id='.$content['id']]];
+    $mb = round(($meta_text['size']/1024)/1024);
+    $meta_file = "<div class='label label-default'>
+                      <label>".Yii::t('file', 'Type')." : {$meta_text['type']}</label> &nbsp;&nbsp;
+                      <label>".Yii::t('file', 'Size')." : {$mb} Mb</label>
+                  </div>";
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -32,9 +37,10 @@
                             ]);?>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>
-                  <p><?= $model['meta_text']?></p>
+                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>                  
+                  <?= $meta_file?>
                 </div>
+                
             </div>
         </a>    
         <?php endif; ?>
@@ -49,10 +55,8 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading"><?= $model['file_name_org']?></h4>
-                  <div>
-                      <label><?= Yii::t('file', 'Type')?>: </label>
-                  </div>
-                </div>
+                  <?= $meta_file?>
+                </div>  
             </div>
         </a>    
         <?php endif; ?>

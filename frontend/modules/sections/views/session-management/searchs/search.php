@@ -55,5 +55,12 @@
             background:#fff;
         }
     }
+    .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after {
+        content: '/';
+        height: 22px;
+        width: 1px;
+        background: transparent;
+        vertical-align: bottom;
+    }
 </style>
 <?php    appxq\sdii\widgets\CSSRegister::end()?>

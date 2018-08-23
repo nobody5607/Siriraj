@@ -55,5 +55,7 @@ return [
     'Logs'=>'Logs',
     'DB manager'=>'DB manager',
     'Gii'=>'Gii',
+    'Watermark Image'=>'Watermark Image',
+    'Watermark Video'=>'Watermark Video',
 ];
 

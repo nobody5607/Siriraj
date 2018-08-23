@@ -241,7 +241,7 @@ class FileManagementController extends Controller
                     }else{
                         \backend\modules\sections\classes\JFiles::CreateDir($path, false); //create folder
                     }
-                    $watermark = \backend\models\Watermark::find()->where(['default'=>1])->one();
+                    
                     $out=[];
                     $obj=['type'=>''];
                     foreach ($files as $file) {                        
@@ -253,12 +253,14 @@ class FileManagementController extends Controller
                         $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
                         $fileNames      = "{$realFileName}.{$obj['type']}";
                         
-                        if($fileType[0] === 'image'){//images                             
+                        if($fileType[0] === 'image'){//images   
+                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'2'])->one();
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);                            
                         }else if($fileType[0] === 'application'){
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }else if($fileType[0] === 'video'){
                            //$folderName = 10000001 
+                           $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
                            $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark);
                            $fileNames = "{$realFileName}_mark.{$obj['type']}";
                            //\appxq\sdii\utils\VarDumper::dump($obj);
