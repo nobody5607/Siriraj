@@ -99,6 +99,7 @@ class JFiles {
               $type = "";
               $sql = "";
               $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
+              set_time_limit(1200);
               //\appxq\sdii\utils\VarDumper::dump($mark);
               if(in_array($fileType[1], $default_type)){
                   if($fileType[1] == "jpeg"){
@@ -106,18 +107,21 @@ class JFiles {
                   }                  
                   if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = $fileType[1];
-                      $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}.{$fileType[1]}";                      
+                      
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.{$fileType[1]}"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
-                      exec($template, $out, $retval);
-                      exec($sql, $out, $retval);
+                      $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}.{$fileType[1]}"; 
+                      @exec($template." && ".$sql, $out, $retval);
+                       
+                      
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                                            
                    }
               }else{
                  if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = "jpg";
-                      $sql  = "convert {$filePath}.jpg -resize 200x200 {$thumbnail}.{$type}";                    
+                      $sql  = "convert {$filePath}.jpg -resize 200x200 {$thumbnail}.{$type}";
+                      
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.jpg";
                       
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.jpg"];
