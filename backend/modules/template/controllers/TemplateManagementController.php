@@ -71,7 +71,7 @@ class TemplateManagementController extends \yii\web\Controller
                     $v->save();
                 }  
             }            
-            if($files){
+            if($files){                
                 @unlink(Yii::getAlias('@storage')."/{$model->path}/{$model->name}");
                 
                 $pathDefault = "/web/images/watermark";
@@ -83,7 +83,7 @@ class TemplateManagementController extends \yii\web\Controller
                     $filePath   = "{$path}/{$fileName}";
                     $target     = "{$path}/mark_".$genName.".png";
                     if ($f->saveAs($filePath)) {
-                        $sql  = "magick convert {$filePath} -resize 200x200 {$target}";
+                        $sql  = "onvert {$filePath} -resize 200x200 {$target}";
                         exec($sql, $out, $retval);
                         @unlink($filePath);
                     }
