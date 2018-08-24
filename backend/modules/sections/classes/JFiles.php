@@ -99,7 +99,7 @@ class JFiles {
               $type = "";
               $sql = "";
               $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
-              set_time_limit(1200);
+              
               //\appxq\sdii\utils\VarDumper::dump($mark);
               if(in_array($fileType[1], $default_type)){
                   if($fileType[1] == "jpeg"){
@@ -107,7 +107,7 @@ class JFiles {
                   }                  
                   if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = $fileType[1];
-                      
+                      set_time_limit(1200);
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.{$fileType[1]}"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
                       $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}.{$fileType[1]}"; 
@@ -126,6 +126,7 @@ class JFiles {
                       
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.jpg"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);                      
+                      set_time_limit(1200);
                       exec($template, $out, $retval);
                       exec($sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
