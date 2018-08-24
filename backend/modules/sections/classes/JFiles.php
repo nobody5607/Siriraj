@@ -112,7 +112,11 @@ class JFiles {
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
                       $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}.{$fileType[1]}"; 
                       @exec($template." && ".$sql, $out, $retval);
-                       
+                      if ($retval == '0') {
+                            return ["type"=>$type];
+                      }else{
+                            return FALSE;
+                      } 
                       
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                                            
@@ -127,18 +131,15 @@ class JFiles {
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.jpg"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);                      
                       set_time_limit(1200);
-                      exec($template, $out, $retval);
-                      exec($sql, $out, $retval);
+                     // exec($template, $out, $retval);
+                      exec($template." && ".$sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
+                      return ["type"=>"jpg"];
                  } 
               }
               
               
-              if ($retval == '0') {
-                  return ["type"=>$type];
-              }else{
-                  return FALSE;
-              }
+              
               
         } catch (Exception $ex) {
               return false;

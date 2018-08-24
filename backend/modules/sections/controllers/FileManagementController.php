@@ -255,7 +255,8 @@ class FileManagementController extends Controller
                         
                         if($fileType[0] === 'image'){//images   
                             $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'2'])->one();
-                            $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);                            
+                            $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);
+                            
                         }else if($fileType[0] === 'application'){
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }else if($fileType[0] === 'video'){
