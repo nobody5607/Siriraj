@@ -83,7 +83,7 @@ class TemplateManagementController extends \yii\web\Controller
                     $filePath   = "{$path}/{$fileName}";
                     $target     = "{$path}/mark_".$genName.".png";
                     if ($f->saveAs($filePath)) {
-                        $sql  = "onvert {$filePath} -resize 200x200 {$target}";
+                        $sql  = "convert {$filePath} -resize 200x200 {$target}";
                         exec($sql, $out, $retval);
                         @unlink($filePath);
                     }
