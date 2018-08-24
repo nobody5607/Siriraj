@@ -24,7 +24,8 @@ class SessionManagementController extends Controller
         $id = \Yii::$app->request->get('id', '');        
         if($id){
             $content_section = JSection::getSectionById($id);
-            $section = JSection::getChildren($id);            
+            $section = JSection::getChildren($id);  
+            //\appxq\sdii\utils\VarDumper::dump($section);
         }else{
             $content_section = JSection::getRoot();            
             $section = JSection::getRootSection(); 
@@ -135,6 +136,7 @@ class SessionManagementController extends Controller
         $data = Yii::$app->request->post('data' , '');
         $data = explode(',', $data);
         $default = 10;
+         
         foreach($data as $id){
             if($id != ""){
                 $model = Sections::find()->where(['id'=>$id])->one();

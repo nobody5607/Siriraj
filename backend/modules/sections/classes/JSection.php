@@ -49,14 +49,16 @@ class JSection extends \yii\base\Component{
     } 
     
     public static function getSectionArrById($id){
-        $data = \common\models\Sections::find()->where(['parent_id'=>$id])->all();
+        $data = \common\models\Sections::find()->where(['parent_id'=>$id])->orderBy(['forder'=>SORT_ASC])->all();
         
     }
     
     public static function getChildren($id){
         
         try{
-            $section = \common\models\Sections::find()->where(['parent_id'=>$id])->andWhere('rstat not in(0,3)')->all();
+            $section = \common\models\Sections::find()
+                    ->where(['parent_id'=>$id])
+                    ->andWhere('rstat not in(0,3)')->orderBy(['forder'=>SORT_ASC])->all();
            
             $datas = [];             
              
