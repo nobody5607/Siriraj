@@ -176,10 +176,12 @@ class JFiles {
          
     }
     
-    public static function lengthName($gname){         
+    public static function lengthName($gname, $length=""){         
         $checkthai = preg_replace('/[^ก-๙]/ u', '', $gname);;
         
-        $len = 12;
+        $len = ($length == "") ? 12 : $length;
+        
+        //$len = 12;
         if ($checkthai != '') {
             $len = $len * 3;
         }

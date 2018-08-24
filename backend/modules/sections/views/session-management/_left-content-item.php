@@ -11,7 +11,9 @@
     <div class="flex-2">
         <?php 
             $url = "/sections/session-management?id={$model['id']}";
-            echo Html::a("<i class='fa {$model['icon']}'></i> {$model['name']}", $url, []);
+            $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 26);
+         
+            echo Html::a("<i class='fa {$model['icon']}'></i> {$name_str}", $url, ['title'=>$model['name']]);
         ?>         
     </div>
     <div class="">
