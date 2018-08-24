@@ -70,6 +70,20 @@ class JFiles {
         }
         return FALSE;
    }
+   
+   /**
+    * 
+    * @param type $modelForm array ['filename'=>$filename, 'mark'=>$mark, 'target'=>$target]
+    * @param type $template  string "magick convert {filename} -gravity SouthEast {mark} -geometry +20+20  -composite {target}"
+    */
+   public static function getTemplateMark($modelForm, $template){         
+        $path = [];
+        foreach ($modelForm as $key => $value) {
+            $path["{" . $key . "}"] = $value;
+        }
+        $master = strtr($template, $path); 
+        return $master;
+   }
     /**
      * 
      * @param type $file UploadedFile::getInstancesByName('name')
@@ -92,21 +106,29 @@ class JFiles {
                   }                  
                   if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = $fileType[1];
-                      $sql  = "magick convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}.{$fileType[1]}";
-                      $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
-                      exec($wm, $out, $retval);                      
+                      $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}.{$fileType[1]}";                      
+                      $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.{$fileType[1]}"];
+                      $template = self::getTemplateMark($modelForm, $watermark['code']);
+                      exec($template, $out, $retval);
+                      exec($sql, $out, $retval);
+                      //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
+                                           
                    }
               }else{
                  if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = "jpg";
-                      $sql  = "magick convert {$filePath}.jpg -resize 200x200 {$thumbnail}.{$type}";                    
-                      $wm = "magick convert {$filePath}.{$fileType[1]} -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.jpg";
-                      exec($wm, $out, $retval);
+                      $sql  = "convert {$filePath}.jpg -resize 200x200 {$thumbnail}.{$type}";                    
+                      //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.jpg";
+                      
+                      $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}.jpg"];
+                      $template = self::getTemplateMark($modelForm, $watermark['code']);                      
+                      exec($template, $out, $retval);
+                      exec($sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
                  } 
               }
               
-              exec($sql, $out, $retval);
+              
               if ($retval == '0') {
                   return ["type"=>$type];
               }else{
