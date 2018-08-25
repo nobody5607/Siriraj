@@ -19,18 +19,17 @@ $url = "/sections/session-management?id={$model['id']}";
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="">
-                <?php //$model->id?>
+                 
                 <div id="dynamic-content-<?= $model->id?>"></div>
                 <?php \richardfan\widget\JSRegister::begin(); ?>
                     <script>
-                        function loadContent(){
-                            let dynamic_item_url = '/sections/session-management/get-dynamic-item';
-                            let id = "<?= $model->id?>";
-                            $.get(dynamic_item_url,{id:id}, function(data){
-                                $('#dynamic-content-'+id).html(data);
+                         
+                            var dynamic_item_url = '/sections/session-management/get-dynamic-item';
+                            
+                             
+                            $.get(dynamic_item_url,{id:"<?= $model->id?>"}, function(data){                                
+                                $('#dynamic-content-'+"<?= $model->id?>").html(data);
                             });
-                        }
-                        loadContent();
                          
 
                     </script>
