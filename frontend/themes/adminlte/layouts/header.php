@@ -179,7 +179,7 @@ $this->registerJs("
     
     .panel-default > .panel-heading {
         color: #fff;
-        background-color: #6200ee;
+        background-color: #3867d6;
         border-color: #ddd;
     }
     @media screen and (max-width: 768px){
