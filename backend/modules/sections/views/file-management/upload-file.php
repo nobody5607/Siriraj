@@ -68,7 +68,7 @@
     </div>
 </div>
 
-<?php ActiveFOrm::end()?>
+<?php ActiveForm::end()?>
 
 <?php  \richardfan\widget\JSRegister::begin([
     //'key' => 'bootstrap-modal',

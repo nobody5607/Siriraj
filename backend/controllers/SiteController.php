@@ -170,6 +170,10 @@ class SiteController extends Controller
         return $this->render('settings', ['model' => $model]);
     }
     public function actionTest(){
+        
+        if(!empty($_FILES)){
+           return \janpan\jn\classes\JResponse::getSuccess("success");
+        }
         return $this->render('test');
     }
 }

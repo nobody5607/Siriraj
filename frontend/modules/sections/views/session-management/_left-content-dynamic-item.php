@@ -33,7 +33,7 @@ $url = "/sections/session-management?id={$model['id']}";
         <!-- /.box-body -->
         <div class="box-footer text-center" style="">
             <div class="col-md-4 col-md-offset-4">
-                <a href="<?= $url?>" class="btn btn-primary btn-block" style="position: relative;">More</a>
+                <a href="<?= $url?>" class="" style="position: relative;color:#000;">more...</a>
             </div>
         </div>
         <!-- /.box-footer -->
