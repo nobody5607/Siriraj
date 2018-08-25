@@ -21,7 +21,7 @@ class SessionManagementController extends Controller
             $content_section = JSection::getRoot(); 
             $section = JSection::getRootSection(); 
              
-        }
+        }        
         $public = isset($content_section) ? '1' : '2';
         
         $breadcrumb = JSection::getBreadcrumb($id);
@@ -56,7 +56,7 @@ class SessionManagementController extends Controller
     public function actionGetDynamicItem(){
         $id = \Yii::$app->request->get('id', '');
         $data = \frontend\modules\sections\classes\JSectionQuery::getSectionAll($id);         
-        
+        //\appxq\sdii\utils\VarDumper::dump($id);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$data,
             'pagination' => [

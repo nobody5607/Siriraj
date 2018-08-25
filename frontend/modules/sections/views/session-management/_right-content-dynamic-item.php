@@ -4,7 +4,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper; 
-$url = "/sections/session-management?id={$model['id']}"; 
+$url = "/sections/session-management?id={$model['id']}";
+//appxq\sdii\utils\VarDumper::dump($model);
 ?>
 
 <div class="col-md-12" id="<?= $model->id?>" data-id="<?= $model->id?>" style="padding: 5px;">
@@ -22,10 +23,15 @@ $url = "/sections/session-management?id={$model['id']}";
                 <div id="dynamic-content-<?= $model->id?>"></div>
                 <?php \richardfan\widget\JSRegister::begin(); ?>
                     <script>
-                         var dynamic_item_url = '/sections/session-management/get-dynamic-item';
-                        $.get(dynamic_item_url,{id:<?= $model->id?>}, function(data){
-                            $('#dynamic-content-<?= $model->id?>').html(data);
-                        })
+                        function loadContent(){
+                            let dynamic_item_url = '/sections/session-management/get-dynamic-item';
+                            let id = "<?= $model->id?>";
+                            $.get(dynamic_item_url,{id:id}, function(data){
+                                $('#dynamic-content-'+id).html(data);
+                            });
+                        }
+                        loadContent();
+                         
 
                     </script>
                 <?php \richardfan\widget\JSRegister::end(); ?> 
