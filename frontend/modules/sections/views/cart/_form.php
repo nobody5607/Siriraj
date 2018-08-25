@@ -10,8 +10,28 @@ use appxq\sdii\helpers\SDNoty;
    <?php $form = ActiveForm::begin([
 	'id'=>$model->formName(),
     ]); ?>
+    <?=
+            $form->field($model, 'date')->widget(kartik\date\DatePicker::class, [
+                'type' => kartik\date\DatePicker::TYPE_COMPONENT_APPEND,
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+                //'locale' => strtolower(substr(Yii::$app->language, 0, 2)),
+//                'groupBtnShow' => true,
+//                'options' => [
+//                    'class' => 'form-control',
+//                ],
+//                'clientOptions' => [
+//                    'allowInput' => true,
+//                    'defaultDate' => $model->date ? date(DATE_ATOM, $model->date) : null,
+//                ],
+            ])
+            ?>
     <?= $form->field($model, 'firstname')->textInput()?>
     <?= $form->field($model, 'lastname')->textInput()?>
+    <?= $form->field($model, 'sitecode')->textInput()?>
+    
     <?= $form->field($model, 'companey_name')->textarea()->label(Yii::t('cart', 'Address'))?>  
     <?= $form->field($model, 'tel')->widget(\yii\widgets\MaskedInput::className(), [
     'mask' => '9999999999']);?>

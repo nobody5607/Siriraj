@@ -52,8 +52,16 @@
                         'contentOptions'=>['style'=>'width:50px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',
                         'header'=>'Action',
-                        'template'=>'{delete}',
+                        'template'=>'{send-mail} {print} {delete}',
                         'buttons'=>[
+                          'send-mail' => function($url,$model,$key){
+                              
+                                  return Html::a('<i class="fa fa-envelope"></i>','#', ['data-id'=>$model['id'], 'class'=>'btn btn-success btn-sm btn-delete']);
+                               
+                          },
+                          'print' => function($url,$model,$key){                               
+                             return Html::a('<i class="fa fa-print"></i>',$url, ['data-id'=>$model['id'], 'class'=>'btn btn-primary btn-sm', 'target'=>'_blank']);   
+                          },        
                           'delete' => function($url,$model,$key){
                               if($model['status'] == 1){
                                   return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'], 'class'=>'btn btn-danger btn-sm btn-delete']);

@@ -72,7 +72,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="/sections/cart/my-check-out?step=1" class="btn btn-warning btn-block btn-lg" style="position: relative;">
-                        <i class="fa fa-shopping-cart"></i> <?= Yii::t('cart', 'Checkout Now')?>
+                        <i class="fa fa-shopping-cart"></i> <?= Yii::t('cart', 'Next')?>
                     </a>
                 </div>
             </div>

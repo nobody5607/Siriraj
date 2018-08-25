@@ -15,6 +15,7 @@ class CartController extends Controller
                 'pageSize' => 100,
             ],
         ]);
+        //\appxq\sdii\utils\VarDumper::dump(Yii::$app->session["cart"]);
         $breadcrumbs=[];
         $breadcrumbs_arr = [
             [

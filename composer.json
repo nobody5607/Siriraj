@@ -52,7 +52,8 @@
         "yurkinx/yii2-image": "dev-master",
         "trntv/yii2-aceeditor": "dev-master",
         "yiisoft/yii2-imagine": "*",
-        "tpmanc/yii2-imagick": "*"
+        "tpmanc/yii2-imagick": "*",
+        "kartik-v/yii2-widget-datepicker": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

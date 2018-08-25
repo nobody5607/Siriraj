@@ -24,8 +24,11 @@
                         'attribute'=>'image',
                         'label'=> Yii::t('order',''),
                         'value'=>function($model){
-                          $image = isset($model->files) ? $model->files->file_name_org : '';
-                          return \yii\helpers\Html::img("/images/{$image}" , ['style'=>'width:50px;height: 50px;']);
+                          if(!empty($model->files->file_name) && !empty($model->files->file_path)){
+                            $path = "{$model->files->file_path}/{$model->files->file_name}";
+                            return \yii\helpers\Html::img($path , ['style'=>'width:50px;height: 50px;']);
+                          }
+                          
                         }
                     ],
                     [
@@ -36,10 +39,17 @@
                         }
                     ],
                     [
+                        'format'=>'raw',
                         'label'=> Yii::t('order','Meta text'),
                         'value'=>function($model){
-                          $meta_text = isset($model->files) ? $model->files->meta_text : '';
-                          return $meta_text;
+                          $meta_text = appxq\sdii\utils\SDUtility::string2Array($model->files->meta_text);
+                          $mb = round(($meta_text['size']/1024)/1024);
+                          $meta_file = "<div class='label label-default'>
+                                          <label>". Yii::t('file', 'Type')." : {$meta_text['type']}</label> &nbsp;&nbsp;
+                                          <label>". Yii::t('file', 'Size')." : {$mb} Mb</label>
+                                      </div>";
+                          
+                          return $meta_file;
                         }
                     ],
                     [

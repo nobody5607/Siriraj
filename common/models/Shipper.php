@@ -8,9 +8,14 @@ use Yii;
  * This is the model class for table "tbl_shipper".
  *
  * @property int $id
- * @property string $companey_name
- * @property string $tel
  * @property int $user_id
+ * @property string $firstname ขื่อ
+ * @property string $lastname นามสกุล
+ * @property string $sitecode หน่วยงาน
+ * @property string $companey_name ที่อยู่
+ * @property string $tel เบอร์โทรศัพท์
+ * @property string $note
+ * @property string $date
  */
 class Shipper extends \yii\db\ActiveRecord
 {
@@ -28,11 +33,13 @@ class Shipper extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['firstname','lastname'], 'required'], 
+            [['id', 'firstname', 'lastname'], 'required'],
             [['id', 'user_id'], 'integer'],
-            [['companey_name','firstname','lastname','note'], 'string'],
+            [['companey_name', 'note'], 'string'],
+            [['date'], 'safe'],
+            [['firstname', 'lastname'], 'string', 'max' => 100],
+            [['sitecode'], 'string', 'max' => 255],
             [['tel'], 'string', 'max' => 10],
-            [['firstname','lastname'], 'string', 'max' => 100],             
             [['id'], 'unique'],
         ];
     }
@@ -44,14 +51,14 @@ class Shipper extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('order', 'ID'),
-            'companey_name' => Yii::t('order', 'Companey Name'),
-            'tel' => Yii::t('order', 'Tel'),
             'user_id' => Yii::t('order', 'User ID'),
-            'Address'=>Yii::t('cart', 'Address'),
-            'firstname'=>Yii::t('cart', 'Firstname'),
-            'lastname'=>Yii::t('cart', 'Lastname'),
-            'tel'=>Yii::t('cart', 'Tel'),
-            'note'=>Yii::t('cart', 'Note'),
+            'firstname' => Yii::t('order', 'ขื่อ'),
+            'lastname' => Yii::t('order', 'นามสกุล'),
+            'sitecode' => Yii::t('order', 'หน่วยงาน'),
+            'companey_name' => Yii::t('order', 'ที่อยู่'),
+            'tel' => Yii::t('order', 'เบอร์โทรศัพท์'),
+            'note' => Yii::t('order', 'Note'),
+            'date' => Yii::t('order', 'Date'),
         ];
     }
 }

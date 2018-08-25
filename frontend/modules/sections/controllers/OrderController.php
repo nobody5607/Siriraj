@@ -119,5 +119,17 @@ class OrderController extends Controller
                 'order'=>$order
             ]);
         }
-    }    
+    }
+
+
+    public function actionSendMail(){
+        
+    }
+    public function actionPrint(){
+        $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
+        //\appxq\sdii\utils\VarDumper::dump($template);
+        return $this->renderAjax('print',[
+          'template'=>$template   
+        ]);
+    }
 }
