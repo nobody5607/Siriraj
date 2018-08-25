@@ -62,4 +62,8 @@ class Files extends \yii\db\ActiveRecord
             'public' => Yii::t('knowledges', 'public, private'),
         ];
     }
+    
+    public function getType() {
+        return $this->hasOne(FileType::className(), ['id' => 'file_type']);
+    }
 }

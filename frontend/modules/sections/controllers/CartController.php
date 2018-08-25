@@ -135,7 +135,7 @@ class CartController extends Controller
                                 $order_detail->size = $v['size'];
                                 if($order_detail->save()){
                                     //delete cart
-                                    \frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"] , 1, 'del');
+                                     \frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"] , 1, 'del');
                                 }
                             }
                             Yii::$app->session["cart"] = [];

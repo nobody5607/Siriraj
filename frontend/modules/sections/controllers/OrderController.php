@@ -126,10 +126,70 @@ class OrderController extends Controller
         
     }
     public function actionPrint(){
-        $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
-        //\appxq\sdii\utils\VarDumper::dump($template);
-        return $this->renderAjax('print',[
-          'template'=>$template   
-        ]);
+         
+            $id = Yii::$app->request->get('id', '');
+            $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
+            $model = \common\models\Shipper::find()->where(['user_id'=> Yii::$app->user->id])->one();
+            $orderDetail = \common\models\OrderDetail::find()->where(['order_id'=>$id])->all();
+            $file_arr = [];
+            if($orderDetail){
+                foreach($orderDetail as $key=>$o){
+                    //\appxq\sdii\utils\VarDumper::dump($o->sizes->label);
+                    $files = \common\models\Files::find()->where(['id'=>$o->product_id])->one();
+                    $file_arr[$key]=[
+                        'id'=>$files->id, 
+                        'file_type'=>$files->file_type,
+                        'file_type_name'=>$files->type->name,
+                        'size'=>$o->sizes->label,
+                        'file_name_org'=>$files->file_name_org,
+                        'file_name'=>$files->file_name,
+                        'meta_text'=>$files->meta_text,
+                    ]; 
+                }
+                sort($file_arr); 
+               // \appxq\sdii\utils\VarDumper::dump($files);
+            }
+            $product = "";  
+            if($file_arr){
+                $n=1;
+                $checkType = $this->groupByPartAndType($file_arr);
+                foreach($checkType as $c){
+                    $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
+                    foreach($file_arr as $key=>$value){
+                        $meta_text = substr($value['file_name'], -4, 5);
+                        if($value['file_type'] == $c['file_type']){
+                            $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ขนาดไฟล์ที่ต้องการอย่างน้อย <b>{$value['size']}</b>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;นามสกุลไฟล์ที่ต้องการ <b>{$meta_text}</b>    
+                            </div>";
+                        }
+                    }
+                    $n++;
+                }
+            }
+            
+            //\appxq\sdii\utils\VarDumper::dump($x);
+
+            return $this->renderAjax('print',[
+              'template'=>$template,
+              'model'=>$model,
+              'count'=>count($orderDetail),
+              'product'=>$product  
+            ]);
+         
     }
+    
+   public function groupByPartAndType($input) {
+        $output = Array();
+
+        foreach($input as $value) {
+          $output_element = &$output[$value['file_type'] . "_" . $value['file_type']];
+          $output_element['file_type'] = $value['file_type'];
+          $output_element['file_type_name'] = $value['file_type_name'];
+          $output_element['size'] = $value['size'];
+          //!isset($output_element['file_type']) && $output_element['file_type'] = 0;
+          //$output_element['count'] += $value['count'];
+        }
+
+        return array_values($output);
+      }
 }

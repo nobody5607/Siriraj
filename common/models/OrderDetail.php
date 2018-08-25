@@ -55,5 +55,8 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function getOrder() {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
     }
+    public function getSizes() {
+        return $this->hasOne(ContentChoice::className(), ['id' => 'size']);
+    }
 
 }

@@ -19,14 +19,21 @@
                 'dataProvider' => $dataProvider,
                 'columns' => [
                   [
-                      'contentOptions'=>['style'=>'width:50px;'],
-                      'format'=>'raw',
-                      'attribute'=>'image',
-                      'label'=> Yii::t('cart',''),
-                      'value'=>function($model){
-                        return \yii\helpers\Html::img("/images/{$model['image']}" , ['style'=>'width:50px;height: 50px;']);
-                      }
-                  ],
+                        'contentOptions'=>['style'=>'width:50px;'],
+                        'format'=>'raw',
+                        'attribute'=>'image',
+                        'label'=> Yii::t('order',''),
+                        'value'=>function($model){
+                          $file = common\models\Files::findOne($model['id']);
+                          
+                          if(!empty($file->file_name) && !empty($file->file_path)){
+                            $path = "{$file->file_path}/{$file->file_name}";
+                            return \yii\helpers\Html::img($path , ['style'=>'width:50px;height: 50px;']);
+                          }
+                          
+                          
+                        }
+                    ],
                   [
                       'attribute'=>'pro_name',
                       'label'=> Yii::t('cart','Item'),
@@ -35,7 +42,7 @@
                   [
                       'attribute'=>'pro_detail',
                       'label'=> Yii::t('cart','Detail'),
-                      'value'=>'pro_name'
+                      'value'=>'pro_detail'
                   ],
                   [
                       'contentOptions'=>['style'=>'width:50px;text-align:center;'],
