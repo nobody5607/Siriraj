@@ -51,7 +51,7 @@
             width: 100%;
             max-width: 100%;
             margin-left: 0px;
-            border: 1px solid #ffffff;
+            border: 1px solid #d2d6de;
             background:#fff;
         }
     }
