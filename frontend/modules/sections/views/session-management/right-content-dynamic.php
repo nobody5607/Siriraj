@@ -8,7 +8,7 @@
     <?php 
         echo ListView::widget([
         'id' => 'ezf_dad',
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $contentProvider,
         'itemOptions' => ['class' => ''],
         'layout' => "{items}\n{pager}",
         //'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',

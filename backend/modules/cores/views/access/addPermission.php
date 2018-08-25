@@ -8,15 +8,15 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Links */
 /* @var $form yii\widgets\ActiveForm */
-$this->title = Yii::t('db_rbac', 'Новое правило');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('db_rbac', 'Правила доступа'), 'url' => ['permission']];
-$this->params['breadcrumbs'][] = Yii::t('db_rbac', 'Новое правило');
+$this->title = Yii::t('rbac', 'Add Permission');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('rbac', 'Permission'), 'url' => ['permission']];
+$this->params['breadcrumbs'][] = Yii::t('rbac', 'Add Permission');
 ?>
-<div class="news-index">
+<div class="box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header"><?= Html::encode($this->title) ?></div>
 
-    <div class="links-form">
+    <div class="box-body">
         <?php
         if (!empty($error)) {
             ?>
@@ -32,18 +32,18 @@ $this->params['breadcrumbs'][] = Yii::t('db_rbac', 'Новое правило');
         <?php $form = ActiveForm::begin(); ?>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('db_rbac', 'Текстовое описание')); ?>
+            <?= Html::label(Yii::t('rbac', 'Description')); ?>
             <?= Html::textInput('description'); ?>
         </div>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('db_rbac', 'Разрешенный доступ')); ?>
+            <?= Html::label(Yii::t('rbac', 'Permission name')); ?>
             <?= Html::textInput('name'); ?>
-            <?=Yii::t('db_rbac', '<br>* Формат: <strong>module/controller/action</strong><br><strong>site/article</strong> - доступ к странице "site/article"<br><strong>site</strong> - доступ к любым action контроллера "site"');?>
+            <?php //Yii::t('db_rbac', '<br>* Формат: <strong>module/controller/action</strong><br><strong>site/article</strong> - доступ к странице "site/article"<br><strong>site</strong> - доступ к любым action контроллера "site"');?>
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('db_rbac', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('rbac', 'Submit'), ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
