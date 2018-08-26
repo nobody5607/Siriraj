@@ -2,7 +2,7 @@
     kartik\file\FileInputAsset::register($this);
 ?>
 <div class="file-loading">
-    <input id="input-700" name="kartik-input-700[]" type="file" multiple>
+    <input id="input-700" name="name[]" type="file" multiple>
 </div>
 
 <br><br><br><br><br><br>
@@ -10,7 +10,12 @@
 <script>
     $("#input-700").fileinput({
         uploadUrl: "/site/test",
-        maxFileCount: 5
+        uploadExtraData: function() {
+            return {
+                userid: 1,
+                username: 'xxx'
+            };
+        } 
     });
     $("#input-700").on("filepredelete", function(jqXHR) {
         var abort = true;
@@ -21,3 +26,4 @@
     });
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
+

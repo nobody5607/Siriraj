@@ -112,11 +112,8 @@ class JFiles {
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
                       $sql  = "convert {$filePath}_mark.{$fileType[1]} -resize 150x150 {$thumbnail}_mark.{$fileType[1]}"; 
                       @exec($template." && ".$sql, $out, $retval);
-                      if ($retval == '0') {
-                            return ["type"=>$type];
-                      }else{
-                            return FALSE;
-                      } 
+                      @unlink("{$filePath}.{$fileType[1]}");
+                      return ["type"=>$type];
                       
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                                            

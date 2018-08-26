@@ -170,10 +170,11 @@ class SiteController extends Controller
         return $this->render('settings', ['model' => $model]);
     }
     public function actionTest(){
-        
-        if(!empty($_FILES)){
+        $files = \yii\web\UploadedFile::getInstancesByName('name');
+        if($files){
            return \janpan\jn\classes\JResponse::getSuccess("success");
         }
+         
         return $this->render('test');
     }
 }

@@ -229,11 +229,15 @@ class FileManagementController extends Controller
         $model = new \common\models\Files();
         $model->file_type       = $file_type;
         
-        if (Yii::$app->request->isPost) {            
+         if (Yii::$app->request->isPost) {    
+            $file_type = Yii::$app->request->post('file_type', '');
+            $content_id = Yii::$app->request->post('content_id', ''); 
+            $model->file_type       = $file_type;
             $folderName                 = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $files                      = UploadedFile::getInstancesByName('name'); 
-            
+            //\appxq\sdii\utils\VarDumper::dump($model->file_type);
             if ($files) {
+                 //return \janpan\jn\classes\JResponse::getSuccess("success");
                     $folder             = "/web/files";
                     $path               = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
                     if($file_type == '2'){
@@ -273,24 +277,41 @@ class FileManagementController extends Controller
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             
-        }
+         }
         
         return $this->renderAjax('upload-file' , [
-            'model'=>$model
+            'model'=>$model,
+            'content_id'=>$content_id,
+            'file_type'=>$file_type
         ]);
+    }
+    public function deleteDir($dirPath) {
+        if (! is_dir($dirPath)) {
+            throw new \InvalidArgumentException("$dirPath must be a directory");
+        }
+        if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+            $dirPath .= '/';
+        }
+        $files = glob($dirPath . '*', GLOB_MARK);
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                self::deleteDir($file);
+            } else {
+                @unlink($file);
+            }
+        }
+        rmdir($dirPath);
     }
     public function actionDeleteFile(){
         try {
             $id= Yii::$app->request->post('id', '');
             $model = \common\models\Files::find()->where(['id'=>$id])->one();
-            //\appxq\sdii\utils\VarDumper::dump($id);
-
             $filename = Yii::getAlias('@storage') . "{$model->dir_path}/{$model->file_name}";
-            //\appxq\sdii\utils\VarDumper::dump($filename);
             $thumbnail = Yii::getAlias('@storage') . "{$model->dir_path}/thumbnail/{$model->file_name}";
-            if ($model->delete()) {
-                @unlink($filename);
-                @unlink($thumbnail);
+            if ($model->delete()) {                
+                //@unlink($filename);
+                //@unlink($thumbnail);
+                $this->deleteDir(Yii::getAlias('@storage') . "{$model->dir_path}");
                 return \janpan\jn\classes\JResponse::getSuccess("Delete Success");
             } else {
                 return \janpan\jn\classes\JResponse::getError("Error");

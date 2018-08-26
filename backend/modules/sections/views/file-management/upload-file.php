@@ -1,114 +1,62 @@
 <?php 
-//    use kartik\widgets\FileInput;
-    use yii\bootstrap\ActiveForm;
-    use kartik\file\FileInput;
-    use yii\helpers\Url;
     use yii\helpers\Html;
-    use appxq\sdii\helpers\SDNoty;
-    use appxq\sdii\helpers\SDHtml;
+    kartik\file\FileInputAsset::register($this);
 ?>
-<?php 
-    $form = ActiveForm::begin([
-        'id'=>$model->formName(),
-        'options'=>['enctype'=>'multipart/form-data'] // important
-    ]);
-?>
-
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title" id="itemModalLabel">Upload Files</h4>
 </div>
-
-<div class="modal-body"> 
-    <?php //$form->field($model, 'name')->textInput()?>
-    <?php 
-    $url_upload = "";
-    $accept = '';
-    if($model->file_type == 2 || $model->file_type == 6){
-        $url_upload = Url::to(['/sections/file-management/upload-file']);
-        $accept = 'image/*';
-    }
-    else if($model->file_type == 3){//วีดีโอ (ตัดต่อ)
-        $accept = 'video/*';
-    }
-    else if($model->file_type == 5){//document
-        //appxq\sdii\utils\VarDumper::dump($model->file_type);
-        $accept = '*';
-    } 
-//    echo FileInput::widget([
-//        'options' => ['multiple' => true,'id'=>'input-705','accept'=>$accept],
-//        'name' => 'name[]',
-//        'pluginOptions' => [
-//            'maxFileCount' => 100,
-//            'uploadAsync'=> false,
-//            'showUpload'=> false, // hide upload button
-//            'showRemove'=> false, // hide remove button
-//        ]    
-//    ]);
-    echo FileInput::widget([
-        'name' => 'name[]',
-        'options' => ['multiple' => true,'id'=>'input-705','accept'=>$accept],
-        'pluginOptions' => [
-            'uploadAsync'=> false,
-            'showUpload'=> false, // hide upload button
-            'showRemove'=> false, // hide remove button
-            'uploadUrl' => $url_upload,
-            'minFileCount'=> 0,
-            'maxFileCount' => 100,
-             
-        ]
-    ]);
- 
+<div class="modal-body">
+    <?php
+        $url_upload = "";
+        $accept = '';
+        if ($model->file_type == 2 || $model->file_type == 6) {            
+            $accept = 'image/*';
+        } else if ($model->file_type == 3) {//วีดีโอ (ตัดต่อ)
+            $accept = 'video/*';
+        } else if ($model->file_type == 5) {//document 
+            $accept = '*';
+        }
     ?>
- 
+    <div class="file-loading">
+        <input id="input-700" name="name[]" type="file" multiple accept="<?= $accept?>">
+    </div>
 </div>
 <div class="modal-footer">
     <div class="col-md-4 col-md-offset-4">
-        <?= Html::submitButton('Submit',['class'=>'btn btn-primary btn-lg btn-block btnSubmit']) ?>
+        <?= Html::submitButton('Close',['class'=>'btn btn-default btn-lg btn-block', 'data-dismiss'=>'modal']) ?>
     </div>
 </div>
-
-<?php ActiveForm::end()?>
-
-<?php  \richardfan\widget\JSRegister::begin([
-    //'key' => 'bootstrap-modal',
-    'position' => \yii\web\View::POS_READY
-]); ?>
-<script>   
-   // $('.btnSubmit').prop('disabled', true);
-    $("#input-705").fileinput({         
+<?php \richardfan\widget\JSRegister::begin();?>
+<script>
+    $('.btnSubmit').prop('disabled', true);
+    $("#input-700").fileinput({        
+        uploadUrl: "/sections/file-management/upload-file",
+        minFileCount:0,
+        maxFileCount:1000,
+        showUpload:false,
+        showRemove:false,
+        uploadExtraData: function() {
+            return {
+                content_id: "<?= Yii::$app->request->get('content_id', '')?>",
+                file_type: "<?= $model->file_type?>"
+            };
+        },
+        //ajaxSettings: { headers: { Authorization: 'Bearer ' + localStorageService.get('authorizationData').token } }    
     }).on("filebatchselected", function(event, files) {
-        //$("#input-705").fileinput("upload");
+        $("#input-700").fileinput("upload");
         $('.btnSubmit').prop('disabled', false);
+    }).on('filebatchuploadcomplete', function (event, data, previewId, index) {
+           $('#input-700').fileinput('reset');
+          // location.reload();
+    }).on('filebatchuploaderror', function (event, data, previewId, index) {
+       console.log(data);
     });
+    $(document).on('hide.bs.modal','#modal-contents', function () {
+      location.reload();
+    //Do stuff here
+   });
     
-// JS script
-$('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
-     $('.btnSubmit').prop('disabled', true);     
-    var $form = $(this);
-    var formData = new FormData($(this)[0]);
-    $.ajax({
-        url:$form.attr('action'),
-        type:'POST',
-        data:formData,
-        processData: false,
-        contentType: false,
-        cache: false,         
-        enctype: 'multipart/form-data',
-        success:function(result){
-           $('.btnSubmit').prop('disabled', false);
-           if(result.status == 'success') {
-                <?= SDNoty::show('result.message', 'result.status')?>           
-                setTimeout(function(){
-                    location.reload();
-                },1000);
-            } else {
-                <?= SDNoty::show('result.message', 'result.status')?>
-            } 
-        }
-    });    
-     
-    return false;
-});
 </script>
-<?php  \richardfan\widget\JSRegister::end(); ?>
+<?php \richardfan\widget\JSRegister::end();?>
+
