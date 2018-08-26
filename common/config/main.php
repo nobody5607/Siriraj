@@ -90,6 +90,7 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
 //            'viewPath' => '@backend/mail',
+            'viewPath' => '@common/mail',
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',

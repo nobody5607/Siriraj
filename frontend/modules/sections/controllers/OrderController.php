@@ -122,12 +122,12 @@ class OrderController extends Controller
     }
 
 
-    public function actionSendMail(){
-        
-    }
+     
     public function actionPrint(){
          
             $id = Yii::$app->request->get('id', '');
+            $type = Yii::$app->request->get('type', '');
+            
             $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
             $model = \common\models\Shipper::find()->where(['user_id'=> Yii::$app->user->id])->one();
             $orderDetail = \common\models\OrderDetail::find()->where(['order_id'=>$id])->all();
@@ -170,14 +170,18 @@ class OrderController extends Controller
             }
             $title = substr($title, 0, strlen($title)-2);
             //\appxq\sdii\utils\VarDumper::dump($x);
-
-            return $this->renderAjax('print',[
-              'template'=>$template,
-              'model'=>$model,
-              'count'=>count($orderDetail),
-              'product'=>$product,
-               'title'=>$title 
-            ]);
+            if($type == "print"){
+               return $this->renderAjax('print',[
+                'template'=>$template,
+                'model'=>$model,
+                'count'=>count($orderDetail),
+                'product'=>$product,
+                 'title'=>$title 
+              ]); 
+            }else{
+                return $this->render('send-mail');
+            }
+            
          
     }
     

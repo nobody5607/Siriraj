@@ -56,11 +56,11 @@
                         'buttons'=>[
                           'send-mail' => function($url,$model,$key){
                               
-                                  return Html::a('<i class="fa fa-envelope"></i>','#', ['data-id'=>$model['id'], 'class'=>'btn btn-success btn-sm btn-delete']);
+                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['data-id'=>$model['id'], 'class'=>'btn btn-success btn-sm', 'target'=>'_blank' ]);
                                
                           },
                           'print' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-print"></i>',$url, ['data-id'=>$model['id'], 'class'=>'btn btn-primary btn-sm', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-print"></i>',$url."&type=print", ['data-id'=>$model['id'], 'class'=>'btn btn-primary btn-sm', 'target'=>'_blank']);   
                           },        
                           'delete' => function($url,$model,$key){
                               if($model['status'] == 1){
