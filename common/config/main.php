@@ -80,13 +80,28 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+//        'mailer' => [
+//            'class' => 'yii\swiftmailer\Mailer',
+//            // send all mails to a file by default. You have to set
+//            // 'useFileTransport' to false and configure a transport
+//            // for the mailer to send real emails.
+//            'useFileTransport' => YII_ENV_DEV,
+//        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => YII_ENV_DEV,
+//            'viewPath' => '@backend/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'chanpandms@gmail.com',
+                'password' => 'chanpandms!@#$%',
+                'port' => '465',//587
+                'encryption' => 'ssl',//tls
+            ],
+
         ],
+
         'cache' => [
             'class' => YII_ENV_DEV ? 'yii\caching\DummyCache' : 'yii\caching\FileCache',
         ],

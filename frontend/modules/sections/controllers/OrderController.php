@@ -149,12 +149,14 @@ class OrderController extends Controller
                 sort($file_arr); 
                // \appxq\sdii\utils\VarDumper::dump($files);
             }
-            $product = "";  
+            $product = "";
+            $title = "";
             if($file_arr){
                 $n=1;
                 $checkType = $this->groupByPartAndType($file_arr);
                 foreach($checkType as $c){
                     $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
+                    $title .= "{$c['file_type_name']} / ";
                     foreach($file_arr as $key=>$value){
                         $meta_text = substr($value['file_name'], -4, 5);
                         if($value['file_type'] == $c['file_type']){
@@ -166,14 +168,15 @@ class OrderController extends Controller
                     $n++;
                 }
             }
-            
+            $title = substr($title, 0, strlen($title)-2);
             //\appxq\sdii\utils\VarDumper::dump($x);
 
             return $this->renderAjax('print',[
               'template'=>$template,
               'model'=>$model,
               'count'=>count($orderDetail),
-              'product'=>$product  
+              'product'=>$product,
+               'title'=>$title 
             ]);
          
     }
