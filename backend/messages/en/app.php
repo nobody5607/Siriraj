@@ -56,4 +56,5 @@ return [
     'Discuss' => 'Discuss',
     'Calendar'=>'Calendar',
     'EzForm is not allowed.' => 'EzForm is not allowed.',
+    'Session Management'=>'Session Management'
 ];

@@ -11,16 +11,7 @@
        // $this->params['breadcrumbs'][]=$this->title;
     }
 ?> 
- 
-<?php if(!isset($_GET['id'])):?>
-<div class="row header-bar">
-    <?= $this->render('_logo');?>
-    <div class="col-md-9 col-sm-6" style="padding: 0;">
-        <?= $this->render('_searchbar');?>  
-    </div>      
-</div>
-<br/>
-<?php endif; ?>    
+   
 <div class="row content-bar">
     <?= $this->render('left-content',[
         'dataProvider'=>$dataProvider, 

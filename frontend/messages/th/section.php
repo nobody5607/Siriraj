@@ -1,4 +1,6 @@
 <?php
 return [
-    'Session Management'=>'จัดการห้องความรู้'
+    'Session Management'=>'จัดการห้องความรู้',
+    'Select Type'=>'เลือกประเภท',
+    'Search'=>'ค้นหา',
 ];

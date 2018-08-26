@@ -6,10 +6,10 @@
     <form class="" role="search" action="" id="formSearch">
         <div class="input-group">
             <input type="hidden" name="search_param" value="all" id="search_param">         
-            <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="ค้นหา">
+            <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="<?= Yii::t('section', 'Search')?>">
             <div class="input-group-btn search-panel">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
-                    <span id="search_concept">เลือกประเภทไฟล์</span> <span class="caret"></span>
+                    <span id="search_concept"><?= Yii::t('section', 'Select Type')?></span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <?php foreach ($type as $t) { ?>    

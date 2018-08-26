@@ -48,15 +48,15 @@ class Contents extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('knowledges', 'ID'),
-            'name' => Yii::t('knowledges', 'Name'),
-            'description' => Yii::t('knowledges', 'Description'),
-            'section_id' => Yii::t('knowledges', ' tbl_section'),
-            'rstat' => Yii::t('knowledges', 'Rstat'),
-            'public' => Yii::t('knowledges', 'ห้อง public'),
-            'content_date' => Yii::t('knowledges', 'Content Date'),
-            'create_date' => Yii::t('knowledges', 'Create Date'),
-            'user_create' => Yii::t('knowledges', 'User Create'),
+            'id' => Yii::t('section', 'ID'),
+            'name' => Yii::t('section', 'Name'),
+            'description' => Yii::t('section', 'Description'),
+            'section_id' => Yii::t('section', ' tbl_section'),
+            'rstat' => Yii::t('section', 'Rstat'),
+            'public' => Yii::t('section', 'Section Public'),
+            'content_date' => Yii::t('section', 'Content Date'),
+            'create_date' => Yii::t('section', 'Create Date'),
+            'user_create' => Yii::t('section', 'User Create'),
         ];
     }
     public function getSections()

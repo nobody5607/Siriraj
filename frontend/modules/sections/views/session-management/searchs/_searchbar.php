@@ -9,7 +9,7 @@
             <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="ค้นหา" value="<?= $txtsearch?>">
             <div class="input-group-btn search-panel">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
-                    <span id="search_concept"><?= isset($fileType) ? $fileType['name'] :  Yii::t('file', 'Select Type') ?></span> <span class="caret"></span>
+                    <span id="search_concept"><?= isset($fileType) ? $fileType['name'] :  Yii::t('section', 'Select Type') ?></span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <?php foreach ($type as $t) { ?>    

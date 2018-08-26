@@ -53,7 +53,9 @@
         "trntv/yii2-aceeditor": "dev-master",
         "yiisoft/yii2-imagine": "*",
         "tpmanc/yii2-imagick": "*",
-        "kartik-v/yii2-widget-datepicker": "@dev"
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "miloschuman/yii2-highcharts-widget": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

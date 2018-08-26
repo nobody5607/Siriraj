@@ -7,6 +7,7 @@ use appxq\sdii\widgets\GridView;
 use appxq\sdii\widgets\ModalForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
+ 
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\viewcountermanagement\models\ViewSearch */
@@ -14,8 +15,74 @@ use appxq\sdii\helpers\SDHtml;
 
 $this->title = Yii::t('content', 'สถิติการเข้าใช้งาน');
 $this->params['breadcrumbs'][] = $this->title;
-
+ 
 ?>
+
+<div class="box box-primary">
+    <div class="box-header"></div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label><?= Yii::t('view','Select Year')?></label>
+                    <?php 
+                        $itemYear = ['2018'=>'2561'];
+                        $itemMonth = ['01'=>"ม.ค.", '02'=>"ก.พ.", '03'=>"มี.ค.", '04'=>"เม.ย.", '05'=>"พ.ค.", '06'=>"มิ.ย.", '07'=>"ก.ค.",'08'=>"ส.ค.",'09'=>"ก.ย.",'10'=>"ต.ค.",'11'=>"พ.ย.",'12'=>"ธ.ค."]
+                    ?>
+                    <?= Html::dropDownList("year", '', $itemYear, ['class'=>'form-control', 'id'=>'year'])?>
+                </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                    <label><?= Yii::t('view','Select Month')?></label>
+                    <?= Html::dropDownList("month", '', $itemMonth, ['class'=>'form-control', 'id'=>'month'])?>
+                </div> 
+            </div>
+            <div class="col-md-4">
+               <div>
+                   <label><?= Yii::t('view','View Chart')?></label>
+                   <button class="btn btn-primary btn-block" id="btnView"><?= Yii::t('view','View')?></button>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box box-primary">
+    <div class="box-body">
+        <?=\dosamigos\chartjs\ChartJs::widget([
+            'type' => 'bar',
+            'options' => [
+                'height' => 200,
+                'width' => 600
+            ],
+            'data' => [
+                'labels' => ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."],
+                 'datasets' => [
+                     [
+
+                         'label'=> 'สถิติการเข้าใช้งาน',
+                         'data' => [1, 59, 90, 81, 56, 55, 40],
+                         'backgroundColor' => [
+                                '#ADC3FF',
+                                '#FF9A9A',
+                            'rgba(190, 124, 145, 0.8)'
+                        ],
+                        'borderColor' =>  [
+                                '#fff',
+                                '#fff',
+                                '#fff'
+                        ],
+                        'borderWidth' => 1,
+                        'hoverBorderColor'=>["#999","#999","#999"],   
+                     ] 
+                 ]
+            ]
+        ]);?>
+    </div>
+</div>
+
+
 <div class="panel panel-default">
 
     <div class="panel-heading">
@@ -26,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php  Pjax::begin(['id'=>'view-grid-pjax']);?>
     <?= GridView::widget([
 	'id' => 'view-grid',
-	'panelBtn' =>  Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['view/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-view', 'disabled'=>true]),
+	'panelBtn' =>  Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['view-count/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-view', 'disabled'=>true]),
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
         'columns' => [

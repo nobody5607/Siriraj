@@ -8,11 +8,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
-            <?php if(isset($_GET['id'])):?>
-                <div class="row">                     
-                    <?= $this->render('_searchbar');?>
-                </div>
-            <?php endif; ?>
+             
         </div>
         <div class="box-body">            
             <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    

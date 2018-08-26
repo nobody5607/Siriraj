@@ -23,7 +23,7 @@ use dominus77\iconpicker\IconPicker;
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b>&times;</b></button>
-        <h4 class="modal-title" id="itemModalLabel"><b>Sections</b></h4>
+        <h4 class="modal-title" id="itemModalLabel"><b><?= Yii::t('section','Session')?></b></h4>
     </div>
 
     <div class="modal-body">

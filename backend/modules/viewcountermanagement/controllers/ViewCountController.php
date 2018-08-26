@@ -53,7 +53,9 @@ class ViewCountController extends Controller
     {
         $searchModel = new ViewSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
+        //graph
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

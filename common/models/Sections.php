@@ -46,14 +46,16 @@ class Sections extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('knowledges', 'ID'),
-            'name' => Yii::t('knowledges', 'Section Name'),
-            'content' => Yii::t('knowledges', 'Content'),
-            'list_content' => Yii::t('knowledges', '0 ไม่มี content,  1 แสดง content ทั้งหมดในตัวมัน,   2 แสดง content ทั้งหมดใต้ตัว'),
-            'parent_id' => Yii::t('knowledges', 'Parent'),
-            'forder' => Yii::t('knowledges', 'Forder'),
-            'public' => Yii::t('knowledges', 'ห้อง Public'),
-            'rstat' => Yii::t('knowledges', 'Rstat'),
+            'id' => Yii::t('section', 'ID'),
+            'name' => Yii::t('section', 'Section Name'),
+            'content' => Yii::t('section', 'Content'),
+            'list_content' => Yii::t('section', '0 ไม่มี content,  1 แสดง content ทั้งหมดในตัวมัน,   2 แสดง content ทั้งหมดใต้ตัว'),
+            'parent_id' => Yii::t('section', 'Parent'),
+            'forder' => Yii::t('section', 'Forder'),
+            'public' => Yii::t('section', 'Section Public'),
+            'rstat' => Yii::t('section', 'Rstat'),
+            'icon'=>Yii::t('section', 'Icon'),
+            'Content'=>'Content',
         ];
     }
 }

@@ -35,7 +35,7 @@ use yii\widgets\ListView;
                     ]);
                 },
                 //'emptyText'=>'',
-                'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> ย้อนกลับ', Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #dddddd;padding:5px;position: absolute;    margin-top: 5px;']),
+                'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> '. Yii ::t('section','Back'), Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #6d6b6b;padding:5px;position: absolute;    margin-top: 5px;']),
             ])
             ?>  
     </div>

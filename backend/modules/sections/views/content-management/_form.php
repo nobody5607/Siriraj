@@ -11,7 +11,7 @@ use backend\modules\sections\classes\JSection;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contents */
 /* @var $form yii\bootstrap\ActiveForm */
-$this->title = Yii::t('content', 'Content');
+$this->title = Yii::t('section', 'Content');
 
 ?>
 
@@ -33,7 +33,7 @@ $this->title = Yii::t('content', 'Content');
                 <div class="form-group">
 
                     <?php
-                    echo "<label>Section</label>";
+                    echo "<label>".Yii::t('section','Section Name')."</label>";
                     $model->section_id = (isset($sec_id)) ? $sec_id : '';
                     $section_arr = JSection::getSectionById($model->section_id);
                     $section = isset($section_arr) ? $section_arr['name'] : '';
