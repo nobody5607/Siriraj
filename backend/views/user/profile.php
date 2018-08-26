@@ -6,7 +6,7 @@ use common\models\User;
 use common\models\UserProfile;
 use bs\Flatpickr\FlatpickrWidget;
 use vova07\fileapi\Widget as FileApi; 
-
+janpan\jn\assets\croppie\JCroppieAssets::register($this);
 $this->title = Yii::t('backend', 'User Profile');
 
 $this->params['breadcrumbs'][] = $this->title;
@@ -52,16 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ])
                     ?>
 
-                    <?=
-                    $form->field($profile, 'avatar_path')->widget(FileApi::class, [
-                        'settings' => [
-                            'url' => ['/site/fileapi-upload'],
-                        ],
-                        'crop' => true,
-                        'cropResizeWidth' => 100,
-                        'cropResizeHeight' => 100,
-                    ])
-                    ?>
+                    <?= $this->render('_image-upload', ['model' => $profile, 'form' => $form]) ?>
 
                     <?=
                     $form->field($profile, 'gender')->dropDownlist(
