@@ -95,8 +95,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'chanpandms@gmail.com',
-                'password' => 'chanpandms!@#$%',
+                'username' => 'ncrcthailand@gmail.com',
+                'password' => 'ncrc2018',
                 'port' => '465',//587
                 'encryption' => 'ssl',//tls
             ],
