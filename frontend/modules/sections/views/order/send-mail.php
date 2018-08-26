@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('order', "Send Mail");
+$this->title = Yii::t('order', "Send Email");
 \Yii::$app->name = "Siriraj";
 $modelForm = ['product' => $product, 'count' => $count, 'detail' => $model['note'], 'date' => appxq\sdii\utils\SDdate::mysql2phpDate($model->date), 'sitecode' => $model->sitecode, 'name' => "{$model['firstname']} {$model['lastname']}", 'title' => $title, 'address' => $model->companey_name, 'tel' => $model->tel];
 $data = \backend\modules\sections\classes\JFiles::getTemplateMark($modelForm, $template->option_value);
@@ -20,7 +20,7 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
                     }
                 ?>
                 <div class="form-group">
-                    <label>Email : </label>
+                    <label><?= Yii::t('order', 'Email')?> : </label>
                     <input type="email" name="email" id="email" class="form-control" value="<?= $email_default['option_value'] ?>"/>
                 </div>
                 <div>

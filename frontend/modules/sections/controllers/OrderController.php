@@ -27,12 +27,12 @@ class OrderController extends Controller
         $breadcrumbs=[];
         $breadcrumbs_arr = [
             [
-                'label' =>'Home', 
+                'label' => Yii::t('cart','Home'), 
                 'url' =>'/sections/session-management',
                 'icon'=>'fa-bank'
             ],
             [
-                    'label' =>'My Order'
+                    'label' =>Yii::t('order','My Order'),
             ]
         ];
         foreach($breadcrumbs_arr as $key=>$v){

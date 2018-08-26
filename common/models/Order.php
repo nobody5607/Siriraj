@@ -43,7 +43,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('order', 'ID'),
             'user_id' => Yii::t('order', 'User ID'),
-            'create_date' => Yii::t('order', 'Create Date'),
+            'create_date' => Yii::t('order', 'Date'),
             'status' => Yii::t('order', '1 รอจัดส่ง  2 จัดส่งแล้ว'),
         ];
     }

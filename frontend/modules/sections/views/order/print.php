@@ -1,5 +1,5 @@
 <?php
-   $this->title="Print";
+   $this->title= Yii::t('order','Print');
    $modelForm=['product'=>$product,'count'=>$count,'detail'=>$model['note'],'date'=>$model->date, 'sitecode'=>$model->sitecode, 'name'=>"{$model['firstname']} {$model['lastname']}", 'title'=>$title, 'address'=>$model->companey_name, 'tel'=>$model->tel]; 
    $data = \backend\modules\sections\classes\JFiles::getTemplateMark($modelForm, $template->option_value);
 
