@@ -24,7 +24,7 @@
 </div>
 <div class="modal-footer">
     <div class="col-md-4 col-md-offset-4">
-        <?= Html::submitButton('Close',['class'=>'btn btn-default btn-lg btn-block', 'data-dismiss'=>'modal']) ?>
+        <?= Html::submitButton('Close',['class'=>'btn btn-default btn-lg btn-block btnClose', 'data-dismiss'=>'modal']) ?>
     </div>
 </div>
 <?php \richardfan\widget\JSRegister::begin();?>
@@ -45,12 +45,15 @@
         //ajaxSettings: { headers: { Authorization: 'Bearer ' + localStorageService.get('authorizationData').token } }    
     }).on("filebatchselected", function(event, files) {
         $("#input-700").fileinput("upload");
-        $('.btnSubmit').prop('disabled', false);
+        $('.btnClose').prop('disabled', true);
     }).on('filebatchuploadcomplete', function (event, data, previewId, index) {
-           $('#input-700').fileinput('reset');
-          // location.reload();
+          let result = {message:'Upload success', status:'success'};
+          <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+          $('.btnClose').prop('disabled', false);
     }).on('filebatchuploaderror', function (event, data, previewId, index) {
-       console.log(data);
+          let result = {message:'Upload error', status:'error'};
+          <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+         $('.btnClose').prop('disabled', false);
     });
     $(document).on('hide.bs.modal','#modal-contents', function () {
       location.reload();
