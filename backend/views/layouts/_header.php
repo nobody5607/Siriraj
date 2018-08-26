@@ -55,8 +55,8 @@ Yii::$app->name = 'SIRIRAJ';
                 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
-                            <img src="<?= Yii::getAlias('@storageUrl/images/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="user-image" alt>
+                        <?php if (Yii::$app->user->identity->userProfile->image) : ?>
+                            <img src="<?= Yii::$app->user->identity->userProfile->image ?>" class="user-image" alt>
                         <?php else: ?>
                             <img src="<?= Yii::$app->homeUrl . '/static/img/default.png' ?>" class="user-image" alt>
                         <?php endif ?>
@@ -65,8 +65,8 @@ Yii::$app->name = 'SIRIRAJ';
                     
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <?php if (Yii::$app->user->identity->userProfile->avatar_path) : ?>
-                                <img src="<?= Yii::getAlias('@storageUrl/images/avatars/' . Yii::$app->user->identity->userProfile->avatar_path) ?>" class="img-circle" alt>
+                            <?php if (Yii::$app->user->identity->userProfile->image) : ?>
+                                <img src="<?=  Yii::$app->user->identity->userProfile->image ?>" class="img-circle" alt>
                             <?php else: ?>
                                 <img src="<?= Yii::$app->homeUrl . '/static/img/default.png' ?>" class="img-circle" alt>
                             <?php endif ?>
