@@ -52,13 +52,23 @@ class ViewCountController extends Controller
     public function actionIndex()
     {
         $searchModel = new ViewSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
-        //graph
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);        
         
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    public function actionPreview()
+    {
+        $searchModel = new ViewSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $print = Yii::$app->request->get('print', '');
+        return $this->renderAjax('print', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'print'=>$print
         ]);
     }
 
