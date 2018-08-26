@@ -55,12 +55,14 @@ $modal = "modal-contents";
             </div> 
         </div>
         <?php \richardfan\widget\JSRegister::begin(); ?>
-        <script>            
+        <script>    
+            
             get_form=function(url , params){
                 $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
                 $('#<?= $modal?>').modal('show');
                 $.get(url, params, function(res){
                     $('#<?= $modal?> .modal-content').html(res);
+                    
                 });
             } 
             load_data = function () {
@@ -72,6 +74,7 @@ $modal = "modal-contents";
                 $.get(url, params, function (data) {
                     $('#' + select_id).html(data);
                 });
+                
                 return false;
 
             }
@@ -97,19 +100,29 @@ $modal = "modal-contents";
 <?php endforeach; ?> 
 
         
-
+<?php 
+$modalf = 'file-modal';
+echo yii\bootstrap\Modal::widget([
+    'id'=>$modalf,
+    'size' => 'modal-lg',
+    'clientOptions' => [
+        'backdrop' => false, 'keyboard' => false
+    ],
+    'options'=>['tabindex' => false]
+]);
+?>
 <?php richardfan\widget\JSRegister::begin();?>
  <script>
      $('.btnCreateFile').on('click', function(){
                 let id = $(this).attr('data-id');
                 let content_id = '<?= Yii::$app->request->get('content_id', '') ?>';
-                $('#<?= $modal ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-                $('#<?= $modal ?>').modal('show');
+                $('#<?= $modalf ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+                $('#<?= $modalf ?>').modal('show');
                 let url = '/sections/file-management/upload-file';
                 let file_type = $(this).attr('file_type');
                 
                 $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
-                    $('#<?= $modal ?> .modal-content').html(res);
+                    $('#<?= $modalf ?> .modal-content').html(res);                    
                 });
                return false;
     }); 

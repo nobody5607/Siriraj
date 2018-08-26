@@ -14,7 +14,10 @@
             $accept = 'image/*';
         } else if ($model->file_type == 3) {//วีดีโอ (ตัดต่อ)
             $accept = 'video/*';
-        } else if ($model->file_type == 5) {//document 
+        }else if ($model->file_type == 4) {//วีดีโอ (ตัดต่อ)
+            $accept = 'audio/*';
+        }
+        else if ($model->file_type == 5) {//document 
             $accept = '*';
         }
     ?>
@@ -55,10 +58,12 @@
           <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
          $('.btnClose').prop('disabled', false);
     });
-    $(document).on('hide.bs.modal','#modal-contents', function () {
+    $(document).on('hide.bs.modal','#file-modal', function () {
       location.reload();
     //Do stuff here
    });
+   
+   
     
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
