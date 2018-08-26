@@ -127,6 +127,7 @@ class OrderController extends Controller
          
             $id = Yii::$app->request->get('id', '');
             $type = Yii::$app->request->get('type', '');
+            $email = Yii::$app->request->get('email', '');
             
             $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
             $model = \common\models\Shipper::find()->where(['user_id'=> Yii::$app->user->id])->one();
@@ -178,8 +179,15 @@ class OrderController extends Controller
                 'product'=>$product,
                  'title'=>$title 
               ]); 
-            }else{
-                return $this->render('send-mail');
+            }else{                
+                return $this->render('send-mail',[
+                    'template'=>$template,
+                    'model'=>$model,
+                    'count'=>count($orderDetail),
+                    'product'=>$product,
+                    'title'=>$title,
+                    'email'=>$email
+                ]);
             }
             
          
