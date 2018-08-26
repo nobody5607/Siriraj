@@ -24,24 +24,28 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label><?= Yii::t('view','Select Year')?></label>
+                    <label><?= Yii::t('section','Select Year')?></label>
                     <?php 
-                        $itemYear = ['2018'=>'2561'];
-                        $itemMonth = ['01'=>"ม.ค.", '02'=>"ก.พ.", '03'=>"มี.ค.", '04'=>"เม.ย.", '05'=>"พ.ค.", '06'=>"มิ.ย.", '07'=>"ก.ค.",'08'=>"ส.ค.",'09'=>"ก.ย.",'10'=>"ต.ค.",'11'=>"พ.ย.",'12'=>"ธ.ค."]
+                        $itemYear = [];
+                        $dYear = date('Y');
+                        for($i=2012; $i <= $dYear+1; $i++){
+                            $itemYear[$i] = $i+543;
+                        }
+                        //\appxq\sdii\utils\VarDumper::dump($dYear);
+                        $itemMonth = ['0'=>'all','1'=>"ม.ค.", '2'=>"ก.พ.", '3'=>"มี.ค.", '4'=>"เม.ย.", '5'=>"พ.ค.", '6'=>"มิ.ย.", '7'=>"ก.ค.",'8'=>"ส.ค.",'9'=>"ก.ย.",'10'=>"ต.ค.",'11'=>"พ.ย.",'12'=>"ธ.ค."]
                     ?>
-                    <?= Html::dropDownList("year", '', $itemYear, ['class'=>'form-control', 'id'=>'year'])?>
+                    <?= Html::dropDownList("year", date('Y'), $itemYear, ['class'=>'form-control', 'id'=>'year'])?>
                 </div>
             </div>
             <div class="col-md-4">
                <div class="form-group">
-                    <label><?= Yii::t('view','Select Month')?></label>
+                    <label><?= Yii::t('section','Select Month')?></label>
                     <?= Html::dropDownList("month", '', $itemMonth, ['class'=>'form-control', 'id'=>'month'])?>
                 </div> 
             </div>
             <div class="col-md-4">
-               <div>
-                   <label><?= Yii::t('view','View Chart')?></label>
-                   <button class="btn btn-primary btn-block" id="btnView"><?= Yii::t('view','Preview')?></button>
+               <div>                   
+                   <button class="btn btn-primary btn-block" id="btnView" style="margin-top:25px;"><?= Yii::t('section','Preview')?></button>
                 </div> 
             </div>
         </div>

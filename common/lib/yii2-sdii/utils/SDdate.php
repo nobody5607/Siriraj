@@ -290,6 +290,21 @@ class SDdate {
 		return $limit>0?true:false;
 
 	}
+        
+        public static $itemMonth = ['1'=>"ม.ค.", '2'=>"ก.พ.", '3'=>"มี.ค.", '4'=>"เม.ย.", '5'=>"พ.ค.", '6'=>"มิ.ย.", '7'=>"ก.ค.",'8'=>"ส.ค.",'9'=>"ก.ย.",'10'=>"ต.ค.",'11'=>"พ.ย.",'12'=>"ธ.ค."];
+        public static function getMonthByKey($key){
+           return SDdate::$thaimonth[$key];
+        }
+        public static function getMonthThAll(){
+           return SDdate::$thaimonth;
+        }
+        
+        public static function getMonthFullByKey($key){
+           return SDdate::$thaimonthFull[$key];
+        }
+        public static function getMonthFull(){
+           return SDdate::$thaimonthFull;
+        }
 }
 
 ?>

@@ -12,4 +12,12 @@ return [
     'Description'=>'รายละเอียด',
     'Content'=>'เนื้อหา',
     'Session'=>'ห้องความรู้',
+    'Select Year'=>'เลือกปี',
+    'Select Month'=>'เลือกเดือน',
+    'Preview'=>'แสดง',
+    'Website Traffic Statistics'=>'สถิติการเข้าชมเว็บไซต์',
+    'Summarize'=>'สรุป',
+    'Number of visitors/Person'=>'จำนวนผู้เข้าชม/คน',
+    'Month'=>'เดือน',
+    'All'=>'ทั้งหมด',
 ];

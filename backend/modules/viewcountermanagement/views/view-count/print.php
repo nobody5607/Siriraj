@@ -7,14 +7,24 @@ use appxq\sdii\widgets\GridView;
 use appxq\sdii\widgets\ModalForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
+
+//\appxq\sdii\utils\VarDumper::dump($labels);
 ?>
 <link rel="stylesheet" href="<?= Url::to('@web/css/bootstrap.min.css') ?>"/>
 
 <div class="container">
     <?php if($print == 0):?>
-    <button class="btn btn-success"><?= Yii::t('view','Print')?></button>
-    <?php endif;?>
-    <h3 class="text-center">สถิติการเข้าชมเว็บไซต์</h3>
+    <button class="btn btn-success btnPrint pull-right"><i class="glyphicon glyphicon-print"></i> <?= Yii::t('view','Print')?></button>
+    <?php else:?>
+        <?php                    richardfan\widget\JSRegister::begin();?>
+        <script>
+             setTimeout(function(){
+                 window.print();
+             },1000);
+        </script>
+        <?php                    richardfan\widget\JSRegister::end();?>    
+    <?php endif; ?>    
+        <h3 class="text-center"><?= Yii::t('section','Website Traffic Statistics')?></h3>
     <?=
     \dosamigos\chartjs\ChartJs::widget([
         'type' => 'bar',
@@ -24,15 +34,24 @@ use appxq\sdii\helpers\SDHtml;
             'id' => 'xxx'
         ],
         'data' => [
-            'labels' => ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."],
+            'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'สถิติการเข้าใช้งาน',
-                    'data' => [1, 59, 90, 81, 56, 55, 40],
+                    'label' => Yii::t('section','Website Traffic Statistics'),
+                    'data' => $datas,
                     'backgroundColor' => [
                         '#ADC3FF',
                         '#FF9A9A',
-                        'rgba(190, 124, 145, 0.8)'
+                        'rgba(190, 124, 145, 0.8)',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
+                        '#FF9A9A',
                     ],
                     'borderColor' => [
                         '#fff',
@@ -46,39 +65,19 @@ use appxq\sdii\helpers\SDHtml;
         ]
     ]);
     ?>
-    <?=
-    GridView::widget([
-        'id' => 'view-grid',
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            [
-                'class' => 'yii\grid\SerialColumn',
-                'headerOptions' => ['style' => 'text-align: center;'],
-                'contentOptions' => ['style' => 'width:60px;text-align: center;'],
-            ],
-            //'id',
-            'ip',
-            'view_count',
-            [
-                'attribute' => 'user_id',
-                'label' => 'Name',
-                'value' => function($model) {
-                    if (!$model->user_id) {
-                        return 'User';
-                    }
-                    $name = $model->user->userProfile->firstname . " " . $model->user->userProfile->lastname;
-                    return $name;
-                }
-            ],
-            [
-                'format' => 'raw',
-                'attribute' => 'create_date',
-                'label' => 'Date',
-                'value' => function($model) {
-                    return appxq\sdii\utils\SDdate::mysql2phpDate($model->date);
-                }
-            ]
-        ],
-    ]);
-    ?>
+    <?= $output?>
 </div>
+
+
+<?php                    richardfan\widget\JSRegister::begin();?>
+<script>
+    $('.btnPrint').on('click',function(){
+       let year = $('#year').val();
+       let month = $('#month').val();
+       let params = {year:year, month:month, print:0};
+       let url = '/viewcountermanagement/view-count/preview?year='+year+'&month='+month+'&print=1';
+       window.open(url, "target=_blank")
+       return false;
+    });
+</script>
+<?php                    richardfan\widget\JSRegister::end();?>
