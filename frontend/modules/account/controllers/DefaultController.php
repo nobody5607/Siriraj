@@ -49,12 +49,28 @@ class DefaultController extends Controller
      */
     public function actionSettings()
     {
+        
+        
         $model = Yii::$app->user->identity->userProfile;
-       
+        $breadcrumbs=[];
+        $breadcrumbs_arr = [
+            [
+                'label' =>\Yii::t('cart', 'Home'), 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+            ],
+            [
+                'label' => \Yii::t('user', 'Settings')
+            ]
+        ];
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        } 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => Yii::$app->user->id]);
+            Yii::$app->session->setFlash('success', Yii::t('user', 'Update success'));
+            return $this->refresh();
         } else {
-            return $this->render('settings', ['model' => $model]);
+            return $this->render('settings', ['model' => $model,'breadcrumb'=>$breadcrumbs]);
         }
     }
 
@@ -65,13 +81,26 @@ class DefaultController extends Controller
     {
         $model = new PasswordForm();
         $model->setUser(Yii::$app->user->identity);
-
+        $breadcrumbs=[];
+        $breadcrumbs_arr = [
+            [
+                'label' =>\Yii::t('cart', 'Home'), 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+            ],
+            [
+                'label' => \Yii::t('user', 'Change password')
+            ]
+        ];
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('frontend', 'Your password has been successfully changed.'));
 
             return $this->refresh();
         } else {
-            return $this->render('password', ['model' => $model]);
+            return $this->render('password', ['model' => $model, 'breadcrumb'=>$breadcrumbs]);
         }
     }
 
@@ -103,9 +132,24 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
+        $breadcrumbs=[];
+        $breadcrumbs_arr = [
+            [
+                'label' =>\Yii::t('cart', 'Home'), 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+            ],
+            [
+                'label' => \Yii::t('user', 'Change password')
+            ]
+        ];
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'profile' => UserProfile::findOne($id),
+            'breadcrumb'=>$breadcrumbs
         ]);
     }
 

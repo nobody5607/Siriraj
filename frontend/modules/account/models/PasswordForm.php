@@ -36,8 +36,8 @@ class PasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'password' => Yii::t('frontend', 'Password'),
-            'password_confirm' => Yii::t('frontend', 'Confirm password'),
+            'password' => Yii::t('user', 'Password'),
+            'password_confirm' => Yii::t('user', 'Confirm password'),
         ];
     }
 

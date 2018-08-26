@@ -76,13 +76,16 @@ class UserProfile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'firstname' => Yii::t('common', 'Firstname'),
-            'lastname' => Yii::t('common', 'Lastname'),
-            'birthday' => Yii::t('common', 'Birthday'),
-            'avatar_path' => Yii::t('common', 'Avatar'),
-            'gender' => Yii::t('common', 'Gender'),
-            'website' => Yii::t('common', 'Website'),
-            'other' => Yii::t('common', 'Other'),
+            'firstname' => Yii::t('user', 'Firstname'),
+            'lastname' => Yii::t('user', 'Lastname'),
+            'birthday' => Yii::t('user', 'Birthday'),
+            'avatar_path' => Yii::t('user', 'Avatar'),
+            'gender' => Yii::t('user', 'Gender'),
+            'website' => Yii::t('user', 'Website'),
+            'other' => Yii::t('user', 'Other'),
+            'Save Icon'=>Yii::t('user', 'Save Icon'),
+          
+             
         ];
     }
 }

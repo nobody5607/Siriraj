@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+janpan\jn\assets\croppie\JCroppieAssets::register($this);
 $image = '';
 
 ?>
@@ -9,20 +10,20 @@ $image = '';
  
     <div  class="col-md-2">
             <div class="upload-msg">
-                <?= Html::img($model->thumn_image, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
+                <?= Html::img($model->image, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
             </div>
         </div>
         <div class="col-md-4">
             <div class="upload-edit">
                 <div id="upload-edit"></div>
                 <div id="upload-action" class="text-center">
-                    <a id="save-upload" class="btn btn-success"><?= Yii::t('user', 'Save Icon') ?></a>
+                    <a id="save-upload" class="btn btn-success"><?= Yii::t('ezform', 'Save Icon') ?></a>
                 </div> 
-               <?= $form->field($model, 'thumn_image')->hiddenInput(['id'=>'change_icon'])?> 
+               <?= $form->field($model, 'image')->hiddenInput(['id'=>'change_icon']) ?> 
                 
                 <div id="div-upload-file">
 
-                    <?= Html::fileInput('upload_input', null, ['id' => 'upload-input', 'class' => '']) ?>                      
+                    <?= Html::fileInput('image', null, ['id' => 'upload-input', 'class' => '']) ?>                      
                 </div>
             </div>
         </div>
@@ -50,9 +51,9 @@ $image = '';
     .upload-msg{
     margin: 10px auto;
     overflow: hidden;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+    
+    width: 150px;
+    height: 150px;
     /* background: #f1efef57; */
     /* padding: 8px; */
     /* border-radius: 5px; */
@@ -89,13 +90,13 @@ $image = '';
     uploadCrops = $('#upload-edit').croppie({
         enableExif: true,
         viewport: {
-            width: 80,
-            height: 80,
+            width: 100,
+            height: 100,
             type: 'square' //square, circle
         },
         boundary: {
-            width: 100,
-            height: 100
+            width: 150,
+            height: 150
         }
     });
 

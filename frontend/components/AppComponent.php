@@ -25,7 +25,7 @@ class AppComponent extends Component{
             if(isset($userProfile->avatar_path) && !empty($userProfile->avatar_path)){
                 $avatar_url = Yii::getAlias('@storageUrl/avatars').'/'.$userProfile->avatar_path;
             }
-            $avatar_img = '<img class="img-circle" width="18" src="'.$avatar_url.'"/>'; 
+            $avatar_img = '<img class="img-circle" width="18" src="'.Yii::$app->user->identity->userProfile->image.'"/>'; 
             Yii::$app->params['navbarR'][] = ['label' => $avatar_img.' '. (isset($userProfile['firstname'])?$userProfile['firstname'].' '.$userProfile['lastname']:'Unknown'), 'encode' => FALSE, 'items' => [
                     ['label' => '<i class="fa fa-user"></i> '.Yii::t('appmenu', 'My Profile'), 'encode' => FALSE, 'url' => ['/account/default/settings']],
                     ['label' => '<i class="fa fa-check-square-o"></i> '.Yii::t('appmenu', 'My Orders'), 'encode' => FALSE, 'url' => ['/sections/order/my-order']],

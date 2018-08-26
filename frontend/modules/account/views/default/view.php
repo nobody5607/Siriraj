@@ -8,8 +8,11 @@ use common\models\UserProfile;
 /* @var $model common\models\User */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Users'), 'url' => ['users']];
-$this->params['breadcrumbs'][] = $this->title;
+if($breadcrumb){
+        echo janpan\jn\widgets\BreadcrumbsWidget::widget([
+            'breadcrumb'=>$breadcrumb
+        ]);  
+    }
 ?>
 
 <div class="panel panel-default">
@@ -73,3 +76,18 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
 </div>
+<?php \appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    @media only screen and (min-width: 768px){
+        .cd-breadcrumb, .cd-multi-steps {     
+            max-width: 100%;    
+            margin-left: 0; 
+        }
+    }
+    .btn-warning{
+        border: solid 1px #da7c0c;
+        background: #f78d1d;
+        background: -webkit-gradient(linear,left top,left bottom,from(#faa51a),to(#f47a20));
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>
