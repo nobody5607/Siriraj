@@ -135,7 +135,7 @@
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;'];
+                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-4 col-xs-6','style'=>'margin-bottom:80px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {
