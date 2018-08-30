@@ -100,6 +100,9 @@ class SignInController extends Controller
             if ($model->load(Yii::$app->request->post())) {
 //                \appxq\sdii\utils\VarDumper::dump($model);
                 if ($user = $model->signup()) {
+                    if (Yii::$app->getUser()->login($user)) {
+                            return $this->goHome();
+                    }
                     if (Yii::$app->keyStorage->get('frontend.email-confirm')) {
                         // подтверждение email
                         if ($model->sendEmail()) {
