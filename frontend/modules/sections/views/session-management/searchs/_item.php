@@ -61,5 +61,41 @@
             </div>
         </a>    
         <?php endif; ?>
+        
+        <?php 
+            if($model['file_type'] == '4'){
+                echo "
+                  <a href='{$link_url}' target='_blank'>
+                        <div class='media'>
+                            <div class='media-left'>
+                                <audio style='width:95px' class='media-object' controls>
+                                <source src='{$model['file_path']}/{$model['file_name']}' type='audio/mpeg'>                 
+                                    Your browser does not support the video tag.
+                                </source>    
+                              </audio>
+                            </div>
+                            <div class='media-body'>
+                              <h4 class='media-heading'>{$model['file_name_org']}</h4>
+                              {$meta_file}
+                            </div>  
+                        </div>
+                    </a>
+                ";
+            }else{
+                echo "
+                  <a href='{$link_url}' target='_blank'>
+                        <div class='media'>
+                            <div class='media-left'>
+                                <i class='fa fa-file-o' style='font-size:20pt;'></i>
+                            </div>
+                            <div class='media-body'>
+                              <h4 class='media-heading'>{$model['file_name_org']}</h4>
+                              {$meta_file}
+                            </div>  
+                        </div>
+                    </a>
+                ";
+            }
+        ?>
     </div> 
 </div>
