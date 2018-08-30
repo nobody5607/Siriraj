@@ -98,6 +98,7 @@ class SignInController extends Controller
         if (Yii::$app->keyStorage->get('frontend.registration')) {
             $model = new SignupForm();
             if ($model->load(Yii::$app->request->post())) {
+//                \appxq\sdii\utils\VarDumper::dump($model);
                 if ($user = $model->signup()) {
                     if (Yii::$app->keyStorage->get('frontend.email-confirm')) {
                         // подтверждение email

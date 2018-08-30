@@ -23,4 +23,5 @@ return [
     'Gender'=>'เพศ',
     'Website'=>'เว็บไซต์',
     'Other'=>'อื่นๆ',
+    'Sitecode'=>'หน่วยงาน',
 ];

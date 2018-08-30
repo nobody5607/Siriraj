@@ -18,6 +18,7 @@ $this->title = Yii::t('user', 'Sign up');
             <div class="panel panel-primary">
     <div class="panel-heading"><?= Html::encode($this->title) ?></div>
     <div class="panel-body">
+        <div class="col-md-12">
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
@@ -25,11 +26,23 @@ $this->title = Yii::t('user', 'Sign up');
             <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'password_confirm')->passwordInput(['maxlength' => true]) ?>
-
+            
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'firstname')->textInput() ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'lastname')->textInput() ?>
+        </div>
+        <div class="col-md-12">
+            <?= $form->field($model, 'sitecode')->textInput() ?>
             <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
                     'captchaAction' => '/site/captcha',
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
             ]) ?>
+        </div>    
+
+            
     </div>
     <div class="panel-footer">
         <div class="form-group">

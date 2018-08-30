@@ -220,7 +220,12 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $profile = new UserProfile();
         $profile->load($profileData, '');
+        $profile->firstname = $profileData['firstname'];
+        $profile->lastname = $profileData['lastname'];
+        $profile->sitecode = $profileData['sitecode'];
         $this->link('userProfile', $profile);
+         
+        //\appxq\sdii\utils\VarDumper::dump($profileData);
 
         // Default role
         $auth = Yii::$app->authManager;

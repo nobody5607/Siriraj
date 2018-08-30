@@ -24,6 +24,7 @@ return [
     'Birthday'=>'Birthday',
     'Gender'=>'Gender',
     'Website'=>'Website',
-    'Other'=>'Other'
+    'Other'=>'Other',
+    'Sitecode'=>'Sitecode',
      
 ];

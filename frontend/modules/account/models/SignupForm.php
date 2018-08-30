@@ -16,6 +16,9 @@ class SignupForm extends Model
     public $password;
     public $password_confirm;
     public $verifyCode;
+    public $firstname;
+    public $lastname;
+    public $sitecode;
 
     /**
      * @inheritdoc
@@ -41,6 +44,11 @@ class SignupForm extends Model
             ['password_confirm', 'required'],
             ['password_confirm', 'string', 'min' => 6, 'max' => 32],
             ['password_confirm', 'compare', 'compareAttribute' => 'password'],
+            
+            
+            [['firstname','lastname'], 'required'],
+            [['firstname','lastname','sitecode'], 'string', 'max' => 100],
+            
 
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
@@ -58,6 +66,10 @@ class SignupForm extends Model
             'password' => Yii::t('user', 'Password'),
             'password_confirm' => Yii::t('user', 'Confirm password'),
             'verifyCode' => Yii::t('user', 'Verification code'),
+            'sitecode'=>Yii::t('user', 'Sitecode'),
+            'firstname'=>Yii::t('user', 'Firstname'),
+            'lastname'=>Yii::t('user', 'Lastname'),
+            
         ];
     }
 
@@ -76,7 +88,8 @@ class SignupForm extends Model
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
-            $user->afterSignup();
+            $data_obj = ['firstname'=> $this->firstname, 'lastname'=> $this->lastname, 'sitecode'=>$this->sitecode];
+            $user->afterSignup($data_obj);
 
             return $user;
         }
