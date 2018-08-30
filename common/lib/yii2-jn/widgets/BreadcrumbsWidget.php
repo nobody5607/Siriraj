@@ -15,14 +15,16 @@ class BreadcrumbsWidget extends \yii\base\Widget{
             foreach($this->breadcrumb as $k=>$v){
                 $icon = isset($v['icon']) ? $v['icon'] : '';
                 $label = isset($v['label']) ? $v['label'] : '';
-                $url = isset($v['url']) ? $v['url'][0] : '';
+                $url = isset($v['url']) ? $v['url'] : '';
                 $id = isset($v['url']['id']) ? $v['url']['id'] : '';
                 $html .= Html::beginTag("li");
                     if(!empty($v['url'])){
                         if(!empty($v['url']['id'])){                            
-                            $html .= Html::a("<i class='fa {$icon}'></i> {$label}", ["{$url}?id={$id}"], ['']);
+                            $html .= Html::a("<i class='fa {$icon}'></i> {$label}", ["{$url[0]}?id={$id}"], ['']);
                         }else{
+                            $url = isset($url) ? $url[0] : '';
                             $html .= Html::a("<i class='fa {$icon}'></i> {$label}", ["{$url}"], ['']);
+                            //\appxq\sdii\utils\VarDumper::dump($url);
                         }                        
                     }else{
                         $html .= Html::a("<i class='fa {$icon}'></i> {$label}", "#", ['']);
