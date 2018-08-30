@@ -76,6 +76,14 @@ class BreadcrumbsWidget extends \yii\base\Widget{
             .cd-breadcrumb li::after, .cd-multi-steps li::after{
                 margin: 0 .1em;
             }
+           .cd-breadcrumb, .cd-multi-steps {
+                width: 100%;
+//                max-width: 768px;
+                padding: 5px;
+                margin: 1em auto;
+                background-color: #ffffff;
+                border-radius: .25em;
+            } 
         } 
         ";
         $view->registerCss($css);
