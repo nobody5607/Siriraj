@@ -108,6 +108,9 @@
                                     Your browser does not support the audio tag.
                                 </audio>
                             ";
+                        }else{
+                            echo "<div class='text-center'><i class='fa fa-file-o' style='font-size:50pt;'></i></div>";
+                            echo "<div class='text-center'>{$dataDefault['file_name_org']}</div>";
                         }
                     ?>
  

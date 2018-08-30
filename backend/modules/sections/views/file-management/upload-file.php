@@ -27,7 +27,7 @@
 </div>
 <div class="modal-footer">
     <div class="col-md-4 col-md-offset-4">
-        <?= Html::submitButton('Close',['class'=>'btn btn-default btn-lg btn-block btnClose', 'data-dismiss'=>'modal']) ?>
+        <?= Html::submitButton('Close',['class'=>'btn btn-warning btn-lg btn-block btnClose', 'data-dismiss'=>'modal']) ?>
     </div>
 </div>
 <?php \richardfan\widget\JSRegister::begin();?>

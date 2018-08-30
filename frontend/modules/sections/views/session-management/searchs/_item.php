@@ -7,10 +7,11 @@
     $breadcrumb = \backend\modules\sections\classes\JSection::getBreadcrumb($content['section_id']);
     
     $breadcrumb[] = ['label' => $content['name'], 'url' => ['/sections/content-management/view?content_id='.$content['id']]];
-    $mb = round(($meta_text['size']/1024)/1024);
+    //$mb = round(($meta_text['size']/1024)/1024);
+    $size = \appxq\sdii\utils\SDUtility::convertToReadableSize($meta_text['size']);
     $meta_file = "<div class='label label-default'>
                       <label>".Yii::t('file', 'Type')." : {$meta_text['type']}</label> &nbsp;&nbsp;
-                      <label>".Yii::t('file', 'Size')." : {$mb} Mb</label>
+                      <label>".Yii::t('file', 'Size')." : {$size}</label>
                   </div>";
 ?>
 <div class="box box-primary">

@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper; 
-$url = "/sections/session-management?id={$model['id']}";
+$url = "/sections/section?id={$model['id']}"; 
 $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 18);
 ?>
  
@@ -13,12 +13,7 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 
       <?php // backend\modules\ezforms2\classes\EzfUiFunc::getEzformIcon($model, 42)?>
     </div>
     <div class="media-body"> 
-        
-        <p class="list-group-item-text"> 
-        <div class="">
-            <i class="fa <?= $model['icon']?>" style="font-size: 20pt; margin-right: 10px;"> </i> <?= Html::encode($name_str) ?> </div>
-        </p>
-        
+        <i class="fa <?= $model['icon']?> left-icon"></i> <span style="font-size:10pt;"><?= Html::encode($name_str) ?> </span>
     </div>
 </a>
  

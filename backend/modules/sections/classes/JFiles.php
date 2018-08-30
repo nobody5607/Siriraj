@@ -170,14 +170,16 @@ class JFiles {
                 $template = self::getTemplateMark($modelForm, $watermark['code']);
                 //ffmpeg -i {filename} -i {mark} -ss 00:00:00 -t 00:00:30 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {target}
                 //'ffmpeg -i {filename} -i {mark} -ss 00:00:00 -t 00:00:30 -filter_complex "overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)" {target} && ffmpeg -y -i {target} -vcodec copy -strict experimental  -c:a aac {output} && rm -rf {target}'
-                //\appxq\sdii\utils\VarDumper::dump($template);
+                
                 exec($template, $output, $return_var);
-                //\appxq\sdii\utils\VarDumper::dump($return_var);
-                if ($return_var === 0) {
-                    if($file->extension != "mp4"){
-                        @unlink($path);
-                    }                    
-                }
+                @unlink($path);
+                @unlink("{$filePath}_mark.mkv}");
+                //\appxq\sdii\utils\VarDumper::dump($path);
+//                if ($return_var === 0) {
+//                    if($file->extension != "mp4"){
+//                        @unlink($path);
+//                    }                    
+//                }
                  
             return ['type'=>'mp4'];
         }  
@@ -196,6 +198,7 @@ class JFiles {
         if (strlen($gname) > $len) {
             $gname = substr($gname, 0, $len) . '...';
         }
+         
         return $gname;
     }
     

@@ -31,7 +31,7 @@
                     'style'=>'width:100px;height: 80px;'
                 ]);
         }else{
-            
+            echo "<div class='text-center'><i class='fa fa-file-o' style='font-size:30pt;'></i></div>";
         }
         $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'] , 20);
         echo "<div title='{$model['file_name_org']}' >{$name_str}</div>";

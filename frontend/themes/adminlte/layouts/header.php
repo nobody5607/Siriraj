@@ -56,7 +56,7 @@ $this->registerJs("
 ?> 
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
-    @media (min-width: 768px){
+/*    @media (min-width: 768px){
         .content-header>.breadcrumb {
             top: 60px;
             box-shadow:none;
@@ -107,7 +107,7 @@ $this->registerJs("
     .items-sidebar.navbar-collapse{
             border-right:1px solid #dedede;
             background-color: #34393d;
-            /*background-image: url(<?= "/images/bg.jpg"?>);*/
+            background-image: url(<?= "/images/bg.jpg"?>);
             background-attachment: fixed;
             background-size: contain;
     }
@@ -133,7 +133,7 @@ $this->registerJs("
     }
     
     .content-wrapper{
-        /*background: #fff;*/
+        background: #fff;
         background: #ededed;
     }
     .list-view .item a.media { 
@@ -145,7 +145,7 @@ $this->registerJs("
         text-decoration: none;
         background-color: #4e4e4e;
         color: #fff;
-        /* opacity: 0.5; */
+         opacity: 0.5; 
     }
     .box.box-primary {
         box-shadow: 0px 0px 5px #a7a7a7;
@@ -200,7 +200,7 @@ $this->registerJs("
         color: #fff;
         background-color: #2b56bb;
         padding-top: 15px;
-    }
+    }*/
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
  

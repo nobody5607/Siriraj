@@ -17,6 +17,7 @@
     }
     $data_id = isset($_GET['id']) ? $_GET['id'] : $content_section['id'];
     $section_obj = \common\models\Sections::findOne($data_id);  
+    $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['name'], 18);
 ?>  
 
 <section id="items-side" class="items-sidebar navbar-collapse collapse" role="complementary" >
@@ -32,10 +33,10 @@
                             ['class' => 'img img-responsive', 'style'=>'width:80px;margin: 0 auto;']) ?>
                 <?php else:?>
                 <div style="padding:10px;border-bottom: 1px solid #1b1b1b63;">      
-                    <h5 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h5>                     
+                    <h5 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}' style='font-size: 20pt; margin-right: 10px;'></i> {$name_str}"?></h5>                     
                         <?php
                         if (isset($_GET['id'])) {
-                            echo Html::a('<i class="fa fa-bank"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
+                            echo Html::a('<i class="fa fa-bank" style="font-size: 20pt; margin-right: 10px;"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
                         }
                         ?>
            
@@ -230,4 +231,10 @@
         ");
     }
 ?> 
+
+<?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
+<style>
+   
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end(); ?>
 

@@ -29,7 +29,7 @@ $modal = "modal-contents";
                     <div class="box-footer read-all">
                         <div class="row">
                             <div class="text-center">
-                                <?=  Html::a(Yii::t('section', 'View All'),"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
+                                <?=  Html::a(Yii::t('section', 'more...'),"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
                                     'id'=>"btn-{$f['id']}",
                                     'data-action'=>'view-file',
                                     'class'=>'content-popup btnCall text-center',

@@ -1,3 +1,6 @@
+<?php 
+    $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section', 'Section');
+?>
 <div class="row">
     <div style="margin-top:40px;"></div>
 
