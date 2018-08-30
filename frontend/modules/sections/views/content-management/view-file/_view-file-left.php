@@ -149,7 +149,7 @@
             <div class="clearfix"></div>
             <?php if (!Yii::$app->user->isGuest) { ?>
                 <div class="text-center" style="margin-top:50px;margin-bottom:50px;">
-                    <button class="btn btn-success btn-lg" id="btnCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> เลือกลงตะกร้า</button>
+                    <button class="btn btn-success btn-lg" id="btnCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <?= Yii::t('section','Add to cart')?></button>
                 </div>
             <?php } ?>
         </div>
