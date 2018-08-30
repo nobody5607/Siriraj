@@ -46,7 +46,7 @@ $this->title = Yii::t('user', 'Sign up');
     </div>
     <div class="panel-footer">
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
+            <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
         </div>
     </div>
 </div>
