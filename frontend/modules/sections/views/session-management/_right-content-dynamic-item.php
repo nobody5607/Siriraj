@@ -24,9 +24,7 @@ $url = "/sections/session-management?id={$model['id']}";
                 <?php \richardfan\widget\JSRegister::begin(); ?>
                     <script>
                          
-                            var dynamic_item_url = '/sections/session-management/get-dynamic-item';
-                            
-                             
+                            var dynamic_item_url = '/sections/session-management/get-dynamic-item';                            
                             $.get(dynamic_item_url,{id:"<?= $model->id?>"}, function(data){                                
                                 $('#dynamic-content-'+"<?= $model->id?>").html(data);
                             });

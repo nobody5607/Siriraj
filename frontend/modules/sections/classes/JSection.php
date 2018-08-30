@@ -52,13 +52,14 @@ class JSection extends \yii\base\Component{
         
     }
     
-    public static function getChildren($id){
+    public static function getChildren($id, $content=""){
         try{
             $section = \common\models\Sections::find()->where(['parent_id'=>$id])->andWhere('rstat not in(0,3)')->all();
             //ถ้าไม่เจอค้นจาก ID
-//            if(!$section){
-//                $section = \common\models\Sections::find()->where(['id'=>$id])->andWhere('rstat not in(0,3)')->all();
-//            }
+            if(!$section && $content == "content"){
+                $section = \common\models\Sections::find()->where(['id'=>$id])->andWhere('rstat not in(0,3)')->all();
+            }
+            //\appxq\sdii\utils\VarDumper::dump($section);
             $datas = [];             
             
             foreach($section as $s){

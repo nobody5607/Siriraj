@@ -56,8 +56,8 @@
                 'data_id'=> $data_id, 
                 'parent_id'=>$content_section['id'],
                 'public'=>$public,
-                'content_section'=>$content_section,
-                'dataProvider'=>$dataProvider]    
+                'content_section'=>$content_section 
+               ]    
         );?>    
     </div>
 

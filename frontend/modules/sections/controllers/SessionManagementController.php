@@ -16,10 +16,12 @@ class SessionManagementController extends Controller
         $id = \Yii::$app->request->get('id', '');        
         if($id){
             $content_section = JSection::getSectionById($id);
-            $section = JSection::getChildren($id);               
+            $section = JSection::getChildren($id);
+            $content = JSection::getChildren($id, "content");
         }else{
             $content_section = JSection::getRoot(); 
             $section = JSection::getRootSection(); 
+            $content = JSection::getRootSection(); 
              
         }        
         $public = isset($content_section) ? '1' : '2';
@@ -27,7 +29,7 @@ class SessionManagementController extends Controller
         $breadcrumb = JSection::getBreadcrumb($id);
 //        \appxq\sdii\utils\VarDumper::dump($breadcrumb);
         $title = JSection::getTitle($id);        
-        $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1);
+        //$content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1);
         
        
         
@@ -37,6 +39,8 @@ class SessionManagementController extends Controller
                 'pageSize' => 50,
             ],
         ]);
+        
+        
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
