@@ -55,21 +55,22 @@ class JSection extends \yii\base\Component{
     public static function getChildren($id){
         try{
             $section = \common\models\Sections::find()->where(['parent_id'=>$id])->andWhere('rstat not in(0,3)')->all();
-            if(!$section){
-                $section = \common\models\Sections::find()->where(['id'=>$id])->andWhere('rstat not in(0,3)')->all();
-            }
+            //ถ้าไม่เจอค้นจาก ID
+//            if(!$section){
+//                $section = \common\models\Sections::find()->where(['id'=>$id])->andWhere('rstat not in(0,3)')->all();
+//            }
             $datas = [];             
-            //\appxq\sdii\utils\VarDumper::dump($section); 
+            
             foreach($section as $s){
+                //echo $s['id']." | ";
                 $data = (new \yii\db\Query())
                     ->select('@pv:=`id` as data_id, tbl_sections.*')
                     ->from('tbl_sections')
                     ->innerJoin("(select @pv:={$s['parent_id']})tmp")
-                    ->where("parent_id=@pv")->all();  
-                $datas = \yii\helpers\ArrayHelper::merge($datas, $data);
-//                array_push($datas, $data); 
+                    ->where("parent_id=@pv AND rstat not in(0,3)")->all();  
+                    $datas = \yii\helpers\ArrayHelper::merge($datas, $section); 
             }
-            // \appxq\sdii\utils\VarDumper::dump($section);
+            //\appxq\sdii\utils\VarDumper::dump($section);
             return $section;
         } catch (Exception $ex) {
             return false;
@@ -126,8 +127,7 @@ class JSection extends \yii\base\Component{
                       'label' =>$d['name'], 
                       'url' => [$url, 'id'=>$d['id']],
                       'icon'=>"{$d['icon']}"
-                      ];
-                      
+                      ];                      
                 }
                 
                 return $breadcrumbs;

@@ -27,7 +27,8 @@ class SessionManagementController extends Controller
         $breadcrumb = JSection::getBreadcrumb($id);
 //        \appxq\sdii\utils\VarDumper::dump($breadcrumb);
         $title = JSection::getTitle($id);        
-        $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1); 
+        $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1);
+        
        
         
         $dataProvider = new \yii\data\ArrayDataProvider([
