@@ -110,7 +110,7 @@ class JFiles {
                       set_time_limit(1200);
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.{$fileType[1]}"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
-                      $sql  = "convert {$filePath}_mark.{$fileType[1]} -resize 150x150 {$thumbnail}_mark.{$fileType[1]}"; 
+                      $sql  = "convert {$filePath}_mark.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.{$fileType[1]}"; 
                       @exec($template." && ".$sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
                       return ["type"=>$type];
@@ -122,7 +122,7 @@ class JFiles {
                  if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                       $type = "jpg";
                    
-                      $sql  = "convert {$filePath}.{$fileType[1]} -resize 150x150 {$thumbnail}_mark.jpg";                       
+                      $sql  = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.jpg";                       
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.jpg"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);                      
                       set_time_limit(1200);

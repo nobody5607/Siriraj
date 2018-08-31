@@ -3,6 +3,7 @@
 ?>
 <div style="display: flex;" id="flex-<?= $value?>">
     <div style="flex-grow: 2">
+         
         <?php
             echo Html::radio($name, $checked, [
                 'value' => $value,
