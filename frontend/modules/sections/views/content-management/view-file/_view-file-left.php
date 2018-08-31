@@ -91,7 +91,7 @@
                                ]);
                                
                             }else{
-                                echo "<div class='label label-default pull-right'>1024 x 768</div>";
+                                echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
                                 echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                     'class'=>'img img-responsive',
                                     'style'=>'width:1024px;'
