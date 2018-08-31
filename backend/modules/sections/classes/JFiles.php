@@ -193,10 +193,10 @@ class JFiles {
         
         //$len = 12;
         if ($checkthai != '') {
-            $len = $len * 3;
+            $len = $len * 1;
         }
         if (strlen($gname) > $len) {
-            $gname = substr($gname, 0, $len) . '...';
+            $gname = mb_substr($gname, 0, $len, "utf-8") . '...';
         }
          
         return $gname;
