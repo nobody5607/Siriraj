@@ -80,21 +80,23 @@
             
             
             <div class="row" style="margin-bottom:10px;">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-md-offset-2" style="    background: #d2d6de; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
                     <?php 
                         if($dataDefault['file_type'] == '2'){
                             if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))){
-                               echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
+                               echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
+                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                 'class'=>'img img-responsive',
                                 'style'=>'width:2124px;'   
                                ]);
-                               echo "<div class='label label-default pull-right'>2124 x 1414</div>";
+                               
                             }else{
+                                echo "<div class='label label-default pull-right'>1024 x 768</div>";
                                 echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                     'class'=>'img img-responsive',
                                     'style'=>'width:1024px;'
                                 ]); 
-                                echo "<div class='label label-default pull-right'>1024 x 768</div>";
+                                
                             }
                             
                             
@@ -134,6 +136,7 @@
                     </div>  
                 </div><br>
             <?php endif;?>
+                <hr/>
             <?php             
             echo \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
