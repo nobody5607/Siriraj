@@ -89,7 +89,16 @@
                                 'class'=>'img img-responsive',
                                 'style'=>'width:2124px;'   
                                ]);
-                               $img = []; 
+                               
+                            }else{
+                                echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
+                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
+                                    'class'=>'img img-responsive',
+                                    'style'=>'width:1024px;'
+                                ]); 
+                                
+                            }
+                            $img = []; 
                                foreach($dataProvider->getModels() as $k=>$v){
                                   $img[$k] =  ['src'=>"{$v['file_path']}/{$v['file_name']}", 'content'=>$v['file_name_org'], 'options'=>['class'=>'img img-responsive img-rounded', 'style'=>'padding:1px;height:50px;width:100px;']];
                                }
@@ -99,14 +108,6 @@
                                     'image'=>$img 
                                 ]);
                                echo "</div>"; 
-                            }else{
-                                echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
-                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
-                                    'class'=>'img img-responsive',
-                                    'style'=>'width:1024px;'
-                                ]); 
-                                
-                            }
                             
                             
                            // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
