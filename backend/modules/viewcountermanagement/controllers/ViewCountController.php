@@ -90,7 +90,8 @@ class ViewCountController extends Controller
             $labelFull = \appxq\sdii\utils\SDdate::getMonthFull();
             $output = "";
             $output .= "<h4>".Yii::t('section','Summarize')." ".Yii::t('section','Website Traffic Statistics')."</h4>";
-            $output .= "<table class='table table-bordered'>";
+            $output .= "<div class='table-responsive'>";
+            $output .= "<table class='table table-bordered table-responsive'>";
             $output .= "<thead><tr><th>".Yii::t('section', 'Month')."</th><th style='width:150px;text-align:center;'>".Yii::t('section','Number of visitors/Person')."</th></tr></thead>";
             foreach($labelFull as $k=>$v){  
                 $k=$k+1;
@@ -103,7 +104,7 @@ class ViewCountController extends Controller
                 
             }
             $output .= "</table>";
-            
+            $output .= "</div>";
         }else{
             $labels = [\appxq\sdii\utils\SDdate::getMonthByKey($month-1)];
             $labelFull = \appxq\sdii\utils\SDdate::getMonthFullByKey($month-1);

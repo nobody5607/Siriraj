@@ -12,7 +12,7 @@ use appxq\sdii\helpers\SDHtml;
 ?>
 <link rel="stylesheet" href="<?= Url::to('@web/css/bootstrap.min.css') ?>"/>
 
-<div class="container">
+<div class="">
     <?php if($print == 0):?>
     <button class="btn btn-success btnPrint pull-right"><i class="glyphicon glyphicon-print"></i> <?= Yii::t('view','Print')?></button>
     <?php else:?>
