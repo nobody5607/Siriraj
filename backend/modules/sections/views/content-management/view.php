@@ -32,15 +32,17 @@ $modal = "modal-contents";
                         </span>
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
                         <small id="label_<?= $f['id'] ?>"><?= Yii::t('file','Image')?></small>
-                        
+                        <hr/>
                     </div>
                     <div class="box-body">
-                        <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
+                        <div class="col-md-12">
+                            <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
+                        </div>
                     </div>                     
                     <div class="box-footer read-all">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
-                                <?=  Html::a('View All',"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
+                                <?=  Html::a(Yii::t('section','More...'),"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
                                     'id'=>"btn-{$f['id']}",
                                     'data-action'=>'view-file',
                                     'class'=>'content-popup btnCall btn btn-default btn-block',
