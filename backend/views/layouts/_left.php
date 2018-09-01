@@ -26,13 +26,13 @@ $actionID = Yii::$app->controller->action->id;
                     'active' => ($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ],
-                [
-                    'label' => Yii::t('appmenu', 'Private Section Management'),
-                    'url' => ['/sections/private-session-management'],
-                    'icon' => '<i class="fa fa-lock"></i>',
-                    'active' => ($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
-                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('secret')),
-                ],
+//                [
+//                    'label' => Yii::t('appmenu', 'Private Section Management'),
+//                    'url' => ['/sections/private-session-management'],
+//                    'icon' => '<i class="fa fa-lock"></i>',
+//                    'active' => ($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
+//                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('secret')),
+//                ],
                 [
                     'label' => Yii::t('appmenu', 'Order Management'),
                     'url' => ['/order/order-management'],
