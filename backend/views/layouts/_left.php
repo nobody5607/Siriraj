@@ -22,7 +22,7 @@ $actionID = Yii::$app->controller->action->id;
                 [
                     'label' => Yii::t('appmenu', 'Section Management'),
                     'url' => ['/sections/session-management'],
-                    'icon' => '<i class="fa fa-sitemap"></i>',
+                    'icon' => '<i class="fa fa-folder"></i>',
                     'active' => ($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ],
