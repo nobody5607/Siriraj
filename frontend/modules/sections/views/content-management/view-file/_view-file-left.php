@@ -80,8 +80,9 @@
             
             
             <div class="row" style="margin-bottom:10px;">
-                <div class="col-md-8 col-md-offset-2" style="    background: #d2d6de; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
-                    <?php 
+                <div class="col-md-8 col-md-offset-2" >
+                    <div class="col-md-12" style="    background: #d2d6de; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
+                        <?php 
                         if($dataDefault['file_type'] == '2'){
                             if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))){
                                echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
@@ -130,7 +131,7 @@
                             echo "<div class='text-center'>{$dataDefault['file_name_org']}</div>";
                         }
                     ?>
- 
+                    </div>
                 </div>
             </div>
             <?php if(!Yii::$app->user->isGuest):?>
