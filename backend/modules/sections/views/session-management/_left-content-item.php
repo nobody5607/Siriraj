@@ -13,12 +13,12 @@
             $url = "/sections/session-management?id={$model['id']}";
             $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 13);
          
-            echo Html::a("<i class='fa {$model['icon']}' style='font-size:16pt;margin-right:10px;'></i> {$name_str}", $url, ['title'=>$model['name']]);
+            echo Html::a("<i class='fa {$model['icon']}' style='font-size:20pt;margin-right:10px;'></i> {$name_str}", $url, ['title'=>$model['name']]);
         ?>         
     </div>
     <div class="">
         <?php
-        echo Html::button("<i class='fa fa-pencil'></i>", [
+        echo Html::button("<i class='fa fa-pencil'></i> ", [
             'data-id' => $model['id'],
             'data-parent_id' => Yii::$app->request->get('id', '0'),
             'data-action' => 'update-section',
@@ -27,7 +27,7 @@
             'data-url' => '/sections/session-management/update'
         ]);
         echo " ";
-        echo Html::button("<i class='fa fa-trash'></i>", [
+        echo Html::button("<i class='fa fa-trash'></i> ", [
             'data-id' => $model['id'],
             'data-parent_id' => Yii::$app->request->get('id', '0'),
             'data-action' => 'delete',

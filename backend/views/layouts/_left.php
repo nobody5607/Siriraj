@@ -11,14 +11,17 @@ $actionID = Yii::$app->controller->action->id;
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
+        <div style="background:#fff;margin:0 auto;padding:5px;">
+            <?= \yii\helpers\Html::img('/images/logosirirajweb3.png',['class' => 'img img-responsive', 'style'=>'width:80px;margin: 0 auto;'])?>
+        </div>
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
             'items' => [
-                [
-                    'label' => Yii::t('appmenu', 'Main'),
-                    'options' => ['class' => 'header'],
-                ],
+//                [
+//                    'label' => Yii::t('appmenu', 'Main'),
+//                    'options' => ['class' => 'header'],
+//                ],
                 [
                     'label' => Yii::t('appmenu', 'Section Management'),
                     'url' => ['/sections/session-management'],
@@ -99,11 +102,11 @@ $actionID = Yii::$app->controller->action->id;
                         ]
                     ],
                 ],
-                [
-                    'label' => Yii::t('appmenu', 'System'),
-                    'options' => ['class' => 'header'],
-                    'visible' => Yii::$app->user->can('administrator'),
-                ],
+//                [
+//                    'label' => Yii::t('appmenu', 'System'),
+//                    'options' => ['class' => 'header'],
+//                    'visible' => Yii::$app->user->can('administrator'),
+//                ],
                 [
                     'label' => Yii::t('appmenu', 'Settings'),
                     'url' => '#',

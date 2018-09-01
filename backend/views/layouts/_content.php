@@ -13,7 +13,7 @@ use lo\modules\noty\Wrapper;
         <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>
         <?php } else { ?>
-            <h1>
+            <h1 style="display:block;">
                 <?php
                 if ($this->title !== null) {
                     echo Html::encode($this->title);    
@@ -23,8 +23,10 @@ use lo\modules\noty\Wrapper;
                 } ?>
             </h1>
         <?php } ?>
-
-        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
+            <div class="clearfix"></div>    
+            <div style="margin-top:20px;">
+                <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
+            </div>
     </section>
 
     <section class="content">

@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <?=
 \yii\widgets\ListView::widget([
     'dataProvider' => $dataProvider,

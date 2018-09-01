@@ -1,5 +1,5 @@
 <?php
-
+$this->title = Yii::t('section', 'Section');
 use yii\helpers\Html;
 use yii\widgets\ListView;
 ?>
