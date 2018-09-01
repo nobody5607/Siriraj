@@ -8,11 +8,16 @@ use yii\log\Logger;
 use backend\models\Log;
 Yii::$app->name = 'SIRIRAJ';
 /* @var $this \yii\web\View */
+$logo =  \yii\helpers\Html::img('/images/logosirirajweb3.png',['class' => 'img img-responsive', 'style'=>'width:80px;margin: 0 auto;']);
 ?>
 
 
 <header class="main-header">
-    <?= Html::a('<span class="logo-mini"><i class="fa fa-diamond"></i></span><span class="logo-lg"><i class="fa fa-diamond"></i> ' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">'.$logo.'</span><span class="logo-lg"> <span style="    position: absolute;
+    overflow: hidden;
+    left: 27px;
+    width: 49px;
+    height: 50px;">'.$logo.'</span>' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>

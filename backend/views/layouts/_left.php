@@ -11,9 +11,7 @@ $actionID = Yii::$app->controller->action->id;
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
-        <div style="background:#fff;margin:0 auto;padding:5px;">
-            <?= \yii\helpers\Html::img('/images/logosirirajweb3.png',['class' => 'img img-responsive', 'style'=>'width:80px;margin: 0 auto;'])?>
-        </div>
+        
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
@@ -150,3 +148,15 @@ $actionID = Yii::$app->controller->action->id;
         ?>
     </section>
 </aside>
+<?php        \appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    .skin-blue .sidebar-menu>li a {
+        font-size: 10pt;
+    }
+    .sidebar-menu>li>a>.fa, .sidebar-menu>li>a>.glyphicon, .sidebar-menu>li>a>.ion {
+        width: 30px;
+        font-size: 18pt;
+        /* line-height: 10px; */
+    }
+</style>
+<?php        \appxq\sdii\widgets\CSSRegister::end();?>
