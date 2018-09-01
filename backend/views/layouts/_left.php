@@ -158,5 +158,14 @@ $actionID = Yii::$app->controller->action->id;
         font-size: 18pt;
         /* line-height: 10px; */
     }
+    .skin-blue .main-header .logo {
+        background-color: #ffffff;
+        color: #525252;
+        border-bottom: 0 solid transparent;
+        font-family: sans-serif;
+    }
+    .skin-blue .main-header .logo:hover {
+        background-color: #ffffff;
+    }
 </style>
 <?php        \appxq\sdii\widgets\CSSRegister::end();?>
