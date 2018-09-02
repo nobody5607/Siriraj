@@ -22,7 +22,7 @@ class SitecodeController extends \yii\web\Controller
                     ->orWhere(['like', 'name', $q])
                     ->limit(20)->all();
             foreach($query as $k=>$v){
-                $out['results'][$k] = ['id'=>$v['id'], 'name'=>"{$v['name']} ({$v['id']})"];//array_values($query);
+                $out['results'][$k] = ['id'=>$v['id'], 'text'=>"{$v['name']} ({$v['id']})"];//array_values($query);
             }
             
             return $out;

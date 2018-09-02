@@ -67,8 +67,8 @@ echo yii\bootstrap\Modal::widget([
                             //'results' => new yii\web\JsExpression('function(data,page) { return {results:data.results}; }'),
                         ],
                         'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
-                        'templateResult' => new yii\web\JsExpression('function(data) { return data.name; }'),
-                        'templateSelection' => new yii\web\JsExpression('function (data) { return data.name; }'),
+                        'templateResult' => new yii\web\JsExpression('function(data) { return data.text; }'),
+                        'templateSelection' => new yii\web\JsExpression('function (data) { return data.text; }'),
                     ],
                 ])->label(Yii::t('user','Select Sitecode'));      
             ?>             

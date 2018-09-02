@@ -52,6 +52,7 @@ class DefaultController extends Controller
         
         
         $model = Yii::$app->user->identity->userProfile;
+        $user = User::findOne($model->user_id);
         $breadcrumbs=[];
         $breadcrumbs_arr = [
             [
@@ -66,11 +67,18 @@ class DefaultController extends Controller
         foreach($breadcrumbs_arr as $key=>$v){
             $breadcrumbs[$key]=$v;
         } 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('user', 'Update success'));
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->sap_id = isset($_POST['UserProfile']['sap_id']) ? $_POST['UserProfile']['sap_id'] : '';
+            $model->sitecode = isset($_POST['UserProfile']['sitecode']) ? $_POST['UserProfile']['sitecode'] : '';
+            //\appxq\sdii\utils\VarDumper::dump($_POST);
+            if($model->save()){
+                return \janpan\jn\classes\JResponse::getSuccess("Success");
+            }else{
+                return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($model->errors));
+            }
+            
         } else {
-            return $this->render('settings', ['model' => $model,'breadcrumb'=>$breadcrumbs]);
+            return $this->render('settings', ['model' => $model,'breadcrumb'=>$breadcrumbs,'user'=>$user]);
         }
     }
 

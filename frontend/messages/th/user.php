@@ -25,4 +25,7 @@ return [
     'Other'=>'อื่นๆ',
     'Sitecode'=>'หน่วยงาน',
     'Select Sitecode'=>'เลือก หน่วยงาน',
+    'Create Date'=>'วันที่สมัคร',
+    'Date'=>'วันที่',
+     'Account'=>'บัญชี',
 ];

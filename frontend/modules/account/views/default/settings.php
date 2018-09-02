@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 use common\models\UserProfile;
 use janpan\jn\widgets\FlatpickrWidget;
 use vova07\fileapi\Widget as FileApi;
-
+use kartik\tabs\TabsX;
 /* @var $this yii\web\View */
 /* @var $model common\models\UserProfile */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,71 +16,43 @@ if($breadcrumb){
             'breadcrumb'=>$breadcrumb
         ]);  
     }
+    
+  
 ?>
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <?= Html::encode($this->title) ?>
+    <div class="col-md-8 col-md-offset-2">
+ 
+    <div class="box box-primary">
+        <div class="box-header">
+            <div>
+                <?= Html::encode($this->title) ?>
+                <div class="pull-right">
+                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <?php $form = ActiveForm::begin(); ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model, 'birthday')->widget(FlatpickrWidget::class, [
-                        'locale' => strtolower(substr(Yii::$app->language, 0, 2)),
-                        'groupBtnShow' => true,
-                        'options' => [
-                            'class' => 'form-control',
-                        ],
-                        'clientOptions' => [
-                            'allowInput' => true,
-                            'defaultDate' => $model->birthday ? date(DATE_ATOM, $model->birthday) : null,
-                        ],
-                    ])
-                    ?>
-                </div>
-                <div class="col-md-6">
-                    <?=
-                        $form->field($model, 'gender')->dropDownlist([
-                            UserProfile::GENDER_MALE => Yii::t('user', 'Male'),
-                            UserProfile::GENDER_FEMALE => Yii::t('user', 'Female'),
-                                ], ['prompt' => ''])
-                        ?>
-                </div>
-            </div> 
+        <div class="box-body">
+            <?php 
+                $items = [
+                       [
+                           'label'=>'<i class="fa fa-cog"></i> '.Yii::t('user','Settings'),
+                           'content'=>$this->render("_serring",['model'=>$model]),
+                           'active'=>true
+                       ],
+                       [
+                           'label'=>'<i class="fa fa-user"></i> '.Yii::t('user','Account'),
+                           'content'=>$this->render("_account",['model'=>$user]),
+                       ]   
+                   ];
 
-            <?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'other')->textarea(['rows' => 6]) ?>
-
-           <div class="form-group">
-                <?= Html::submitButton(Yii::t('user', 'Submit'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
-            </div>
-
-            <?php ActiveForm::end() ?>
+                  echo TabsX::widget([
+                   'items'=>$items,
+                   'position'=>TabsX::POS_ABOVE,
+                   'encodeLabels'=>false
+               ]);
+           ?>
         </div>
     </div>
-
 </div> 
 </div>
 

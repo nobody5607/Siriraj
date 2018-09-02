@@ -56,7 +56,7 @@ class UserProfile extends ActiveRecord
     public function rules()
     {
         return [
-            ['birthday', 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
+            //['birthday', 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             ['gender', 'in', 'range' => [null, self::GENDER_MALE, self::GENDER_FEMALE]],
             ['website', 'trim'],
             ['website', 'url', 'defaultScheme' => 'http', 'validSchemes' => ['http', 'https']],
@@ -66,7 +66,7 @@ class UserProfile extends ActiveRecord
             ['lastname', 'match', 'pattern' => '/^[a-zа-яё]+(-[a-zа-яё]+)?$/iu'],
             ['user_id', 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['firstname', 'lastname', 'birthday', 'gender', 'website', 'other'], 'default', 'value' => null],
-            [['image'], 'safe'],
+            [['image','birthday'], 'safe'],
         ];
     }
 
