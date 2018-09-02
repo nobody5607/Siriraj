@@ -81,7 +81,7 @@
             
             <div class="row" style="margin-bottom:10px;">
                 <div class="col-md-8 col-md-offset-2" >
-                    <div class="col-md-12" style="    background: #d2d6de; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
+                    <div class="col-md-12" style="    background: #292929; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
                         <?php 
                         if($dataDefault['file_type'] == '2'){
                             if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))){
