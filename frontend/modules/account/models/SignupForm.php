@@ -19,6 +19,7 @@ class SignupForm extends Model
     public $firstname;
     public $lastname;
     public $sitecode;
+    public $sap_id;
 
     /**
      * @inheritdoc
@@ -48,10 +49,10 @@ class SignupForm extends Model
             
             [['firstname','lastname'], 'required'],
             [['firstname','lastname','sitecode'], 'string', 'max' => 100],
-            
+            ['sap_id', 'required'],
 
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+//            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -69,6 +70,7 @@ class SignupForm extends Model
             'sitecode'=>Yii::t('user', 'Sitecode'),
             'firstname'=>Yii::t('user', 'Firstname'),
             'lastname'=>Yii::t('user', 'Lastname'),
+            'sap_id'=> Yii::t('user','SAP ID')
             
         ];
     }
@@ -88,7 +90,7 @@ class SignupForm extends Model
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
-            $data_obj = ['firstname'=> $this->firstname, 'lastname'=> $this->lastname, 'sitecode'=>$this->sitecode];
+            $data_obj = ['firstname'=> $this->firstname, 'lastname'=> $this->lastname, 'sitecode'=>$this->sitecode, 'sap_id'=> $this->sap_id];
             $user->afterSignup($data_obj);
 
             return $user;

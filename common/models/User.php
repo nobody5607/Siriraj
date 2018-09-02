@@ -223,6 +223,7 @@ class User extends ActiveRecord implements IdentityInterface
         $profile->firstname = $profileData['firstname'];
         $profile->lastname = $profileData['lastname'];
         $profile->sitecode = $profileData['sitecode'];
+        $profile->sap_id = $profileData['sap_id'];
         $this->link('userProfile', $profile);
          
         //\appxq\sdii\utils\VarDumper::dump($profileData);
