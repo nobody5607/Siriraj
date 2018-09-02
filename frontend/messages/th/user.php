@@ -24,4 +24,5 @@ return [
     'Website'=>'เว็บไซต์',
     'Other'=>'อื่นๆ',
     'Sitecode'=>'หน่วยงาน',
+    'Select Sitecode'=>'เลือก หน่วยงาน',
 ];

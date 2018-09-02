@@ -14,14 +14,17 @@ class SitecodeController extends \yii\web\Controller
     public function actionGetSite($q = null, $id = null)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'name' => '']]; 
+        $out = []; 
         if (!is_null($q)) {
             $query = \common\models\Sitecode::find()
                     ->select(['id','name'])
                     ->where(['like', 'id', $q])
                     ->orWhere(['like', 'name', $q])
                     ->limit(20)->all();
-            $out['results'] = array_values($query);
+            foreach($query as $k=>$v){
+                $out['results'][$k] = ['id'=>$v['id'], 'name'=>"{$v['name']} ({$v['id']})"];//array_values($query);
+            }
+            
             return $out;
         }
          

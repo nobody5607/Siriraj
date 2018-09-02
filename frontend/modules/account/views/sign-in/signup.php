@@ -50,27 +50,27 @@ echo yii\bootstrap\Modal::widget([
             <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-            <?php 
-                
+            <?php   
               echo $form->field($model, 'sitecode')->widget(kartik\select2\Select2::classname(), [
-                   // 'initValueText' => '10377', // set the initial display text
+                    'language' => 'en-US',
                     'options' => ['placeholder' => Yii::t('user','Search for Sitecode')],
                     'pluginOptions' => [
                         'allowClear' => true,
-                        'minimumInputLength' => 3,
+                        'minimumInputLength' => 1,
                         'language' => [
                             'errorLoading' => new yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
                         ],
                         'ajax' => [
                             'url' => yii\helpers\Url::to(['/account/sitecode/get-site']),
                             'dataType' => 'json',
-                            'data' => new yii\web\JsExpression('function(params) { return {q:params.term}; }')
+                            'data' => new yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+                            //'results' => new yii\web\JsExpression('function(data,page) { return {results:data.results}; }'),
                         ],
                         'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
                         'templateResult' => new yii\web\JsExpression('function(data) { return data.name; }'),
                         'templateSelection' => new yii\web\JsExpression('function (data) { return data.name; }'),
                     ],
-                ]);      
+                ])->label(Yii::t('user','Select Sitecode'));      
             ?>             
         </div>    
         <div class="col-md-4 col-sm-4 col-xs-4">
