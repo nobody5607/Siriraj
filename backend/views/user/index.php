@@ -8,27 +8,70 @@ use common\models\User;
 /* @var $searchModel backend\models\search\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('backend', 'Users');
+$this->title = Yii::t('_user', 'User');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="box box-defaut">
+<div class="box box-default">
     <div class="box-header">
-        <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i>'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= yii\helpers\Html::encode($this->title)?>
+        <div class="pull-right">
+            <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i>'), ['create'], ['class' => 'btn btn-success']) ?>
+        </div>    
     </div>
     <div class="box-body">
         <div class="">
             <?=            appxq\sdii\widgets\GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
+            'tableOptions'=>['class'=>'table table-hover table-bordered table-responsive'],
             'columns' => [
-                //['class' => 'yii\grid\SerialColumn'],
-
-                //'id',
-                'username',
-                // 'auth_key',
-                // 'access_token',
-                // 'password_hash',
-                'email:email',
+                
+                [
+                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'label' => Yii::t('_user','Email'),
+                    'value' => function ($model) {
+                        return $model->email;
+                    } 
+                ], 
+                [
+                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'label' => Yii::t('_user','Uswename'),
+                    'value' => function ($model) {
+                        return $model->username;
+                    } 
+                ],
+                [
+                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'label' => Yii::t('_user','Firstname'),
+                    'value' => function ($model) {
+                        return isset($model->userProfile->firstname) ? $model->userProfile->firstname : '';
+                    } 
+                ],
+                [
+                    'label' => Yii::t('_user','Lastname'),
+                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'value' => function ($model) {
+                        return isset($model->userProfile->lastname) ? $model->userProfile->lastname : '';
+                    } 
+                ],         
+                [
+                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'label' => Yii::t('_user','Sap_id'),
+                    'value' => function ($model) {
+                        return isset($model->userProfile->sap_id) ? $model->userProfile->sap_id : '';
+                    } 
+                ],
+                [
+                    'label' => Yii::t('_user','Site Code'),
+                    'value' => function ($model) {
+                        $sitecode = isset($model->userProfile->sitecode) ? $model->userProfile->sitecode : '';
+                        if($sitecode){
+                            $site = common\models\Sitecode::findOne($sitecode);
+                            return "{$site['name']} ({$site['id']})";
+                        }
+                        
+                    } 
+                ],         
                 [
                     'attribute' => 'status',
                     'value' => function ($model) {
@@ -36,12 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'filter' => User::statuses(),
                 ],
-                
                 [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
+                        'headerOptions' => ['style'=>'width:80px;text-align: center;'],
                         'contentOptions' => ['style'=>'width:80px;text-align: center;'],
                         'template' => '{update} {delete}',
-                        'headerOptions' => ['style' => 'width:250px'],
                         'buttons' => [
                              
                             'update' => function ($url, $model) {
@@ -71,11 +113,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<?php appxq\sdii\widgets\CSSRegister::begin(); ?>
-<style>
-    .box-defaut {
-         border: none;
-         box-shadow: 0px 0px 1px #cacaca;
-     }
-</style>
-<?php appxq\sdii\widgets\CSSRegister::end(); ?>
+ 

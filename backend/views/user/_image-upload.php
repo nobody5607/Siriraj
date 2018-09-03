@@ -4,10 +4,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 $image = '';
 
+janpan\jn\assets\croppie\JCroppieAssets::register($this);
 ?>
 <div class="row">
  
-    <div  class="col-md-2">
+    <div  class="col-md-4">
             <div class="upload-msg">
                 <?= Html::img($model->image, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
             </div>
@@ -18,7 +19,7 @@ $image = '';
                 <div id="upload-action" class="text-center">
                     <a id="save-upload" class="btn btn-success"><?= Yii::t('ezform', 'Save Icon') ?></a>
                 </div> 
-               <?= $form->field($model, 'image')->hiddenInput(['id'=>'change_icon']) ?> 
+               <?= $form->field($model, 'image')->hiddenInput(['id'=>'change_icon'])->label(Yii::t('_user','Image')) ?> 
                 
                 <div id="div-upload-file">
 

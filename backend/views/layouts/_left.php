@@ -48,6 +48,12 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
+                    'label' => Yii::t('sitecode', 'Site Code'),
+                    'url' => ['/sitecode/index'],
+                    'icon' => '<i class="fa fa-id-card-o"></i> ',
+                    'visible' => Yii::$app->user->can('administrator'),
+                ],
+                [
                     'label' => Yii::t('appmenu', 'Website Traffic Statistics'),
                     'url' => ['/viewcountermanagement/view-count'],
                     'icon' => '<i class="fa fa-eye"></i>',

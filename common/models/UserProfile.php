@@ -66,7 +66,7 @@ class UserProfile extends ActiveRecord
             ['lastname', 'match', 'pattern' => '/^[a-zа-яё]+(-[a-zа-яё]+)?$/iu'],
             ['user_id', 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['firstname', 'lastname', 'birthday', 'gender', 'website', 'other'], 'default', 'value' => null],
-            [['image','birthday'], 'safe'],
+            [['image','birthday','sitecode','sap_id'], 'safe'],
         ];
     }
 
@@ -76,14 +76,14 @@ class UserProfile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'firstname' => Yii::t('user', 'Firstname'),
-            'lastname' => Yii::t('user', 'Lastname'),
-            'birthday' => Yii::t('user', 'Birthday'),
-            'avatar_path' => Yii::t('user', 'Avatar'),
-            'gender' => Yii::t('user', 'Gender'),
-            'website' => Yii::t('user', 'Website'),
-            'other' => Yii::t('user', 'Other'),
-            'Save Icon'=>Yii::t('user', 'Save Icon'),
+            'firstname' => Yii::t('_user', 'Firstname'),
+            'lastname' => Yii::t('_user', 'Lastname'),
+            'birthday' => Yii::t('_user', 'Birthday'),
+            'avatar_path' => Yii::t('_user', 'Avatar'),
+            'gender' => Yii::t('_user', 'Gender'),
+            'website' => Yii::t('_user', 'Website'),
+            'other' => Yii::t('_user', 'Other'),
+            'Save Icon'=>Yii::t('_user', 'Save Icon'),
           
              
         ];

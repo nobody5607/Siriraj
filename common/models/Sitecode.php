@@ -39,8 +39,8 @@ class Sitecode extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('user', 'Site id'),
-            'name' => Yii::t('user', 'Site name'),
+            'id' => Yii::t('sitecode', 'Site id'),
+            'name' => Yii::t('sitecode', 'Site name'),
         ];
     }
 }
