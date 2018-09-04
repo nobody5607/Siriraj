@@ -49,7 +49,7 @@ class SignupForm extends Model
             
             [['firstname','lastname'], 'required'],
             [['firstname','lastname','sitecode'], 'string', 'max' => 100],
-            ['sap_id', 'required'],
+            ['sap_id', 'safe'],
 
             // verifyCode needs to be entered correctly
 //            ['verifyCode', 'captcha'],
