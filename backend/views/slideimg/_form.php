@@ -59,6 +59,7 @@ use appxq\sdii\helpers\SDHtml;
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
     var $form = $(this);
     var formData = new FormData($(this)[0]);
+    $('.btn').prop('disabled', true);
     $.ajax({
         url:$form.attr('action'),
         type:'POST',
@@ -72,8 +73,10 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
                 <?= SDNoty::show('result.message', 'result.status')?>           
                 $('#modal-slideimg').modal('toggle');
                 $.pjax.reload({container: "#slideimg-grid-pjax", async:false});
+                $('.btn').prop('disabled', false);
             } else {
                 <?= SDNoty::show('result.message', 'result.status')?>
+                    $('.btn').prop('disabled', false);
             } 
         }
     });    

@@ -99,8 +99,12 @@ class SlideimgController extends Controller
                      $fileName   = md5($genName).".".$f->extension;
                      $filePath   = "{$path}/{$fileName}";
                      $viewPath   = Yii::getAlias('@storageUrl') . "/web/images/watermark"; 
+                     $target     = "{$path}/mark_".$genName.".jpg";
                      if ($f->saveAs($filePath)) {
-                         $model->name = $fileName;
+                          $sql  = "convert {$filePath} -resize 1024x400 {$target}";
+                            exec($sql, $out, $retval);
+                            @unlink($filePath);
+                         $model->name = "mark_".$genName.".jpg";
                          $model->file_path = $path;
                          $model->view_path = $viewPath;
                          $model->detail = $post['detail'];
@@ -145,8 +149,13 @@ class SlideimgController extends Controller
                      $filePath   = "{$path}/{$fileName}";
                      $viewPath   = Yii::getAlias('@storageUrl') . "/web/images/watermark"; 
                      @unlink("{$model['file_path']}/{$model['name']}");
+                     
+                     $target     = "{$path}/mark_".$genName.".jpg";
                      if ($f->saveAs($filePath)) {
-                         $model->name = $fileName;
+                            $sql  = "convert {$filePath} -resize 1024x400 {$target}";
+                            exec($sql, $out, $retval);
+                            @unlink($filePath);
+                         $model->name = "mark_".$genName.".jpg";
                          $model->file_path = $path;
                          $model->view_path = $viewPath;
                          $model->detail = $post['detail'];
