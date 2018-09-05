@@ -23,7 +23,7 @@ use yii\helpers\Html;
                         <?php
                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
                             'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
-                            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
+                            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
                         ]);
                         ?> 
                     </li>
