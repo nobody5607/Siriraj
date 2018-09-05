@@ -65,10 +65,11 @@ class TemplateManagementController extends \yii\web\Controller
             
             
             if($post['default'] == 1){
-                $defaults = \backend\models\Watermark::find()->where(['type'=>$type])->all();            
+                $defaults = \backend\models\Watermark::find()->where(['type'=>$type])->all();   
+                 
                 foreach($defaults as $k=>$v){
                     $v->default = 0;
-                    $v->save();
+                    $v->update();
                 }  
             }            
             if($files){                

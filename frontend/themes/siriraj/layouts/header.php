@@ -82,12 +82,16 @@ use yii\helpers\Html;
             </div>                
         </div>
 <?php if($slide == '1'): ?>
+        <?php 
+            $images = \backend\modules\sections\classes\JContent::getImage();
+        ?>
         <div class="slider_box" >
             <div class='container'>
                 <div class="slider-wrapper theme-default"> 
                     <div id="slider" class="nivoSlider">
-                        <a href="shop.html"><img src="http://storage.siriraj.lc/web/files/1535730762082417100/thumbnail/2f0daabfe8d1e67283ec2ecd75ca3227_mark.jpg" data-thumb="http://storage.siriraj.lc/web/files/1535730762082417100/thumbnail/2f0daabfe8d1e67283ec2ecd75ca3227_mark.jpg" alt="" title="#htmlcaption" /></a>
-                        <a href="shop.html"><img src="http://storage.siriraj.lc/web/files/1535730768015789200/thumbnail/19f9d71e82b9c42aa666fb2958228b7a_mark.jpg" data-thumb="http://storage.siriraj.lc/web/files/1535730768015789200/thumbnail/19f9d71e82b9c42aa666fb2958228b7a_mark.jpg" alt="" title="#htmlcaption2" /></a>
+                      <?php foreach ($images as $image):?>
+                            <a href="shop.html"><img src="<?= "{$image['view_path']}/{$image['name']}"?>" data-thumb="<?= "{$image['view_path']}/{$image['name']}"?>" alt="" title="#<?= $image['detail']?>" /></a>
+                      <?php endforeach; ?>  
                     </div>
                 </div>
             </div>

@@ -55,5 +55,6 @@ return [
     'Gii'=>'กิล',
     'Watermark Image'=>'ลายน้ำรูป',
     'Watermark Video'=>'ลายน้ำวีดีโอ',
+    'Slider Image'=>'ภาพสไลเดอร์',
 ];
 

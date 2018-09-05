@@ -121,5 +121,9 @@ class JContent {
         }
         return $section;
     }
-    
+   /*slide image*/
+   public static function getImage(){
+       $image = \common\models\Slideimg::find()->all();
+       return $image;
+   }
 }

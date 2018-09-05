@@ -57,5 +57,6 @@ return [
     'Gii'=>'Gii',
     'Watermark Image'=>'Watermark Image',
     'Watermark Video'=>'Watermark Video',
+    'Slider Image'=>'Slider Image',
 ];
 
