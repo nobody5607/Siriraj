@@ -68,7 +68,7 @@ use yii\helpers\Html;
                                     <li class="text-center">
                                         <?php
                                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
-                                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_LIST,
+                                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
                                             'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
                                         ]);
                                         ?> 

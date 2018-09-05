@@ -80,6 +80,7 @@ class SectionController extends Controller
             'dataProvider'=>$dataProvider,
             'data'=>$data
         ]);
+        
     }
     
     public function actionSearch(){
