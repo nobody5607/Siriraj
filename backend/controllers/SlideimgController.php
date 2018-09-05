@@ -98,7 +98,7 @@ class SlideimgController extends Controller
                      $genName    = time();
                      $fileName   = md5($genName).".".$f->extension;
                      $filePath   = "{$path}/{$fileName}";
-                     $viewPath   = Yii::getAlias('@storageUrl') . "/images/watermark"; 
+                     $viewPath   = Yii::getAlias('@storageUrl') . "/web/images/watermark"; 
                      if ($f->saveAs($filePath)) {
                          $model->name = $fileName;
                          $model->file_path = $path;
@@ -143,7 +143,7 @@ class SlideimgController extends Controller
                      $genName    = time();
                      $fileName   = md5($genName).".".$f->extension;
                      $filePath   = "{$path}/{$fileName}";
-                     $viewPath   = Yii::getAlias('@storageUrl') . "/images/watermark"; 
+                     $viewPath   = Yii::getAlias('@storageUrl') . "/web/images/watermark"; 
                      @unlink("{$model['file_path']}/{$model['name']}");
                      if ($f->saveAs($filePath)) {
                          $model->name = $fileName;
