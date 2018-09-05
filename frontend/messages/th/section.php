@@ -11,4 +11,7 @@ return [
     'Detail'=>'รายละเอียด',
     'Browse by Category'=>'เรียกดูตามประเภท',
     'Category'=>'ประเภท',
+    'Content'=>'เนื้อหา',
+    'Section'=>'คลังความรู้',
+    'more...'=>'อ่านต่อ',
 ];

@@ -11,4 +11,7 @@ return [
     'Detail'=>'Detail',
     'Browse by Category'=>'Browse by Category',
     'Category'=>'Category',
+    'Content'=>'Content',
+    'Section'=>'Section',
+    'more...'=>'more...',
 ];

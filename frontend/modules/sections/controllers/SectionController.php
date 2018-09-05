@@ -19,8 +19,7 @@ class SectionController extends Controller
             $content_section = JSection::getSectionById($id);
             $section = JSection::getChildren($id);
             $content = JContent::getContentBySectionId($id);
-            //\appxq\sdii\utils\VarDumper::dump($content);
-//            \appxq\sdii\utils\VarDumper::dump($content);
+            //\appxq\sdii\utils\VarDumper::dump($content); 
         }else{
             $content_section = JSection::getRoot(); 
             $section = JSection::getRootSection(); 

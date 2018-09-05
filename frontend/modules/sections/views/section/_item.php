@@ -14,7 +14,7 @@ $noImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEiCAYAAABDd+8FAA
         <div class="pro-img">
             <img class="primary-img img img-responsive" src="<?= isset($model['icon']) ? $model['icon'] :  $noImage?>" alt="<?= $model['name']?>">
             <img class="secondary-img img img-responsive" src="<?= isset($model['icon']) ? $model['icon'] :  $noImage?>" alt="<?= $model['name']?>">
-            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+              
         </div> 
         <div class="pro-content">
             <div class="pro-infos">

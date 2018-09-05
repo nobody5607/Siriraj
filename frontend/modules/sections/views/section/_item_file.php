@@ -15,7 +15,6 @@ $image = "{$model['file_path']}/{$model['file_name']}";
         <div class="pro-img">
             <img class="primary-img img img-responsive" src="<?=  $image?>" alt="<?= $model['file_name_org']?>">
             <img class="secondary-img img img-responsive" src="<?=  $image?>" alt="<?= $model['file_name_org']?>">
-            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
         </div> 
         <div class="pro-content">
             <div class="pro-infos">

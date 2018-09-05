@@ -15,7 +15,6 @@ $img = isset($model['thumn_image']) ? $model['thumn_image'] :  $noImage;
         <div class="pro-img">
             <img class="primary-img img img-responsive" src="<?= $img?>" alt="single-product">
             <img class="secondary-img img img-responsive" src="<?=  $img?>" alt="single-product">
-            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
         </div> 
         <div class="pro-content">
             <div class="pro-infos">
