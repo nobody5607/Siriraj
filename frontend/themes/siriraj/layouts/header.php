@@ -90,7 +90,7 @@ use yii\helpers\Html;
                 <div class="slider-wrapper theme-default"> 
                     <div id="slider" class="nivoSlider">
                       <?php foreach ($images as $image):?>
-                            <a href="shop.html"><img src="<?= "{$image['view_path']}/{$image['name']}"?>" data-thumb="<?= "{$image['view_path']}/{$image['name']}"?>" alt="" title="#<?= $image['detail']?>" /></a>
+                            <img src="<?= "{$image['view_path']}/{$image['name']}"?>" data-thumb="<?= "{$image['view_path']}/{$image['name']}"?>" alt="" title="#<?= $image['detail']?>" />
                       <?php endforeach; ?>  
                     </div>
                 </div>
