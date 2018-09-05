@@ -20,7 +20,7 @@ class LightBox extends \yii\base\Widget{
             $html .= Html::beginTag("DIV", ['class'=>'demo-gallery col-md-12 text-right']);
                 $html .= Html::beginTag("DIV", ['id'=>'lightgallery']);
                     foreach($this->image as $key=>$value){
-                        $html .= Html::beginTag("DIV", ['data-src'=>"{$value['src']}", 'data-sub-html'=>"{$value['content']}"]);
+                        $html .= Html::beginTag("DIV", ['class'=>'flex-3','data-src'=>"{$value['src']}", 'data-sub-html'=>"{$value['content']}"]);
                             $html .= Html::beginTag("DIV", $this->options);
                                 $html .= Html::a(Html::img($value['src'], $value['options']), '#', []);
                             $html .= Html::endTag("DIV");
@@ -38,5 +38,26 @@ class LightBox extends \yii\base\Widget{
         \janpan\jn\assets\jlightbox\JLightBoxAsset::register($view);
         $js="$('#lightgallery').lightGallery();";
         $view->registerJs($js);
+        $css ="
+            .demo-gallery{
+                height: auto;
+                overflow: hidden;
+            }
+            #lightgallery{
+                 
+                display:flex;
+                flex-direction:row;
+                padding: 20px;
+                flex-wrap:wrap;
+            }
+            .flex-3{
+                padding:5px;
+                
+            }
+            .max-img {
+                max-width: 78px;
+            }
+        ";
+        $view->registerCss($css);
     }
 }

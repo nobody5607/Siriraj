@@ -30,7 +30,7 @@ class CartController extends Controller
         foreach($breadcrumbs_arr as $key=>$v){
             $breadcrumbs[$key]=$v;
         } 
-         
+        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
         return $this->render('my-cart',[
            'dataProvider' => $dataProvider,
            'breadcrumb'=>$breadcrumbs,
@@ -115,8 +115,10 @@ class CartController extends Controller
             $model = \common\models\Shipper::find()->where(['user_id'=>$user_id])->one();
             if(!$model){
                 $model = new \common\models\Shipper();
+                $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
             }
             if($model->load(Yii::$app->request->post())){
+                 
                 if($model->validate() && $model->save()){
                     //\appxq\sdii\utils\VarDumper::dump(Yii::$app->session["cart"]);                   
                        $order = new \common\models\Order();
@@ -142,8 +144,11 @@ class CartController extends Controller
                             return \janpan\jn\classes\JResponse::getSuccess("Successfully");
                             //success
                         } 
+                }else{
+                    return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($model->errors));
                 } 
             }
+            $this->layout = "@frontend/themes/siriraj/layouts/main-second";
             return $this->render('step1',[
                 'model'=>$model,
                 'breadcrumb'=>$breadcrumbs

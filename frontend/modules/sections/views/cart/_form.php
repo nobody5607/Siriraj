@@ -16,16 +16,7 @@ use appxq\sdii\helpers\SDNoty;
                 'pluginOptions' => [
                     'autoclose'=>true,
                     'format' => 'yyyy-mm-dd'
-                ]
-                //'locale' => strtolower(substr(Yii::$app->language, 0, 2)),
-//                'groupBtnShow' => true,
-//                'options' => [
-//                    'class' => 'form-control',
-//                ],
-//                'clientOptions' => [
-//                    'allowInput' => true,
-//                    'defaultDate' => $model->date ? date(DATE_ATOM, $model->date) : null,
-//                ],
+                ] 
             ])
             ?>
     <?= $form->field($model, 'firstname')->textInput()?>
@@ -38,8 +29,8 @@ use appxq\sdii\helpers\SDNoty;
     <?= $form->field($model, 'note')->textarea()?>
     <div class="form-group">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <?= Html::submitButton(Yii::t('cart', 'Next'), ['class' => 'btn btn-primary btn-block btn-lg']) ?>
+            <div class="col-md-8 col-md-offset-2">
+                <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-info btn-block btn-lg']) ?>
             </div>
         </div>
     </div>

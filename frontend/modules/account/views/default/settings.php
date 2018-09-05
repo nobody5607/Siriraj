@@ -20,18 +20,18 @@ if($breadcrumb){
   
 ?>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
  
-    <div class="box box-primary">
-        <div class="box-header">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <div>
                 <?= Html::encode($this->title) ?>
                 <div class="pull-right">
-                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-success']) ?>
+                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-success btn-change-password']) ?>
                 </div>
             </div>
         </div>
-        <div class="box-body">
+        <div class="panel-body">
             <?php 
                 $items = [
                        [
@@ -72,5 +72,24 @@ if($breadcrumb){
     #w3-success{
         margin-top:20px;
     }
+    .form-control{
+        font-size: 1.5rem;
+    }
+    .dropdown-menu{
+        font-size: 1.5rem;
+    }
+    .input-group-addon{
+        padding: 8px 60px;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+        padding: .5rem 1rem;
+        font-size: 2.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+    }
+    .btn-change-password{
+        font-size: 1.25rem;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
+ 

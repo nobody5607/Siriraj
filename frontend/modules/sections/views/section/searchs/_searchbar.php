@@ -5,11 +5,11 @@
 
     <form class="" role="search" action="" id="formSearch">
         <div class="input-group">
-            <input type="hidden" name="search_param" value="all" id="search_param">         
-            <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="<?= Yii::t('section', 'Search')?>">
+            <input type="hidden" name="search_param" value="<?= isset($fileType) ? $fileType['id'] : 'all'?>" id="search_param">         
+            <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="ค้นหา" value="<?= $txtsearch?>">
             <div class="input-group-btn search-panel">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:0;background: #fff;">
-                    <span id="search_concept"><?= Yii::t('section', 'Select Type')?></span> <span class="caret"></span>
+                    <span id="search_concept"><?= isset($fileType) ? $fileType['name'] :  Yii::t('section', 'Select Type') ?></span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <?php foreach ($type as $t) { ?>    
@@ -39,8 +39,8 @@
         let txtsearch = $('#txtsearch').val();
         let params = {type_id:type_id, txtsearch:txtsearch};
         let url = "/sections/session-management/search?type_id="+type_id+"&txtsearch="+txtsearch;
-        window.open(url,'_blank');
-        //location.href = url;
+        //window.open(url,'_blank');
+        location.href = url;
         
         return false;
     });

@@ -26,7 +26,7 @@ return [
     'Note'=>'Note',
     'Next'=>'Next',
     'Checkout'=>'Checkout',
-    
+    'Shipping address'=>'Shipping address',
     
 ];
 

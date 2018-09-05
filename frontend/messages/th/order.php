@@ -17,5 +17,12 @@ return [
     'Delete'=>'ลบ',
     'Email'=>'อีเมล์',
     'Send'=>'ส่ง',
+    'Order Detail'=>'รายละเอียดการสั่งซื้อห',
+    
+    'Quantity'=>'จำนวน',
+    'Description'=>'ลักษณะ',
+    'Meta text'=>'ข้อความ Meta',
+    'File name'=>'ชื่อไฟล์',
+    'Size'=>'ขนาด',
 ];
 

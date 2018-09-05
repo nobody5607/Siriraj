@@ -4,9 +4,7 @@
 <div class="row">
     <div style="margin-top:40px;"></div>
 
-<div class="clearfix">
-    <?= $this->render('_searchbar',['txtsearch'=>$txtsearch,'fileType'=>$fileType]); ?>
-</div>
+ 
 <div style="margin-top:20px;"></div>
 <div class="col-md-10 col-md-offset-1">
     <?php 
@@ -57,6 +55,9 @@
             border: 1px solid #d2d6de;
             background:#fff;
         }
+        .cd-breadcrumb li, .cd-multi-steps li {
+            margin: 0.2em 0;
+        }
     }
     .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after {
         content: '/';
@@ -64,6 +65,10 @@
         width: 1px;
         background: transparent;
         vertical-align: bottom;
+    }
+    .cd-breadcrumb, .cd-multi-steps { ;
+        padding: 1px; 
+        margin-bottom:30px;
     }
 </style>
 <?php    appxq\sdii\widgets\CSSRegister::end()?>

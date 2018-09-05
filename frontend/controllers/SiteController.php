@@ -12,6 +12,11 @@ use vova07\fileapi\actions\UploadAction as FileAPIUpload;
  */
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+      $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+      return parent::beforeAction($action);
+    }
     /**
      * @inheritdoc
      */
@@ -37,12 +42,17 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionTest(){
-        return $this->render('test');
+         
     }
     public function actionIndex()
     {
-        return $this->redirect(['/sections/session-management']);
+        //return $this->redirect(['/sections/section']);
         return $this->render('index');
+    }
+    public function actionAbout()
+    {
+        $about = \backend\modules\cores\classes\CoreOption::getParams("about", 'c');
+        return $this->render('about',['about'=>$about]);
     }
 
     /**
@@ -52,17 +62,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'));
-            } else {
-                Yii::$app->session->setFlash('error', Yii::t('frontend', 'There was an error sending your message.'));
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', ['model' => $model]);
-        }
+        $contact = \backend\modules\cores\classes\CoreOption::getParams("contact", 'c');
+        return $this->render('contact',['contact'=>$contact]); 
     }
 }

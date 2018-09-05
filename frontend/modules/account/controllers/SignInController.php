@@ -19,6 +19,11 @@ use frontend\modules\account\models\SignupForm;
  */
 class SignInController extends Controller
 {
+    public function beforeAction($action)
+    {
+      $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+      return parent::beforeAction($action);
+    }
     /**
      * @inheritdoc
      */

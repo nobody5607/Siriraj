@@ -20,4 +20,6 @@ return [
     'Number of visitors/Person'=>'Number of visitors/Person',
     'Month'=>'Month',
     'All'=>'All',
+    'Siriraj Museum\'s Knowledge Management'=>'Siriraj Museum\'s Knowledge Management',
+    'Detail'=>'Detail',
 ];

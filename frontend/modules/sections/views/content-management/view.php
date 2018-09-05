@@ -78,4 +78,4 @@ $modal = "modal-contents";
         <?php \richardfan\widget\JSRegister::end(); ?>
     <?php endif; ?>
 <?php endforeach; ?> 
-<?= $this->render('view-file/style')?>
+<?php //$this->render('view-file/style')?>

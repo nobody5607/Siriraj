@@ -6,7 +6,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         // Index page
-        '' => '/sections/session-management',
+        '' => '/sections/section',
         // Pages
         'page/<slug>' => 'page/view',
         // Articles

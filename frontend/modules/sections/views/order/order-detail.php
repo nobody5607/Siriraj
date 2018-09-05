@@ -34,7 +34,7 @@
                     [
                         'label'=> Yii::t('order','File name'),
                         'value'=>function($model){
-                          $name = isset($model->files) ? $model->files->name : '';
+                          $name = isset($model->files) ? $model->files->file_name_org : '';
                           return $name;
                         }
                     ],
@@ -78,7 +78,7 @@
                     [
                         'contentOptions'=>['style'=>'width:50px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',
-                        'header'=>'Action',
+                        'header'=>'',
                         'template'=>'{delete}',
                         'buttons'=>[
                           'delete' => function($url,$model,$key){

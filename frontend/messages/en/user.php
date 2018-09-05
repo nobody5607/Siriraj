@@ -30,5 +30,7 @@ return [
     'Create Date'=>'Create Date',
     'Date'=>'Date',
     'Account'=>'Account',
+    'Position'=>'Position',
+    'Save'=>'Save',
      
 ];

@@ -8,7 +8,7 @@
     }
 ?>
 <div class="row"> 
-<div class="col-md-8 col-md-offset-2" id="10" data-id="10" style="padding: 5px;">
+<div class="col-md-12" id="10" data-id="10" style="padding: 5px;">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title"><i class="fa fa-shopping-cart"></i> <?= Html::encode($this->title);?></div>              
@@ -49,7 +49,7 @@
                       }
                   ],
                   [
-                        'contentOptions'=>['style'=>'width:50px;text-align:center;'],
+                        'contentOptions'=>['style'=>'width:150px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',
                         'header'=>'',
                         'template'=>'{send-mail} {print} {delete}',
@@ -80,53 +80,6 @@
 </div>
 
 
-<div class="col-md-8 col-md-offset-2" id="10" data-id="10" style="padding: 5px;">
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-file" aria-hidden="true"></i> <?= Html::encode(Yii::t('order','Invoices'));?></div>              
-        </div>
-        <!-- /.box-header -->
-        <div class="panel-body" style="">
-            <div id="dynamic-content-10">
-            <?= kartik\grid\GridView::widget([
-                'dataProvider' => $invoiceProvider,
-                'columns' => [
-                  [
-                      'format'=>'raw',
-                      'contentOptions'=>['style'=>'width:50px;'],
-                      'attribute'=>'id',
-                      'label'=> Yii::t('order','Invoice ID'),
-                      'value'=>function($model){
-                        return Html::a("{$model->id}", ["/sections/order/order-invoice-detail?id={$model->id}"], ['target'=>'_BLANK']);                        
-                      }
-                  ],
-                  [
-                    
-                      'attribute'=>'create_date',
-                      'label'=> Yii::t('order','Date'),
-                      'value'=>function($model){
-                        return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
-                      }
-                  ],
-                  [
-                      'format'=>'raw',
-                      'contentOptions'=>['style'=>'width:50px;'],
-                      'attribute'=>'order_id',
-                      'label'=> Yii::t('order','Order Id'),
-                      'value'=>function($model){
-                        return Html::a("{$model->id}", ["/sections/order/order-detail?order_id={$model->order_id}"], ['']);                        
-                      }
-                  ], 
-                  
-                      
-                ],
-                          
-            ]) ?>
-            </div>
-        </div>
-        
-    </div>
-</div>
 </div>
 <?php \richardfan\widget\JSRegister::begin();?>
 <script>

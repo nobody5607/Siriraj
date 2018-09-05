@@ -4,16 +4,17 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('order', "Send Email");
 \Yii::$app->name = "Siriraj";
-$modelForm = ['product' => $product, 'count' => $count, 'detail' => $model['note'], 'date' => appxq\sdii\utils\SDdate::mysql2phpDate($model->date), 'sitecode' => $model->sitecode, 'name' => "{$model['firstname']} {$model['lastname']}", 'title' => $title, 'address' => $model->companey_name, 'tel' => $model->tel];
+$date = isset($model->date) ? appxq\sdii\utils\SDdate::mysql2phpDate($model->date) : "";
+$modelForm = ['product' => isset($product) ? $product : '', 'count' => isset($count) ? $count : '', 'detail' => isset($model['note']) ? $model['note'] : '', 'date' => $date, 'sitecode' => isset($model->sitecode) ? $model->sitecode : '', 'name' => "{$model['firstname']} {$model['lastname']}", 'title' => $title, 'address' => isset($model->companey_name) ? $model->companey_name : '', 'tel' => isset($model->tel) ? $model->tel : ''];
 $data = \backend\modules\sections\classes\JFiles::getTemplateMark($modelForm, $template->option_value);
 $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_request');
 ?>
 <br>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <div class="box box-primary">
-            <div class="box-header"><i class="fa fa-envelope"></i> <?= Html::encode($this->title) ?></div>
-            <div class="box-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-envelope"></i> <?= Html::encode($this->title) ?></div>
+            <div class="panel-body">
                 <?php 
                     if($email){
                         echo "<div class='alert alert-info'>Send email {$email} success</div>";
@@ -24,7 +25,7 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
                     <input type="email" name="email" id="email" class="form-control" value="<?= $email_default['option_value'] ?>"/>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-block btn-success btnSendMail"><?= Yii::t('order', 'Send') ?></a>
+                    <a href="#" class="btn btn-block btn-success btnSendMail btn-lg"><?= Yii::t('order', 'Send') ?></a>
                 </div>
                 <?php
                 if($email){
@@ -53,3 +54,16 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
     }); 
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
+<?php \appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    .form-control{
+         font-size: 1.25rem;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+        padding: .5rem 1rem;
+        font-size: 2.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>

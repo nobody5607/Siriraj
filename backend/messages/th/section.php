@@ -20,4 +20,6 @@ return [
     'Number of visitors/Person'=>'จำนวนผู้เข้าชม/คน',
     'Month'=>'เดือน',
     'All'=>'ทั้งหมด',
+    'Siriraj Museum\'s Knowledge Management'=>'คลังความรู้ของพิพิธภัณฑ์ศิริราช',
+    'Detail'=>'รายละเอียด',
 ];

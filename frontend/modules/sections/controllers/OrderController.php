@@ -5,6 +5,11 @@ use Yii;
  
 class OrderController extends Controller
 {
+    public function beforeAction($action)
+    {
+      $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+      return parent::beforeAction($action);
+    }
     public function actionMyOrder(){
         $user_id = isset(Yii::$app->user->id) ? Yii::$app->user->id : '';
         $model = \common\models\Order::find()->where(['user_id'=>$user_id]);
@@ -60,19 +65,19 @@ class OrderController extends Controller
         $breadcrumbs=[];
         $breadcrumbs_arr = [
             [
-                'label' =>'Home', 
+                'label' => Yii::t('section','Home'), 
                 'url' =>'/sections/session-management',
                 'icon'=>'fa-bank'
             ],
             [
-                    'label' =>'My Order',
+                    'label' => Yii::t('appmenu','My Orders'),
                     'url' => [
                         0 => '/sections/order/my-order'
                     ],                
                     'icon'=>'fa-shopping-cart'
             ],
             [
-               'label' =>'Order Detail'
+               'label' => Yii::t('order','Order Detail')
             ]
         ];
         foreach($breadcrumbs_arr as $key=>$v){
@@ -138,13 +143,13 @@ class OrderController extends Controller
                     //\appxq\sdii\utils\VarDumper::dump($o->sizes->label);
                     $files = \common\models\Files::find()->where(['id'=>$o->product_id])->one();
                     $file_arr[$key]=[
-                        'id'=>$files->id, 
-                        'file_type'=>$files->file_type,
-                        'file_type_name'=>$files->type->name,
-                        'size'=>$o->sizes->label,
-                        'file_name_org'=>$files->file_name_org,
-                        'file_name'=>$files->file_name,
-                        'meta_text'=>$files->meta_text,
+                        'id'=>isset($files->id)? $files->id : '', 
+                        'file_type'=>isset($files->file_type) ? $files->file_type : '',
+                        'file_type_name'=>isset($files->type->name) ? $files->type->name : '',
+                        'size'=> isset($o->sizes->label) ? $o->sizes->label : '',
+                        'file_name_org'=>isset($files->file_name_org) ? $files->file_name_org : '',
+                        'file_name'=> isset($files->file_name) ? $files->file_name : '',
+                        'meta_text'=> isset($files->meta_text) ? $files->meta_text : '',
                     ]; 
                 }
                 sort($file_arr); 

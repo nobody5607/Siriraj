@@ -26,8 +26,8 @@ echo yii\bootstrap\Modal::widget([
 <div class="container" style="margin-top:30px;">
     <div class="row">
         <?php $form = ActiveForm::begin() ?>
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
     <div class="panel-heading"><?= Html::encode($this->title) ?></div>
     <div class="panel-body">
         <div class="col-md-12">
@@ -49,35 +49,17 @@ echo yii\bootstrap\Modal::widget([
         <div class="col-md-12">
             <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-8">
+        <div class="col-md-12">
             <?php   
-              echo $form->field($model, 'sitecode')->widget(kartik\select2\Select2::classname(), [
-                    'language' => 'en-US',
-                    'options' => ['placeholder' => Yii::t('user','Search for Sitecode')],
-                    'pluginOptions' => [
-                        'allowClear' => true,
-                        'minimumInputLength' => 1,
-                        'language' => [
-                            'errorLoading' => new yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-                        ],
-                        'ajax' => [
-                            'url' => yii\helpers\Url::to(['/account/sitecode/get-site']),
-                            'dataType' => 'json',
-                            'data' => new yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-                            //'results' => new yii\web\JsExpression('function(data,page) { return {results:data.results}; }'),
-                        ],
-                        'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
-                        'templateResult' => new yii\web\JsExpression('function(data) { return data.text; }'),
-                        'templateSelection' => new yii\web\JsExpression('function (data) { return data.text; }'),
-                    ],
-                ])->label(Yii::t('user','Select Sitecode'));      
+              echo $form->field($model, 'sitecode')->textInput()->label(Yii::t('user','Sitecode'));      
             ?>             
-        </div>    
-        <div class="col-md-4 col-sm-4 col-xs-4">
-            <div style="margin-top:25px;">
-            <?= Html::button("<i class='fa fa-plus'></i>", ['class'=>'btn btn-success btnAddSite'])?> 
-            </div>    
         </div>
+        <div class="col-md-12">
+            <?php   
+              echo $form->field($model, 'position')->textInput()->label(Yii::t('user','Position'));      
+            ?>             
+        </div> 
+       
             
     </div>
     <div class="panel-footer">
@@ -109,19 +91,7 @@ echo yii\bootstrap\Modal::widget([
         position: absolute;
         left: 85%;
     }
+   
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end();?>
-
-<?php richardfan\widget\JSRegister::begin(); ?>
-<script>
-    $('.btnAddSite').on('click', function(){ 
-        $('#<?= $modalf ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-        $('#<?= $modalf ?>').modal('show');
-        let url = '/account/sitecode/create';    
-        $.get(url, function(res){
-            $('#<?= $modalf ?> .modal-content').html(res);                    
-        });
-       return false;
-   }); 
-</script>
-<?php richardfan\widget\JSRegister::end(); ?> 
+ 

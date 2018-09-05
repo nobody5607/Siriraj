@@ -37,7 +37,7 @@ echo yii\bootstrap\Modal::widget([
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
  
  
                 <?= $form->field($model, 'birthday')->widget(kartik\date\DatePicker::ClassName(),
@@ -50,7 +50,7 @@ echo yii\bootstrap\Modal::widget([
                     ]
                 ]);?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-2">
                 <?=
                 $form->field($model, 'gender')->dropDownlist([
                     UserProfile::GENDER_MALE => Yii::t('user', 'Male'),
@@ -60,44 +60,27 @@ echo yii\bootstrap\Modal::widget([
             </div>
         </div> 
 
-<?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?> 
+    <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?> 
         <div class="row">
-            <div class="col-md-8 col-sm-8 col-xs-8">
-        <?php
-        $default = common\models\Sitecode::findOne($model->sitecode);
-
-        echo $form->field($model, 'sitecode')->widget(kartik\select2\Select2::classname(), [
-            //'language' => 'en-US',
-            'initValueText' => "{$default['name']} ({$default['id']})",
-            'options' => ['placeholder' => Yii::t('user', 'Search for Sitecode')],
-            'pluginOptions' => [
-                'allowClear' => true,
-                'minimumInputLength' => 1,
-                'language' => [
-                    'errorLoading' => new yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-                ],
-                'ajax' => [
-                    'url' => yii\helpers\Url::to(['/account/sitecode/get-site']),
-                    'dataType' => 'json',
-                    'data' => new yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-                ],
-                'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
-                'templateResult' => new yii\web\JsExpression('function(data) { return data.text;}'),
-                'templateSelection' => new yii\web\JsExpression('function (data) { return data.text; }'),
-            ],
-        ])->label(Yii::t('user', 'Select Sitecode'));
-        ?>             
-            </div>    
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <div style="margin-top:25px;">
-<?= Html::button("<i class='fa fa-plus'></i>", ['class' => 'btn btn-success btnAddSite']) ?> 
-                </div>    
-            </div>
+             <div class="col-md-12">
+            <?php   
+              echo $form->field($model, 'sitecode')->textInput()->label(Yii::t('user','Sitecode'));      
+            ?>             
+        </div>
+        <div class="col-md-12">
+            <?php   
+              echo $form->field($model, 'position')->textInput()->label(Yii::t('user','Position'));      
+            ?>             
+        </div> 
         </div>
 
 
         <div class="form-group">
-<?= Html::submitButton(Yii::t('user', 'Submit'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-info btn-block btn-lg categorie-search-box button']) ?>
+                </div>
+            </div>
         </div>
 
             <?php ActiveForm::end() ?>

@@ -6,6 +6,9 @@
  * and open the template in the editor.
  */
 return [
+    'Home'=>'Home',
+    'About Us'=>'About Us',
+    'Contact Us'=>'Contact Us',
     'Edit'=>'Edit',
     'Delete'=>'Delete',
     'My Cart'=>'My Cart',
@@ -13,10 +16,11 @@ return [
     'My Orders'=>'My Orders',
     'Logout'=>'Logout',
     'Login'=>'Login',
+    'Register'=>'Register',
     'Create new account'=>'Create new account',
     'Log into your account'=>'Log into your account',
     'Username or e-mail'=>'Username or e-mail',
     'Password'=>'Password',
-    'Don\'t have an account, create a new account here'=>'Don\'t have an account, create a new account here'
+    'Don\'t have an account, create a new account here'=>'Don\'t have an account, create a new account here',
 ];
 

@@ -18,6 +18,7 @@ class SessionManagementController extends Controller
             $content_section = JSection::getSectionById($id);
             $section = JSection::getChildren($id);
             $content = JSection::getChildren($id, "content");
+            
         }else{
             $content_section = JSection::getRoot(); 
             $section = JSection::getRootSection(); 
@@ -46,7 +47,8 @@ class SessionManagementController extends Controller
             'pagination' => [
                 'pageSize' => 100,
             ],
-        ]);          
+        ]);
+         
         
         return $this->render("index",[
             'dataProvider'=>$dataProvider,
@@ -93,7 +95,7 @@ class SessionManagementController extends Controller
             $model=$data->andWhere("file_type=:file_type", [":file_type"=>$type_id]);  
             //\appxq\sdii\utils\VarDumper::dump($type_id);
         }
-         
+        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [

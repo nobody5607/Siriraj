@@ -6,13 +6,17 @@
  * and open the template in the editor.
  */
 return [
+    'Home'=>'หน้าหลัก',
+    'About Us'=>'เกี่ยวกับเรา',
+    'Contact Us'=>'ติดต่อเรา',
     'Edit'=>'แก้ไข',
     'Delete'=>'ลบ',
-    'My Cart'=>'รถเข็นของฉัน',
+    'My Cart'=>'ตะกร้าของฉัน',
     'My Profile'=>'ข้อมูลส่วนตัว',
     'My Orders'=>'ข้อมูลการสั่งซื้อ',
     'Logout'=>'ออกจากระบบ',
     'Login'=>'เข้าสู่ระบบ',
+    'Register'=>'สมัครสมาชิก',
     'Create new account'=>'สร้างบัญชีผู้ใช้ใหม่',
     'Log into your account'=>'ลงชื่อเข้าใช้บัญชีของคุณ',
     'Username or e-mail'=>'ชื่อผู้ใช้งานหรืออีเมล',

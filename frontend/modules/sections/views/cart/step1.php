@@ -25,5 +25,20 @@ if($breadcrumb){
             margin-left: 0; 
         }
     }
+    .form-control{
+        font-size: 1.5rem;
+    }
+    .dropdown-menu{
+        font-size: 1.5rem;
+    }
+    .input-group-addon{
+        padding: 8px 60px;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+        padding: .5rem 1rem;
+        font-size: 2.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

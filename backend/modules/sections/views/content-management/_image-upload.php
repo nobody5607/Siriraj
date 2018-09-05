@@ -89,13 +89,13 @@ $image = '';
     uploadCrops = $('#upload-edit').croppie({
         enableExif: true,
         viewport: {
-            width: 80,
-            height: 80,
+            width: 300,
+            height: 290,
             type: 'square' //square, circle
         },
         boundary: {
-            width: 100,
-            height: 100
+            width: 400,
+            height: 350
         }
     });
 

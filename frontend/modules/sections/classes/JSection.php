@@ -2,7 +2,10 @@
 namespace frontend\modules\sections\classes;
 use yii\db\Exception;
 class JSection extends \yii\base\Component{
-    
+    public static function getAll(){
+        $data = \common\models\Sections::find()->where("public=1 AND rstat not in(0,3) AND id<>0")->all();
+        return $data;
+    }
     public $level_each_rows=[];
     
     /*pototype*/
@@ -56,10 +59,10 @@ class JSection extends \yii\base\Component{
         try{
             $section = \common\models\Sections::find()->where(['parent_id'=>$id])->andWhere('rstat not in(0,3)')->all();
             //ถ้าไม่เจอค้นจาก ID
-            if(!$section && $content == "content"){
+            if(empty($section) && $content == "content"){
                 $section = \common\models\Sections::find()->where(['id'=>$id])->andWhere('rstat not in(0,3)')->all();
             }
-            //\appxq\sdii\utils\VarDumper::dump($section);
+            
             $datas = [];             
             
             foreach($section as $s){
@@ -71,7 +74,7 @@ class JSection extends \yii\base\Component{
                     ->where("parent_id=@pv AND rstat not in(0,3)")->all();  
                     $datas = \yii\helpers\ArrayHelper::merge($datas, $section); 
             }
-            //\appxq\sdii\utils\VarDumper::dump($section);
+           
             return $section;
         } catch (Exception $ex) {
             return false;
@@ -115,7 +118,7 @@ class JSection extends \yii\base\Component{
             ";
             $data = \Yii::$app->db->createCommand($sql)->queryAll();
             $breadcrumbs=[];
-            $url = ($url == '') ? '/sections/session-management' : $url;
+            $url = ($url == '') ? '/sections/section' : $url;
             $breadcrumbs[] = [
                 'label' =>'Home', 
                 'url' =>$url,

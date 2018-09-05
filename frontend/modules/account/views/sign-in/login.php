@@ -24,8 +24,8 @@ $fieldOptions2 = [
 
 <div class="container">
     <div class="row" style="margin-top:100px;">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-primary">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
             <div class="panel-heading"><?= Yii::t('appmenu','Log into your account')?></div>
     <div class="panel-body">
         
@@ -74,3 +74,17 @@ $fieldOptions2 = [
     </div>
 </div>
 </div>
+
+<?php \appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    .form-control{
+         font-size: 1.25rem;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+        padding: .5rem 1rem;
+        font-size: 2.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>

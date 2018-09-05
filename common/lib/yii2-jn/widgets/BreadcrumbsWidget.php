@@ -45,46 +45,19 @@ class BreadcrumbsWidget extends \yii\base\Widget{
         $view= $this->getView();
         $css="
          @media only screen and (min-width: 768px){
-            .cd-breadcrumb li > *, .cd-multi-steps li > * {
-                font-size: 14px;
-            }
-            section {
-                padding: 0em 0;
-            }
-            .cd-breadcrumb, .cd-multi-steps{
-                padding: 0 3.2em;
-            }
-            .cd-breadcrumb, .cd-multi-steps {
-                width: 100%;
-                max-width: 81%;
-                padding: 0em 1em;
-                margin: 1em auto;
-                background-color: #f8f8f8;
-                border-radius: .25em;
-                margin-left: 245px;
-                border: 1px solid #e7e7e7;
-            }
-            .cd-breadcrumb li, .cd-multi-steps li{
-                margin: 0.5em 0;
-            }
+             
         }
         @media screen and (max-width: 768px){
-            .cd-breadcrumb li > *, .cd-multi-steps li > * {
-                font-size: 11px;
-                padding: 0;
-            }
-            .cd-breadcrumb li::after, .cd-multi-steps li::after{
-                margin: 0 .1em;
-            }
-           .cd-breadcrumb, .cd-multi-steps {
-                width: 100%;
-//                max-width: 768px;
-                padding: 5px;
-                margin: 1em auto;
-                background-color: #ffffff;
-                border-radius: .25em;
-            } 
+             
         } 
+        .cd-breadcrumb, .cd-multi-steps{
+            width: 99%;
+            max-width: 1377px;
+            padding: 0.5em 1em;
+            margin: 0em auto;
+            background-color: #ffffff; 
+            border: none;
+        }
         ";
         $view->registerCss($css);
 

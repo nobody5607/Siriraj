@@ -14,16 +14,12 @@
                       <label>".Yii::t('file', 'Size')." : {$size}</label>
                   </div>";
 ?>
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title"><?= $model->file_name_org?></h3>                 
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="box-title"><?= $model->file_name_org?></h3> 
     </div>
     <!-- /.box-header -->
-    <div class="box-body" style="">
+    <div class="panel-body" style="">
         <?php echo janpan\jn\widgets\BreadcrumbsWidget::widget([
             'breadcrumb'=>$breadcrumb
         ]); ?>
@@ -81,7 +77,8 @@
                         </div>
                     </a>
                 ";
-            }else{
+            }else if($model['file_type'] == '5' || $model['file_type'] == '6' || $model['file_type'] == '7'){
+                //echo $model['file_type'];
                 echo "
                   <a href='{$link_url}' target='_blank'>
                         <div class='media'>

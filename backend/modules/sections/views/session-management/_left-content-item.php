@@ -13,7 +13,7 @@
             $url = "/sections/session-management?id={$model['id']}";
             $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 13);
          
-            echo Html::a("<i class='fa {$model['icon']}' style='font-size:20pt;margin-right:10px;'></i> {$name_str}", $url, ['title'=>$model['name']]);
+            echo Html::a("<img src='{$model['icon']}' style='width:50px;' class='img img-rounded'> {$name_str}", $url, ['title'=>$model['name']]);
         ?>         
     </div>
     <div class="">

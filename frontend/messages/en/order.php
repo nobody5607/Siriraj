@@ -12,5 +12,11 @@ return [
     'Delete'=>'Delete',
     'Email'=>'Email',
     'Send'=>'Send',
+    'Order Detail'=>'Order Detail',
+    'Quantity'=>'Quantity',
+    'Description'=>'Description',
+    'Meta text'=>'Meta text',
+    'File name'=>'File name',
+    'Size'=>'Size',
 ];
 

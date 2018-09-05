@@ -16,9 +16,11 @@ class ContentManagementController extends Controller
  
     public function actionIndex()
     {
+        
         return $this->render('index');
     }
     public function actionView() {
+        
         $content_id = \Yii::$app->request->get('content_id', '');
         $content = JContent::getContentById($content_id);
         $breadcrumb = JSection::getBreadcrumb($content['section_id']);
@@ -39,7 +41,7 @@ class ContentManagementController extends Controller
                 ];
             }
         }
-        //\appxq\sdii\utils\VarDumper::dump($items);
+        
         return $this->render("view", [
                     'breadcrumb' => $breadcrumb,
                     'title' => $content['name'],
@@ -117,6 +119,7 @@ class ContentManagementController extends Controller
         $addTemplate    = JContent::addTemplate($content_id);
         $choice         = JContent::getChoice($content_id, $filet_id);
                 //\appxq\sdii\utils\VarDumper::dump($check_choice);
+        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
         return $this->render("view-file/index",[
             'breadcrumb'=>$breadcrumb,
             'dataProvider'=>$dataProvider,

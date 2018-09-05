@@ -15,11 +15,14 @@ class CoreOption {
      * @param type $option_name string 
      * @return type array options
      */
-    public static function getParams($option_name){
+    public static function getParams($option_name, $val=""){
         try{
             $model = self::findModel($option_name);
 //            \appxq\sdii\utils\VarDumper::dump($model);
             if($model){
+                if($val != ""){
+                    return $model['option_value'];
+                }
                 return $model;
             }
         } catch (Exception $ex) {

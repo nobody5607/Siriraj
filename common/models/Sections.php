@@ -36,7 +36,7 @@ class Sections extends \yii\db\ActiveRecord
             [['id', 'list_content', 'parent_id', 'forder', 'public', 'rstat'], 'integer'],
             [['content'], 'string'],
             [['name'], 'string', 'max' => 255],
-            ['icon', 'safe'],
+            [['icon','detail'], 'safe'],
         ];
     }
 
@@ -55,7 +55,8 @@ class Sections extends \yii\db\ActiveRecord
             'public' => Yii::t('section', 'Section Public'),
             'rstat' => Yii::t('section', 'Rstat'),
             'icon'=>Yii::t('section', 'Icon'),
-            'Content'=>'Content',
+            'content'=>Yii::t('section', 'Content'),
+            'detail'=>Yii::t('section', 'Detail'),
         ];
     }
 }

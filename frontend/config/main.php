@@ -60,10 +60,17 @@ $config = [
                 }
             }
         ],
-        'view' => [
+//        'view' => [
+//            'theme' => [
+//                'pathMap' => [
+//                    '@frontend/views' => '@frontend/themes/adminlte'
+//                ],
+//            ],
+//       ],
+       'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@frontend/views' => '@frontend/themes/adminlte'
+                   '@frontend/views' => '@frontend/themes/siriraj'
                 ],
             ],
        ],

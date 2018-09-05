@@ -95,7 +95,8 @@ class SessionManagementController extends Controller
             
 	    $model =  Sections::findOne($id);
              
-	    if ($model->load(Yii::$app->request->post())) {		 
+	    if ($model->load(Yii::$app->request->post())) {
+                 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Update data complete'), $model);
 		} else {

@@ -8,9 +8,8 @@ use backend\widgets\TinyMCECallback;
 use dosamigos\tinymce\TinyMce;
 use dominus77\iconpicker\IconPicker;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Sections */
-/* @var $form yii\bootstrap\ActiveForm */
+$this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
+//คลังความรู้ของพิพิธภัณฑ์ศิริราช  Siriraj Museum's Knowledge Management
 ?>
 
 <div>
@@ -23,35 +22,37 @@ use dominus77\iconpicker\IconPicker;
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><b>&times;</b></button>
-        <h4 class="modal-title" id="itemModalLabel"><b><?= Yii::t('section','Session')?></b></h4>
+        <h4 class="modal-title" id="itemModalLabel"><b><?= Html::encode($this->title)?></b></h4>
     </div>
 
     <div class="modal-body">
         <div class="row"> 
-
-            <div class="col-md-8">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+            <div class="clearfix">
+                <div class="col-md-5">                
+                    <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
+                </div>
+                <div class="col-md-5">
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                </div>
+                <div class="col-md-2">
+                    <?php
+                        $model->public = ($model->public != '') ? $model->public : 1;
+                        echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Yes'), '2' => Yii::t('section', 'No')])
+                        ?>
+                </div>
             </div>
-            <div class="col-md-4">                
-                <?=
-                $form->field($model, 'icon')->widget(IconPicker::className(), [
-                    'options' => ['id' => 'icon-picker', 'class' => 'form-control'],                    
-                ]);
-                ?>
+            <div class="clearfix" style="display:none;">
+                    <div class="col-md-8">
+                        <?php
+                        $parent_list = \yii\helpers\ArrayHelper::map($parent_section, 'id', 'name');
+                        echo $form->field($model, 'parent_id')->dropDownList($parent_list, ['prompt' => Yii::t('section', 'Select Section')]);
+                        ?>
+                    </div> 
+            </div> 
+            
+            <div class="col-md-12">
+                <?php  echo $form->field($model, 'detail')->textarea(['rows'=>'6']);?>
             </div>
-            <div class="col-md-8">
-                <?php
-                $parent_list = \yii\helpers\ArrayHelper::map($parent_section, 'id', 'name');
-                echo $form->field($model, 'parent_id')->dropDownList($parent_list, ['prompt' => Yii::t('section', 'Select Section')]);
-                ?>
-            </div>
-            <div class="col-md-4">
-                <?php
-                $model->public = ($model->public != '') ? $model->public : 1;
-                echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section', 'Private')])
-                ?>
-            </div>
-
 
             <div class="col-md-12">
                 <?php  echo $form->field($model, 'content')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [

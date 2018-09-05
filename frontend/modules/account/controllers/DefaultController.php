@@ -41,7 +41,11 @@ class DefaultController extends Controller
             ],
         ];
     }
-
+public function beforeAction($action)
+    {
+      $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+      return parent::beforeAction($action);
+    }
     /**
      * Settings User models.
      *
@@ -70,6 +74,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->sap_id = isset($_POST['UserProfile']['sap_id']) ? $_POST['UserProfile']['sap_id'] : '';
             $model->sitecode = isset($_POST['UserProfile']['sitecode']) ? $_POST['UserProfile']['sitecode'] : '';
+            $model->sitecode = isset($_POST['UserProfile']['position']) ? $_POST['UserProfile']['position'] : '';
             //\appxq\sdii\utils\VarDumper::dump($_POST);
             if($model->save()){
                 return \janpan\jn\classes\JResponse::getSuccess("Success");
