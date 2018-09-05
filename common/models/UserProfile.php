@@ -66,7 +66,7 @@ class UserProfile extends ActiveRecord
            // ['lastname', 'match', 'pattern' => '/^[a-zа-яё]+(-[a-zа-яё]+)?$/iu'],
             ['user_id', 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['firstname', 'lastname', 'birthday', 'gender', 'website', 'other'], 'default', 'value' => null],
-            [['image','birthday','sitecode','sap_id'], 'safe'],
+            [['image','birthday','sitecode','sap_id','position','approval'], 'safe'],
         ];
     }
 
@@ -84,7 +84,8 @@ class UserProfile extends ActiveRecord
             'website' => Yii::t('_user', 'Website'),
             'other' => Yii::t('_user', 'Other'),
             'Save Icon'=>Yii::t('_user', 'Save Icon'),
-          
+            'position' => Yii::t('_user', 'Position'),
+            'approval'=> Yii::t('_user', 'Position'),
              
         ];
     }

@@ -33,4 +33,5 @@ return [
     'Female'=>'Female',
     'User Profile'=>'User Profile',
     'Image'=>'Image',
+    'approval'=>'Approval',
 ];

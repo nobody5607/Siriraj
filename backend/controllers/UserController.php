@@ -180,4 +180,29 @@ class UserController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionManager($id, $auth) { 
+      
+        $getAuth = \Yii::$app->authManager->getAssignment($auth, $id);
+        $roles_db = ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
+
+        if ($id == \Yii::$app->user->identity->getId()) {            
+            return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($id));
+        } else {
+            $authorRole = Yii::$app->authManager->getRole($auth);
+            //Yii::$app->authManager->revoke($authorRole, $id);
+            $model = UserProfile::findOne($id);
+            if($model->approval == 1){
+                $setAuth = Yii::$app->authManager->revoke($authorRole, $id);
+                $model->approval = 0;
+                $model->save();
+            }else{
+                $setAuth = Yii::$app->authManager->assign($authorRole, $id);
+                $model->approval = 1;
+                $model->save();
+            }
+            
+            return \janpan\jn\classes\JResponse::getSuccess("Success");
+        }
+    }
 }

@@ -64,20 +64,37 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => Yii::t('_user','Site Code'),
                     'value' => function ($model) {
-                        $sitecode = isset($model->userProfile->sitecode) ? $model->userProfile->sitecode : '';
-                        if($sitecode){
-                            $site = common\models\Sitecode::findOne($sitecode);
-                            return "{$site['name']} ({$site['id']})";
-                        }
+                        return isset($model->userProfile->sitecode) ? $model->userProfile->sitecode : '';
                         
                     } 
                 ],         
                 [
-                    'attribute' => 'status',
+                    'header' => Yii::t('_user', 'approval'),
                     'value' => function ($model) {
-                        return User::statuses($model->status);
+                        $auth = Yii::$app->authManager->getAssignment('adminsite', $model->id);
+
+                        if (isset($model->userProfile->approval) && $model->userProfile->approval == 1) {
+                            return Html::button('<i class="glyphicon glyphicon-ok"></i>', [
+                                        'class' => 'manager-btn btn btn-xs btn-primary',
+                                       
+                                        'data-id' => $model->id,
+                                        'data-action'=>'admin',
+                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'admin'])
+                            ]);
+                        } else {
+
+                            return Html::button('<i class="glyphicon " style="padding-right: 6px; padding-left: 6px;"></i>', [
+                                        'class' => 'manager-btn btn btn-xs btn-default',
+//                                        'style'=>'padding: 6px 6px 16px 6px;',
+                                        'data-id' => $model->id,
+                                        'data-action'=>'admin',
+                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'admin'])
+                            ]);
+                        }
                     },
-                    'filter' => User::statuses(),
+                    'format' => 'raw',
+                    'headerOptions' => ['style' => 'text-align: center;'],
+                    'contentOptions' => ['style' => 'width:90px;text-align: center;'],
                 ],
                 [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
@@ -113,4 +130,24 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
- 
+ <?php \richardfan\widget\JSRegister::begin();?>
+<script>
+    
+    $('.manager-btn').click(function(){
+        let url = $(this).attr('data-url');
+        if($(this).hasClass('btn-default')){
+                $(this).removeClass('btn-default');
+                $(this).addClass('btn-primary');
+                $(this).html('<i class=\'glyphicon glyphicon-ok\'></i>');
+            }else{
+                $(this).removeClass('btn-primary');
+                $(this).addClass('btn-default');
+                $(this).html('<i class=\"glyphicon \" style=\"padding-right: 6px; padding-left: 6px;\"></i>');
+
+            } 
+        $.get(url, function(data){           
+           
+        });
+});
+</script>
+<?php \richardfan\widget\JSRegister::end();?>

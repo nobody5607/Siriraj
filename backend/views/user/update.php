@@ -82,40 +82,8 @@ echo yii\bootstrap\Modal::widget([
                     ?>
 
                     <?= $form->field($profile, 'sap_id')->textInput()->label(Yii::t('_user','Sap_id')) ?>
-                    <div class="row">
-                        <div class="col-md-8 col-sm-8 col-xs-8">
-                            <?php
-                            $default = common\models\Sitecode::findOne($profile->sitecode);
-
-                            echo $form->field($profile, 'sitecode')->widget(kartik\select2\Select2::classname(), [
-                                //'language' => 'en-US',
-                                'initValueText' => "{$default['name']} ({$default['id']})",
-                                'options' => ['placeholder' => Yii::t('user', 'Search for Sitecode')],
-                                'pluginOptions' => [
-                                    'allowClear' => true,
-                                    'minimumInputLength' => 1,
-                                    'language' => [
-                                        'errorLoading' => new yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-                                    ],
-                                    'ajax' => [
-                                        'url' => yii\helpers\Url::to(['/sitecode/get-site']),
-                                        'dataType' => 'json',
-                                        'data' => new yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-                                    ],
-                                    'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
-                                    'templateResult' => new yii\web\JsExpression('function(data) { return data.text;}'),
-                                    'templateSelection' => new yii\web\JsExpression('function (data) { return data.text; }'),
-                                ],
-                            ])->label(Yii::t('_user', 'Select Sitecode'));
-                            ?>             
-                        </div>    
-                        <div class="col-md-4 col-sm-4 col-xs-4">
-                            <div style="margin-top:25px;">
-                                <?= Html::button("<i class='fa fa-plus'></i>", ['class' => 'btn btn-success btnAddSite']) ?> 
-                            </div>    
-                        </div>
-                    </div>
- 
+                    <?= $form->field($profile, 'sitecode')->textInput()->label(Yii::t('_user','Site Code'))?>  
+                    <?= $form->field($profile, 'position')->textInput()->label(Yii::t('_user','Position'))?> 
 
                     <div class="form-group">
                         <div class="row">

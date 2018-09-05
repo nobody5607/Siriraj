@@ -33,4 +33,5 @@ return [
     'Female'=>'หญิง',
     'User Profile'=>'ข้อมูลส่วนตัว',
     'Image'=>'รูปภาพ',
+    'approval'=>'การอนุมัติ',
 ];
