@@ -1,12 +1,14 @@
-<?php 
-    use yii\helpers\Html;
-    \janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
+<?php
+
+use yii\helpers\Html;
+
+\janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
 ?>
 <div class="col-md-8 view-file-left">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <?php //appxq\sdii\utils\VarDumper::dump($dataDefault);?>
-            <?= $dataDefault['file_name_org'] ?>
+<?php //appxq\sdii\utils\VarDumper::dump($dataDefault); ?>
+<?= $dataDefault['file_name_org'] ?>
         </div> 
         <div class="panel-body">  
             <div class="row" style="margin-bottom:10px;">
@@ -18,23 +20,23 @@
                                 //echo "<div class='label label-default pull-left'><a href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>Download</a></div>";
                                 echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
                                 echo "<div id='lightgallery'>";
-                                echo Html::beginTag("div", ['class'=>'flex-3','data-src'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html'=>"{$dataDefault['description']}"]);
-                                    echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
-                                        'class' => 'img img-responsive' 
-                                    ]);
+                                echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
+                                    'class' => 'img img-responsive'
+                                ]);
                                 echo Html::endTag("div");
                                 echo "</div>";
                             } else {
 
                                 echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
                                 echo "<div id='lightgallery'>";
-                                echo Html::beginTag("div", ['class'=>'flex-3','data-src'=>"{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html'=>"{$dataDefault['description']}"]);
-                                    echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
-                                        'class' => 'img img-responsive' 
-                                    ]);
+                                echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
+                                    'class' => 'img img-responsive'
+                                ]);
                                 echo Html::endTag("div");
                                 echo "</div>";
-                            } 
+                            }
 
 
                             // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
@@ -65,26 +67,26 @@
     <div class="panel">
         <div class="panel-body">
             <?php
-                    echo \yii\widgets\ListView::widget([
-                        'dataProvider' => $dataProvider,
-                        'options' => [
-                            'tag' => 'div',
-                            'class' => 'col-md-12',
-                            'id' => 'file_types',
-                        ],
-                        'itemOptions' => function($model) {
-                            return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-3', 'style' => 'margin-bottom:80px;'];
-                        },
-                        'layout' => "{pager}\n{items}\n",
-                        'itemView' => function ($model, $key, $index, $widget) {
-                            return $this->render('_item', ['model' => $model]);
-                        },
-                    ]);
-                    ?>
-                    <div class="clearfix"></div>
-                    <?php if (!Yii::$app->user->isGuest) { ?>
+            echo \yii\widgets\ListView::widget([
+                'dataProvider' => $dataProvider,
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'col-md-12',
+                    'id' => 'file_types',
+                ],
+                'itemOptions' => function($model) {
+                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-3', 'style' => 'margin-bottom:80px;'];
+                },
+                'layout' => "{pager}\n{items}\n",
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_item', ['model' => $model]);
+                },
+            ]);
+            ?>
+            <div class="clearfix"></div>
+            <?php if (!Yii::$app->user->isGuest) { ?>
 
-        <?php } ?>
+<?php } ?>
         </div>
     </div>
 </div>
@@ -93,10 +95,10 @@
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('#lightgallery').lightGallery();
-    },1000);
-    
+    }, 1000);
+
     $('#btnCart').on('click', function () {
         let checkboxValues = [];
         $('input[type="checkbox"]:checked').each(function (index, elem) {
@@ -145,10 +147,10 @@
 
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
- 
+
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
-    
+
 
     /* Hide the browser's default checkbox */
     .container input[type='checkbox'] {

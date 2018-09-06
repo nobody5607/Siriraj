@@ -1,5 +1,6 @@
 <?php 
     use yii\helpers\Html;
+    \janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
 //    \appxq\sdii\utils\VarDumper::dump($dataProvider);
 ?>
 <div class="col-md-8 view-file-left">
@@ -23,19 +24,17 @@
         <div class="box-body">
             
             <div class="row" style="margin-bottom:10px;">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-12">
                     <?php 
                         if($dataDefault['file_type'] == '2'){
-                            echo \janpan\jn\widgets\ZoomImageWidget::widget([
-                                'data'=>[
-                                    'id'=>$dataDefault['id'],
-                                    'image'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",
-                                    'options'=>[
-                                        'class'=>'img img-responsive img-rounded','style'=>"width:1024px;",
-                                        'id'=>$dataDefault['id'],
-                                    ]
-                                ]
-                            ]);
+                            echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
+                                echo "<div id='lightgallery'>";
+                                echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
+                                    'class' => 'img img-responsive'
+                                ]);
+                                echo Html::endTag("div");
+                                echo "</div>";
                            // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
                         }elseif ($dataDefault['file_type'] == 3) {
                             echo"
@@ -92,6 +91,9 @@
 ?>
 <?php \richardfan\widget\JSRegister::begin(); ?>
     <script>
+        setTimeout(function () {
+            $('#lightgallery').lightGallery();
+        }, 1000);
         $('.btnCreateFile').on('click', function(){
             let id = $(this).attr('data-id');
             let content_id = '<?= Yii::$app->request->get('content_id', '')?>';
