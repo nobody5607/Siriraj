@@ -55,7 +55,7 @@ class BreadcrumbsWidget extends \yii\base\Widget{
             max-width: 1377px;
             padding: 0.5em 1em;
             margin: 0em auto;
-            background-color: #ffffff; 
+            background-color: #ffffff00; 
             border: none;
         }
         ";

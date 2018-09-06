@@ -11,9 +11,9 @@
 ?>  
 
 <!--  Image Banner  -->
-<div class="image-banner pb-30 off-white-bg">
+<div class="image-banner pb-0 off-white-bg">
     <div class="text-center">
-        <div class="col-imgs" style="background:#fff;">
+        <div class="col-imgs">
              
             <?php 
                 if($breadcrumb){        

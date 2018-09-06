@@ -102,7 +102,7 @@
 <?php \appxq\sdii\widgets\CSSRegister::begin();?>
             <style>
                 footer.off-white-bg2.pt-95.bdr-top.pt-sm-55 { 
-                    background: #F3D39C url(<?= "/images/open.jpg"?>) no-repeat center top;
+                    /*background: #F3D39C url(<?= "/images/open.jpg"?>) no-repeat center top;*/
                     background-size: cover;
                 }
                 .footer-bottom{
