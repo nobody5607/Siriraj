@@ -33,4 +33,6 @@ return [
     'Female'=>'Female',
     'User Profile'=>'User Profile',
     'Image'=>'Image',
+    'Staff'=>'Staff',
+    'Siriraj members wait 1-2 days for staff approval.'=>'Siriraj members wait 1-2 days for staff approval.',
 ];
