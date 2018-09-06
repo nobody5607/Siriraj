@@ -272,6 +272,7 @@ class FileManagementController extends Controller
                             $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'2'])->one();
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);
                             $fileNames = "{$realFileName}_mark.{$obj['type']}";
+                            $file_view = "{$realFileName}_preview.jpg";
                         }else if($fileType[0] === 'application'){
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }else if($fileType[0] === 'video'){
@@ -279,12 +280,13 @@ class FileManagementController extends Controller
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
                            $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark);
                            $fileNames = "{$realFileName}_mark.{$obj['type']}";
+                           $file_view = $fileNames;
                            //\appxq\sdii\utils\VarDumper::dump($obj);
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}");
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view);
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

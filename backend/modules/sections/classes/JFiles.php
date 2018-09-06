@@ -23,7 +23,7 @@ class JFiles {
      * @param type $defaultFile default filename
      * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path=''){
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path='', $file_view=""){
         try{
             $meta = [];
             if(!empty($file->type)){
@@ -48,6 +48,9 @@ class JFiles {
             $files->file_type       = $model->file_type;
             $files->meta_text       = SDUtility::array2String($meta);
             $files->dir_path        = $dir_path;
+            $files->file_view      = $file_view;
+            
+            
             return $files->save();
         } catch (Exception $ex) {
             return FALSE;
@@ -111,7 +114,7 @@ class JFiles {
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.{$fileType[1]}"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);
                       $sql  = "convert {$filePath}_mark.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.{$fileType[1]}";
-                      $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 120x100 {$thumbnail}_preview.{$fileType[1]}";
+                      $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
                       @exec($template." && ".$sql." && ".$sql2, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
                       return ["type"=>$type];
@@ -127,7 +130,7 @@ class JFiles {
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.jpg"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);                      
                       set_time_limit(1200);
-                       $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 120x100 {$thumbnail}_preview.{$fileType[1]}";
+                      $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
                        @exec($template." && ".$sql." && ".$sql2, $out, $retval);
                       //exec($template." && ".$sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");

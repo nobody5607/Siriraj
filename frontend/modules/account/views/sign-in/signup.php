@@ -39,10 +39,10 @@ echo yii\bootstrap\Modal::widget([
                         <?= $form->field($model, 'password_confirm')->passwordInput(['maxlength' => true]) ?>
 
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <?= $form->field($model, 'firstname')->textInput() ?>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <?= $form->field($model, 'lastname')->textInput() ?>
                     </div>
                             <div class="col-md-12">
