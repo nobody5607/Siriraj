@@ -1,6 +1,7 @@
 <?php 
     use yii\helpers\Html;
     use yii\helpers\Url;
+    \janpan\jn\assets\file_download\FileDownloadAsset::register($this);
     /*
     Yii::$app->user->can("administrator");
     Yii::$app->user->can("admin");
@@ -27,7 +28,8 @@
                     [
                         'class'=>'img img-responsive img-rounded',
                         'style'=>'height:100px;'
-            ]);            
+            ]);
+           
         }else if($model['file_type'] == '3'){
             if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin")) ){
                 //echo Html::checkbox('checked', '', ['data-id'=>$model['id'] , 'class'=>'checkbox', 'name'=>"check[]"]); 
@@ -87,5 +89,23 @@
         }
         $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org']);
         echo "<div title='{$model['file_name_org']}'>{$name_str}</div>";
+        
+        echo "<a class='btn btn-sm btn-info download' data-id='{$model['id']}' href='#'>Download</a>";
     ?>
 </a>
+ 
+ 
+<?php    richardfan\widget\JSRegister::begin();?>
+<script> 
+    $('.download').on('click', function(){
+        let url = '/site/convert';//$(this).attr('data-href');
+        let id = $(this).attr('data-id');
+        //download("data:image/gif;base64,R0lGODlhRgAVAIcAAOfn5+/v7/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAAAAP8ALAAAAABGABUAAAj/AAEIHAgggMGDCAkSRMgwgEKBDRM+LBjRoEKDAjJq1GhxIMaNGzt6DAAypMORJTmeLKhxgMuXKiGSzPgSZsaVMwXUdBmTYsudKjHuBCoAIc2hMBnqRMqz6MGjTJ0KZcrz5EyqA276xJrVKlSkWqdGLQpxKVWyW8+iJcl1LVu1XttafTs2Lla3ZqNavAo37dm9X4eGFQtWKt+6T+8aDkxUqWKjeQUvfvw0MtHJcCtTJiwZsmLMiD9uplvY82jLNW9qzsy58WrWpDu/Lp0YNmPXrVMvRm3T6GneSX3bBt5VeOjDemfLFv1XOW7kncvKdZi7t/S7e2M3LkscLcvH3LF7HwSuVeZtjuPPe2d+GefPrD1RpnS6MGdJkebn4/+oMSAAOw==", "dlDataUrlBin.gif", "image/gif");
+        $.get(url, {id:id}, function(data){
+             
+             download(data);
+        }); 
+        return false; 
+    }); 
+</script>
+<?php    richardfan\widget\JSRegister::end();?>

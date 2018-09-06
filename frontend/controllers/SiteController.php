@@ -12,6 +12,8 @@ use vova07\fileapi\actions\UploadAction as FileAPIUpload;
  */
 class SiteController extends Controller
 {
+    
+   
     public function beforeAction($action)
     {
       $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
@@ -64,5 +66,23 @@ class SiteController extends Controller
     {
         $contact = \backend\modules\cores\classes\CoreOption::getParams("contact", 'c');
         return $this->render('contact',['contact'=>$contact]); 
+    }
+    
+     public function actionConvert(){
+         
+        $id = \Yii::$app->request->get('id', '');
+        $file = \common\models\Files::findOne($id);
+        $storageUrl = Yii::getAlias('@storage');
+        $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
+        $view = "{$file['file_path']}/{$file['file_name']}";    
+        
+        $img_file = $path;
+
+            // Read image path, convert to base64 encoding
+            $imgData = base64_encode(file_get_contents($img_file)); 
+            $src = 'data:'.mime_content_type($img_file).';base64,'.$imgData;
+            return $src;
+            return $this->renderAjax("convert",['src'=>$src]);
+        
     }
 }
