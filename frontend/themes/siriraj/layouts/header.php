@@ -147,13 +147,16 @@ use yii\helpers\Html;
                 }
             }
             .carousel-caption{
-                    background: #000000b5;
-    border-radius: 3px;
+                background: #000000b5;border-radius: 3px;  padding:3px;
             }
             .carousel-caption p{
                 color:#fff;font-size: 16pt;
             }
-            
+            @media only screen and (max-width:768px){
+               .carousel-caption p{
+                    color:#fff;font-size: 8pt;
+                } 
+            }
         </style>
         <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php endif; ?>
