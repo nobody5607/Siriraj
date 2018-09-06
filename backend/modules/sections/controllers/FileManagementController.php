@@ -259,6 +259,7 @@ class FileManagementController extends Controller
                     
                     $out=[];
                     $obj=['type'=>''];
+                    $file_view = "";
                     foreach ($files as $file) {                        
                         $fileName       = $file->baseName . '.' . $file->extension;
                         $realFileName   = md5($folderName . time());// . '.' . $file->extension;
@@ -284,7 +285,7 @@ class FileManagementController extends Controller
                            //\appxq\sdii\utils\VarDumper::dump($obj);
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
-                            $file_view = "";
+                            
                         }
                         
                         $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view);
