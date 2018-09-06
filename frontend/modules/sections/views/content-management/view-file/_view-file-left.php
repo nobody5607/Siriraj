@@ -27,12 +27,13 @@
                             } else {
 
                                 echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
-                                echo "<a  href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>";
-                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
-                                    'class' => 'img img-responsive',
-                                    'style' => 'width:1024px;'
-                                ]);
-                                echo "</a>";
+                                echo "<div id='lightgallery'>";
+                                echo Html::beginTag("div", ['class'=>'flex-3','data-src'=>"{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html'=>"{$dataDefault['description']}"]);
+                                    echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
+                                        'class' => 'img img-responsive' 
+                                    ]);
+                                echo Html::endTag("div");
+                                echo "</div>";
                             } 
 
 
@@ -92,7 +93,9 @@
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
 
-    $('#lightgallery').lightGallery();
+    setTimeout(function(){
+        $('#lightgallery').lightGallery();
+    },1000);
     
     $('#btnCart').on('click', function () {
         let checkboxValues = [];

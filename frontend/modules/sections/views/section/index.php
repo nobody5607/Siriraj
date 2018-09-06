@@ -36,12 +36,13 @@
                     <?php 
                         echo ListView::widget([
                             'dataProvider' => $dataProvider,
-                            'itemOptions' => ['class' => 'col-md-3 col-sm-6 col-xs-6 col-lg-3'],
-                            'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div>{items}<div class="list-pager">{pager}</div>',
-//                            'options' => [
-//                                'tag' => 'div',
-//                                'class' => 'col-md-4',
-//                            ],
+                            'itemOptions' => ['class' => 'col-md-3  col-50'],
+                            'layout' => '{items}',
+                            //'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div>{items}<div class="list-pager">{pager}</div>',
+                            'options' => [
+                                'tag' => 'div',
+                                'class' => 'row',
+                            ],
                             'itemView' => function ($model, $key, $index, $widget) {
                                 return $this->render('_item', [
                                     'model' => $model 
@@ -69,8 +70,14 @@
                         <?php 
                             echo ListView::widget([
                                 'dataProvider' => $contentProvider,
-                                'itemOptions' => ['class' => 'col-md-3 col-sm-6 col-xs-6 col-lg-3'],
-                                'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+                                'itemOptions' => ['class' => 'col-md-3 col-50'],
+                                //'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+                                'layout' => '{items}',
+                                //'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div>{items}<div class="list-pager">{pager}</div>',
+                                'options' => [
+                                    'tag' => 'div',
+                                    'class' => 'row',
+                                ],
                                 'itemView' => function ($model, $key, $index, $widget) {
                                     return $this->render('_item-content', [
                                         'model' => $model 

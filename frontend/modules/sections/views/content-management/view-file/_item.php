@@ -23,7 +23,7 @@
                   </label>  
                 ";
             }
-            echo Html::img("{$model['file_path']}/thumbnail/j_{$model['file_name']}", 
+            echo Html::img("{$model['file_path']}/thumbnail/{$model['file_view']}", 
                     [
                         'class'=>'img img-responsive img-rounded',
                         'style'=>'height:100px;'

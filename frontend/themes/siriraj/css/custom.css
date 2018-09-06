@@ -13,3 +13,9 @@
     background-color: #641a35;
     border-color: #641a35;
 }
+
+@media screen and (max-width: 768px) {
+    .col-50{
+        width:50%;
+    }   
+}

@@ -12,12 +12,24 @@ $video = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEiCAYAAABDd+8FAAAg
 $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
 ?>
 
-<?php if($model['file_type'] == 2): ?>
+ 
     <div class="single-product">
         <a href="<?= $url ?>"> 
             <div class="pro-img">
-                <?php  
-                    echo Html::img("{$image}",['class'=>'primary-img img img-responsive','alt'=>"{$model['file_name_org']}"]);                
+                <?php 
+                    if($model['file_type'] == 2){
+                        echo Html::img("{$image}",['class'=>'primary-img img img-responsive','alt'=>"{$model['file_name_org']}"]); 
+                    }
+                    else if($model['file_type'] == 3){
+                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>";
+                    }
+                    else if($model['file_type'] == 4){
+                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>";
+                    }
+                    else if($model['file_type'] == 5 || $model['file_type'] == 6 || $model['file_type'] == 7){
+                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file'></i></div>";
+                    }
+                                   
                 ?>
 
             </div> 
@@ -33,27 +45,5 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
             </div>
         </a>
     </div>
-<?php endif; ?>
-
-<?php if($model['file_type'] == 3): ?>
-    <div class="single-product">
-        <a href="<?= $url ?>"> 
-            <div class="pro-img">
-                <?php  
-                    echo Html::img("{$video}",['class'=>'primary-img img img-responsive','alt'=>"{$model['file_name_org']}"]);                
-                ?>
-
-            </div> 
-            <div class="pro-content">
-                <div class="pro-infos">
-                    <h4> <?= $name_str ?></h4>
-                    <?php
-                    $name_str = backend\modules\sections\classes\JFiles::lengthName($model['description'], 30);
-                    ?>
-                    <p title="<?= $model['description'] ?>"><?= $name_str ?></p>
-                </div>
-
-            </div>
-        </a>
-    </div>
-<?php endif; ?>
+ 
+ 
