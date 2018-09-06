@@ -82,19 +82,79 @@ use yii\helpers\Html;
             </div>                
         </div>
 <?php if($slide == '1'): ?>
-        <?php 
-            $images = \backend\modules\sections\classes\JContent::getImage();
-        ?>
-        <div class="slider_box" >
+        
+        <div class="slider_box" >            
             <div class='container'>
-                <div class="slider-wrapper theme-default"> 
-                    <div id="slider" class="nivoSlider">
-                      <?php foreach ($images as $image):?>
-                            <img src="<?= "{$image['view_path']}/{$image['name']}"?>" data-thumb="<?= "{$image['view_path']}/{$image['name']}"?>" alt="" title="#<?= $image['detail']?>" />
-                      <?php endforeach; ?>  
+                <?php 
+                    $images = \backend\modules\sections\classes\JContent::getImage(); 
+                ?>
+                    <div class="container">
+                         
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                           
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                
+                                <?php foreach ($images as $k=> $image):?>
+                                    <?php if($k==0): ?>
+                                        <div class="item active">
+                                            <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
+                                            <div class="carousel-caption"> 
+                                                <p><?= $image['detail']?></p>
+                                            </div>
+                                        </div> 
+                                    <?php else:?>
+                                        <div class="item">
+                                            <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
+                                            <div class="carousel-caption"> 
+                                                <p><?= $image['detail']?></p>
+                                            </div>
+                                        </div> 
+                                    <?php endif; ?>
+                                <?php endforeach; ?> 
+
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                
+                
+                
+                
             </div>
         </div>
+        <?php appxq\sdii\widgets\CSSRegister::begin();?>
+        <style>
+             @media only screen and (min-width:960px){
+                .carousel-inner img{
+                    width: 1024px;
+                    height: 450px !important;
+                    margin:0 auto;
+                }
+                .nivoSlider img {
+                    width: 1024px;
+                    height: 450px !important;
+                }
+            }
+            .carousel-caption{
+                    background: #000000b5;
+    border-radius: 3px;
+            }
+            .carousel-caption p{
+                color:#fff;font-size: 16pt;
+            }
+            
+        </style>
+        <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php endif; ?>
 </header>

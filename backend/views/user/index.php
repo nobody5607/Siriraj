@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     } 
                 ], 
                 [
-                    'contentOptions'=>['style'=>'widh:100px;'],
+                    'contentOptions'=>['style'=>'widh:150px;'],
                     'label' => Yii::t('_user','Uswename'),
                     'value' => function ($model) {
                         return $model->username;
@@ -145,8 +145,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 $(this).html('<i class=\"glyphicon \" style=\"padding-right: 6px; padding-left: 6px;\"></i>');
 
             } 
-        $.get(url, function(data){           
-           
+        $.get(url, function(result){           
+           <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
         });
 });
 </script>

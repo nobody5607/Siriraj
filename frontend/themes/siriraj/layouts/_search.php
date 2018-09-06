@@ -11,9 +11,9 @@
         </div>
         <!-- Categorie Search Box Start Here -->
         <?php if (Yii::$app->user->isGuest): ?>
-            <div class="col-lg-10 col-md-8 ml-auto  col-10">
+            <div class="col-lg-10 col-md-12">
             <?php else: ?>
-                <div class="col-lg-7 col-md-8 ml-auto  col-10">
+                <div class="col-lg-7 col-md-8 ml-auto  col-12">
                 <?php endif; ?>
 
                 <div class="categorie-search-box">
