@@ -1,5 +1,5 @@
-<?php 
-    $fileType = common\models\FileType::find()->all();
+<?php  
+    $example = \common\models\ExampleData::find()->orderBy(['forder'=>SORT_ASC])->all();
     //\appxq\sdii\utils\VarDumper::dump($section);
 ?>
 <footer class="off-white-bg2 pt-95 bdr-top pt-sm-55">
@@ -9,15 +9,15 @@
             <h2 style="margin-bottom:25px;"><?= Yii::t('section','ตัวอย่างข้อมูลในคลังความรู้')?></h2> 
             <!-- Signup-Newsletter End -->
             <div class="row"> 
-                <?php if($fileType): ?>
-                    <?php foreach($fileType as $k=>$v):?>
+                <?php if($example): ?>
+                    <?php foreach($example as $k=>$v):?>
                         <div class="col-md-3 col-sm-6">
                             <div class="single-footer mb-sm-40">
                                 <div class="footer-content">
                                     <ul class="footer-list">
                                         <li>
-                                            <a target="_blank" href="/sections/session-management/search?type_id=<?= $v['id']?>&txtsearch=">
-                                              <?= $v['name'] ?>
+                                            <a target="_blank" href="<?= $v['url']?>">
+                                              <?= $v['label'] ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -34,36 +34,7 @@
         </div>
         <!-- Container End -->
     </div><br>
-    <div class="footer-top">
-        <div class="container">
-            <h2 style="margin-bottom:25px;"><?= Yii::t('section','Browse by Category')?></h2> 
-            <!-- Signup-Newsletter End -->
-            <div class="row"> 
-                <?php if($fileType): ?>
-                    <?php foreach($fileType as $k=>$v):?>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="single-footer mb-sm-40">
-                                <div class="footer-content">
-                                    <ul class="footer-list">
-                                        <li>
-                                            <a target="_blank" href="/sections/session-management/search?type_id=<?= $v['id']?>&txtsearch=">
-                                              <?= $v['name'] ?>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach;?>    
-                <?php endif; ?>
-                <!-- Single Footer Start -->
-                
-                 
-            </div>
-            <!-- Row End -->
-        </div>
-        <!-- Container End -->
-    </div>
+     
     <!-- Footer Top End -->
     <!-- Footer Middle Start -->
 <!--    <div class="footer-middle text-center">

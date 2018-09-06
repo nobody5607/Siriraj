@@ -11,29 +11,18 @@ $actionID = Yii::$app->controller->action->id;
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
-        
+
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => [
-//                [
-//                    'label' => Yii::t('appmenu', 'Main'),
-//                    'options' => ['class' => 'header'],
-//                ],
+            'items' => [ 
                 [
                     'label' => Yii::t('appmenu', 'Section Management'),
                     'url' => ['/sections/session-management'],
                     'icon' => '<i class="fa fa-folder"></i>',
                     'active' => ($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
-                ],
-//                [
-//                    'label' => Yii::t('appmenu', 'Private Section Management'),
-//                    'url' => ['/sections/private-session-management'],
-//                    'icon' => '<i class="fa fa-lock"></i>',
-//                    'active' => ($moduleID == 'sections' && $controllerID == 'private-session-management') ? TRUE : FALSE,
-//                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('secret')),
-//                ],
+                ], 
                 [
                     'label' => Yii::t('appmenu', 'Order Management'),
                     'url' => ['/order/order-management'],
@@ -54,7 +43,7 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
-                    'label' => Yii::t('appmenu','Slider Image'),
+                    'label' => Yii::t('appmenu', 'Slider Image'),
                     'url' => ['/slideimg'],
                     'icon' => '<i class="fa fa-picture-o"></i> ',
                     'visible' => Yii::$app->user->can('administrator'),
@@ -64,27 +53,6 @@ $actionID = Yii::$app->controller->action->id;
                     'url' => ['/viewcountermanagement/view-count'],
                     'icon' => '<i class="fa fa-eye"></i>',
                     'visible' => Yii::$app->user->can('administrator'),
-                ],
-                [
-                    'label' => Yii::t('appmenu', 'Authentication'),
-                    'url' => '#',
-                    'icon' => '<i class="fa fa-cogs"></i>',
-                    'options' => ['class' => 'treeview'],
-                    'visible' => Yii::$app->user->can('administrator'),
-                    'items' => [
-                        [
-                            'label' => Yii::t('appmenu', 'Role'),
-                            'url' => ['/rbac/access/role'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ],
-                        [
-                            'label' => Yii::t('appmenu', 'Permission'),
-                            'url' => ['/rbac/access/permission'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ]
-                    ],
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Templates'),
@@ -109,6 +77,11 @@ $actionID = Yii::$app->controller->action->id;
                             'url' => ['/template/template-management/water-mark-video'],
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
                             'visible' => Yii::$app->user->can('administrator'),
+                        ],[
+                            'label' => Yii::t('appmenu', 'Example Data'),
+                            'url' => ['/example-data'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
                         ]
                     ],
                 ],
@@ -130,14 +103,30 @@ $actionID = Yii::$app->controller->action->id;
                             'url' => ['/site/template-contact'],
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
                             'visible' => Yii::$app->user->can('administrator'),
-                        ] 
+                        ]
                     ],
                 ],
-//                [
-//                    'label' => Yii::t('appmenu', 'System'),
-//                    'options' => ['class' => 'header'],
-//                    'visible' => Yii::$app->user->can('administrator'),
-//                ],
+                [
+                    'label' => Yii::t('appmenu', 'Authentication'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-cogs"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'visible' => Yii::$app->user->can('administrator'),
+                    'items' => [
+                        [
+                            'label' => Yii::t('appmenu', 'Role'),
+                            'url' => ['/rbac/access/role'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ],
+                        [
+                            'label' => Yii::t('appmenu', 'Permission'),
+                            'url' => ['/rbac/access/permission'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ]
+                    ],
+                ],
                 [
                     'label' => Yii::t('appmenu', 'Settings'),
                     'url' => '#',
@@ -181,7 +170,7 @@ $actionID = Yii::$app->controller->action->id;
         ?>
     </section>
 </aside>
-<?php        \appxq\sdii\widgets\CSSRegister::begin();?>
+<?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     .skin-blue .sidebar-menu>li a {
         font-size: 10pt;
@@ -201,4 +190,4 @@ $actionID = Yii::$app->controller->action->id;
         background-color: #ffffff;
     }
 </style>
-<?php        \appxq\sdii\widgets\CSSRegister::end();?>
+<?php \appxq\sdii\widgets\CSSRegister::end(); ?>

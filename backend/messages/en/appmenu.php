@@ -62,5 +62,6 @@ return [
     'Contact Us'=>'Contact Us',
     'About Us'=>'About Us',
     'Pages'=>'Pages',
+     'Example Data'=>'Example Data',
 ];
 
