@@ -14,7 +14,7 @@
 <div class="image-banner pb-30 off-white-bg">
     <div class="text-center">
         <div class="col-imgs" style="background:#fff;">
-            <a href="#"><img src="/images/1533128627373.jpg" alt="image banner"></a>
+             
             <?php 
                 if($breadcrumb){        
                     echo janpan\jn\widgets\BreadcrumbsWidget::widget([
