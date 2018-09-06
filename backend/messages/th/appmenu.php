@@ -56,5 +56,9 @@ return [
     'Watermark Image'=>'ลายน้ำรูป',
     'Watermark Video'=>'ลายน้ำวีดีโอ',
     'Slider Image'=>'ภาพสไลเดอร์',
+    
+    'Contact Us'=>'ติดต่อเรา',
+    'About Us'=>'เกี่ยบกับเรา',
+    'Pages'=>'จัดการหน้า',
 ];
 

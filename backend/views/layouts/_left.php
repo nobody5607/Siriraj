@@ -112,6 +112,27 @@ $actionID = Yii::$app->controller->action->id;
                         ]
                     ],
                 ],
+                [
+                    'label' => Yii::t('appmenu', 'Pages'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-file"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'visible' => Yii::$app->user->can('administrator'),
+                    'items' => [
+                        [
+                            'label' => Yii::t('appmenu', 'About Us'),
+                            'url' => ['/site/template-about'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                            'active' => ($moduleID == 'template' && $controllerID == 'site' && $actionID == "template-about") ? TRUE : FALSE,
+                        ], [
+                            'label' => Yii::t('appmenu', 'Contact Us'),
+                            'url' => ['/site/template-contact'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ] 
+                    ],
+                ],
 //                [
 //                    'label' => Yii::t('appmenu', 'System'),
 //                    'options' => ['class' => 'header'],

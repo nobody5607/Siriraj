@@ -58,5 +58,9 @@ return [
     'Watermark Image'=>'Watermark Image',
     'Watermark Video'=>'Watermark Video',
     'Slider Image'=>'Slider Image',
+    
+    'Contact Us'=>'Contact Us',
+    'About Us'=>'About Us',
+    'Pages'=>'Pages',
 ];
 

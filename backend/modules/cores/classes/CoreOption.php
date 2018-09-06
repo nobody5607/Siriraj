@@ -38,7 +38,9 @@ class CoreOption {
         try{
             $model = self::findModel($option_name);
             $model->option_value = $option_value;
-            $model->save();
+            if($model->save()){
+                return true;
+            }
         } catch (Exception $ex) {
 
         }

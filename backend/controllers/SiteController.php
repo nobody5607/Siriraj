@@ -177,4 +177,33 @@ class SiteController extends Controller
          
         return $this->render('test');
     }
+    public function actionTemplateAbout(){
+        $model = \backend\modules\cores\classes\CoreOption::getParams('about');
+        if(\Yii::$app->request->post()){
+            $option_name = \Yii::$app->request->post('option_name', '');
+            $option_value = \Yii::$app->request->post('option_value', '');
+            $data = \backend\modules\cores\classes\CoreOption::update($option_name, $option_value); 
+            if($data){
+                return \janpan\jn\classes\JResponse::getSuccess("Success");
+            }else{
+                return \janpan\jn\classes\JResponse::getError("Error");
+            }
+        }
+        return $this->render('template-about', ['model' => $model]);
+    }
+    public function actionTemplateContact(){
+        $model = \backend\modules\cores\classes\CoreOption::getParams('contact');
+        if(\Yii::$app->request->post()){
+            $option_name = \Yii::$app->request->post('option_name', '');
+            $option_value = \Yii::$app->request->post('option_value', '');
+            $data = \backend\modules\cores\classes\CoreOption::update($option_name, $option_value); 
+            if($data){
+                return \janpan\jn\classes\JResponse::getSuccess("Success");
+            }else{
+                return \janpan\jn\classes\JResponse::getError("Error");
+            }
+        }
+        return $this->render('template-contact', ['model' => $model]);
+    }
+    
 }

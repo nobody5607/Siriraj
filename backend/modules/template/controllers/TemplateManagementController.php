@@ -14,7 +14,8 @@ class TemplateManagementController extends \yii\web\Controller
         if(\Yii::$app->request->post()){
             $option_name = \Yii::$app->request->post('option_name', '');
             $option_value = \Yii::$app->request->post('option_value', '');
-            \backend\modules\cores\classes\CoreOption::update($option_name, $option_value); 
+            \backend\modules\cores\classes\CoreOption::update($option_name, $option_value);
+            return \janpan\jn\classes\JResponse::getSuccess("success");
         }
         return $this->render('form-request');
     }

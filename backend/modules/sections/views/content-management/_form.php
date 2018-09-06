@@ -47,22 +47,17 @@ $this->title = Yii::t('section', 'Content');
             </div>
             <div class="col-md-12">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
-                <?php  echo $form->field($model, 'description')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [
-                        'toolbar_size'=>'lg',
-                        'options'=>['class'=>'eztemplate'],
-                    ]);//->hint('Default Template <a class="btn btn-warning btn-xs btn-template" data-widget="{tab-widget}">Use Default</a>'); 
-                ?>
-            
+             
 
-
-
-            <?php 
+                <div style="display: none;">
+                    <?php 
 
                 $model->public = ($model->public != '') ? $model->public : isset($public) ? $public : '1';
                 echo $form->field($model, 'public')
                         ->inline()
                         ->radioList(['1' => Yii::t('section', 'Pulbic'), '2' => Yii::t('section','Private')])
             ?> 
+                </div>
         </div>
         </div>
         

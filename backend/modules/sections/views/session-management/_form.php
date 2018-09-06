@@ -31,10 +31,10 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
                 <div class="col-md-5">                
                     <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="display:none;">
                     <?php
                         $model->public = ($model->public != '') ? $model->public : 1;
                         echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Yes'), '2' => Yii::t('section', 'No')])
@@ -54,13 +54,7 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
                 <?php  echo $form->field($model, 'detail')->textarea(['rows'=>'6']);?>
             </div>
 
-            <div class="col-md-12">
-                <?php  echo $form->field($model, 'content')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [
-                        'toolbar_size'=>'lg',
-                        'options'=>['class'=>'eztemplate'],
-                    ]);//->hint('Default Template <a class="btn btn-warning btn-xs btn-template" data-widget="{tab-widget}">Use Default</a>'); 
-                ?>
-            </div>
+            
         </div>
     </div>
     <div class="modal-footer">
