@@ -15,7 +15,7 @@ use yii\helpers\Html;
             <!-- Header Top Start -->
             <div class="header-top">
                 <ul>
-                    <li><a href="/"> <img src="/images/1533128627373.jpg" style="    width: 70%;"></a></li>  
+                    <li><a href="/"> <img src="/images/1533128627373.jpg" style="width: 100%;"></a></li>  
                 </ul>
                 <ul>
                     <li>
