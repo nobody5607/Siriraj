@@ -6,6 +6,36 @@
     <!-- Footer Top Start -->
     <div class="footer-top">
         <div class="container">
+            <h2 style="margin-bottom:25px;"><?= Yii::t('section','ตัวอย่างข้อมูลในคลังความรู้')?></h2> 
+            <!-- Signup-Newsletter End -->
+            <div class="row"> 
+                <?php if($fileType): ?>
+                    <?php foreach($fileType as $k=>$v):?>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="single-footer mb-sm-40">
+                                <div class="footer-content">
+                                    <ul class="footer-list">
+                                        <li>
+                                            <a target="_blank" href="/sections/session-management/search?type_id=<?= $v['id']?>&txtsearch=">
+                                              <?= $v['name'] ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach;?>    
+                <?php endif; ?>
+                <!-- Single Footer Start -->
+                
+                 
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div><br>
+    <div class="footer-top">
+        <div class="container">
             <h2 style="margin-bottom:25px;"><?= Yii::t('section','Browse by Category')?></h2> 
             <!-- Signup-Newsletter End -->
             <div class="row"> 
