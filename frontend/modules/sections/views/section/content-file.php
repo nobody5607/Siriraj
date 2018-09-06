@@ -23,19 +23,19 @@
                     <?php endforeach; ?>
                 </div>  
 
-                <div class="panel-footer text-center">
-                    <div class="col-md-6 col-md-offset-3">
-                        <?=
-                            Html::a(Yii::t('section', 'more...'), "/sections/content-management/view-file?content_id={$content_id}&file_id=&filet_id={$f['id']}", [
-                                'id' => "btn-{$f['id']}",
-                                'data-action' => 'view-file',
-                                'class' => 'content-popup btnCall text-center btn btn-primary btn-lg btn-block',
-                                'data-id' => $f['id'],
-                                'style' => 'color:#fff;'
-                            ]);
-                            ?>
+                <div class="row" style="margin-top:10px;">
+                        <div class="col-md-6 col-md-offset-3">
+                            <?=
+                                Html::a(Yii::t('section', 'more...'), "/sections/content-management/view-file?content_id={$content_id}&file_id=&filet_id={$f['id']}", [
+                                    'id' => "btn-{$f['id']}",
+                                    'data-action' => 'view-file',
+                                    'class' => 'content-popup btnCall text-center btn btn-primary btn-lg btn-block',
+                                    'data-id' => $f['id'],
+                                    'style' => 'color:#fff;'
+                                ]);
+                                ?>
+                        </div>
                     </div>
-                </div> 
 
             </div>
             <!-- main-product-tab-area-->
