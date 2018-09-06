@@ -19,7 +19,7 @@ class SirirajAssets extends AssetBundle{
         'css/default.css',
         'css/style.css',
         'css/responsive.css',
-         
+        'css/custom.css', 
     ];
 
     public $js = [

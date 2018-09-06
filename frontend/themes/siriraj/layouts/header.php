@@ -8,54 +8,31 @@ use yii\helpers\Html;
 
 ?>
 
-<header>
-    <!-- Header Top Start Here -->
-    <div class="header-top-area">
-        <div class="container">
-            <!-- Header Top Start -->
-            <div class="header-top">
-                <ul>
-                    <li><a href="/"> <img src="/images/1533128627373.jpg" style="width: 100%;"></a></li>  
-                </ul>
-                <ul>
-                    <li>
-                        <?php
-                        echo \lajax\languagepicker\widgets\LanguagePicker::widget([
-                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
-                            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
-                        ]);
-                        ?> 
-                    </li>
-<?php if (Yii::$app->user->isGuest): ?> 
-                        <li><a href="#"><?= Yii::t('appmenu', 'Login')?>/<?= Yii::t('appmenu', 'Register')?> <i class="lnr lnr-chevron-down"></i></a>
-                            <!-- Dropdown Start -->
-                            <ul class="ht-dropdown">
-                                <li><a href="/account/sign-in/login"><?= Yii::t('appmenu', 'Login')?></a></li>
-                                <li><a href="/account/sign-in/signup"><?= Yii::t('appmenu','Register');?></a></li>
-                            </ul>
-                            <!-- Dropdown End -->
-                        </li>
-<?php endif; ?>
-                </ul>
-            </div>
-            <!-- Header Top End -->
-        </div>
-        <!-- Container End -->
-    </div>
-    <!-- Header Top End Here -->
-    <!-- Header Middle Start Here -->
+<header> 
     <div class="header-middle ptb-15">
 <?= $this->render("_search", ['directoryAsset' => $directoryAsset]) ?>    
         <div class="header-bottom  header-sticky">
             <div class="container">
                 <div class="row align-items-center">
 
-                    <div class="col-xl-9 col-lg-8 col-md-12 ">
+                    <div class="col-xl-12 col-lg-12 col-md-12 ">
                         <nav class="d-none d-lg-block">
                             <ul class="header-bottom-list d-flex">
                                 <li><a href="/"><i class="fa fa-home"></i> <?= Yii::t('appmenu', 'Home') ?></a></li>
                                 <li><a href="/site/about"><?= Yii::t('appmenu', 'About Us') ?></a></li>
                                 <li><a href="/site/contact"><?= Yii::t('appmenu', 'Contact Us') ?></a></li>
+                                <?php if (Yii::$app->user->isGuest): ?> 
+                                 <li><a href="/account/sign-in/login"><?= Yii::t('appmenu', 'Login')?></a></li>
+                                 <li><a href="/account/sign-in/signup"><?= Yii::t('appmenu','Register');?></a></li>
+                                <?php endif; ?>
+                                 <li style="line-height: 45px;">
+                                        <?php
+                                        echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+                                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
+                                            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
+                                        ]);
+                                        ?> 
+                                </li> 
                             </ul>
                         </nav>
                         <div class="mobile-menu d-block d-lg-none">
@@ -64,6 +41,10 @@ use yii\helpers\Html;
                                     <li><a href="/"><i class="fa fa-home"></i> <?= Yii::t('appmenu', 'Home') ?></a></li>
                                     <li><a href="/site/about"><?= Yii::t('appmenu', 'About Us') ?></a></li>
                                     <li><a href="/site/contact"><?= Yii::t('appmenu', 'Contact Us') ?></a></li>
+                                    <?php if (Yii::$app->user->isGuest): ?> 
+                                        <li><a href="/account/sign-in/login"><?= Yii::t('appmenu', 'Login')?></a></li>
+                                        <li><a href="/account/sign-in/signup"><?= Yii::t('appmenu','Register');?></a></li>
+                                    <?php endif; ?>
                                     <li class="text-center">
                                         <?php
                                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
@@ -99,16 +80,20 @@ use yii\helpers\Html;
                                     <?php if($k==0): ?>
                                         <div class="item active">
                                             <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
-                                            <div class="carousel-caption"> 
-                                                <p><?= $image['detail']?></p>
-                                            </div>
+                                            <?php if($image['detail']):?>
+                                                <div class="carousel-caption"> 
+                                                    <p><?= $image['detail']?></p>
+                                                </div>
+                                            <?php endif; ?>
                                         </div> 
                                     <?php else:?>
                                         <div class="item">
                                             <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
-                                            <div class="carousel-caption"> 
-                                                <p><?= $image['detail']?></p>
-                                            </div>
+                                            <?php if($image['detail']):?>
+                                                <div class="carousel-caption"> 
+                                                    <p><?= $image['detail']?></p>
+                                                </div>
+                                            <?php endif; ?>
                                         </div> 
                                     <?php endif; ?>
                                 <?php endforeach; ?> 

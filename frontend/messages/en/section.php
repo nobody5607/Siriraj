@@ -14,4 +14,5 @@ return [
     'Content'=>'Content',
     'Section'=>'Section',
     'more...'=>'more...',
+    'Search Images'=>'Search Images',
 ];

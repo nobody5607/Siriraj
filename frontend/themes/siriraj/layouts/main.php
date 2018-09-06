@@ -38,7 +38,18 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
         </div>
         <?= $this->render('footer');?> 
     </div>
-         
+    <?php appxq\sdii\widgets\CSSRegister::begin()?>
+        <style>
+            .off-white-bg {
+                    background: #fff;
+                    background: #fff;
+                    background: #f3f3f3 url(<?= "/images/open.jpg"?>) no-repeat center top;
+                    background-size: cover;
+                    background-attachment: fixed;
+            }
+            .ptb-15{    padding: 0px 0;}
+            </style>
+     <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -365,7 +365,7 @@ ul {
 }
 
 .categorie-search-box button {
-    background: #641a35 none repeat scroll 0 0;
+    background: #d2ab66 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0 3px 3px 0;
     color: white;
@@ -688,7 +688,7 @@ span.total-pro {
 .home-4 .header-bottom-list>li.active>a,
 .header-bottom-list>li:hover>a,
 .home-4 .header-bottom-list>li:hover>a {
-    color: #E62E04;
+    color: #fff;
 }
 
 .mean-container .mean-bar {
