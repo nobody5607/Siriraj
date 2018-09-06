@@ -28,7 +28,7 @@ $logo =  \yii\helpers\Html::img('/images/logosirirajweb3.png',['class' => 'img i
                 <?php 
                         echo '<li class="navbar-text">';
                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
-                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+                            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
                             'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
                         ]);
                         echo '</li>';

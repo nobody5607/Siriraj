@@ -92,26 +92,37 @@ class FileManagementController extends Controller
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-	    $model              = new ContentChoice();
+//	    $model              = new ContentChoice();
+            
             $content_id         = \Yii::$app->request->get('content_id', '');
             $filet_id           = \Yii::$app->request->get('filet_id', '');
-            $model->content_id  = $content_id;
-            $model->type        = $filet_id;
+            $model              = \common\models\Files::findOne($filet_id);
+            //\appxq\sdii\utils\VarDumper::dump($model);
+//            $model->content_id  = $content_id;
+//            $model->type        = $filet_id;
 	    if ($model->load(Yii::$app->request->post())) {
-                if($model->default == 1){
-                    //default
-                    $choice = ContentChoice::find()->where(['content_id'=>$model->content_id, 'type'=>$model->type])->all();
-                    foreach($choice as $c){
-                        $c->default = 0;
-                        $c->update();
-                    }
-                    //\Yii::$app->db->createCommand()->update($table, $columns, $condition, $params);
-                }  
-		if ($model->save()) {		 
+                $post = Yii::$app->request->post()['Files'];
+                $model->description = $post['description'];
+                $model->file_name_org = $post['file_name_org'];
+                if ($model->save()) {		 
                     return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
                 } else {
                     return \janpan\jn\classes\JResponse::getError(Yii::t('app', 'Can not update the data.'), $model);
                 }
+//                if($model->default == 1){
+//                    //default
+//                    $choice = ContentChoice::find()->where(['content_id'=>$model->content_id, 'type'=>$model->type])->all();
+//                    foreach($choice as $c){
+//                        $c->default = 0;
+//                        $c->update();
+//                    }
+//                    //\Yii::$app->db->createCommand()->update($table, $columns, $condition, $params);
+//                }  
+//		if ($model->save()) {		 
+//                    return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
+//                } else {
+//                    return \janpan\jn\classes\JResponse::getError(Yii::t('app', 'Can not update the data.'), $model);
+//                }
 	    } else {
 		return $this->renderAjax('create', [
 		    'model' => $model,

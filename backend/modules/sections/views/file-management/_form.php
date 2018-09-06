@@ -18,27 +18,18 @@ use appxq\sdii\helpers\SDHtml;
 
     <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 class="modal-title" id="itemModalLabel">Content Choice</h4>
+	<h4 class="modal-title" id="itemModalLabel"><?= Yii::t('section','Note')?></h4>
     </div>
 
     <div class="modal-body"> 
         <div class="row">
-            <?php
-                $file_type = \common\models\FileType::find()->all();
-                $items = yii\helpers\ArrayHelper::map($file_type, 'id', 'name');
-            ?> 	
-            <div class="col-md-6">
-                <?= $form->field($model, 'label')->textInput(['maxlength' => true]) ?>
-            </div>
-            <div class="col-md-6">
-                <?= $form->field($model, 'forder')->textInput() ?>
-            </div>
             <div class="col-md-12">
-                <?php
-                    $items = ['1'=>'Yes','0'=>'No'];
-                    echo $form->field($model, 'default')->radioList($items, []); 
-                ?>
+                <?= $form->field($model, 'file_name_org')->textInput()->label(Yii::t('section','File Name')) ?>
+            </div> 
+            <div class="col-md-12">
+                <?= $form->field($model, 'description')->textArea(['rows' =>7])->label(Yii::t('section','Note')) ?>
             </div>
+             
         </div>    
     </div>
     <div class="modal-footer">
