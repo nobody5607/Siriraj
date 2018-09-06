@@ -20,7 +20,7 @@ class ContentManagementController extends Controller
         return $this->render('index');
     }
     public function actionView() {
-        
+        return $this->redirect(['/sections/section']);
         $content_id = \Yii::$app->request->get('content_id', '');
         $content = JContent::getContentById($content_id);
         $breadcrumb = JSection::getBreadcrumb($content['section_id']);

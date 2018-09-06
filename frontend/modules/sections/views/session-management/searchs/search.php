@@ -1,16 +1,14 @@
 <?php 
     $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section', 'Section');
 ?>
-<div class="row">
-    <div style="margin-top:40px;"></div>
-
- 
-<div style="margin-top:20px;"></div>
+<div class="row" style="margin-top:20px;"> 
+     
 <div class="col-md-10 col-md-offset-1">
     <?php 
         echo yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item'],
+            'layout' => "{items}",
             'itemView' => function ($model, $key, $index, $widget) {
             return $this->render('_item', [
                             'model' => $model,

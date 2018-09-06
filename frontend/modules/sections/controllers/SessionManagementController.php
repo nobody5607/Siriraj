@@ -10,7 +10,7 @@ use Yii;
 class SessionManagementController extends Controller
 { 
     public function actionIndex(){    
-        
+        return $this->redirect(['/sections/section']);
         \frontend\modules\sections\classes\JCounter::saveCounter();
                 
         $id = \Yii::$app->request->get('id', '');        
@@ -90,6 +90,10 @@ class SessionManagementController extends Controller
             ':meta_text'=>"%{$txtsearch}%",
              
         ]);
+        if($type_id == 0 || $type_id == ""){
+            $type_id = 1;
+        }
+        //\appxq\sdii\utils\VarDumper::dump($type_id);
         $types = ['1', 'all'];
         if(!in_array($type_id, $types)){
             $model=$data->andWhere("file_type=:file_type", [":file_type"=>$type_id]);  
