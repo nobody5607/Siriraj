@@ -5,7 +5,7 @@
 ?>
 <div class="col-md-9 section-right"> 
     <?php if($public == '1'): ?>
-    <div class="box box-primary">
+<!--    <div class="box box-primary">
         <div class="box-header">
             <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
              
@@ -44,7 +44,7 @@
                 </div> 
             </div>             
         </div>
-    </div>
+    </div>-->
     <?php endif; ?>
      
     <div class="clearfix"></div>
