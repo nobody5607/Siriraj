@@ -91,7 +91,7 @@
         <div class="container">
 
             <div class="copyright-text text-center">
-                <p>Copyright © 2018 <a target="_blank" href="#">พิพิธภัณฑ์ศิริราช Website: <a href="http://www.sirirajmuseum.com" target="_blank">www.sirirajmuseum.com  </a>  &nbsp;All Rights Reserved.</p>
+                <p style="color:#fff;">Copyright © 2018  พิพิธภัณฑ์ศิริราช All Rights Reserved.  | Website: <a href="http://www.sirirajmuseum.com" target="_blank">www.sirirajmuseum.com  </a>  &nbsp;</p>
             </div>
         </div>
         <!-- Container End -->
@@ -105,5 +105,12 @@
                     background: #F3D39C url(<?= "/images/open.jpg"?>) no-repeat center top;
                     background-size: cover;
                 }
+                .footer-bottom{
+                    background: #641a35;
+                    padding-top: 30px;
+                    color:#fff;
+                }
+                .footer-bottom a{color:#fff;}
+                    
             </style>                
 <?php \appxq\sdii\widgets\CSSRegister::end();?>   
