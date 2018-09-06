@@ -91,7 +91,7 @@
         <div class="container">
 
             <div class="copyright-text text-center">
-                <p>Copyright © 2018 <a target="_blank" href="#">พิพิธภัณฑ์ศิริราช</a> All Rights Reserved.</p>
+                <p>Copyright © 2018 <a target="_blank" href="#">พิพิธภัณฑ์ศิริราช Website: <a href="http://www.sirirajmuseum.com" target="_blank">www.sirirajmuseum.com  </a>  &nbsp;All Rights Reserved.</p>
             </div>
         </div>
         <!-- Container End -->

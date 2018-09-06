@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
     $email = \backend\modules\cores\classes\CoreOption::getParams("email", "e");
     $tel = \backend\modules\cores\classes\CoreOption::getParams("tel", "e");
-      
+    $website   = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
 
 ?>
 
@@ -15,8 +15,7 @@ use yii\helpers\Html;
             <!-- Header Top Start -->
             <div class="header-top">
                 <ul>
-                    <li><a href="#"><i class="fa fa-envelope" style="font-size:12pt;"></i> <?= isset($email) ? $email: ''?></a></li>
-                    <li><a href="#"><i class="fa fa-phone" style="font-size:12pt;"></i> <?= isset($tel) ? $tel : ''?></a></li> 
+                    <li><a href="#"> <img src="/images/1533128627373.jpg"/></li>  
                 </ul>
                 <ul>
                     <li>
@@ -157,6 +156,7 @@ use yii\helpers\Html;
                     color:#fff;font-size: 8pt;
                 } 
             }
+            
         </style>
         <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php endif; ?>

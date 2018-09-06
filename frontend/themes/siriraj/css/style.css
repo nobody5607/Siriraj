@@ -232,10 +232,7 @@ ul {
 /* 2.1 Header Top CSS
 /*----------------------------------------*/
 
-.header-top-area {
-    background: #e7d5ad none repeat scroll 0 0;
-    border-bottom: 1px solid rgb(210, 196, 166);
-}
+ 
 
 .header-top {
     -webkit-box-align: center;
@@ -4450,3 +4447,9 @@ a.shipping-calculator-button:hover {
     .input-group-addon{
         padding: 8px 60px;
     }
+    
+    
+    .header-top-area {
+                background: #ffffff none repeat scroll 0 0;
+                border-bottom: 1px solid rgb(210, 196, 166);
+            }
