@@ -58,7 +58,9 @@ use yii\helpers\Html;
                             //echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
                             $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
                             $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
-                            if(in_array($dataDefault['file_type'], $file_type)){
+                            $type = explode('.', $dataDefault['file_name']);
+                            //appxq\sdii\utils\VarDumper::dump($type);
+                            if(in_array($type[1], $file_type)){
                                 echo "
                                     <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'>
                                     </iframe>
