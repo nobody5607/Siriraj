@@ -130,7 +130,7 @@ class JFiles {
                       $modelForm = ['filename'=>"{$filePath}.{$fileType[1]}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.jpg"];
                       $template = self::getTemplateMark($modelForm, $watermark['code']);                      
                       set_time_limit(1200);
-                      $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
+                      $sql2  = "convert {$filePath}_mark.jpg -resize 200x200 {$thumbnail}_preview.jpg";
                        @exec($template." && ".$sql." && ".$sql2, $out, $retval);
                       //exec($template." && ".$sql, $out, $retval);
                       @unlink("{$filePath}.{$fileType[1]}");
