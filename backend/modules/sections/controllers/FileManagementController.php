@@ -268,14 +268,16 @@ class FileManagementController extends Controller
                         $thumbnail      = "{$path}/thumbnail/{$realFileName}";                        
                         $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
                         $fileNames      = "{$realFileName}.{$obj['type']}";
-                        
+                        // \appxq\sdii\utils\VarDumper::dump($fileType[0]);
                         if($fileType[0] === 'image'){//images   
                             $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'2'])->one();
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);
                             $fileNames = "{$realFileName}_mark.{$obj['type']}";
                             $file_view = "{$realFileName}_preview.jpg";
-                        }else if($fileType[0] === 'application'){
+                        }else if($fileType[0] === 'application'){//docx pdf 
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
+                           $fileNames = "{$realFileName}.{$obj['type']}";
+                           $file_view = $fileNames;
                         }else if($fileType[0] === 'video'){
                            //$folderName = 10000001 
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
@@ -283,8 +285,15 @@ class FileManagementController extends Controller
                            $fileNames = "{$realFileName}_mark.{$obj['type']}";
                            $file_view = $fileNames;
                            //\appxq\sdii\utils\VarDumper::dump($obj);
+                        }else if($fileType[0] === 'audio'){ 
+                           $obj = \backend\modules\sections\classes\JFiles::uploadAudio($file,$filePath);
+                           $fileNames = "{$realFileName}.{$obj['type']}";
+                           $file_view = $fileNames; 
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
+                            //\appxq\sdii\utils\VarDumper::dump($obj);
+                            $fileNames = "{$realFileName}.{$obj['type']}";
+                            $file_view = $fileNames;
                             
                         }
                         

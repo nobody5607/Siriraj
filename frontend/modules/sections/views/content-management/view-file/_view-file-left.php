@@ -55,8 +55,14 @@ use yii\helpers\Html;
                                 </audio>
                             ";
                         } else {
-                            echo "<div class='text-center'><i class='fa fa-file-o' style='font-size:50pt;'></i></div>";
-                            echo "<div class='text-center'>{$dataDefault['file_name_org']}</div>";
+                            echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
+                            echo \lesha724\documentviewer\MicrosoftDocumentViewer::widget([
+                                    'url'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",//url на ваш документ
+                                    'width'=>'100%',
+                                    'height'=>'100%', 
+      
+                            ]);
+                           
                         }
                         ?>
                     </div>
@@ -71,11 +77,11 @@ use yii\helpers\Html;
                 'dataProvider' => $dataProvider,
                 'options' => [
                     'tag' => 'div',
-                    'class' => 'col-md-12',
+                    'class' => 'row',
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-3', 'style' => 'margin-bottom:80px;'];
+                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-4 col-50', 'style' => '    border: 1px solid #f3f3f3; margin-bottom:0px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {
@@ -162,13 +168,14 @@ use yii\helpers\Html;
     /* Create a custom checkbox */
     .checkmark {
         position: absolute;
-        top: -15px;
-        left: 0;
+        top: 5px;
+        left: 23px;
         height: 25px;
         width: 25px;
         background-color: #fff;
         border: 1px solid #88888c;
         border-radius: 5px;
+        cursor:pointer;
     }
 
     /* On mouse-over, add a grey background color */
@@ -179,7 +186,7 @@ use yii\helpers\Html;
 
     /* When the checkbox is checked, add a blue background */
     .container input:checked ~ .checkmark {
-        background-color: #28a745;
+        background-color: #d2ab66;
     }
 
     /* Create the checkmark/indicator (hidden when not checked) */

@@ -154,9 +154,9 @@ class JFiles {
     * @param $folderName folder name
     * @return boolean
     */
-    public static function uploadDocx($file,$filePath){
+    public static function uploadDocx($file,$filePath){        
         if ($file->saveAs("{$filePath}.{$file->extension}")) {//save image
-            return ['type'=>$file->extension];
+            return ['type'=>"{$file->extension}"];
         }     
     }
     
@@ -187,6 +187,19 @@ class JFiles {
 //                }
                  
             return ['type'=>'mp4'];
+        }  
+         
+    }
+    
+    public static function uploadAudio($file,$filePath){
+         
+        $path = "{$filePath}.{$file->extension}";
+        $output = "{$filePath}.mp3"; 
+        if ($file->saveAs($path)) {//save image
+               set_time_limit(1200); 
+                $template = "ffmpeg -i {$path} -acodec libmp3lame {$output}";
+                exec($template, $output, $return_var);           
+            return ['type'=>'mp3'];
         }  
          
     }

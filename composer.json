@@ -55,7 +55,8 @@
         "tpmanc/yii2-imagick": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "miloschuman/yii2-highcharts-widget": "dev-master"
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "lesha724/yii2-document-viewer": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
