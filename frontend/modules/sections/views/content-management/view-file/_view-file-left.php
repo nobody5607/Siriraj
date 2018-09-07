@@ -57,11 +57,16 @@ use yii\helpers\Html;
                         } else {
                             //echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
                             $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
-                             
-                            echo "
-                                <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'>
-                                </iframe>
-                            ";
+                            $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
+                            if(in_array($dataDefault['file_type'], $file_type)){
+                                echo "
+                                    <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'>
+                                    </iframe>
+                                ";
+                            }else{
+                                echo "Preview file error";
+                            }
+                            
                            
                         }
                         ?>
