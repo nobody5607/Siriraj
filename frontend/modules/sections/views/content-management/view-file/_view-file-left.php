@@ -55,13 +55,13 @@ use yii\helpers\Html;
                                 </audio>
                             ";
                         } else {
-                            echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
-                            echo \lesha724\documentviewer\MicrosoftDocumentViewer::widget([
-                                    'url'=>"{$dataDefault['file_path']}/{$dataDefault['file_name']}",//url на ваш документ
-                                    'width'=>'100%',
-                                    'height'=>'100%', 
-      
-                            ]);
+                            //echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
+                            $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
+                             
+                            echo "
+                                <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'>
+                                </iframe>
+                            ";
                            
                         }
                         ?>
