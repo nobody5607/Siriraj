@@ -48,6 +48,9 @@ use yii\helpers\Html;
                    <div class="text-center" style="">
                        <button style="padding:10px;font-size:16pt;" class="btn btn-success btn-lg btn-block" id="btnCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <?= Yii::t('section', 'Add to cart') ?></button>
                    </div>
+                    <div class="text-center" style="margin-top:10px;">
+                       <button style="padding:10px;font-size:16pt;" class="btn btn-primary btn-lg btn-block" id="btnDownload"><i class="fa fa-download" aria-hidden="true"></i> <?= Yii::t('section', 'Download') ?></button>
+                   </div>
                 </div>
             </div>           
             <?php endif; ?>

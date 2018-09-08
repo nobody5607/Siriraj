@@ -17,4 +17,6 @@ return [
     'Search Images'=>'ค้นหารูปภาพ',
     'Siriraj Museum ... more than you think.'=>'พิพิธภัณฑ์ศิริราช ... มีมากกว่าที่คุณคิด',
     'Sample information in the Knowledgebase'=>'ตัวอย่างข้อมูลในฐานความรู้',
+    'Download'=>'ดาวน์โหลด',
+    'Preview Form'=>'ดูฟอร์มตัวอย่าง',
 ];
