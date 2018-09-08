@@ -116,7 +116,7 @@ class SiteController extends Controller
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 300 -trim 1 {$dirPath}/{$file['file_name']} -quality 100 {$folderName}/preview.jpg";
+           $sql = "convert -density 300 {$dirPath}/{$file['file_name']} -quality 100 {$folderName}/preview.jpg";
            //\appxq\sdii\utils\VarDumper::dump($sql);
            exec($sql, $output, $return_var);
            if($return_var){
