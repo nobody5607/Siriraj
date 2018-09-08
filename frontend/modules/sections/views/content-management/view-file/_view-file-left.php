@@ -12,7 +12,7 @@ use yii\helpers\Html;
 <?= $dataDefault['file_name_org'] ?>
         </div> 
         <div class="panel-body">  
-            <div class="row" style="margin-bottom:10px;">
+            <div class="row" style="margin-bottom:10px;text-align: center;" id="preview-file">
                 <div class="col-md-12">                     
                     <div style="background: #292929; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
                         <?php
@@ -61,13 +61,35 @@ use yii\helpers\Html;
                             $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
                             $type = explode('.', $dataDefault['file_name']);
                             $type = isset($type[1]) ? $type[1] : 'doc';
-                            //appxq\sdii\utils\VarDumper::dump($type);
+                             
                             if(in_array($type, $file_type)){
                                 echo " 
                                     <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
                                 ";
-                            }else{
-                                echo "<iframe src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'></iframe>";
+                            }else if($type == 'pdf'){
+                                $this->registerJs("
+                                    
+                                    
+                                    function convert(){
+                                        let url='/site/create-file';
+                                        let params={id:'".$dataDefault['id']."'};
+                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                        $.post(url,params, function(data){
+                                            if(data['status'] == 'success'){
+                                                view();
+                                            }
+                                        });
+                                    }
+                                    function view(){
+                                        let url='/site/view-file';
+                                        let params={id:'".$dataDefault['id']."'};
+                                        $.post(url,params, function(data){
+                                            $('#preview-file').html(data);
+                                        });
+                                    }
+                                    view();
+                                    //convert();
+                                ");
                             }
                             
                            
@@ -112,7 +134,7 @@ use yii\helpers\Html;
     setTimeout(function () {
         $('#lightgallery').lightGallery();
     }, 1000);
-    btnDownload
+     
     
     $('#btnDownload').on('click', function () {
         let checkboxValues = [];

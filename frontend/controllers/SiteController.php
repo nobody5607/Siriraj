@@ -43,9 +43,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionTest(){
-         return $this->renderAjax('test');
-    }
+    
     public function actionIndex()
     {
         //return $this->redirect(['/sections/section']);
@@ -105,5 +103,39 @@ class SiteController extends Controller
         
     }
     
+    
+    /*pdf*/
+    public function actionCreateFile(){
+       $id = \Yii::$app->request->post('id', '');
+       $file = \common\models\Files::find()->where(['id'=>$id])->one();
+       $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";
+       $viewPath = "{$file['file_path']}";// storageUrl
+       $folderName = "{$dirPath}/pdf";
+       //1536390899000085100
+       \backend\modules\sections\classes\JFiles::deleteDir("{$folderName}"); 
+       $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
+       if($createDir){
+           set_time_limit(1200);
+           $sql = "convert -density 300 -trim 1 {$dirPath}/{$file['file_name']} -quality 100 {$folderName}/preview.jpg";
+           //\appxq\sdii\utils\VarDumper::dump($sql);
+           exec($sql, $output, $return_var);
+           if($return_var){
+               return \janpan\jn\classes\JResponse::getSuccess("Success");
+           }
+       }
+       
+    }
+    public function actionViewFile(){
+       $id = \Yii::$app->request->post('id', '');
+       $file = \common\models\Files::find()->where(['id'=>$id])->one();
+       
+       $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";      
+       $folderName = "{$dirPath}/pdf"; //c://xxxx
+       $viewPath = "{$file['file_path']}/pdf";//http://www.xxx
+        return $this->renderAjax('view-file',[
+            'folderName'=>$folderName,
+            'viewPath'=>$viewPath
+        ]);
+    }
 
 }
