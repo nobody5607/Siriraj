@@ -219,10 +219,7 @@ use yii\helpers\Html;
     });
 
 
-    $('iframe').load( function() {
-        $('iframe').contents().find("div#WordViewerStatusBar")
-          .append($("<style type='text/css'>  .my-class{display:none;}  </style>"));
-    });
+    
 
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
