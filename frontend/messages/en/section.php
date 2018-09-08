@@ -15,4 +15,6 @@ return [
     'Section'=>'Section',
     'more...'=>'more...',
     'Search Images'=>'Search Images',
+    'Siriraj Museum ... more than you think.'=>'Siriraj Museum ... more than you think.',
+    'Sample information in the Knowledgebase'=>'Sample information in the Knowledgebase',
 ];

@@ -6,7 +6,7 @@
         <div class="trending-box">            
             <div class="product-list-box">                  
 
-                <h3 class="text-center" style="padding: 10px;">
+                <h3 class="text-center" style="padding: 10px;border-bottom: 1px solid #d2ab66;    border-bottom-style: dashed;">
                     <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?>                         
                     <small ><?= count($files) ?> <?= Yii::t('section', 'Item') ?> </small>
 

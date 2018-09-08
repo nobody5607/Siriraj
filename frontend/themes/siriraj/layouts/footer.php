@@ -2,11 +2,11 @@
     $example = \common\models\ExampleData::find()->orderBy(['forder'=>SORT_ASC])->all();
     //\appxq\sdii\utils\VarDumper::dump($section);
 ?>
-<footer class="off-white-bg2 pt-95 bdr-top pt-sm-55">
+<footer class="off-white-bg2 pt-15 bdr-top pt-sm-55">
     <!-- Footer Top Start -->
     <div class="footer-top">
         <div class="container">
-            <h2 style="margin-bottom:25px;"><?= Yii::t('section','ตัวอย่างข้อมูลในคลังความรู้')?></h2> 
+            <h2 style="margin-bottom:5px;"><?= Yii::t('section','Sample information in the Knowledgebase')?></h2> 
             <!-- Signup-Newsletter End -->
             <div class="row"> 
                 <?php if($example): ?>

@@ -15,4 +15,6 @@ return [
     'Section'=>'คลังความรู้',
     'more...'=>'อ่านต่อ',
     'Search Images'=>'ค้นหารูปภาพ',
+    'Siriraj Museum ... more than you think.'=>'พิพิธภัณฑ์ศิริราช ... มีมากกว่าที่คุณคิด',
+    'Sample information in the Knowledgebase'=>'ตัวอย่างข้อมูลในฐานความรู้',
 ];
