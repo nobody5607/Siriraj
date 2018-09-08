@@ -133,7 +133,7 @@
             echo "<div class='text-center'><i class='fa fa-file-o' style='font-size:30pt;'></i></div>";
         }   echo "</a>";
         $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org']);
-        echo "<div title='{$model['file_name_org']}'>{$name_str}</div>";
+        echo "<div style='padding: 5px;text-align: center;padding-bottom:10px;' title='{$model['file_name_org']}'>{$name_str}</div>";
         
         
     ?>

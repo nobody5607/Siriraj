@@ -228,7 +228,7 @@ use yii\helpers\Html;
 
     /* On mouse-over, add a grey background color */
     .container:hover input ~ .checkmark {
-        background-color: #641a35;
+        background-color: #fff;
         border: 1px solid #4e1228;
     }
 

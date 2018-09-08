@@ -28,7 +28,20 @@ $modal = "modal-contents";
                                     'title' => Yii::t('appmenu', 'Create'),
                                     'data-url' => '/sections/session-management/create'
                                 ]);
+                            ?>
+                            <?php
+                                echo yii\helpers\Html::button("<i class='fa fa-trash'></i>", [
+                                    'data-id' => $f['id'],
+                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                    'file_type'=>$f['id'],
+                                    'data-action' => 'create',
+                                    'class' => 'btn btn-danger btnCreateFile',
+                                    'title' => Yii::t('appmenu', 'Delete'),
+                                    'data-url' => '/sections/session-management/create',
+                                    'disabled'=>true,
+                                ]);
                             ?> 
+                            
                         </span>
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
                         <small id="label_<?= $f['id'] ?>"><?= Yii::t('file','Image')?></small>

@@ -41,6 +41,23 @@ use lo\modules\noty\Wrapper;
                         border: none;
                         box-shadow: 0px 0px 1px #cacaca;
                     }
+                    input[type="checkbox"] {
+                        cursor: pointer;
+                        /* -webkit-appearance: none; */
+                        appearance: none;
+                        background: #34495E;
+                        border-radius: 1px;
+                        box-sizing: border-box;
+                        position: relative;
+                        box-sizing: content-box;
+                        width: 24px;
+                        height: 20px;
+                        border-width: 0;
+                        transition: all 0.3s linear;
+                        margin-right: 10px;
+                        position: relative;
+                        top: 5px;
+                    }
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
                
