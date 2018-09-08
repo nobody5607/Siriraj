@@ -83,13 +83,13 @@ class TemplateManagementController extends \yii\web\Controller
                     $genName    = time();
                     $fileName   = md5($genName).".".$f->extension; 
                     $filePath   = "{$path}/{$fileName}";
-                    $target     = "{$path}/mark_".$genName.".jpg";
+                    $target     = "{$path}/mark_".$genName.".png";
                     if ($f->saveAs($filePath)) {
                         $sql  = "convert {$filePath} -resize 100x100 {$target}";
                         exec($sql, $out, $retval);
                         @unlink($filePath);
                     }
-                    $model->name = "mark_".$genName.".jpg";         
+                    $model->name = "mark_".$genName.".png";         
                     $model->path = $pathDefault;
                 }   
             }
