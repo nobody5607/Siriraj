@@ -20,4 +20,5 @@ return [
     'Download'=>'Download',
     'Preview Form'=>'Preview Form',
     'Please select a file.'=>'Please select a file.',
+    'Data'=>'Data',
 ];

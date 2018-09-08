@@ -11,7 +11,7 @@ $noImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEiCAYAAABDd+8FAA
 $img = isset($model['thumn_image']) ? $model['thumn_image'] :  $noImage;
 ?>
 <div class="single-product">
-    <a href="<?= $url ?>"> 
+    <a href="<?= $url ?>" style="color:#000"> 
         <div class="pro-img">
             <img class="primary-img img img-responsive" src="<?= $img?>" alt="single-product">
             <img class="secondary-img img img-responsive" src="<?=  $img?>" alt="single-product">
@@ -22,7 +22,7 @@ $img = isset($model['thumn_image']) ? $model['thumn_image'] :  $noImage;
                 <?php
                 $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 30);
                 ?>
-                <p title="<?= $model['name'] ?>"><?= $name_str ?></p>
+                 
             </div>
 
         </div>

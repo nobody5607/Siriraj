@@ -28,7 +28,7 @@
  
 <div class="trendig-product pb-10 off-white-bg">
     <?php if(count($dataProvider->getModels()) != 0):?>
-    <h2 class="text-center" style="padding-top:20px;"><?= Yii::t('section','Siriraj Museum ... more than you think.')?> <?= $title?></h2>
+    <h2 class="text-center" style="padding-top:20px;"><?= Yii::t('section','Siriraj Museum ... more than you think.')?> : <?= $title?></h2>
     <?php endif; ?>
     <div class="container">
         <div class="trending-box">            
@@ -62,7 +62,7 @@
  
 ?>
 <div class="trendig-product pb-10 off-white-bg">
-    <h2 class="text-center" style="padding-top:20px;"><?= Yii::t('section','Content')?> <?= $title?></h2>
+    <h2 class="text-center" style="padding-top:20px;"><?= Yii::t('section','Data')?> : <?= $title?></h2>
         <div class="container">
             
             <div class="trending-box">            

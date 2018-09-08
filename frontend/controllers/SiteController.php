@@ -68,7 +68,31 @@ class SiteController extends Controller
         return $this->render('contact',['contact'=>$contact]); 
     }
     
-     public function actionConvert(){
+    public function actionConvert(){
+         
+        $id = \Yii::$app->request->get('id', '');
+        $file = \common\models\Files::findOne($id);
+        $storageUrl = Yii::getAlias('@storage');
+        $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
+        $view = "{$file['file_path']}/{$file['file_name']}";    
+        
+        $arr = ['5','7','8'];
+        if(in_array($file['file_type'], $arr)){
+            //\appxq\sdii\utils\VarDumper::dump($view);
+            return $view;
+            
+        }
+        $img_file = $path;
+
+            // Read image path, convert to base64 encoding
+            $imgData = base64_encode(file_get_contents($img_file)); 
+            $src = 'data:'.mime_content_type($img_file).';base64,'.$imgData;
+            return $src;
+            //return $this->renderAjax("convert",['src'=>$src]);
+        
+    }
+    
+    public function actionConvertByid(){
          
         $id = \Yii::$app->request->get('id', '');
         $file = \common\models\Files::findOne($id);
