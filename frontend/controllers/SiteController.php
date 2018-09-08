@@ -76,7 +76,10 @@ class SiteController extends Controller
         
         $storageUrl = Yii::getAlias('@storage');
         $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
-        $view = "{$file['file_path']}/{$file['file_name']}";    
+        $view = "{$file['file_path']}/{$file['file_name']}";
+        if(\Yii::$app->user->can('users')){
+            $view = "{$file['file_path']}/thumbnail/{$file['file_view']}";
+        }
         
         $arr = ['5','7','8'];
         if(in_array($file['file_type'], $arr)){
