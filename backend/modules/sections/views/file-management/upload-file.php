@@ -14,8 +14,10 @@
             $accept = 'image/*';
         } else if ($model->file_type == 3) {//วีดีโอ (ตัดต่อ)
             $accept = 'video/*';
-        }else if ($model->file_type == 4) {//วีดีโอ (ตัดต่อ)
-            $accept = 'audio/*';
+            echo "<label>Select video type</label>";
+            echo Html::radioList("status", 1, ['1'=>'footage', '2'=>'video clip'], ['id'=>'status']);
+        }else if ($model->file_type == 4) { //audio
+            $accept = 'audio/*';            
         }
         else if ($model->file_type == 5) {//document 
             $accept = '*';
@@ -32,7 +34,8 @@
 </div>
 <?php \richardfan\widget\JSRegister::begin();?>
 <script>
-    $('.btnSubmit').prop('disabled', true);
+    $('.btnSubmit').prop('disabled', true); 
+    
     $("#input-700").fileinput({        
         uploadUrl: "/sections/file-management/upload-file",
         minFileCount:0,
@@ -42,7 +45,8 @@
         uploadExtraData: function() {
             return {
                 content_id: "<?= Yii::$app->request->get('content_id', '')?>",
-                file_type: "<?= $model->file_type?>"
+                file_type: "<?= $model->file_type?>",
+                status: $('input[name=status]:checked').val() 
             };
         },
         //ajaxSettings: { headers: { Authorization: 'Bearer ' + localStorageService.get('authorizationData').token } }    

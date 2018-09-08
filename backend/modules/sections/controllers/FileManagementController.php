@@ -242,7 +242,9 @@ class FileManagementController extends Controller
         
          if (Yii::$app->request->isPost) {    
             $file_type = Yii::$app->request->post('file_type', '');
-            $content_id = Yii::$app->request->post('content_id', ''); 
+            $content_id = Yii::$app->request->post('content_id', '');
+            $status = Yii::$app->request->post('status', ''); //video of footage
+            
             $model->file_type       = $file_type;
             $folderName                 = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $files                      = UploadedFile::getInstancesByName('name'); 
@@ -280,8 +282,9 @@ class FileManagementController extends Controller
                            $file_view = $fileNames;
                         }else if($fileType[0] === 'video'){
                            //$folderName = 10000001 
+                           //\appxq\sdii\utils\VarDumper::dump($_POST);
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
-                           $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark);
+                           $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark, $status);
                            $fileNames = "{$realFileName}_mark.{$obj['type']}";
                            $file_view = $fileNames;
                            //\appxq\sdii\utils\VarDumper::dump($obj);

@@ -161,30 +161,22 @@ class JFiles {
     }
     
     
-    public static function uploadVideo($file,$filePath,$watermark){
+    public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
         $path = "{$filePath}.{$file->extension}";
         $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
                set_time_limit(1200);
-                //$command = "ffmpeg -i {$path} -ss 00:00:00 -t 00:00:10 -async 1 {$filePath}.mp4 -y";
-                //$command = "ffmpeg -i {$path} -i {$mark} -ss 00:00:00 -t 00:05:00 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {$filePath}_mark.mp4 -y";
-                
-                
                 $modelForm = ['filename'=>"{$path}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.mkv", 'output'=>"{$filePath}_mark.mp4"];
-                $template = self::getTemplateMark($modelForm, $watermark['code']);
-                //ffmpeg -i {filename} -i {mark} -ss 00:00:00 -t 00:00:30 -filter_complex \"overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)\" -async 1 {target}
-                //'ffmpeg -i {filename} -i {mark} -ss 00:00:00 -t 00:00:30 -filter_complex "overlay=main_w-(overlay_w+10):main_h-(10+overlay_h)" {target} && ffmpeg -y -i {target} -vcodec copy -strict experimental  -c:a aac {output} && rm -rf {target}'
                 
+                if($status == 2 && $file->extension != "mp4"){
+                    $watermark['code']= \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
+                }
+                $template = self::getTemplateMark($modelForm, $watermark['code']);
                 exec($template, $output, $return_var);
-                @unlink($path);
                 @unlink("{$filePath}_mark.mkv}");
-                //\appxq\sdii\utils\VarDumper::dump($path);
-//                if ($return_var === 0) {
-//                    if($file->extension != "mp4"){
-//                        @unlink($path);
-//                    }                    
-//                }
+                @unlink($path);
+               
                  
             return ['type'=>'mp4'];
         }  
