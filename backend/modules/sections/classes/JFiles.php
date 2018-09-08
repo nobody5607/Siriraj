@@ -164,15 +164,18 @@ class JFiles {
     public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
         $path = "{$filePath}.{$file->extension}";
+       // \appxq\sdii\utils\VarDumper::dump($status);
         $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
+                if($status == '2' && $file->extension == "mp4"){return ['type'=>'mp4'];}
                set_time_limit(1200);
                 $modelForm = ['filename'=>"{$path}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.mkv", 'output'=>"{$filePath}_mark.mp4"];
-                
-                if($status == 2){
-                    $watermark['code']= \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
-                }
-                $template = self::getTemplateMark($modelForm, $watermark['code']);
+                $w = $watermark['code'];
+                if($status == '2'){
+                    $w = \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
+                } 
+                $template = self::getTemplateMark($modelForm, $w);
+                //\appxq\sdii\utils\VarDumper::dump($template);
                 exec($template, $output, $return_var);
                 @unlink("{$filePath}_mark.mkv}");
                 @unlink($path);
