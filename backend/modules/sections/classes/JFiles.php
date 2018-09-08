@@ -175,10 +175,11 @@ class JFiles {
                     $w = \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
                 } 
                 $template = self::getTemplateMark($modelForm, $w);
-                //\appxq\sdii\utils\VarDumper::dump($template);
+               
                 exec($template, $output, $return_var);
-                @unlink("{$filePath}_mark.mkv}");
-                @unlink($path);
+                @unlink("{$filePath}_mark.mkv");
+               // \appxq\sdii\utils\VarDumper::dump($path);
+                @unlink("{$path}");
                
                  
             return ['type'=>'mp4'];
