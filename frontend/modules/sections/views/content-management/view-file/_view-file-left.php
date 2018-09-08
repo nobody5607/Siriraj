@@ -86,9 +86,8 @@ use yii\helpers\Html;
                                         $.post(url,params, function(data){
                                             $('#preview-file').html(data);
                                         });
-                                    }
-                                    view();
-                                    //convert();
+                                    } 
+                                    convert();
                                 ");
                             }
                             
