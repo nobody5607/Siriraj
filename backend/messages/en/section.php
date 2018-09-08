@@ -36,4 +36,5 @@ return [
     'Section'=>'Section',
     'more...'=>'more...',
     'File Name'=>'File Name',
+    'Order'=>'Order',
 ];

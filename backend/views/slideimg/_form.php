@@ -38,7 +38,8 @@ use appxq\sdii\helpers\SDHtml;
         ]);
         ?>
 
-	<?= $form->field($model, 'detail')->textarea(['rows' => 6]) ?> 
+	<?= $form->field($model, 'detail')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'forder')->textInput() ?> 
 
     </div>
     <div class="modal-footer">

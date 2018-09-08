@@ -159,13 +159,14 @@ class SlideimgController extends Controller
                          $model->file_path = $path;
                          $model->view_path = $viewPath;
                          $model->detail = $post['detail'];
-                         if($model->save()){
+                         
+                     }
+                 } 
+                 if($model->save()){
                              return \janpan\jn\classes\JResponse::getSuccess("Success");
                          }else{
                              return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($model->errors));
                          }
-                     }
-                 }
 	    } else {
 		return $this->renderAjax('update', [
 		    'model' => $model,

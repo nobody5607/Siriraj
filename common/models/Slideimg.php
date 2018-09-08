@@ -30,6 +30,8 @@ class Slideimg extends \yii\db\ActiveRecord
         return [
             [['detail', 'file_path','view_path'], 'string'],
             [['name'], 'string', 'max' => 255],
+            ['forder','integer'],
+            //[['create_date','admin_id'], 'safe'],
         ];
     }
 
@@ -40,10 +42,11 @@ class Slideimg extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('section', 'ID'),
-            'name' => Yii::t('section', 'Name'),
-            'detail' => Yii::t('section', 'Detail'),
+            'name' => Yii::t('section', 'Image Name'),
+            'detail' => Yii::t('section', 'Image Detail'),
             'file_path' => Yii::t('section', 'File Path'),
             'view_path'=>Yii::t('section', 'View Path'),
+            'forder'=>Yii::t('section', 'Order'),
         ];
     }
 }
