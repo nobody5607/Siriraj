@@ -217,13 +217,13 @@ use yii\helpers\Html;
     .checkmark {
         position: absolute;
         top: 5px;
-        left: 23px;
+        left: 36px;
         height: 25px;
         width: 25px;
         background-color: #fff;
         border: 1px solid #88888c;
         border-radius: 5px;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     /* On mouse-over, add a grey background color */
