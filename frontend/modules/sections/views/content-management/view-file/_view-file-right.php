@@ -59,7 +59,7 @@ use yii\helpers\Html;
     
     <div class="row"> 
         <div class="col-md-12">
-            <?php if (!Yii::$app->user->isGuest):  ?>
+             
             <div class="panel panel-default" id="box">
                 <div class="panel-heading"><?= Yii::t('section','Return to')?></div>
                 <div class="panel-body">
@@ -82,7 +82,7 @@ use yii\helpers\Html;
                         </div>        
                 </div>
             </div>           
-            <?php endif; ?>
+             
         </div>
     </div>
 </div>

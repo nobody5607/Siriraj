@@ -26,14 +26,14 @@ $modal = "modal-contents";
                         'content_id'=>$_GET['content_id'] 
                    ]);
                }else if($f['id'] == 3 || $f['id'] == 4 || $f['id'] == 6 || $f['id'] == 7 || $f['id'] == 8){
-                   if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))){
+                   //if((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))){
                       echo $this->render("content-file",[
                             'f'=>$f,
                             'files'=>$files,
                             'content_id'=>$_GET['content_id'],
                             ''
                        ]); 
-                   }
+                   //}
                }
                
                
