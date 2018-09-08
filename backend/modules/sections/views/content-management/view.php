@@ -35,20 +35,20 @@ $modal = "modal-contents";
                                     'data-parent_id' => Yii::$app->request->get('id', '0'),
                                     'file_type'=>$f['id'],
                                     'data-action' => 'create',
-                                    'class' => 'btn btn-danger btnCreateFile',
+                                    'class' => 'btn btn-danger btnDeleteBySelect',
                                     'title' => Yii::t('appmenu', 'Delete'),
-                                    'data-url' => '/sections/session-management/create',
-                                    'disabled'=>true,
+                                    'data-url' => '/sections/session-management/create', 
                                 ]);
                             ?> 
-                            
+                              
                         </span>
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
                         <small id="label_<?= $f['id'] ?>"><?= Yii::t('file','Image')?></small>
                         <hr/>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" id="panel-<?= $f['id'] ?>">
                         <div class="col-md-12">
+                            <label><input type="checkbox" id="checkAll" data-id="<?= $f['id'] ?>"> <?= Yii::t('section','Select All')?></label>  
                             <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
                         </div>
                     </div>                     
@@ -114,7 +114,41 @@ $modal = "modal-contents";
     <?php endif; ?>
 <?php endforeach; ?> 
 
-        
+ <?php \richardfan\widget\JSRegister::begin();?>
+    <script>
+            $("#checkAll").click(function () {
+                let id=$(this).attr('data-id');
+                 
+                $('#panel-'+id+' input:checkbox').not(this).prop('checked', this.checked);
+                 
+                //return false;
+                 
+            });//Check All
+            $('.btnDeleteBySelect').click(function () {
+                
+            
+                //yii.confirm('<?= Yii::t('file', 'Confirm Delete?')?>', function(){
+                    let id = $(this).attr('data-id'); 
+                    let url = '/sections/file-management/delete-file';
+                    $('#panel-'+id+' :checkbox:checked').each(function () {
+                        let dataID = $(this).val();
+                        if(!dataID){
+                            return;
+                        }
+                        if(dataID != "on"){
+                             $.post(url, {id:dataID}, function(result){                    
+                                <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+                                $('#img-'+dataID).remove();    
+                             });
+                        }
+                    });
+                   
+                //}); 
+               return false; 
+            });
+            
+    </script>
+<?php \richardfan\widget\JSRegister::end();?>       
 <?php 
 $modalf = 'file-modal';
 echo yii\bootstrap\Modal::widget([

@@ -3,7 +3,7 @@
 ?>
 <div style='margin-bottom:10px;text-align:center;'>
     <?php 
-         Html::button("<i class='fa fa-trash'></i>", [
+         echo Html::button("<i class='fa fa-trash'></i>", [
                     'data-id' => $model['id'],
                     'id'=>$model['id'],
                     //'data-parent_id' => Yii::$app->request->get('id', '0'),
@@ -14,7 +14,7 @@
                     'data-method' => 'POST'
                 ]);
     ?>
-    <input type="checkbox">
+    <input type="checkbox" data-id="<?= $model['id']?>" value="<?= $model['id']?>">
 </div>    
 <a href="<?= "/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"?>" style="margin-top: 5px;" href=""   data-id="<?= $model['id']?>" id="<?= "btn-{$model['id']}"?>" data-action="view-file" class="content-popup btnCall text-left">
     <?php
@@ -69,6 +69,14 @@
         });
         return false;   
     });
+    
 ")?>
+<?php \richardfan\widget\JSRegister::begin();?>
+<script>
+        $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });//Check All
+</script>
+<?php \richardfan\widget\JSRegister::end();?>
  
 

@@ -37,4 +37,5 @@ return [
     'more...'=>'more...',
     'File Name'=>'File Name',
     'Order'=>'Order',
+    'Select All'=>'Select All',
 ];
