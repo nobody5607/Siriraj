@@ -18,6 +18,16 @@
                                     'data-url' => '/sections/session-management/create'
                                 ]);
                             ?> 
+                         <?php
+                                echo yii\helpers\Html::button("<i class='fa fa-trash'></i>", [                                     
+                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                    'file_type'=>Yii::$app->request->get('filet_id', '0'),
+                                    'data-action' => 'create',
+                                    'class' => 'btn btn-danger btnDeleteBySelect',
+                                    'title' => Yii::t('appmenu', 'Delete'),
+                                    'data-url' => '/sections/session-management/create', 
+                                ]);
+                            ?> 
             </span>
             <h4><?= $dataDefault['file_name_org'] ?></h4>
         </div> 
@@ -108,3 +118,28 @@
         });
     </script>
 <?php \richardfan\widget\JSRegister::end(); ?>
+
+    
+    <?php \richardfan\widget\JSRegister::begin();?>
+    <script>
+             
+            $('.btnDeleteBySelect').click(function () { 
+                     
+                    let url = '/sections/file-management/delete-file';
+                    $(':checkbox:checked').each(function () {
+                        let dataID = $(this).val();                         
+                        if(!dataID){
+                            return;
+                        }
+                        if(dataID != "on"){
+                             $.post(url, {id:dataID}, function(result){                    
+                                <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+                                $('#img-'+dataID).remove();    
+                             });
+                        }
+                    }); 
+               return false; 
+            });
+            
+    </script>
+<?php \richardfan\widget\JSRegister::end();?>  
