@@ -71,7 +71,9 @@ class SiteController extends Controller
     public function actionConvert(){
          
         $id = \Yii::$app->request->get('id', '');
+        $multi = \Yii::$app->request->get('multi', '');
         $file = \common\models\Files::findOne($id);
+        
         $storageUrl = Yii::getAlias('@storage');
         $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
         $view = "{$file['file_path']}/{$file['file_name']}";    
@@ -79,6 +81,10 @@ class SiteController extends Controller
         $arr = ['5','7','8'];
         if(in_array($file['file_type'], $arr)){
             //\appxq\sdii\utils\VarDumper::dump($view);
+            if($multi){
+                $data = ['file_name'=>$file['file_name_org'], 'href'=>$view, 'type'=>$file['file_type']];
+                return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
+            }
             return $view;
             
         }
@@ -87,32 +93,14 @@ class SiteController extends Controller
             // Read image path, convert to base64 encoding
             $imgData = base64_encode(file_get_contents($img_file)); 
             $src = 'data:'.mime_content_type($img_file).';base64,'.$imgData;
+            if($multi){
+                $data = ['file_name'=>$file['file_name_org'], 'href'=>$src, 'type'=>$file['file_type']];
+                return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
+            }
             return $src;
             //return $this->renderAjax("convert",['src'=>$src]);
         
     }
     
-    public function actionConvertByid(){
-         
-        $id = \Yii::$app->request->get('id', '');
-        $file = \common\models\Files::findOne($id);
-        $storageUrl = Yii::getAlias('@storage');
-        $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
-        $view = "{$file['file_path']}/{$file['file_name']}";    
-        
-        $arr = ['5','7','8'];
-        if(in_array($file['file_type'], $arr)){
-            //\appxq\sdii\utils\VarDumper::dump($view);
-            return $view;
-            
-        }
-        $img_file = $path;
 
-            // Read image path, convert to base64 encoding
-            $imgData = base64_encode(file_get_contents($img_file)); 
-            $src = 'data:'.mime_content_type($img_file).';base64,'.$imgData;
-            return $src;
-            //return $this->renderAjax("convert",['src'=>$src]);
-        
-    }
 }

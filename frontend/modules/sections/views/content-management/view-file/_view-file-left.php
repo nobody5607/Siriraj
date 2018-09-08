@@ -129,15 +129,22 @@ use yii\helpers\Html;
             let name = id;
             let type = $(this).attr('data-type');
             //download("data:image/gif;base64,R0lGODlhRgAVAIcAAOfn5+/v7/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAAAAP8ALAAAAABGABUAAAj/AAEIHAgggMGDCAkSRMgwgEKBDRM+LBjRoEKDAjJq1GhxIMaNGzt6DAAypMORJTmeLKhxgMuXKiGSzPgSZsaVMwXUdBmTYsudKjHuBCoAIc2hMBnqRMqz6MGjTJ0KZcrz5EyqA276xJrVKlSkWqdGLQpxKVWyW8+iJcl1LVu1XttafTs2Lla3ZqNavAo37dm9X4eGFQtWKt+6T+8aDkxUqWKjeQUvfvw0MtHJcCtTJiwZsmLMiD9uplvY82jLNW9qzsy58WrWpDu/Lp0YNmPXrVMvRm3T6GneSX3bBt5VeOjDemfLFv1XOW7kncvKdZi7t/S7e2M3LkscLcvH3LF7HwSuVeZtjuPPe2d+GefPrD1RpnS6MGdJkebn4/+oMSAAOw==", "dlDataUrlBin.gif", "image/gif");
-            if(type == '5'){
-
-                downloadFile($(this).attr('href'), name);
-            }else{
-                $.get(url, {id:id}, function(data){
-                 console.log(name);
-                 download(data, name);
-                });
-            }
+            $.get(url, {id:id,multi:'true'}, function(data){
+                if(data.status=='success'){
+                    if(data['data']['type']==5 || data['data']['type']==7){
+                        downloadFile(data['data']['href'], data['data']['file_name']);
+                    }else{
+                        download(data['data']['href'], data['data']['file_name']);
+                    }
+                }
+                 //download(data, name);
+            });    
+//            if(type == '5'){
+//
+//                downloadFile($(this).attr('href'), name);
+//            }else{
+//                
+//            }
         });
         
         
