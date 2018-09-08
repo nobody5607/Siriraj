@@ -62,7 +62,9 @@ use yii\helpers\Html;
                             //appxq\sdii\utils\VarDumper::dump($type);
                             if(in_array($type[1], $file_type)){
                                 echo "
-                                    <iframe src='https://view.officeapps.live.com/op/embed.aspx?src={$dataDefault['file_path']}/{$dataDefault['file_name']};wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
+                                    <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'>
+                                    </iframe>
+                                    
                                 ";
                             }else{
                                 echo "Preview file error";
