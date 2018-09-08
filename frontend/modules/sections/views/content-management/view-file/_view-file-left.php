@@ -219,8 +219,49 @@ use yii\helpers\Html;
     });
 
 
-    
 
+
+
+
+
+
+ function disableselect(e){
+return false
+}
+
+function reEnable(){
+return true
+}
+
+//if IE4+
+document.onselectstart=new Function ("return false")
+
+//if NS6
+if (window.sidebar){
+document.onmousedown=disableselect
+document.onclick=reEnable
+}
+
+var message="Function Disabled!";
+///////////////////////////////////
+function clickIE() {if (document.all) {alert(message);return false;}}
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) {
+if (e.which==2||e.which==3) {return false;}}}
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
+
+document.oncontextmenu=new Function("return false");
+document.addEventListener("keydown", onKeyDown, false);
+
+function onKeyDown(e) {
+ var x = e.keyCode;
+ if(x==123){
+  console.log('Your pressed Fn+F7');
+  return false;
+ }
+}
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
 
