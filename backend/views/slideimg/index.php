@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return Html::img($src, ['class'=>'img img-responsive', 'style'=>'width:100px;']);
               }
             ],
+            'forder',         
             'detail:ntext',
             //'file_path:ntext',
 
