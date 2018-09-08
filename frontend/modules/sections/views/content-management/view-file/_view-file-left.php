@@ -64,7 +64,7 @@ use yii\helpers\Html;
                              
                             if(in_array($type, $file_type)){
                                 echo " 
-                                    <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
+                                    <iframe id='iframe' src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
                                 ";
                             }else if($type == 'pdf'){
                                 $this->registerJs("
@@ -226,7 +226,9 @@ use yii\helpers\Html;
 
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
-
+    #iframe div#WordViewerStatusBar {
+        display: none;
+    }
 
     /* Hide the browser's default checkbox */
     .container input[type='checkbox'] {
