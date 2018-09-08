@@ -68,8 +68,13 @@ use yii\helpers\Html;
                     ?>
                         <div class="list-group">
                             <?php foreach ($fileType as $k => $v): ?>                            
-                                    <?php if ($v['id'] != "0" && $v['id'] != "1"): ?>                         
-                                        <a href="/sections/content-management/view-file?content_id=<?= Yii::$app->request->get('content_id', '')?>&file_id=&filet_id=<?= $v['id']?>" class="list-group-item">
+                                    <?php if ($v['id'] != "0" && $v['id'] != "1"): ?>
+                                        <?php 
+                                            $files = \common\models\Files::find()->where(['file_type'=>$v['id'], 'content_id'=>Yii::$app->request->get('content_id','')])->orderBy(['id'=>SORT_ASC])->one();
+                                            $fileId = isset($files) ? $files['id'] : ''; //echo $files['id'];
+                                            $contentID = isset($files['content_id']) ? $files['content_id'] : Yii::$app->request->get('content_id','');
+                                        ?>
+                                        <a href="/sections/content-management/view-file?content_id=<?= $contentID?>&file_id=<?= $fileId?>&filet_id=<?= $v['id']?>" class="list-group-item">
                                             <h4 class="list-group-item-heading"><i class="fa <?= "{$v['icon']}"?>"></i> <?= $v['name'] ?></h4>                                       
                                         </a>
                                     <?php endif; ?>                            
