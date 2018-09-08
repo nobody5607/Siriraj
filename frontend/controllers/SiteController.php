@@ -121,6 +121,8 @@ class SiteController extends Controller
            exec($sql, $output, $return_var);
            if($return_var){
                return \janpan\jn\classes\JResponse::getSuccess("Success");
+           }else{
+               return \janpan\jn\classes\JResponse::getSuccess("Success");
            }
        }
        
