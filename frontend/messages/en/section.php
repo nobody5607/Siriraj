@@ -19,4 +19,5 @@ return [
     'Sample information in the Knowledgebase'=>'Sample information in the Knowledgebase',
     'Download'=>'Download',
     'Preview Form'=>'Preview Form',
+    'Please select a file.'=>'Please select a file.',
 ];

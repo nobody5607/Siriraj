@@ -19,4 +19,5 @@ return [
     'Sample information in the Knowledgebase'=>'ตัวอย่างข้อมูลในฐานความรู้',
     'Download'=>'ดาวน์โหลด',
     'Preview Form'=>'ดูฟอร์มตัวอย่าง',
+    'Please select a file.'=>'กรุณาเลือกไฟล์',
 ];

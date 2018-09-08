@@ -110,7 +110,24 @@ use yii\helpers\Html;
     setTimeout(function () {
         $('#lightgallery').lightGallery();
     }, 1000);
-
+    btnDownload
+    
+    $('#btnDownload').on('click', function () {
+        let checkboxValues = [];
+        $('input[type="checkbox"]:checked').each(function (index, elem) {
+            checkboxValues.push($(elem).attr('data-id'));
+        });
+        let id_str = checkboxValues.toString();
+        if (!id_str) {
+            let res = {message:'<?= Yii::t('section','Please select a file.')?>',status:'error'};
+            <?= \appxq\sdii\helpers\SDNoty::show('res.message', 'res.status') ?>
+            return false;
+        }
+        
+        
+        return false;
+    });
+    
     $('#btnCart').on('click', function () {
         let checkboxValues = [];
         $('input[type="checkbox"]:checked').each(function (index, elem) {
@@ -118,6 +135,8 @@ use yii\helpers\Html;
         });
         let id_str = checkboxValues.toString();
         if (!id_str) {
+            let res = {message:'<?= Yii::t('section','Please select a file.')?>',status:'error'};
+            <?= \appxq\sdii\helpers\SDNoty::show('res.message', 'res.status') ?>
             return false;
         }
         let url = "/sections/cart/add-cart";
