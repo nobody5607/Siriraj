@@ -16,7 +16,7 @@ return [
     'more...'=>'อ่านต่อ',
     'Search Images'=>'ค้นหารูปภาพ',
     'Siriraj Museum ... more than you think.'=>'พิพิธภัณฑ์ศิริราช ... มีมากกว่าที่คุณคิด',
-    'Sample information in the Knowledgebase'=>'ตัวอย่างข้อมูลในฐานความรู้',
+    'Sample information in the Knowledgebase'=>'ตัวอย่างข้อมูลในคลังความรู้',
     'Download'=>'ดาวน์โหลด',
     'Preview Form'=>'ดูฟอร์มตัวอย่าง',
     'Please select a file.'=>'กรุณาเลือกไฟล์',
