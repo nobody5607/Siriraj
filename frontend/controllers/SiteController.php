@@ -44,7 +44,7 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionTest(){
-         
+         return $this->renderAjax('test');
     }
     public function actionIndex()
     {

@@ -60,13 +60,14 @@ use yii\helpers\Html;
                             $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
                             $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
                             $type = explode('.', $dataDefault['file_name']);
+                            $type = isset($type[1]) ? $type[1] : 'doc';
                             //appxq\sdii\utils\VarDumper::dump($type);
-                            if(in_array($type[1], $file_type)){
+                            if(in_array($type, $file_type)){
                                 echo " 
                                     <iframe src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
                                 ";
                             }else{
-                                echo "Preview file error";
+                                echo "<iframe src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' width='100%' height='500px' frameborder='0'></iframe>";
                             }
                             
                            

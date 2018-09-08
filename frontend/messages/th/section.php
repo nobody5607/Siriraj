@@ -21,4 +21,5 @@ return [
     'Preview Form'=>'ดูฟอร์มตัวอย่าง',
     'Please select a file.'=>'กรุณาเลือกไฟล์',
     'Data'=>'ข้อมูล',
+    'Return to'=>'กลับไปยัง',
 ];

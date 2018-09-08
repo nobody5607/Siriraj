@@ -56,6 +56,30 @@ use yii\helpers\Html;
             <?php endif; ?>
         </div>
     </div>
+    
+    <div class="row"> 
+        <div class="col-md-12">
+            <?php if (!Yii::$app->user->isGuest):  ?>
+            <div class="panel panel-default" id="box">
+                <div class="panel-heading"><?= Yii::t('section','Return to')?></div>
+                <div class="panel-body">
+                    <?php 
+                        $fileType= \frontend\modules\sections\classes\JFiles::getTypeFile();
+                    ?>
+                        <div class="list-group">
+                            <?php foreach ($fileType as $k => $v): ?>                            
+                                    <?php if ($v['id'] != "0" && $v['id'] != "1"): ?>                         
+                                        <a href="/sections/content-management/view-file?content_id=<?= Yii::$app->request->get('content_id', '')?>&file_id=&filet_id=<?= $v['id']?>" class="list-group-item">
+                                            <h4 class="list-group-item-heading"><i class="fa <?= "{$v['icon']}"?>"></i> <?= $v['name'] ?></h4>                                       
+                                        </a>
+                                    <?php endif; ?>                            
+                            <?php endforeach; ?>
+                        </div>        
+                </div>
+            </div>           
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
