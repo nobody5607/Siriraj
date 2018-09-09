@@ -112,8 +112,8 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    view();
-                                    //convert();
+                                    //view();
+                                    convert();
                                 ");
                             }
                             
