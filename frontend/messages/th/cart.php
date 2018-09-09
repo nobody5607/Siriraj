@@ -27,6 +27,7 @@ return [
     'Next'=>'ถัดไป',
     'Checkout'=>'ชำระเงิน',
     'Shipping address'=>'ที่อยู่จัดส่ง',
+    'Please fill in all information.'=>'โปรดกรอกข้อมูลทั้งหมด',
     
 ];
 

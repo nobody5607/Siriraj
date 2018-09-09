@@ -27,6 +27,7 @@ return [
     'Next'=>'Next',
     'Checkout'=>'Checkout',
     'Shipping address'=>'Shipping address',
+    'Please fill in all information.'=>'Please fill in all information.',
     
 ];
 

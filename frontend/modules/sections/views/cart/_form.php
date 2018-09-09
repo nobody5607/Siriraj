@@ -19,14 +19,14 @@ use appxq\sdii\helpers\SDNoty;
                 ] 
             ])
             ?>
-    <?= $form->field($model, 'firstname')->textInput()?>
-    <?= $form->field($model, 'lastname')->textInput()?>
-    <?= $form->field($model, 'sitecode')->textInput()?>
+    <?= $form->field($model, 'firstname')->textInput()->label(Yii::t('_user','Firstname'))?>
+    <?= $form->field($model, 'lastname')->textInput()->label(Yii::t('_user','Lastname'))?>
+    <?= $form->field($model, 'sitecode')->textInput()->label(Yii::t('_user','Site Code'))?>
     
     <?= $form->field($model, 'companey_name')->textarea()->label(Yii::t('cart', 'Address'))?>  
     <?= $form->field($model, 'tel')->widget(\yii\widgets\MaskedInput::className(), [
-    'mask' => '9999999999']);?>
-    <?= $form->field($model, 'note')->textarea()?>
+    'mask' => '9999999999'])->label(Yii::t('_user','Tel'))?>
+     
     <div class="form-group">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
