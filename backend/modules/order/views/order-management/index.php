@@ -177,8 +177,8 @@ $('#order-grid-pjax').on('click', '.selectionOrderIds', function() {
 });
 
 $('#order-grid-pjax').on('dblclick', 'tbody tr', function() {
-    var id = $(this).attr('data-key');
-    modalOrder('<?= Url::to(['/order/order-management/update', 'id'=>''])?>'+id);
+    var id = $(this).attr('data-key'); 
+    modalOrder('/order/order-management/order-detail?order_id='+id);
 });	
 
 $('#order-grid-pjax').on('click', 'tbody tr td a', function() {
