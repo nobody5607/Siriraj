@@ -13,11 +13,11 @@ $this->title = Yii::t('rbac', 'Update Permission: ') . ' ' . $permit->descriptio
 $this->params['breadcrumbs'][] = ['label' => Yii::t('rbac', 'Permission'), 'url' => ['permission']];
 $this->params['breadcrumbs'][] = Yii::t('rbac', 'Permission');
 ?>
-<div class="news-index">
+<div class="box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header"><?= Html::encode($this->title) ?></div>
 
-    <div class="links-form">
+    <div class="box-body">
 
         <?php
         if (!empty($error)) {
@@ -34,17 +34,17 @@ $this->params['breadcrumbs'][] = Yii::t('rbac', 'Permission');
         <?php $form = ActiveForm::begin(); ?>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('db_rbac', 'Текстовое описание')); ?>
-            <?= Html::textInput('description', $permit->description); ?>
+            <?= Html::label(Yii::t('rbac', 'Description')); ?>
+            <?= Html::textInput('description', $permit->description, ['class'=>'form-control']); ?>
         </div>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('db_rbac', 'Разрешенный доступ')); ?>
-            <?= Html::textInput('name', $permit->name); ?>
+            <?= Html::label(Yii::t('db_rbac','Permission Name')); ?>
+            <?= Html::textInput('name', $permit->name,['class'=>'form-control']); ?>
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('db_rbac', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('rbac', 'Save'), ['class' => 'btn btn-success pull-right']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
