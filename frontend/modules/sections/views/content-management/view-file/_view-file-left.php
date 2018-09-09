@@ -67,9 +67,9 @@ use yii\helpers\Html;
                                     <iframe id='iframe' src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
                                 ";
                                 if($type == "doc" || $type == 'docx'){
-                                    echo "<div id='#myFrame' style='    background: #ffffff; position: absolute; bottom: 12px; height: 16pxpx; width: 28%;    right: 28px;'></div>";
+                                    echo "<div id='#myFrame' style='    background: #ffffff; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
                                 }else{
-                                    echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 16pxpx; width: 28%;    right: 28px;'></div>";
+                                    echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
                                 }    
                             }else if($type == 'pdf'){
                                 $this->registerJs("
