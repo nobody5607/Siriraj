@@ -69,7 +69,7 @@ use yii\helpers\Html;
                                 if($type == "doc" || $type == 'docx'){
                                     echo "<div id='#myFrame' style='    background: #ffffff; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
                                 }else{
-                                    echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
+                                    echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 20px; width: 28%;    right: 28px;'></div>";
                                 }    
                             }else if($type == 'pdf'){
                                 $this->registerJs("
