@@ -65,7 +65,7 @@ use yii\helpers\Html;
                             if(in_array($type, $file_type)){
                                 echo " 
                                     <iframe id='iframe' src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
-                                <div id='#myFrame'></div>";
+                                <div id='#myFrame' style='background: #292929;position: absolute; bottom: 0px;  height: 36px; width: 95%;'></div>";
                             }else if($type == 'pdf'){
                                 $this->registerJs("
                                     
@@ -271,11 +271,7 @@ function onKeyDown(e) {
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     #myFrame {
-        background: #292929;
-        position: absolute;
-        bottom: 0px;
-        height: 36px;
-        width: 95%;
+        
     }
     #iframe div#WordViewerStatusBar {
         display: none;
