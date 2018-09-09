@@ -42,7 +42,7 @@ return [
     'Permission'=>'การอนุญาต',
     'Role'=>'บทบาท',     
     'Users Management'=>'การจัดการผู้ใช้',
-    'Order Management'=>'การจัดการใบสั่งซื้อ',
+    'Order Management'=>'การจัดการใบคำร้อง',
     'Private Section Management'=>'การจัดการห้องลับ',
     'Section Management'=>'คลังความรู้ของพิพิธภัณฑ์ศิริราช',
     'Main'=>'Main',
