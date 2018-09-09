@@ -16,28 +16,46 @@ use yii\helpers\Html;
                 <div class="col-md-12">                     
                     <div style="background: #292929; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
                         <?php
-                        if ($dataDefault['file_type'] == '2') {
+                        if ($dataDefault['file_type'] == '2') {                            
                             if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))) {
                                 //echo "<div class='label label-default pull-left'><a href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>Download</a></div>";
                                 echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
-                                echo "<div id='lightgallery'>";
+                                echo "<div id='lightgallerys'>";
                                 echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
                                 echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                     'class' => 'img img-responsive'
-                                ]);
-                                echo Html::endTag("div");
-                                echo "</div>";
+                                ]);                                
+                                echo Html::endTag("div");                                
+                                echo "</div>";                                
+                                
                             } else {
 
                                 echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
                                 echo "<div id=''>";
                                 echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
-                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
-                                    'class' => 'img img-responsive'
-                                ]);
+                                    echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
+                                        'class' => 'img img-responsive'
+                                    ]);
                                 echo Html::endTag("div");
                                 echo "</div>";
                             }
+                            $modelImage = $dataProvider->getModels();
+                                echo "<div id='lightgallery' style='height: 80px;
+                                                                    overflow: hidden;
+                                                                    display: flex;
+                                                                    flex-direction: row;
+                                                                    /* flex-basis: 54%; */
+                                                                    flex-wrap: wrap;
+                                                                    padding: 10px;'>";
+                                    foreach($modelImage as $k=>$v){
+                                        echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['description']}"]);
+                                        echo \yii\helpers\Html::img("{$v['file_path']}/{$v['file_name']}", [
+                                            'class' => 'img img-responsive',
+                                            'style'=>'width:80px;height:80px;    padding: 5px;'
+                                        ]);                                
+                                        echo Html::endTag("div"); 
+                                    }
+                               echo "</div>"; 
 
 
                             // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
@@ -94,7 +112,8 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    convert();
+                                    view();
+                                    //convert();
                                 ");
                             }
                             

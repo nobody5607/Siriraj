@@ -378,7 +378,7 @@
         }, this.s.backdropDuration);
 
         if (this.s.download) {
-            this.$outer.find('.lg-toolbar').append('<a id="lg-download" target="_blank" download class="lg-download lg-icon"></a>');
+            //this.$outer.find('.lg-toolbar').append('<a id="lg-download" target="_blank" download class="lg-download lg-icon"></a>');
         }
 
         // Store the current scroll top value to scroll back after closing the gallery..
@@ -800,7 +800,7 @@
                 }
 
                 if (_src) {
-                    $('#lg-download').attr('href', _src);
+                    //$('#lg-download').attr('href', _src);
                     _this.$outer.removeClass('lg-hide-download');
                 } else {
                     _this.$outer.addClass('lg-hide-download');
@@ -3294,39 +3294,39 @@
     };
 
     Share.prototype.init = function() {
-        var _this = this;
-        var shareHtml = '<span id="lg-share" class="lg-icon">' +
-            '<ul class="lg-dropdown" style="position: absolute;">';
-        shareHtml += _this.core.s.facebook ? '<li><a id="lg-share-facebook" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.facebookDropdownText + '</span></a></li>' : '';
-        shareHtml += _this.core.s.twitter ? '<li><a id="lg-share-twitter" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.twitterDropdownText + '</span></a></li>' : '';
-        shareHtml += _this.core.s.googlePlus ? '<li><a id="lg-share-googleplus" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.googlePlusDropdownText + '</span></a></li>' : '';
-        shareHtml += _this.core.s.pinterest ? '<li><a id="lg-share-pinterest" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.pinterestDropdownText + '</span></a></li>' : '';
-        shareHtml += '</ul></span>';
-
-        this.core.$outer.find('.lg-toolbar').append(shareHtml);
-        this.core.$outer.find('.lg').append('<div id="lg-dropdown-overlay"></div>');
-        $('#lg-share').on('click.lg', function(){
-            _this.core.$outer.toggleClass('lg-dropdown-active');
-        });
-
-        $('#lg-dropdown-overlay').on('click.lg', function(){
-            _this.core.$outer.removeClass('lg-dropdown-active');
-        });
-
-        _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex, index) {
-
-            setTimeout(function() {
-
-                $('#lg-share-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + (encodeURIComponent(_this.getSahreProps(index, 'facebookShareUrl') || window.location.href)));
-
-                $('#lg-share-twitter').attr('href', 'https://twitter.com/intent/tweet?text=' + _this.getSahreProps(index, 'tweetText') + '&url=' + (encodeURIComponent(_this.getSahreProps(index, 'twitterShareUrl') || window.location.href)));
-
-                $('#lg-share-googleplus').attr('href', 'https://plus.google.com/share?url=' + (encodeURIComponent(_this.getSahreProps(index, 'googleplusShareUrl') || window.location.href)));
-
-                $('#lg-share-pinterest').attr('href', 'http://www.pinterest.com/pin/create/button/?url=' + (encodeURIComponent(_this.getSahreProps(index, 'pinterestShareUrl') || window.location.href)) + '&media=' + encodeURIComponent(_this.getSahreProps(index, 'src')) + '&description=' + _this.getSahreProps(index, 'pinterestText'));
-
-            }, 100);
-        });
+//        var _this = this;
+//        var shareHtml = '<span id="lg-share" class="lg-icon">' +
+//            '<ul class="lg-dropdown" style="position: absolute;">';
+//        shareHtml += _this.core.s.facebook ? '<li><a id="lg-share-facebook" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.facebookDropdownText + '</span></a></li>' : '';
+//        shareHtml += _this.core.s.twitter ? '<li><a id="lg-share-twitter" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.twitterDropdownText + '</span></a></li>' : '';
+//        shareHtml += _this.core.s.googlePlus ? '<li><a id="lg-share-googleplus" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.googlePlusDropdownText + '</span></a></li>' : '';
+//        shareHtml += _this.core.s.pinterest ? '<li><a id="lg-share-pinterest" target="_blank"><span class="lg-icon"></span><span class="lg-dropdown-text">' + this.core.s.pinterestDropdownText + '</span></a></li>' : '';
+//        shareHtml += '</ul></span>';
+//
+//        this.core.$outer.find('.lg-toolbar').append(shareHtml);
+//        this.core.$outer.find('.lg').append('<div id="lg-dropdown-overlay"></div>');
+//        $('#lg-share').on('click.lg', function(){
+//            _this.core.$outer.toggleClass('lg-dropdown-active');
+//        });
+//
+//        $('#lg-dropdown-overlay').on('click.lg', function(){
+//            _this.core.$outer.removeClass('lg-dropdown-active');
+//        });
+//
+//        _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex, index) {
+//
+//            setTimeout(function() {
+//
+//                $('#lg-share-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + (encodeURIComponent(_this.getSahreProps(index, 'facebookShareUrl') || window.location.href)));
+//
+//                $('#lg-share-twitter').attr('href', 'https://twitter.com/intent/tweet?text=' + _this.getSahreProps(index, 'tweetText') + '&url=' + (encodeURIComponent(_this.getSahreProps(index, 'twitterShareUrl') || window.location.href)));
+//
+//                $('#lg-share-googleplus').attr('href', 'https://plus.google.com/share?url=' + (encodeURIComponent(_this.getSahreProps(index, 'googleplusShareUrl') || window.location.href)));
+//
+//                $('#lg-share-pinterest').attr('href', 'http://www.pinterest.com/pin/create/button/?url=' + (encodeURIComponent(_this.getSahreProps(index, 'pinterestShareUrl') || window.location.href)) + '&media=' + encodeURIComponent(_this.getSahreProps(index, 'src')) + '&description=' + _this.getSahreProps(index, 'pinterestText'));
+//
+//            }, 100);
+//        });
     };
 
     Share.prototype.getSahreProps = function(index, prop){

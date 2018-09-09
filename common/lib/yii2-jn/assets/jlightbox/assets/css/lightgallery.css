@@ -188,6 +188,7 @@
   content: "\e070";
 }
 .lg-toolbar .lg-download:after {
+  display:none;
   content: "\e0f2";
 }
 
@@ -655,6 +656,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   visibility: visible;
 }
 .lg-outer.lg-dropdown-active #lg-share {
+  display:none;
   color: #FFF;
 }
 .lg-outer .lg-dropdown {

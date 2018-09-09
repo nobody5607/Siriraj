@@ -21,6 +21,9 @@
 ?>  
 <?php echo \janpan\jn\widgets\SlideTop::widget(['image' => $image])?>
 
+
+
+
 <?php\appxq\sdii\widgets\CSSRegister::begin()?>
 <style>
      

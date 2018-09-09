@@ -10,15 +10,19 @@ class SlideTop extends \yii\base\Widget{
         
         $this->registerScript();
         $this->registerScript();
-            $template = "             
-                <div class='c'>
-                     {image}                                  
+            $template = "
+                <div class='row justify-content-center'>
+                    <div class='c'>
+                        {image}                                  
+                    </div>
                 </div>
             "; 
               
             $imageStr = "";
             foreach($this->image as $k=>$v){
-                $imageStr .= "<img class='item' src='{$v['src']}'>";
+                $imageStr .= "
+                   <img class='item' src='{$v['src']}'>   
+                ";
             }
             $modelForm = ['image'=>$imageStr];
             $path = [];
@@ -42,6 +46,10 @@ class SlideTop extends \yii\base\Widget{
                     interval:1000
                  },
 
+            });
+            $(document).on('click', '[data-toggle=\"lightbox\"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
             });
         ";
         $view->registerJs($js);

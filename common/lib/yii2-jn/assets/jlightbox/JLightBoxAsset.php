@@ -9,7 +9,7 @@ class JLightBoxAsset extends \yii\web\AssetBundle{
         'css/lightgallery.css'
     ];
     public $js = [
-        'js/lightgallery-all.min.js'         
+        'js/lightgallery-all.js'         
     ];
     public $depends=[
         'yii\web\YiiAsset',
