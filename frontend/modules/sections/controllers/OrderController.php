@@ -166,8 +166,7 @@ class OrderController extends Controller
                     foreach($file_arr as $key=>$value){
                         $meta_text = substr($value['file_name'], -4, 5);
                         if($value['file_type'] == $c['file_type']){
-                            $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ขนาดไฟล์ที่ต้องการอย่างน้อย <b>{$value['size']}</b>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;นามสกุลไฟล์ที่ต้องการ <b>{$meta_text}</b>    
+                            $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
                             </div>";
                         }
                     }
@@ -178,6 +177,14 @@ class OrderController extends Controller
             //\appxq\sdii\utils\VarDumper::dump($x);
             if($type == "print"){
                return $this->renderAjax('print',[
+                'template'=>$template,
+                'model'=>$model,
+                'count'=>count($orderDetail),
+                'product'=>$product,
+                 'title'=>$title 
+              ]); 
+            }else if($type == "preview"){
+               return $this->renderAjax('preview',[
                 'template'=>$template,
                 'model'=>$model,
                 'count'=>count($orderDetail),

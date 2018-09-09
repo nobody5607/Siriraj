@@ -112,15 +112,19 @@ class CartController extends Controller
         } 
         
         if($step == 1){            
+             
             $model = \common\models\Shipper::find()->where(['user_id'=>$user_id])->one();
             if(!$model){
                 $model = new \common\models\Shipper();
                 $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
             }
             if($model->load(Yii::$app->request->post())){
-                 
+                $model->user_id = $user_id; 
                 if($model->validate() && $model->save()){
-                    //\appxq\sdii\utils\VarDumper::dump(Yii::$app->session["cart"]);                   
+                       $order = \common\models\Order::find()->where(['user_id'=>$user_id])->one();
+                       if($order){
+                           return \janpan\jn\classes\JResponse::getSuccess("Successfully");
+                       }
                        $order = new \common\models\Order();
                        $order->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
                        $order->create_date = new \yii\db\Expression('NOW()');

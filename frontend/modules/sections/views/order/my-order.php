@@ -52,8 +52,11 @@
                         'contentOptions'=>['style'=>'width:150px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',
                         'header'=>'',
-                        'template'=>'{send-mail} {print} {delete}',
+                        'template'=>'{preview} {send-mail} {print} {delete}',
                         'buttons'=>[
+                          'preview' => function($url,$model,$key){                               
+                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btn btn-info btn-sm', 'target'=>'_blank']);   
+                          },  
                           'send-mail' => function($url,$model,$key){
                               
                                   return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btn btn-success btn-sm', 'target'=>'_blank' ]);

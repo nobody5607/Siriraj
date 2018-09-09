@@ -18,5 +18,7 @@ return [
     'Meta text'=>'Meta text',
     'File name'=>'File name',
     'Size'=>'Size',
+    'Preview'=>'Preview',
+    
 ];
 
