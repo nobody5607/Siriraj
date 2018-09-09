@@ -49,7 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'user_id',
                 'label'=>'Name',
                 'value'=>function($model){
-                    $name = $model->user->userProfile->firstname. " " . $model->user->userProfile->lastname;
+                    $name = "";
+                    if(isset($model->user->userProfile)){
+                        $name = $model->user->userProfile->firstname. " " . $model->user->userProfile->lastname;
+                    }
+                    
                     return $name;
                 }
             ],
