@@ -73,6 +73,7 @@ use yii\helpers\Html;
                                             $files = \common\models\Files::find()->where(['file_type'=>$v['id'], 'content_id'=>Yii::$app->request->get('content_id','')])->orderBy(['id'=>SORT_ASC])->one();
                                             $fileId = isset($files) ? $files['id'] : ''; //echo $files['id'];
                                             $contentID = isset($files['content_id']) ? $files['content_id'] : Yii::$app->request->get('content_id','');
+                                             
                                         ?>
                                         <a href="/sections/content-management/view-file?content_id=<?= $contentID?>&file_id=<?= $fileId?>&filet_id=<?= $v['id']?>" class="list-group-item">
                                             <h4 class="list-group-item-heading"><i class="fa <?= "{$v['icon']}"?>"></i> <?= $v['name'] ?></h4>                                       

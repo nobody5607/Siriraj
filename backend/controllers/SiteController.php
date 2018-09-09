@@ -170,12 +170,18 @@ class SiteController extends Controller
         return $this->render('settings', ['model' => $model]);
     }
     public function actionTest(){
-        $files = \yii\web\UploadedFile::getInstancesByName('name');
-        if($files){
-           return \janpan\jn\classes\JResponse::getSuccess("success");
-        }
-         
-        return $this->render('test');
+        $path = Yii::getAlias('@storage')."/web/files/1536428484095939900/sss.jpg";
+        $data['caption']='This is the caption';
+        $data['photographer'] = 'Lets Try This';
+        //$data = \backend\modules\sections\classes\JFiles::setImageProperty($path, json_encode($data));
+        $data = \backend\modules\sections\classes\JFiles::getImageProperty($path);
+        \appxq\sdii\utils\VarDumper::dump($data);
+//        $files = \yii\web\UploadedFile::getInstancesByName('name');
+//        if($files){
+//           return \janpan\jn\classes\JResponse::getSuccess("success");
+//        }
+//         
+//        return $this->render('test');
     }
     public function actionTemplateAbout(){
         $model = \backend\modules\cores\classes\CoreOption::getParams('about');

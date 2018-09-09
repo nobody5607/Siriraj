@@ -99,7 +99,7 @@ class ContentManagementController extends Controller
         $content            =  JContent::getContentById($content_id);
         $breadcrumb         = JSection::getBreadcrumb($content['section_id']);   
         
-        $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/content-management/view?content_id={$content['id']}"]];  
+        $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/section/content-management?content_id={$content['id']}"]];  
         $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),
@@ -109,9 +109,9 @@ class ContentManagementController extends Controller
         ]);
         $dataDefault = $files->andWhere('id=:id', [':id'=>$file_id])->one();
         if($file_id == ''){
-            $dataDefault = \common\models\Files::find()->where(['file_type'=>$filet_id])->one();
+            //$dataDefault = \common\models\Files::find()->where(['file_type'=>$filet_id])->one();
         }
-        //\appxq\sdii\utils\VarDumper::dump($dataDefault);
+         //\appxq\sdii\utils\VarDumper::dump($dataDefault);
         
         
         
