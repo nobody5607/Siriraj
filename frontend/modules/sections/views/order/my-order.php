@@ -36,18 +36,18 @@
                         return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
                       }
                   ],
-                  [
-                    
-                      'attribute'=>'status',
-                      'label'=> Yii::t('order','Status'),
-                      'value'=>function($model){
-                        if($model->status == 1){
-                            return 'ยังไม่ชำระเงิน';
-                        }else if($model->status == 2){
-                            return 'ชำระเงินแล้ว';
-                        }
-                      }
-                  ],
+//                  [
+//                    
+//                      'attribute'=>'status',
+//                      'label'=> Yii::t('order','Status'),
+//                      'value'=>function($model){
+//                        if($model->status == 1){
+//                            return 'ยังไม่ชำระเงิน';
+//                        }else if($model->status == 2){
+//                            return 'ชำระเงินแล้ว';
+//                        }
+//                      }
+//                  ],
                   [
                         'contentOptions'=>['style'=>'width:150px;text-align:center;'],
                         'class' => 'yii\grid\ActionColumn',

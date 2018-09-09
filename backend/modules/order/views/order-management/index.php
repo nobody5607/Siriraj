@@ -57,19 +57,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $name;
                 }
             ],
-            [
-                'format'=>'raw',
-                'attribute'=>'status',
-                'label'=>'Status',
-                'value'=>function($model){
-                    $str = "";
-                    if($model->status == 2){
-                        $msg = Yii::t('order', 'Delivered');//ชำระเงินแล้ว
-                        $str = "<div class='label label-success'>{$msg}</div>";
-                    }
-                    return $str;
-                }
-            ],
+//            [
+//                'format'=>'raw',
+//                'attribute'=>'status',
+//                'label'=>'Status',
+//                'value'=>function($model){
+//                    $str = "";
+//                    if($model->status == 2){
+//                        $msg = Yii::t('order', 'Delivered');//ชำระเงินแล้ว
+//                        $str = "<div class='label label-success'>{$msg}</div>";
+//                    }
+//                    return $str;
+//                }
+//            ],
             [
                 'format'=>'raw',
                 'attribute'=>'create_date',
