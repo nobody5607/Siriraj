@@ -12,7 +12,7 @@ use appxq\sdii\helpers\SDHtml;
 /* @var $searchModel backend\modules\order\models */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('content', 'Orders Management');
+$this->title = Yii::t('appmenu', 'Order Management');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
