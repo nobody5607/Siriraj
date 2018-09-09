@@ -106,6 +106,7 @@ class SiteController extends Controller
     
     /*pdf*/
     public function actionCreateFile(){
+      // echo \janpan\jn\widgets\SlideTop::widget([]);return; 
        $id = \Yii::$app->request->post('id', '');
        $file = \common\models\Files::find()->where(['id'=>$id])->one();
        $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";
@@ -116,7 +117,7 @@ class SiteController extends Controller
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 300 {$dirPath}/{$file['file_name']} -quality 100 {$folderName}/preview.jpg";
+           $sql = "convert -density 2048 {$dirPath}/{$file['file_name']} -quality 50 {$folderName}/preview.jpg";
            //\appxq\sdii\utils\VarDumper::dump($sql);
            exec($sql, $output, $return_var);
            if($return_var){
