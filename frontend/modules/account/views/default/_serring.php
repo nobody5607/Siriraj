@@ -53,25 +53,41 @@ echo yii\bootstrap\Modal::widget([
             <div class="col-md-2">
                 <?=
                 $form->field($model, 'gender')->dropDownlist([
-                    UserProfile::GENDER_MALE => Yii::t('user', 'Male'),
-                    UserProfile::GENDER_FEMALE => Yii::t('user', 'Female'),
+                    UserProfile::GENDER_MALE => Yii::t('_user', 'Male'),
+                    UserProfile::GENDER_FEMALE => Yii::t('_user', 'Female'),
                         ], ['prompt' => ''])
                 ?>
             </div>
         </div> 
 
-    <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?> 
+        
         <div class="row">
              <div class="col-md-12">
-            <?php   
-              echo $form->field($model, 'sitecode')->textInput()->label(Yii::t('user','Sitecode'));      
-            ?>             
-        </div>
-        <div class="col-md-12">
-            <?php   
-              echo $form->field($model, 'position')->textInput()->label(Yii::t('user','Position'));      
-            ?>             
-        </div> 
+                 <div class="form-group" style="margin:10px;">
+                     <label><?= Yii::t('_user','Status')?> : </label>
+                     <?php 
+                        if($model->approval == '1'){ 
+                            echo "<div class='label label-success'>".Yii::t('_user', 'Approval')."</div>";
+                        }else{
+                            echo "<div class='label label-warning'>".Yii::t('_user', 'Pending')."</div>";
+                        }
+                ?>
+                 </div>
+            </div>
+            <div class="col-md-6">
+             <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?> 
+            </div>    
+             <div class="col-md-6">
+                <?php   
+                  echo $form->field($model, 'sitecode')->textInput()->label(Yii::t('_user','Site Code'));      
+                ?>             
+            </div>
+            <div class="col-md-6">
+                <?php   
+                  echo $form->field($model, 'position')->textInput()->label(Yii::t('_user','Position'));      
+                ?>             
+            </div>
+            
         </div>
 
 
@@ -139,6 +155,7 @@ echo yii\bootstrap\Modal::widget([
         position: absolute;
         left: 85%;
     }
+    #save-upload{color:#fff;}
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end();?>
 
