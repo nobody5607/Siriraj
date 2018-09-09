@@ -250,6 +250,7 @@ class FileManagementController extends Controller
             $files                      = UploadedFile::getInstancesByName('name'); 
             //\appxq\sdii\utils\VarDumper::dump($model->file_type);
             if ($files) {
+                
                  //return \janpan\jn\classes\JResponse::getSuccess("success");
                     $folder             = "/web/files";
                     $path               = Yii::getAlias('@storage') . "{$folder}/{$folderName}";
@@ -271,23 +272,33 @@ class FileManagementController extends Controller
                         $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
                         $fileNames      = "{$realFileName}.{$obj['type']}";
                         // \appxq\sdii\utils\VarDumper::dump($fileType[0]);
+                        $objType = ['vob','avi','mpeg2','wmv','rmvb','3gp','flv','m4v','mkv','mov','mpeg','mpg','mts','webm','wmv'];
+                        $fileNameArr = explode(".", $file->name);
+                        //
                         if($fileType[0] === 'image'){//images   
                             $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'2'])->one();
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);
                             $fileNames = "{$realFileName}_mark.{$obj['type']}";
                             $file_view = "{$realFileName}_preview.jpg";
-                        }else if($fileType[0] === 'application'){//docx pdf 
+                        }else if($fileType[0] === 'video' || in_array(end($fileNameArr), $objType)){
+                             
+                           $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
+                           $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark, $status);                           
+                           
+                           if($obj['default'] == "2"){
+                               $fileNames = "{$realFileName}.{$obj['type']}";
+                           }else{
+                               $fileNames = "{$realFileName}_mark.{$obj['type']}";
+                           }
+                           
+                           $file_view = $fileNames;
+                            
+                        }else if($fileType[0] === 'application' && !in_array(end($fileNameArr), $objType)){//docx pdf 
+                             
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames;
-                        }else if($fileType[0] === 'video'){
-                           //$folderName = 10000001 
-                           //\appxq\sdii\utils\VarDumper::dump($_POST);
-                           $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
-                           $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark, $status);
-                           $fileNames = "{$realFileName}_mark.{$obj['type']}";
-                           $file_view = $fileNames;
-                           //\appxq\sdii\utils\VarDumper::dump($obj);
+                           //\appxq\sdii\utils\VarDumper::dump($fileName);
                         }else if($fileType[0] === 'audio'){ 
                            $obj = \backend\modules\sections\classes\JFiles::uploadAudio($file,$filePath);
                            $fileNames = "{$realFileName}.{$obj['type']}";

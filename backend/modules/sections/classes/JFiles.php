@@ -49,9 +49,11 @@ class JFiles {
             $files->meta_text       = SDUtility::array2String($meta);
             $files->dir_path        = $dir_path;
             $files->file_view      = $file_view;
-            
-            
-            return $files->save();
+            if($files->save()){
+                return true;
+            }else{
+                return false;
+            }
         } catch (Exception $ex) {
             return FALSE;
         }
@@ -164,10 +166,13 @@ class JFiles {
     public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
         $path = "{$filePath}.{$file->extension}";
-       // \appxq\sdii\utils\VarDumper::dump($status);
+         
         $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
-                if($status == '2' && $file->extension == "mp4"){return ['type'=>'mp4'];}
+                if($status == '2' && $file->extension == "mp4"){
+                    return ['type'=>'mp4', 'default'=>'1'];
+                    
+                }
                set_time_limit(1200);
                 $modelForm = ['filename'=>"{$path}", 'mark'=>$mark, 'target'=>"{$filePath}_mark.mkv", 'output'=>"{$filePath}_mark.mp4"];
                 $w = $watermark['code'];
@@ -182,7 +187,7 @@ class JFiles {
                 @unlink("{$path}");
                
                  
-            return ['type'=>'mp4'];
+            return ['type'=>'mp4', 'default'=>'0'];
         }  
          
     }

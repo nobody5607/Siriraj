@@ -43,14 +43,14 @@ use yii\helpers\Html;
                             // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
                         } elseif ($dataDefault['file_type'] == 3) {
                             echo"
-                                <video style='width:100%' controls>
+                                <video style='width:100%' controls controlsList='nodownload'>
                                     <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='video/mp4'>                 
                                     Your browser does not support the video tag.
                                 </video>
                             ";
                         } elseif ($dataDefault['file_type'] == 4) {
                             echo"
-                                <audio style='width:100%' controls>
+                                <audio style='width:100%' controls controlsList='nodownload'>
                                     <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='audio/mpeg'>                 
                                     Your browser does not support the audio tag.
                                 </audio>
