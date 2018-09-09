@@ -10,6 +10,6 @@ use Yii;
 class SectionController extends Controller
 { 
     public function actionIndex(){
-        echo  'ok';
+        return $this->redirect(['/sections/session-management']);
     }
 }

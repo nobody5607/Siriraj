@@ -33,30 +33,7 @@ $logo =  \yii\helpers\Html::img('/images/logosirirajweb3.png',['class' => 'img i
                         ]);
                         echo '</li>';
                 ?>
-                <li class="dropdown tasks-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-warning"></i>
-                        <span class="label label-danger"><?= Log::find()->count() ?></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header"><?= Yii::t('backend', 'You have {num} log items', ['num' => Log::find()->count()]) ?></li>
-                        <li>
-                            <ul class="menu">
-                                <?php foreach (Log::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
-                                    <li>
-                                        <a href="<?= Url::to(['/log/view', 'id' => $logEntry->id]) ?>">
-                                            <i class="fa fa-warning <?= $logEntry->level == Logger::LEVEL_ERROR ? 'text-red' : 'text-yellow' ?>"></i>
-                                            <?= $logEntry->category ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach ?>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <?= Html::a(Yii::t('backend', 'View all'), ['/log/index']) ?>
-                        </li>
-                    </ul>
-                </li>
+                
                 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

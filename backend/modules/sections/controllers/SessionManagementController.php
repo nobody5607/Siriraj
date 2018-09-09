@@ -34,7 +34,7 @@ class SessionManagementController extends Controller
         }
         $public = isset($content_section) ? '1' : '2';
         
-        $breadcrumb = JSection::getBreadcrumb($id);
+        $breadcrumb = JSection::getBreadcrumb($id, '/sections/session-management');
         $title = JSection::getTitle($id);        
         $content = isset($id) ? JContent::getContentBySectionId($id, 1) : JContent::getContentAll(1);        
         $dataProvider = new \yii\data\ArrayDataProvider([
