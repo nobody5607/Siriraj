@@ -27,7 +27,7 @@ if($breadcrumb){
             <div>
                 <?= Html::encode($this->title) ?>
                 <div class="pull-right">
-                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-success btn-change-password']) ?>
+                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-primary btn-change-password','style'=>'margin-top:-3px;']) ?>
                 </div>
             </div>
         </div>
