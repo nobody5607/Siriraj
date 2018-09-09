@@ -100,7 +100,9 @@ class ContentManagementController extends Controller
         $breadcrumb         = JSection::getBreadcrumb($content['section_id']);   
         
         $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/section/content-management?content_id={$content['id']}"]];  
-        $files              = \common\models\Files::find()->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',[':content_id'=>$content_id , ':file_type'=>$filet_id]);
+        $files              = \common\models\Files::find()
+                ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',[':content_id'=>$content_id , ':file_type'=>$filet_id])
+                ->orderBy(['file_name_org'=>SORT_ASC]);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files->all(),
             'pagination' => [
