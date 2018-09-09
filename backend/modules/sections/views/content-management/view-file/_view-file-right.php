@@ -21,7 +21,7 @@ use yii\helpers\Html;
                 <i class="fa fa-info-circle" aria-hidden="true"></i> <?= Yii::t('Section','Note')?>
             </label>
             <div class="border-bottom">
-                <small><?= $dataDefault['description'] ?></small>
+                <div style="word-wrap: break-word;"><?= $dataDefault['description'] ?></div>
             </div>     
             <div class="border-bottom">
                 <label>
