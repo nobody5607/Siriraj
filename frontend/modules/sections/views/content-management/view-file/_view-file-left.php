@@ -11,7 +11,7 @@ use yii\helpers\Html;
 <?php //appxq\sdii\utils\VarDumper::dump($dataDefault); ?>
 <?= $dataDefault['file_name_org'] ?>
         </div> 
-        <div class="panel-body">  
+        <div class="panel-body" style="overflow: hidden;">  
             <div class="row" style="margin-bottom:10px;text-align: center;" id="preview-file">
                 <div class="col-md-12">                     
                     <div style="background: #292929; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
@@ -112,8 +112,8 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    //view();
-                                    convert();
+                                    view();
+                                    //convert();
                                 ");
                             }
                             
@@ -125,6 +125,7 @@ use yii\helpers\Html;
             </div> 
         </div>
     </div> 
+
     <div class="panel">
         <div class="panel-body">
             <?php

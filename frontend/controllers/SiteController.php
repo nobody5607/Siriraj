@@ -130,6 +130,9 @@ class SiteController extends Controller
     }
     public function actionViewFile(){
        $id = \Yii::$app->request->post('id', '');
+       if($id==""){
+            $id = \Yii::$app->request->get('id', '');
+       }
        $file = \common\models\Files::find()->where(['id'=>$id])->one();
        
        $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";      

@@ -21,7 +21,9 @@ class SlideTop extends \yii\base\Widget{
             $imageStr = "";
             foreach($this->image as $k=>$v){
                 $imageStr .= "
-                   <img class='item' src='{$v['src']}'>   
+                    
+                   <img class='item' src='{$v['src']}' >  
+                        
                 ";
             }
             $modelForm = ['image'=>$imageStr];
@@ -40,16 +42,12 @@ class SlideTop extends \yii\base\Widget{
         $js="
             $('.c').jCarousel({
                 type:'slidey-up',
-                //carsize: {carwidth:600,carheight:400},
+                carsize: {carwidth:760,carheight:1000},
                  auto: {
                     isauto:false,
-                    interval:1000
+                    interval:1000000
                  },
 
-            });
-            $(document).on('click', '[data-toggle=\"lightbox\"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
             });
         ";
         $view->registerJs($js);
