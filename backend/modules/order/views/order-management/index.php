@@ -44,10 +44,19 @@ $this->params['breadcrumbs'][] = $this->title;
 		'headerOptions' => ['style'=>'text-align: center;'],
 		'contentOptions' => ['style'=>'width:60px;text-align: center;'],
 	    ],
-             
+             [
+                'format' => 'raw',
+                'contentOptions' => ['style' => 'width:200px;'],
+                'attribute' => 'id',
+                'label' => Yii::t('order', 'Order Id'),
+                'value' => function($model) {
+                    return Html::a("{$model->id}", ["/order/order-management/order-detail?order_id={$model->id}"], ['class'=>'order_details', 'data-id'=>$model->id]);
+                }
+            ],
             [
+                'contentOptions' => ['style' => 'width:160px;'],
                 'attribute'=>'user_id',
-                'label'=>'Name',
+                'label'=> Yii::t('order', 'Name'),
                 'value'=>function($model){
                     $name = "";
                     if(isset($model->user->userProfile)){
@@ -55,33 +64,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     
                     return $name;
-                }
-            ],
-//            [
-//                'format'=>'raw',
-//                'attribute'=>'status',
-//                'label'=>'Status',
-//                'value'=>function($model){
-//                    $str = "";
-//                    if($model->status == 2){
-//                        $msg = Yii::t('order', 'Delivered');//ชำระเงินแล้ว
-//                        $str = "<div class='label label-success'>{$msg}</div>";
-//                    }
-//                    return $str;
-//                }
-//            ],
+                },
+                'filter' => \kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'user_id',
+                    'data' => yii\helpers\ArrayHelper::map(common\models\UserProfile::find()->select(['user_id','concat(firstname,"  ", lastname) as name'])->asArray()->all(),'user_id','name'), 
+                    'hideSearch' => false,
+                    'pluginOptions' => [
+                          'allowClear' => true,
+                          'width' => 'resolve',
+                     ],
+                    'options' => [
+                           'id'=> appxq\sdii\utils\SDUtility::getMillisecTime(), 
+                           'style'=>'width:100%',
+                           'placeholder' => Yii::t('order', 'Search for name'),
+                     ]
+                ]),        
+                  
+             ],
             [
                 'format'=>'raw',
                 'attribute'=>'create_date',
                 'label'=>'Date',
                 'value'=>function($model){
                     return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
-                }
+                },
+//                'filter' => kartik\date\DatePicker::widget([
+//                    'model' => $searchModel, 
+//                    'name' => 'create_date', 
+//                   // 'value' => date('Y-m-d'),
+//                    'pluginOptions' => [
+//                        'format' => 'yyyy-mm-dd',
+//                        'autoclose' => true,
+//                        'autoUpdateInput' => false
+//                    ]
+//                ])         
             ],
             [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
-                        'contentOptions' => ['style'=>'width:80px;text-align: center;'],
-                        'template' => '{view} {update} {delete}',
+                        'contentOptions' => ['style'=>'width:50px;text-align: center;'],
+                        'template' => '{delete}',
                         'headerOptions' => ['style' => 'width:250px'],
                         'buttons' => [
                             'view' => function ($url, $model) {
@@ -104,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             }, 
                            'delete' => function ($url, $model) {
                                 $label = Yii::t('section', 'Delete');
-                                return Html::a('<span class="fa fa-trash"></span> ', yii\helpers\Url::to(['/order/order-management/delete', 'id' => $model->id]), [
+                                return Html::a('<span class="fa fa-trash"></span> '.Yii::t('order','Delete'), yii\helpers\Url::to(['/order/order-management/delete', 'id' => $model->id]), [
                                             'title'         => $label,
                                             'class'         => 'btn btn-danger btn-xs',
                                             'data-action'   => 'delete',
@@ -211,7 +233,11 @@ function selectionOrderGrid(url) {
 	});
     });
 }
-
+$('.order_details').on('click', function(){
+    let url = $(this).attr('href');
+    modalOrder(url);
+    return false;
+});
 function modalOrder(url) {
     $('#modal-order .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
     $('#modal-order').modal('show')

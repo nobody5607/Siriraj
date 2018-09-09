@@ -193,4 +193,44 @@ class OrderManagementController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionOrderDetail(){
+        $order_id = Yii::$app->request->get('order_id', '');        
+        $model = \common\models\OrderDetail::find()->where(['order_id'=>$order_id]);
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+        ]);
+       // \appxq\sdii\utils\VarDumper::dump($dataProvider);
+
+        $breadcrumbs=[];
+        $breadcrumbs_arr = [
+            [
+                'label' => Yii::t('section','Home'), 
+                'url' =>'/sections/session-management',
+                'icon'=>'fa-bank'
+            ],
+            [
+                    'label' => Yii::t('appmenu','My Orders'),
+                    'url' => [
+                        0 => '/sections/order/my-order'
+                    ],                
+                    'icon'=>'fa-shopping-cart'
+            ],
+            [
+               'label' => Yii::t('order','Order Detail')
+            ]
+        ];
+        foreach($breadcrumbs_arr as $key=>$v){
+            $breadcrumbs[$key]=$v;
+        } 
+         
+        return $this->renderAjax('order-detail',[
+           'dataProvider' => $dataProvider,
+           'breadcrumb'=>$breadcrumbs,
+           //'order'=>$order
+        ]);
+    }
 }

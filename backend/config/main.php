@@ -40,6 +40,7 @@ $config = [
         ],
     ], 
     'components' => [
+        
         'image' => [  
             'class' => 'yii\image\ImageDriver',
             'driver' => 'GD',  //GD or Imagick
@@ -91,6 +92,14 @@ $config = [
         'frontendCache' => require Yii::getAlias('@frontend/config/_cache.php'),
     ],
     'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        // enter optional module parameters below - only if you need to  
+        // use your own export download action or custom translation 
+        // message source
+        // 'downloadAction' => 'gridview/export/download',
+        // 'i18n' => []
+        ],
         'template' => [
             'class' => 'backend\modules\template\Module',
         ],
