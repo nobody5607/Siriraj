@@ -34,4 +34,5 @@ return [
     'User Profile'=>'ข้อมูลส่วนตัว',
     'Image'=>'รูปภาพ',
     'approval'=>'การอนุมัติ',
+    'Position'=>'ตำแหน่ง',
 ];

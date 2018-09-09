@@ -17,6 +17,7 @@ class UserForm extends Model
     public $password;
     public $status;
     public $roles;
+    public $firstname, $lastname, $sitecode, $sap_id,$position;
 
     private $model;
 
@@ -60,6 +61,7 @@ class UserForm extends Model
             ['roles', 'each',
                 'rule' => ['in', 'range' => ArrayHelper::getColumn(Yii::$app->authManager->getRoles(), 'name')],
             ],
+            [['firstname','lastname','sitecode','sap_id','position'], 'string', 'max' => 255],        
         ];
     }
 
@@ -69,11 +71,17 @@ class UserForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('backend', 'Username'),
-            'email' => Yii::t('backend', 'Email'),
-            'password' => Yii::t('backend', 'Password'),
-            'status' => Yii::t('backend', 'Status'),
-            'roles' => Yii::t('backend', 'Roles'),
+            'username' => Yii::t('_user', 'Username'),
+            'email' => Yii::t('_user', 'Email'),
+            'password' => Yii::t('_user', 'Password'),
+            'status' => Yii::t('_user', 'Status'),
+            'roles' => Yii::t('_user', 'Roles'),
+            
+            'firstname' => Yii::t('_user', 'Firstname'),
+            'lastname' => Yii::t('_user', 'Lastname'),
+            'sitecode' => Yii::t('_user', 'Site Code'),
+            'position' => Yii::t('_user', 'Position'),
+            'sap_id' => Yii::t('_user', 'Sap_id'),
         ];
     }
 
@@ -121,7 +129,8 @@ class UserForm extends Model
             }
             $model->generateAuthKey();
             if ($model->save() && $isNewRecord) {
-                $model->afterSignup();
+                $data_obj = ['position'=> $this->position,'firstname'=> $this->firstname, 'lastname'=> $this->lastname, 'sitecode'=>$this->sitecode, 'sap_id'=> $this->sap_id];
+                $model->afterSignup($data_obj);
             }
             $auth = Yii::$app->authManager;
             $auth->revokeAll($model->getId());

@@ -55,7 +55,9 @@ echo yii\bootstrap\Modal::widget([
 
                     <?= $form->field($user, 'status')->label(Yii::t('_user', 'Status'))->radioList(User::statuses()) ?>
 
-                    <?= $form->field($user, 'roles')->checkboxList($roles) ?>
+                    <div id="xxx">
+                        <?= $form->field($user, 'roles')->checkboxList($roles) ?>
+                    </div>
 
                     <?= $form->field($profile, 'firstname')->textInput(['maxlength' => true]) ?>
 
@@ -118,6 +120,27 @@ echo yii\bootstrap\Modal::widget([
 <?php richardfan\widget\JSRegister::end(); ?> 
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
-     
+    .box-default {
+         border: none;
+         box-shadow: 0px 0px 1px #cacaca;
+     }
+     #xxx input[type="checkbox"] {
+            cursor: pointer;
+            /* -webkit-appearance: none; */
+            appearance: none;
+            background: #34495E;
+            border-radius: 1px;
+            box-sizing: border-box;
+            position: relative;
+            box-sizing: content-box;
+            width: 30px;
+            height: 22px;
+            border-width: 0px;
+            transition: all 0.3s linear;
+            margin-right: 5px;
+            position: relative;
+            top: 8px;
+            padding-right: 23px;
+        }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>

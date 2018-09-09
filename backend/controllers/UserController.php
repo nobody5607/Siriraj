@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $model = new UserForm();
         $model->setScenario('create');
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -151,10 +151,10 @@ class UserController extends Controller
             Yii::$app->session->setFlash('error', Yii::t('backend', 'You can not remove your own account.'));
         } else {
             // remove avatar
-            $avatar = UserProfile::findOne($id)->avatar_path;
-            if ($avatar) {
-                unlink(Yii::getAlias('@storage/avatars/' . $avatar));
-            }
+//            $avatar = UserProfile::findOne($id)->avatar_path;
+//            if ($avatar) {
+//                unlink(Yii::getAlias('@storage/avatars/' . $avatar));
+//            }
             Yii::$app->authManager->revokeAll($id);
             $this->findModel($id)->delete();
 
