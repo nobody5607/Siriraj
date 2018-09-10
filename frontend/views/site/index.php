@@ -1,111 +1,53 @@
-<!-- TO DO List -->
-<div class="box box-primary">
-    <div class="box-header ui-sortable-handle" style="cursor: move;">
-        <i class="ion ion-clipboard"></i>
+<?php 
+    
+    function read_file_docx($filename){
 
-        <h3 class="box-title">To Do List</h3>
+            $striped_content = '';
+            $content = '';
 
-        <div class="box-tools pull-right">
-            <ul class="pagination pagination-sm inline">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-        <ul class="todo-list ui-sortable">
-            <li>
-                <!-- drag handle -->
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <!-- checkbox -->
-                <input type="checkbox" value="">
-                <!-- todo text -->
-                <span class="text">Design a nice theme</span>
-                <!-- Emphasis label -->
-                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                <!-- General tools such as edit or delete-->
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="">
-                <span class="text">Make the theme responsive</span>
-                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="">
-                <span class="text">Check your messages and notifications</span>
-                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                <span class="handle ui-sortable-handle">
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer clearfix no-border">
-        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-    </div>
-</div>
+            if(!$filename || !file_exists($filename)) return false;
+
+            $zip = zip_open($filename);
+
+            if (!$zip || is_numeric($zip)) return false;
+
+
+            while ($zip_entry = zip_read($zip)) {
+
+                if (zip_entry_open($zip, $zip_entry) == FALSE) continue;
+
+                if (zip_entry_name($zip_entry) != "word/document.xml") continue;
+
+                $content .= zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
+
+                zip_entry_close($zip_entry);
+            }// end while
+
+            zip_close($zip);
+
+            //echo $content;
+            //echo "<hr>";
+            //file_put_contents('1.xml', $content);     
+
+            $content = str_replace('</w:r></w:p></w:tc><w:tc>', " ", $content);
+            $content = str_replace('</w:r></w:p>', "\r\n", $content);
+            $striped_content = strip_tags($content);
+
+            return $striped_content;
+        }
+
+
+
+        $filename = Yii::getAlias('@storage'). "/web/files/1536499874097400400/994d76418d8f1b05ab725bd61832185a.docx.docx";
+        //appxq\sdii\utils\VarDumper::dump($filename);
+
+        $content = read_file_docx($filename);
+        appxq\sdii\utils\VarDumper::dump($content);
+        if($content !== false) {
+
+            echo nl2br($content);   
+        }
+        else {
+            echo 'Couldn\'t find the file. Please check that file.';
+        }
+?>

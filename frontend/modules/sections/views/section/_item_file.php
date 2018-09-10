@@ -27,7 +27,22 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
                         echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>";
                     }
                     else if($model['file_type'] == 5 || $model['file_type'] == 6 || $model['file_type'] == 7){
-                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file'></i></div>";
+                        $fileNameStr = explode(".", $model['file_name']);
+                        $icon = "";
+                        if($fileNameStr[1] == 'doc' || $fileNameStr[1] == 'docx'){
+                            $icon ="<i class='fa fa-file-word-o'></i>";
+                        }else if($fileNameStr[1] == 'ppt' || $fileNameStr[1] == 'pptx'){
+                            $icon ="<i class='fa fa-file-powerpoint-o'></i>";
+                        }else if($fileNameStr[1] == 'xls' || $fileNameStr[1] == 'xlsx'){
+                            $icon ="<i class='fa fa-file-excel-o'></i>";
+                        }else if($fileNameStr[1] == 'pdf'){
+                            $icon ="<i class='fa fa-file-pdf-o'></i>";
+                        }else if($fileNameStr[1] == 'zip' || $fileNameStr[1] == 'rar'){
+                            $icon ="<i class='fa fa-file-pdf-o'></i>";
+                        }else{
+                            $icon ="<i class='fa fa-file-archive-o'></i>";
+                        }
+                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'>{$icon}</div>";
                     }
                                    
                 ?>
@@ -35,7 +50,7 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
             </div> 
             <div class="pro-content">
                 <div class="pro-infos">
-                    <h4 title='<?= $model['file_name_org']?>'> <?= $name_str ?></h4>
+                    <h3 title='<?= $model['file_name_org']?>'> <?= $name_str ?></h3>
                     <?php
                     $name_str = backend\modules\sections\classes\JFiles::lengthName($model['description'], 30);
                     ?>
@@ -45,5 +60,14 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
             </div>
         </a>
     </div>
- 
- 
+  
+ <?php                    \appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    .pro-img img { 
+        height: 180px;
+    }
+    a, button, a:before {
+        color:#1a1a1b;
+    }
+</style>
+<?php                     \appxq\sdii\widgets\CSSRegister::end()?>

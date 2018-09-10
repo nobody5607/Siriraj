@@ -28,7 +28,7 @@ class Slideimg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['detail', 'file_path','view_path'], 'string'],
+            [['detail', 'file_path','view_path','url'], 'string'],
             [['name'], 'string', 'max' => 255],
             ['forder','integer'],
             //[['create_date','admin_id'], 'safe'],
@@ -47,6 +47,7 @@ class Slideimg extends \yii\db\ActiveRecord
             'file_path' => Yii::t('section', 'File Path'),
             'view_path'=>Yii::t('section', 'View Path'),
             'forder'=>Yii::t('section', 'Order'),
+            'url'=>Yii::t('section', 'Url'),
         ];
     }
 }

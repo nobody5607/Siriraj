@@ -79,8 +79,9 @@ use yii\helpers\Html;
                                 <?php foreach ($images as $k=> $image):?>
                                     <?php if($k==0): ?>
                                         <div class="item active">
+                                            <a href="<?= $image['url']?>">
                                             <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
-                                            <?php if($image['detail']):?>
+                                            </a><?php if($image['detail']):?>
                                                 <div class="carousel-caption"> 
                                                     <p><?= $image['detail']?></p>
                                                 </div>
@@ -88,7 +89,9 @@ use yii\helpers\Html;
                                         </div> 
                                     <?php else:?>
                                         <div class="item">
+                                            <a href="<?= $image['url']?>">
                                             <img src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
+                                            </a>
                                             <?php if($image['detail']):?>
                                                 <div class="carousel-caption"> 
                                                     <p><?= $image['detail']?></p>
@@ -131,7 +134,7 @@ use yii\helpers\Html;
                 }
             }
             .carousel-caption{
-                background: #000000b5;border-radius: 3px;  padding:3px;
+                background: #00000066;border-radius: 3px;  padding:3px;
             }
             .carousel-caption p{
                 color:#fff;font-size: 16pt;
