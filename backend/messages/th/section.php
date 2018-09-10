@@ -39,4 +39,9 @@ return [
     
     'Order'=>'เรียงลำดับ',
     'Select All'=>'เลือกทั้งหมด',
+    
+    'Slider Image'=>'ภาพสไลเดอร์',
+    'Desired image size'=>'ขนาดภาพที่ต้องการ',
+    'Image Name'=>'ชื่อรูปภาพ',
+    'Image Detail'=>'ขนาดรูปภาพ',
 ];

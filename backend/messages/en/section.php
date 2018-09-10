@@ -38,4 +38,9 @@ return [
     'File Name'=>'File Name',
     'Order'=>'Order',
     'Select All'=>'Select All',
+    
+    'Slider Image'=>'Slider Image',
+    'Desired image size'=>'Desired image size',
+    'Image Name'=>'Image Name',
+    'Image Detail'=>'Image Detail',
 ];

@@ -11,7 +11,7 @@ use appxq\sdii\helpers\SDHtml;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('section', 'Slideimgs');
+$this->title = Yii::t('section', 'Slider Image');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

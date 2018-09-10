@@ -23,7 +23,9 @@ use appxq\sdii\helpers\SDHtml;
     </div>
 
     <div class="modal-body"> 
-        <?php
+        <div class="form-group">
+            <label><?= Yii::t('section','Desired image size') ?>: 1300x450 px</label>
+            <?php
         echo kartik\file\FileInput::widget([
             'name' => 'file',
             'id' => 'file',
@@ -37,10 +39,11 @@ use appxq\sdii\helpers\SDHtml;
             ]
         ]);
         ?>
-
-	<?= $form->field($model, 'detail')->textarea(['rows' => 6]) ?>
-        <?= $form->field($model, 'forder')->textInput() ?> 
+        </div>
         <?= $form->field($model, 'url')->textInput() ?> 
+	<?= $form->field($model, 'detail')->textarea(['rows' => 6])->label(Yii::t('section','Image Name')) ?>
+        <?= $form->field($model, 'forder')->textInput()->label(Yii::t('section','Image Detail')) ?> 
+        
 
     </div>
     <div class="modal-footer">

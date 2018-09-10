@@ -63,12 +63,12 @@ use yii\helpers\Html;
         </div>
 <?php if($slide == '1'): ?>
         
-        <div class="slider_box" >            
-            <div class='container'>
+        <div class="slider_box" style="    background: #f3f3f3;">            
+            <div class='container-fluid'>
                 <?php 
                     $images = \backend\modules\sections\classes\JContent::getImage(); 
                 ?>
-                    <div class="container">
+                    <div>
                          
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                            
@@ -122,29 +122,21 @@ use yii\helpers\Html;
         </div>
         <?php appxq\sdii\widgets\CSSRegister::begin();?>
         <style>
-             @media only screen and (min-width:960px){
-                .carousel-inner img{
-                    width: 1024px;
-                    height: 450px !important;
+              .slider_box {
+                    background: transparent;
+                    padding-bottom: 30px;
+                }
+                .carousel-control.left, .carousel-control.right{
+                    background: transparent;
+                }
+                .slider_box{
+                    padding-bottom: 0px;
+                    text-align: center;
+                    margin: 0 auto;
+                }
+                .carousel-inner > .item > img, .carousel-inner > .item > a > img {
                     margin:0 auto;
                 }
-                .nivoSlider img {
-                    width: 1024px;
-                    height: 450px !important;
-                }
-            }
-            .carousel-caption{
-                background: #00000066;border-radius: 3px;  padding:3px;
-            }
-            .carousel-caption p{
-                color:#fff;font-size: 16pt;
-            }
-            @media only screen and (max-width:768px){
-               .carousel-caption p{
-                    color:#fff;font-size: 8pt;
-                } 
-            }
-            
         </style>
         <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php endif; ?>
