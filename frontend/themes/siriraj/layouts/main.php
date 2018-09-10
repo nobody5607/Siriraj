@@ -47,7 +47,12 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                     background-size: cover;
                     background-attachment: fixed;
             }
-            .ptb-15{    padding: 0px 0;}
+            .ptb-15{    
+                padding: 0px 0;
+                background: #f3f3f3 url(<?= "/images/bg-header.jpg"?>) no-repeat center top;
+                background-size: cover;
+                background-attachment: fixed;
+            }
             </style>
      <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php $this->endBody() ?>

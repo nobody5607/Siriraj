@@ -24,7 +24,7 @@
     <!-- Container End -->
 </div> 
 
-<div style="margin-top: 10px;background:#cea967; height: 115px;padding-top: 30px;">
+<div style="margin-top: 10px; height: 115px;padding-top: 0px;">
     <div class="col-md-8 col-md-offset-2">
         <?= $this->render("_form", ['type' => $type]) ?>     
     </div>
