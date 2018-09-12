@@ -63,5 +63,6 @@ return [
     'About Us'=>'About Us',
     'Pages'=>'Pages',
      'Example Data'=>'Example Data',
+    'Themes Frontend'=>'Themes Frontend',
 ];
 

@@ -61,5 +61,6 @@ return [
     'About Us'=>'เกี่ยบกับเรา',
     'Pages'=>'จัดการหน้า',
     'Example Data'=>'ตัวอย่างข้อมูล',
+    'Themes Frontend'=>'ธีม ส่วนหน้า',
 ];
 
