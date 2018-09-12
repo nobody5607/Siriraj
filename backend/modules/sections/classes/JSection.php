@@ -115,7 +115,7 @@ class JSection extends \yii\base\Component{
             ";
             $data = \Yii::$app->db->createCommand($sql)->queryAll();
             $breadcrumbs=[];
-            $url = ($url == '') ? '/sections/section' : $url;
+            $url = ($url == '') ? '/sections/session-management' : $url;
             $breadcrumbs[] = [
                 'label' => \Yii::t('section','Session Management'), 
                  'url' =>$url
