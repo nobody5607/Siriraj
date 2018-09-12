@@ -56,7 +56,8 @@
         "kartik-v/yii2-widget-datepicker": "@dev",
         "2amigos/yii2-chartjs-widget": "~2.0",
         "miloschuman/yii2-highcharts-widget": "dev-master",
-        "lesha724/yii2-document-viewer": "*"
+        "lesha724/yii2-document-viewer": "*",
+        "kartik-v/yii2-widget-colorinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
