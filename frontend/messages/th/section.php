@@ -9,7 +9,7 @@ return [
     'By'=>'โดย',
     'Rules'=>'กติกา',
     'Detail'=>'รายละเอียด',
-    'Browse by Category'=>'เรียกดูตามประเภท',
+    'Browse by Category'=>'ดูตามประเภท',
     'Category'=>'ประเภท',
     'Content'=>'เนื้อหา',
     'Section'=>'คลังความรู้',

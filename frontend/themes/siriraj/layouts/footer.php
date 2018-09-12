@@ -62,7 +62,7 @@
         <div class="container">
 
             <div class="copyright-text text-center">
-                <p style="color:#fff;">Copyright © 2018  พิพิธภัณฑ์ศิริราช All Rights Reserved.  | Website: <a href="http://www.sirirajmuseum.com" target="_blank">www.sirirajmuseum.com  </a>  &nbsp;</p>
+                <p>Copyright © 2018  พิพิธภัณฑ์ศิริราช All Rights Reserved.  | Website: <a href="http://www.sirirajmuseum.com" target="_blank">www.sirirajmuseum.com  </a>  &nbsp;</p>
             </div>
         </div>
         <!-- Container End -->

@@ -25,7 +25,7 @@ use yii\helpers\Html;
                                  <li><a href="/account/sign-in/login"><?= Yii::t('appmenu', 'Login')?></a></li>
                                  <li><a href="/account/sign-in/signup"><?= Yii::t('appmenu','Register');?></a></li>
                                 <?php endif; ?>
-                                 <li style="line-height: 45px;">
+                                 <li style="    line-height: 45px;position: absolute; right: 0;margin-top: 5px;;">
                                         <?php
                                         echo \lajax\languagepicker\widgets\LanguagePicker::widget([
                                             'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,

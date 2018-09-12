@@ -21,16 +21,16 @@ $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 
                 ?>
                 <a href="#">
 
-                    <i class='lnr lnr-user'></i>
+                    <img src="<?= "{$userProfile->image}"?>" style='width:40px;' class="img img-circle">
                     <ul class="ht-dropdown cart-box-width">
                         <li><a href="/account/default/settings"><i class="fa fa-user"></i>  <?= Yii::t('appmenu', 'My Profile') ?></a></li>
                         <li><a href="/sections/order/my-order"><i class="fa fa-check-square-o"></i>  <?= Yii::t('appmenu', 'My Orders') ?></a></li>
                         <li><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'Logout') ?></a></li>
                     </ul>
                     <span class="my-cart">
-                        <span></span>
+                        <span><?= "{$userProfile->firstname}"?></span>
                         <span> 
-                            <strong><?= "{$userProfile->firstname} {$userProfile->lastname}"; ?></strong>
+                            <strong><?= "{$userProfile->lastname}"; ?></strong>
                         </span>
 
                     </span>
