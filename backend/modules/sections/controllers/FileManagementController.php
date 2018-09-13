@@ -343,16 +343,16 @@ class FileManagementController extends Controller
     public function actionDeleteFile(){
         try {
             $id= Yii::$app->request->post('id', '');
-            $model = \common\models\Files::find()->where(['id'=>$id])->one();
-            $filename = Yii::getAlias('@storage') . "{$model->dir_path}/{$model->file_name}";
-            $thumbnail = Yii::getAlias('@storage') . "{$model->dir_path}/thumbnail/{$model->file_name}";
-            if ($model->delete()) {                
-                //@unlink($filename);
-                //@unlink($thumbnail);
-                $this->deleteDir(Yii::getAlias('@storage') . "{$model->dir_path}");
-                return \janpan\jn\classes\JResponse::getSuccess("Delete Success");
-            } else {
-                return \janpan\jn\classes\JResponse::getError("Error");
+            $model = \common\models\Files::find()->where(['id'=>$id])->one();            
+            if($model){
+                if ($model->delete()) {  
+                    $filename = Yii::getAlias('@storage') . "{$model->dir_path}/{$model->file_name}";
+                    $thumbnail = Yii::getAlias('@storage') . "{$model->dir_path}/thumbnail/{$model->file_name}";
+                    $this->deleteDir(Yii::getAlias('@storage') . "{$model->dir_path}");              
+                    return \janpan\jn\classes\JResponse::getSuccess("Delete Success");
+                } else {
+                    return \janpan\jn\classes\JResponse::getError("Error");
+                }
             }
         } catch (\yii\db\Exception $ex) {
             

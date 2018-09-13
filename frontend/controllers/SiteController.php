@@ -67,7 +67,19 @@ class SiteController extends Controller
     }
     
     public function actionConvert(){
+        
+        if(\Yii::$app->user->isGuest){
+            return '';
+        }
+        $model = new \common\models\ReportDownload();
          
+        $model->count = 1;
+        $model->user_id = \Yii::$app->user->id;
+        $model->create_at = date('Y-m-d');
+        $model->save();
+        
+        
+        
         $id = \Yii::$app->request->get('id', '');
         $multi = \Yii::$app->request->get('multi', '');
         $file = \common\models\Files::findOne($id);
@@ -98,6 +110,8 @@ class SiteController extends Controller
                 $data = ['file_name'=>$file['file_name_org'], 'href'=>$src, 'type'=>$file['file_type']];
                 return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
             }
+            
+            
             return $src;
             //return $this->renderAjax("convert",['src'=>$src]);
         
@@ -105,6 +119,22 @@ class SiteController extends Controller
     
     
     /*pdf*/
+    
+    public function actionDocToPdf(){
+       $id = \Yii::$app->request->post('id', '');
+       $file = \common\models\Files::find()->where(['id'=>$id])->one();
+       $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";
+       $viewPath = "{$file['file_path']}";// storageUrl
+       $folderName = "{$dirPath}/pdf";
+       $sql="libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']}";
+       set_time_limit(1200);
+       exec($sql, $output, $return_var);
+       if($return_var){
+               return \janpan\jn\classes\JResponse::getSuccess("Success");
+       }else{
+               return \janpan\jn\classes\JResponse::getSuccess("Success");
+       }
+    }
     public function actionCreateFile(){
       // echo \janpan\jn\widgets\SlideTop::widget([]);return; 
        $id = \Yii::$app->request->post('id', '');

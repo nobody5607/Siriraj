@@ -90,11 +90,23 @@ use yii\helpers\Html;
                                     echo "<div id='#myFrame' style='    background: url(https://c1-excel-15.cdn.office.net:443/x/s/161090431876__layouts/Resources/ewaembed.png); position: absolute; bottom: 12px; height: 25px; width: 28%;    right: 28px;'></div>";
                                 }else{
                                     echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 20px; width: 28%;    right: 28px;'></div>";
-                                }    
+                                } 
+                                $this->registerJs("
+                                    function convertToPDF(){
+                                        let url='/site/doc-to-pdf';
+                                        let params={id:'".$dataDefault['id']."'};
+                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                        $.post(url,params, function(data){
+                                            if(data['status'] == 'success'){
+                                                console.log(data);
+                                            }
+                                        }); 
+                                    }
+                                    convertToPDF();
+                                     
+                                ");
                             }else if($type == 'pdf'){
                                 $this->registerJs("
-                                    
-                                    
                                     function convert(){
                                         let url='/site/create-file';
                                         let params={id:'".$dataDefault['id']."'};
@@ -112,8 +124,7 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    view();
-                                    //convert();
+                                    convert();
                                 ");
                             }
                             
