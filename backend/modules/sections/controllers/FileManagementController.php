@@ -295,7 +295,7 @@ class FileManagementController extends Controller
                             
                         }else if($fileType[0] === 'application' && !in_array(end($fileNameArr), $objType)){//docx pdf 
                              
-                           $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
+                           $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath,$path,$realFileName);
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames;
                            //\appxq\sdii\utils\VarDumper::dump($fileName);

@@ -156,10 +156,48 @@ class JFiles {
     * @param $folderName folder name
     * @return boolean
     */
-    public static function uploadDocx($file,$filePath){        
+    public static function uploadDocx($file,$filePath="",$path="", $fileName=""){        
         if ($file->saveAs("{$filePath}.{$file->extension}")) {//save image
+            if($file){
+                $fileNameArr = explode(".", $file->name);
+                $type = end($fileNameArr);
+                if($type != "pdf"){
+                    self::DocToPdf($path, $fileName);
+                }
+
+            }
             return ['type'=>"{$file->extension}"];
         }     
+    }
+    public static function DocToPdf($path, $fileName){         
+       $dirPath = Yii::getAlias('@storage')."{$path}";
+       $viewPath = "{$path}";// storageUrl
+       $folderName = "{$path}/pdf";
+       set_time_limit(1200);
+       $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$path}/{$fileName} --outdir {$path}";  
+       exec($sql, $output, $return_var);
+       $fileNameArr = explode('.', $fileName);
+       self::PdfToJpg($path, "{$fileNameArr[0]}.pdf");
+       $data=[
+                'id'=>$id,
+                'path'=>"{$path}/{$fileNameArr[0]}.pdf",
+                'sql'=>$sql,
+                'out'=>$output,
+                'return_var'=>$return_var        
+            ];
+       return true;         
+    }
+    public static function PdfToJpg($path, $fileName){ 
+       $dirPath = Yii::getAlias('@storage')."{$path}"; 
+       $folderName = "{$path}/pdf"; 
+       \backend\modules\sections\classes\JFiles::deleteDir("{$folderName}"); 
+       $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
+       if($createDir){
+           set_time_limit(1200);
+           $sql = "convert -density 500 {$dirPath}/{$fileName} -quality 50 {$folderName}/preview.jpg"; 
+           exec($sql, $output, $return_var);
+           return true; 
+       }
     }
     
     
