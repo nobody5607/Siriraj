@@ -13,6 +13,7 @@
     }
     $images=preg_grep ('/\.(jpg|jpeg|png|gif|tif)$/i', $files);
     $image=[];
+    sort($images);
     foreach($images as $k=>$v){
         $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>''];
         //echo \yii\helpers\Html::img("{$url}/{$v}",['style'=>'width:100px;']);
