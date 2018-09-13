@@ -131,8 +131,8 @@ class SiteController extends Controller
        //$sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']} --outdir {$dirPath}/{$file['file_name']}";
        $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']} --outdir {$dirPath}";  
        exec($sql, $output, $return_var);
-       if($return_var){
-            $fileNameArr = explode('.', $file['file_name']);
+       $fileNameArr = explode('.', $file['file_name']);
+       if($return_var){            
             $data=[
                 'id'=>$id,
                 'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf",
@@ -142,7 +142,14 @@ class SiteController extends Controller
             ];
             return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
        }else{
-            return \janpan\jn\classes\JResponse::getSuccess("Success");
+           $data=[
+                'id'=>$id,
+                'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf",
+                'sql'=>$sql,
+                'out'=>$output,
+                'return_var'=>$return_var        
+            ];
+            return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
        }
     }
     public function actionCreateFile(){

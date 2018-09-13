@@ -104,7 +104,7 @@ use yii\helpers\Html;
                                                 console.log('ID => ', id);
                                                 console.log('Path =>', path);
                                                 console.log('SQL =>', sql);
-                                                //convert(id, path);
+                                                 convert(id, path);
                                             }
                                         }); 
                                     }
