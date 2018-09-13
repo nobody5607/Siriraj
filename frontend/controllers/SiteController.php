@@ -126,14 +126,15 @@ class SiteController extends Controller
        $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";
        $viewPath = "{$file['file_path']}";// storageUrl
        $folderName = "{$dirPath}/pdf";
-       $sql="libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']}";
        set_time_limit(1200);
+       $sql="libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']}";       
        exec($sql, $output, $return_var);
        if($return_var){
             $fileNameArr = explode('.', $file['file_name']);
             $data=[
                 'id'=>$id,
-                'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf"
+                'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf",
+                'sql'=>$sql
             ];
             return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
        }else{
