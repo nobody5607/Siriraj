@@ -179,7 +179,7 @@ class JFiles {
        $fileNameArr = explode('.', $fileName);
        self::PdfToJpg($path, "{$fileNameArr[0]}.pdf");
        $data=[
-                'id'=>$id,
+                //'id'=>$id,
                 'path'=>"{$path}/{$fileNameArr[0]}.pdf",
                 'sql'=>$sql,
                 'out'=>$output,
