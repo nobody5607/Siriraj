@@ -196,7 +196,7 @@ class JFiles {
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 800 {$path}/{$fileName} -quality 300 {$folderName}/preview.jpg";   
+           $sql = "convert -density 800 {$path}/{$fileName} -quality 500 {$folderName}/preview.jpg";   
            exec($sql, $output, $return_var);
            @unlink("{$path}/{$fileName}");
            return true; 
