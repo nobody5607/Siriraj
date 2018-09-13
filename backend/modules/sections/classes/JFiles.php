@@ -196,13 +196,18 @@ class JFiles {
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 800 {$path}/{$fileName} -quality 500 {$folderName}/preview.jpg";   
+           $sql = "convert -density 600 {$path}/{$fileName} {$folderName}/preview.jpg"; 
+//            $sql = "convert -density 1000 -page a4 {$path}/{$fileName} {$folderName}/preview.jpg";
+//$sql="convert -density 1000 -define pdf:fit-page=A4 {$path}/{$fileName} {$folderName}/preview.jpg";
+//$sql="convert -density 800 {$path}/{$fileName} {$folderName}/preview.jpg";
            exec($sql, $output, $return_var);
            @unlink("{$path}/{$fileName}");
            return true; 
        }
     }
-    
+//    "
+//     convert -verbose -density 150 -trim test.pdf -quality 100 -flatten -sharpen 0x1.0 24-18.jpg   
+//    "
     
     public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
