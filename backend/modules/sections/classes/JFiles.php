@@ -163,7 +163,9 @@ class JFiles {
                 $type = end($fileNameArr);
                 if($type != "pdf"){
                     self::DocToPdf($path, "{$fileName}.{$file->extension}");
-                }
+            }else{
+                self::PdfToJpg($path, "{$fileName}.{$file->extension}");
+            }
 
             }
             return ['type'=>"{$file->extension}"];
@@ -194,7 +196,7 @@ class JFiles {
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 500 {$path}/{$fileName} -quality 50 {$folderName}/preview.jpg"; 
+           $sql = "convert -density 500 {$path}/{$fileName} -quality 300 {$folderName}/preview.jpg"; 
            exec($sql, $output, $return_var);
            @unlink("{$path}/{$fileName}");
            return true; 
