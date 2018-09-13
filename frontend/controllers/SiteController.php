@@ -130,14 +130,21 @@ class SiteController extends Controller
        set_time_limit(1200);
        exec($sql, $output, $return_var);
        if($return_var){
-               return \janpan\jn\classes\JResponse::getSuccess("Success");
+            $fileNameArr = explode('.', $file['file_name']);
+            $data=[
+                'id'=>$id,
+                'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf"
+            ];
+            return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
        }else{
-               return \janpan\jn\classes\JResponse::getSuccess("Success");
+            return \janpan\jn\classes\JResponse::getSuccess("Success");
        }
     }
     public function actionCreateFile(){
       // echo \janpan\jn\widgets\SlideTop::widget([]);return; 
        $id = \Yii::$app->request->post('id', '');
+       $path = \Yii::$app->request->post('path', '');
+       
        $file = \common\models\Files::find()->where(['id'=>$id])->one();
        $dirPath = Yii::getAlias('@storage')."{$file['dir_path']}";
        $viewPath = "{$file['file_path']}";// storageUrl
@@ -148,6 +155,9 @@ class SiteController extends Controller
        if($createDir){
            set_time_limit(1200);
            $sql = "convert -density 500 {$dirPath}/{$file['file_name']} -quality 50 {$folderName}/preview.jpg";
+           if($path){
+                $sql = "convert -density 500 {$path} -quality 50 {$folderName}/preview.jpg";
+           }           
            //\appxq\sdii\utils\VarDumper::dump($sql);
            exec($sql, $output, $return_var);
            if($return_var){

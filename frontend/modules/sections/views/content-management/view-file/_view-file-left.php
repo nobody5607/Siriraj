@@ -98,10 +98,29 @@ use yii\helpers\Html;
                                         $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
                                         $.post(url,params, function(data){
                                             if(data['status'] == 'success'){
-                                                console.log(data);
+                                                let id = data['data']['id'];
+                                                let path = data['data']['path'];
+                                                convert(id, path);
                                             }
                                         }); 
                                     }
+                                    function convert(id, path){
+                                        let url='/site/create-file';
+                                        let params={id:id, path:path};
+                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                        $.post(url,params, function(data){
+                                            if(data['status'] == 'success'){
+                                                view();
+                                            }
+                                        });
+                                    }
+                                    function view(){
+                                        let url='/site/view-file';
+                                        let params={id:'".$dataDefault['id']."'};
+                                        $.post(url,params, function(data){
+                                            $('#preview-file').html(data);
+                                        });
+                                    } 
                                     convertToPDF();
                                      
                                 ");
