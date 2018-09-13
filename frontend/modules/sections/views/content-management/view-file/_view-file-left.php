@@ -122,7 +122,8 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    convertToPDF();
+                                    view();
+                                    //convertToPDF();
                                      
                                 ");
                             }else if($type == 'pdf'){
@@ -144,7 +145,8 @@ use yii\helpers\Html;
                                             $('#preview-file').html(data);
                                         });
                                     } 
-                                    convert();
+                                    view();
+                                    //convert();
                                 ");
                             }
                             
