@@ -128,9 +128,8 @@ class SiteController extends Controller
        $folderName = "{$dirPath}/pdf";
        set_time_limit(1200);
        //$sql="libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']}";       
-       $sql="
-            export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']} --outdir {$dirPath}/{$file['file_name']}
-       ";
+       //$sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']} --outdir {$dirPath}/{$file['file_name']}";
+       $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$dirPath}/{$file['file_name']} --outdir {$dirPath}";  
        exec($sql, $output, $return_var);
        if($return_var){
             $fileNameArr = explode('.', $file['file_name']);
