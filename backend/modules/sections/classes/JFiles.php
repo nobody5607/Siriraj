@@ -162,7 +162,7 @@ class JFiles {
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
                 if($type != "pdf"){
-                    self::DocToPdf($path, $fileName);
+                    self::DocToPdf($path, "{$fileName}.{$file->extension}");
                 }
 
             }
@@ -174,7 +174,7 @@ class JFiles {
        $viewPath = "{$path}";// storageUrl
        $folderName = "{$path}/pdf";
        set_time_limit(1200);
-       $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$path}/{$fileName} --outdir {$path}";  
+       $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$path}/{$fileName} --outdir {$path}"; 
        exec($sql, $output, $return_var);
        $fileNameArr = explode('.', $fileName);
        self::PdfToJpg($path, "{$fileNameArr[0]}.pdf");
@@ -194,8 +194,9 @@ class JFiles {
        $createDir=\backend\modules\sections\classes\JFiles::CreateDir("{$folderName}", false);
        if($createDir){
            set_time_limit(1200);
-           $sql = "convert -density 500 {$dirPath}/{$fileName} -quality 50 {$folderName}/preview.jpg"; 
+           $sql = "convert -density 500 {$path}/{$fileName} -quality 50 {$folderName}/preview.jpg"; 
            exec($sql, $output, $return_var);
+           @unlink("{$path}/{$fileName}");
            return true; 
        }
     }
