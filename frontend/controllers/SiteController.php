@@ -134,7 +134,9 @@ class SiteController extends Controller
             $data=[
                 'id'=>$id,
                 'path'=>"{$dirPath}/{$fileNameArr[0]}.pdf",
-                'sql'=>$sql
+                'sql'=>$sql,
+                'out'=>$output,
+                'return_var'=>$return_var        
             ];
             return \janpan\jn\classes\JResponse::getSuccess("Success", $data);
        }else{
