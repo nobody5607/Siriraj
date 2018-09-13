@@ -100,7 +100,9 @@ use yii\helpers\Html;
                                             if(data['status'] == 'success'){
                                                 let id = data['data']['id'];
                                                 let path = data['data']['path'];
-                                                convert(id, path);
+                                                console.log('ID => ', id);
+                                                console.log('Path =>', path);
+                                                //convert(id, path);
                                             }
                                         }); 
                                     }
