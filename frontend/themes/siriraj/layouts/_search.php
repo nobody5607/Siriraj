@@ -11,7 +11,12 @@
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="logo mb-all-30">
-                    <a href="/"> <img src="/images/1533128627373.jpg"></a>
+                    <a href="/">
+                        <div class='txt-logo'>
+                            <div class="txt-logo-th">คลังความรู้พิพิธภัณฑ์ศิริราช</div>
+                            <div class="txt-logo-en">Siriraj Museum’s Storage</div>
+                        </div> 
+                    </a>
                 </div>
             </div>           
             
@@ -69,3 +74,17 @@
     
 </script>
 <?php    richardfan\widget\JSRegister::end();?>
+
+<?php appxq\sdii\widgets\CSSRegister::begin();?>
+        <style>
+              .logo a {
+                    color: #000;
+                    font-size: 20pt;
+                    line-height: 30px;
+                    font-family: sans-serif;
+                }
+                .txt-logo-en{
+                        font-size: 16pt;
+                }  
+        </style>
+        <?php appxq\sdii\widgets\CSSRegister::end()?>
