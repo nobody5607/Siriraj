@@ -23,6 +23,7 @@ echo yii\bootstrap\Modal::widget([
 ]);
 ?>
 <div class="container" style="margin-top:30px;">
+    
     <div class="row">
         <?php $form = ActiveForm::begin([
             'layout' => 'horizontal',
@@ -37,9 +38,12 @@ echo yii\bootstrap\Modal::widget([
                 ])
         ?>
         <div class="col-md-8 col-md-offset-2">
+            
             <div class="panel panel-default">
                 <div class="panel-heading"><?= Html::encode($this->title) ?></div>
                 <div class="panel-body">
+                    <label style="color:red;margin-bottom:20px;">**  <?= Yii::t('_user','Siriraj members wait 1-2 days for staff approval.')?></label>
+                     
                     <div class="col-md-12">
                         <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
@@ -57,7 +61,7 @@ echo yii\bootstrap\Modal::widget([
                         <?= $form->field($model, 'lastname')->textInput() ?>
                     </div>
                             <div class="col-md-12">
-                                <label style="color:red">**  <?= Yii::t('_user','Siriraj members wait 1-2 days for staff approval.')?></label>
+                                
                                 <div class="clearfix"></div>
                                 <div class="col-md-3"></div>
                                 <label class="col-md-6">
