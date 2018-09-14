@@ -24,8 +24,15 @@ echo yii\bootstrap\Modal::widget([
     <div class="col-md-6" style="    border-left: 1px solid #cac9c9;">
         <?php
         $form = ActiveForm::begin([
-                    'layout' => 'horizontal',
-                    'id' => $model->formName(),
+                'layout' => 'horizontal',
+                'id' => $model->formName(),
+                'fieldConfig' => [
+                    'horizontalCssClasses' => [
+                        'label' => 'col-md-3',
+                        'offset' => 'col-sm-offset-2',
+                        'wrapper' => 'col-md-6',
+                    ],
+                ],
         ]);
         ?>
         <div class="row">
