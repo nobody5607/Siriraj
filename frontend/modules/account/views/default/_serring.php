@@ -62,7 +62,7 @@ echo yii\bootstrap\Modal::widget([
 
         
         <div class="row">
-             <div class="col-md-12">
+             <div class="col-md-6">
                  <div class="form-group" style="margin:10px;">
                      <label><?= Yii::t('_user','Status')?> : </label>
                      <?php 
@@ -75,8 +75,9 @@ echo yii\bootstrap\Modal::widget([
                  </div>
             </div>
             <div class="col-md-6">
-             <?= $form->field($model, 'sap_id')->textInput(['maxlength' => true]) ?> 
+                <label><?= Yii::t('_user', 'Sap ID')?> : <label class="label label-success"><?= $model->sap_id?></label></label>
             </div>    
+            <div class="clearfix"></div>
              <div class="col-md-6">
                 <?php   
                   echo $form->field($model, 'sitecode')->textInput()->label(Yii::t('_user','Site Code'));      
@@ -90,7 +91,7 @@ echo yii\bootstrap\Modal::widget([
             
         </div>
 
-
+        <div class="clearfix" style="margin-top:10px;"></div>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">

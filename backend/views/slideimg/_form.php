@@ -26,18 +26,30 @@ use appxq\sdii\helpers\SDHtml;
         <div class="form-group">
             <label><?= Yii::t('section','Desired image size') ?>: 1300x450 px</label>
             <?php
-        echo kartik\file\FileInput::widget([
+             $initImage = '';
+            if ($model->name) {
+                ///$imageArr = appxq\sdii\utils\SDUtility::string2Array($model->logo_image);
+                $initImage = "{$model->view_path}/{$model->name}";
+            }
+            echo kartik\file\FileInput::widget([
             'name' => 'file',
             'id' => 'file',
-            'options' => ['accept' => 'image/*'],
+            'options' => ['multiple' => false, 'accept' => 'image/*'],
             'pluginOptions' => [
-                'showPreview' => false,
+                //'name'=>'name',
+                'initialPreview' => [
+                    $initImage,
+                ],
+                'initialPreviewAsData' => true,
+                'overwriteInitial' => false,
+                'maxFileSize' => 2800,
+                'maxFileCount' => 1,
+                //'showPreview' => false,
                 'showCaption' => true,
-                'showRemove' => true,
-                'showUpload' => false,
-                
+                'showRemove' => false,
+                'showUpload' => false
             ]
-        ]);
+]);
         ?>
         </div>
         <?= $form->field($model, 'url')->textInput() ?> 
