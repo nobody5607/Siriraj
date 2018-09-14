@@ -60,7 +60,7 @@ use kartik\color\ColorInput;
                             'maxFileCount' => 1,
                             //'showPreview' => false,
                             'showCaption' => true,
-                            'showRemove' => true,
+                            'showRemove' => false,
                             'showUpload' => false
                         ]
                     ]);
@@ -113,5 +113,9 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
      
     return false;
 });
+
+setTimeout(function(){
+    $('.kv-file-remove').remove();
+},500);
 </script>
 <?php  \richardfan\widget\JSRegister::end(); ?>
