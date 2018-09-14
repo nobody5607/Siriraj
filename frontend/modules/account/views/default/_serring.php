@@ -62,6 +62,7 @@ echo yii\bootstrap\Modal::widget([
 
         
         <div class="row">
+             
              <div class="col-md-6">
                  <div class="form-group" style="margin:10px;">
                      <label><?= Yii::t('_user','Status')?> : </label>
