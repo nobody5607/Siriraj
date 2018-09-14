@@ -137,6 +137,11 @@ use yii\helpers\Html;
                 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
                     margin:0 auto;
                 }
+                @media screen and (max-width:768px){
+                    .carousel-caption{
+                        display:none;
+                    }
+                }
         </style>
         <?php appxq\sdii\widgets\CSSRegister::end()?>
 <?php endif; ?>
