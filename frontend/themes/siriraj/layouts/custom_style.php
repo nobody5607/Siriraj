@@ -61,19 +61,19 @@
     
     /*mobile*/
     .mean-container .mean-bar, .mean-container .mean-nav ul li a{
-        background:#F4F4F4;
+        background:<?= $bg_menu?>;
     }
     .mobile-menu::before, .mean-container .mean-nav ul li a{
-        color: #565252;
+        color: <?= $bg_menu_link?>;
     }
     .mean-container a.meanmenu-reveal{
-        background: #565252 none repeat scroll 0 0;
+        background: <?= $bg_menu?> none repeat scroll 0 0;
     }
     .mean-container .mean-nav ul li a{
         border-top: 1px solid #cccccc;
     }
     .mean-container .mean-nav ul li a:hover{
-        background:#f4f4f4;
+        background:<?= $bg_menu?>;
     }
     
     .bootstrap-select{
