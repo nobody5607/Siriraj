@@ -32,7 +32,8 @@ class Themes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bg_header', 'bg_menu', 'bg_border_menu', 'bg_menu_link', 'bg_menu_link_hover', 'bg_footer', 'bg_footer_txt'], 'string', 'max' => 255],
+            [['logo_image'], 'string'],
+            [['color_logo_text','bg_header', 'bg_menu', 'bg_border_menu', 'bg_menu_link', 'bg_menu_link_hover', 'bg_footer', 'bg_footer_txt'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,6 +51,8 @@ class Themes extends \yii\db\ActiveRecord
             'bg_menu_link_hover' => Yii::t('section', 'Color Menu Link Hover'),
             'bg_footer' => Yii::t('section', 'Background Footer'),
             'bg_footer_txt' => Yii::t('section', 'Color Footer Txt'),
+            'color_logo_text' => Yii::t('section', 'Color Logo Text'),
+            'logo_image' => Yii::t('section', 'Logo Image'),
         ];
     }
 }

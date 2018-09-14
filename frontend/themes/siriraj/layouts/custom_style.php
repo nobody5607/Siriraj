@@ -7,6 +7,10 @@
     $bg_menu_link_hover = isset($theme['bg_menu_link_hover']) ? $theme['bg_menu_link_hover'] : '#fff';
     $bg_footer = isset($theme['bg_footer']) ? $theme['bg_footer'] : '#641a35';
     $bg_footer_txt = isset($theme['bg_footer_txt']) ? $theme['bg_footer_txt'] : '#fff';
+    $bg_footer_txt = isset($theme['bg_footer_txt']) ? $theme['bg_footer_txt'] : '#fff';
+    
+    $color_logo_text = isset($theme['color_logo_text']) ? $theme['color_logo_text'] : '#000';
+    $logo_image = isset($theme['logo_image']) ? $theme['logo_image'] : '#000';
 ?>
 
 <?php appxq\sdii\widgets\CSSRegister::begin() ?>
@@ -90,5 +94,17 @@
         background: #f3e4cabd;
         border-radius: 5px;
     }
+    
+    .logo a {
+        color: <?= $color_logo_text?>;
+        font-size: 20pt;
+        line-height: 30px;
+        font-family: sans-serif;
+    }
+    .txt-logo-en{
+        font-size: 16pt;
+    }  
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end() ?> 
+
+

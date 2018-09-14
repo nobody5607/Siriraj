@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
+use yii\web\UploadedFile;
 
 /**
  * SlideimgController implements the CRUD actions for Slideimg model.
@@ -53,8 +54,26 @@ class ThemeController extends Controller
     {
          
         $model = \common\models\Themes::findOne('1000');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return \janpan\jn\classes\JResponse::getSuccess("Success");
+        if ($model->load(Yii::$app->request->post())) {            
+            $files  = UploadedFile::getInstancesByName('name');
+            $folderName     = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $folder         = "/web/files";
+            $path           = Yii::getAlias('@storage') . "{$folder}/{$folderName}"; 
+            $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}";
+            $fileName=[];
+            if(\yii\helpers\BaseFileHelper::createDirectory($path,0777, true)){} //create dir
+            foreach ($files as $file) {
+                $realFileName   = md5($folderName . time()). '.' . $file->extension;
+                $filePath       = "{$path}/{$realFileName}";
+                 if ($file->saveAs("{$filePath}")) {
+                     $fileName = ['path'=>$viewPath, 'name'=>$realFileName]; 
+                 }
+            } 
+            $model->logo_image = \appxq\sdii\utils\SDUtility::array2String($fileName);
+            if($model->save()){
+                return \janpan\jn\classes\JResponse::getSuccess("Success");
+            }
+            
         }
         return $this->render('index', [
             'model' => $model,

@@ -4,7 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
-use kartik\color\ColorInput;
+use kartik\color\ColorInput; 
+ 
  
 ?>
 
@@ -30,6 +31,41 @@ use kartik\color\ColorInput;
             <div class="col-md-4"><?= $form->field($model, 'bg_menu_link_hover')->widget(ColorInput::classname(), ['pluginOptions' => ['showInput' => false,'preferredFormat' => 'rgb'],'options' => ['placeholder' => 'Select color ...'],]); ?> </div>
             <div class="col-md-4"><?= $form->field($model, 'bg_footer')->widget(ColorInput::classname(), ['pluginOptions' => ['showInput' => false,'preferredFormat' => 'rgb'],'options' => ['placeholder' => 'Select color ...'],]); ?> </div>
             <div class="col-md-4"><?= $form->field($model, 'bg_footer_txt')->widget(ColorInput::classname(), ['pluginOptions' => ['showInput' => false,'preferredFormat' => 'rgb'],'options' => ['placeholder' => 'Select color ...'],]); ?></div>
+            
+            <div class="col-md-4"><?= $form->field($model, 'color_logo_text')->widget(ColorInput::classname(), ['pluginOptions' => ['showInput' => false,'preferredFormat' => 'rgb'],'options' => ['placeholder' => 'Select color ...'],]); ?></div>
+            
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+               <?php 
+               $initImage = '';
+               if($model->logo_image){
+                   $imageArr = appxq\sdii\utils\SDUtility::string2Array($model->logo_image);
+                   $initImage = "{$imageArr['path']}/{$imageArr['name']}";
+               }
+               
+               
+                echo '<label class="control-label">Logo Image</label>';
+                    echo kartik\file\FileInput::widget([
+                        'name' => 'name',
+                        'attribute' => 'name',
+                        'options' => ['multiple' => false,'accept' => 'image/*'],
+                        'pluginOptions' => [
+                            //'name'=>'name',
+                            'initialPreview'=>[
+                                 $initImage,
+                            ],
+                            'initialPreviewAsData'=>true, 
+                            'overwriteInitial'=>false,
+                            'maxFileSize'=>2800,
+                            'maxFileCount' => 1,
+                            //'showPreview' => false,
+                            'showCaption' => true,
+                            'showRemove' => true,
+                            'showUpload' => false
+                        ]
+                    ]);
+               ?>
+            </div>
         </div> 
     </div>
     <div class="box-footer">
@@ -49,30 +85,32 @@ use kartik\color\ColorInput;
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script>
-// JS script
+    $("#input-700").fileinput({});
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
+    $('.btnSubmit').prop('disabled', true);     
     var $form = $(this);
-    $.post(
-        $form.attr('action'), //serialize Yii2 form
-        $form.serialize()
-    ).done(function(result) {
-        if(result.status == 'success') {
-            <?= SDNoty::show('result.message', 'result.status')?>
-            if(result.action == 'create') {
-                //$(\$form).trigger('reset');
-                $(document).find('#modal-options').modal('hide');
-                $.pjax.reload({container:'#options-grid-pjax'});
-            } else if(result.action == 'update') {
-                $(document).find('#modal-options').modal('hide');
-                $.pjax.reload({container:'#options-grid-pjax'});
-            }
-        } else {
-            <?= SDNoty::show('result.message', 'result.status')?>
-        } 
-    }).fail(function() {
-        <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
-        console.log('server error');
-    });
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+        url:$form.attr('action'),
+        type:'POST',
+        data:formData,
+        processData: false,
+        contentType: false,
+        cache: false,         
+        enctype: 'multipart/form-data',
+        success:function(result){
+           $('.btnSubmit').prop('disabled', false);
+           if(result.status == 'success') {
+                <?= SDNoty::show('result.message', 'result.status')?>           
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            } else {
+                <?= SDNoty::show('result.message', 'result.status')?>
+            } 
+        }
+    });    
+     
     return false;
 });
 </script>

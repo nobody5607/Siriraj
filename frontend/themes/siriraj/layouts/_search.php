@@ -2,11 +2,26 @@
     $type = frontend\modules\sections\classes\JFiles::getTypeFile();
     //\appxq\sdii\utils\VarDumper::dump($type);
 ?>
+
+<?php 
+    $theme = common\models\Themes::findOne("1000");     
+    $logo_image = isset($theme['logo_image']) ? $theme['logo_image'] : '#000';
+?>
+ 
 <div class="container">
     <div class="row align-items-center no-gutters">
             <div class="col-lg-1 col-md-12">
                 <div class="logo mb-all-30">
-                    <a href="/"><img src="/images/logosirirajweb3.png" alt="logo-image"></a>
+                    <?php
+                        $model = \common\models\Themes::findOne('1000');
+                        $initImage = '/images/logosirirajweb3.png';
+                        if($model->logo_image){
+                            $imageArr = appxq\sdii\utils\SDUtility::string2Array($model->logo_image);
+                            $initImage = "{$imageArr['path']}/{$imageArr['name']}";
+                        }
+                        
+                    ?>
+                    <a href="/"><img src="<?= $initImage?>" alt="logo-image" style="width: 110px; padding-right: 15px;padding-top: 15px;"></a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-12">
@@ -75,16 +90,3 @@
 </script>
 <?php    richardfan\widget\JSRegister::end();?>
 
-<?php appxq\sdii\widgets\CSSRegister::begin();?>
-        <style>
-              .logo a {
-                    color: #000;
-                    font-size: 20pt;
-                    line-height: 30px;
-                    font-family: sans-serif;
-                }
-                .txt-logo-en{
-                        font-size: 16pt;
-                }  
-        </style>
-        <?php appxq\sdii\widgets\CSSRegister::end()?>
