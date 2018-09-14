@@ -117,6 +117,10 @@
         padding: 15px;
     }
     .setting-account i{font-size:18pt;margin-right:10px;}
+    div.required label.control-label:after {
+        content: " *";
+        color: red;
+    }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end() ?> 
 

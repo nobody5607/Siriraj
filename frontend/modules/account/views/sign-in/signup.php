@@ -2,7 +2,7 @@
 
 use yii\captcha\Captcha;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -24,7 +24,18 @@ echo yii\bootstrap\Modal::widget([
 ?>
 <div class="container" style="margin-top:30px;">
     <div class="row">
-        <?php $form = ActiveForm::begin() ?>
+        <?php $form = ActiveForm::begin([
+            'layout' => 'horizontal',
+                    'id' => $model->formName(),
+                    'fieldConfig' => [
+                        'horizontalCssClasses' => [
+                            'label' => 'col-md-3',
+                            'offset' => 'col-sm-offset-2',
+                            'wrapper' => 'col-md-6',
+                        ],
+                    ],
+                ])
+        ?>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading"><?= Html::encode($this->title) ?></div>
@@ -39,16 +50,17 @@ echo yii\bootstrap\Modal::widget([
                         <?= $form->field($model, 'password_confirm')->passwordInput(['maxlength' => true]) ?>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <?= $form->field($model, 'firstname')->textInput() ?>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <?= $form->field($model, 'lastname')->textInput() ?>
                     </div>
                             <div class="col-md-12">
                                 <label style="color:red">**  <?= Yii::t('_user','Siriraj members wait 1-2 days for staff approval.')?></label>
                                 <div class="clearfix"></div>
-                                <label>
+                                <div class="col-md-3"></div>
+                                <label class="col-md-6">
                                     <input type="checkbox" class="btn btn-info" data-toggle="collapse" data-target="#demo"> <?= Yii::t('_user','Staff')?>
                                 </label>
                             </div>
@@ -74,7 +86,9 @@ echo yii\bootstrap\Modal::widget([
                 </div>
                 <div class="panel-footer">
                     <div class="form-group">
-                        <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
+                        <div class="col-md-6 col-md-offset-3">
+                            <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
+                        </div>
                     </div>
                 </div>
             </div>

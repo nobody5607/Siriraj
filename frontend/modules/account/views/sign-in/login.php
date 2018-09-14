@@ -30,11 +30,22 @@ $fieldOptions2 = [
     <div class="panel-body">
         
 
-        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+        <?php $form = ActiveForm::begin([
+             'id' => 'login-form', 'enableClientValidation' => false,
+                    'layout' => 'horizontal',
+                    'id' => $model->formName(),
+                    'fieldConfig' => [
+                        'horizontalCssClasses' => [
+                            'label' => 'col-md-3',
+                            'offset' => 'col-sm-offset-2',
+                            'wrapper' => 'col-md-8',
+                        ],
+                    ],
+        ]); ?>
          
         <?= $form
             ->field($model, 'identity', $fieldOptions1)            
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('user','Username or e-mail')) ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('user','Username')) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
@@ -46,8 +57,9 @@ $fieldOptions2 = [
                 <?= $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('user','Remember me next time')) ?>
             </div>
             <!-- /.col -->
-            <div class="col-xs-12">
+            <div class="col-md-8 col-md-offset-2">
                 <?= Html::submitButton(Yii::t('appmenu','Login'), ['class' => 'btn btn-primary btn-block btn-flat btn-lg', 'name' => 'login-button']) ?>
+                <br><a href="/account/sign-in/signup" class="text-center"><?= Yii::t('appmenu', 'Don\'t have an account, create a new account here')?></a>
             </div>
             <!-- /.col -->
         </div>
@@ -65,8 +77,8 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
 
         <!--<a href="#">I forgot my password</a>-->
-        <br>
-        <a href="/account/sign-in/signup" class="text-center"><?= Yii::t('appmenu', 'Don\'t have an account, create a new account here')?></a>
+        
+        
 
     </div>
     <!-- /.login-box-body -->
