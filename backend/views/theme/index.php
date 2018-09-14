@@ -6,7 +6,7 @@ use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
 use kartik\color\ColorInput; 
  
- 
+ $this->title = "Themes";
 ?>
 
 <div class="box box-primary">
