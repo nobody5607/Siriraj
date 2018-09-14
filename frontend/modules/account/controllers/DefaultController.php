@@ -72,7 +72,7 @@ public function beforeAction($action)
             $breadcrumbs[$key]=$v;
         } 
         if ($model->load(Yii::$app->request->post())) {
-            $model->sap_id = isset($_POST['UserProfile']['sap_id']) ? $_POST['UserProfile']['sap_id'] : '';
+            //$model->sap_id = isset($_POST['UserProfile']['sap_id']) ? $_POST['UserProfile']['sap_id'] : '';
             $model->sitecode = isset($_POST['UserProfile']['sitecode']) ? $_POST['UserProfile']['sitecode'] : '';
             $model->sitecode = isset($_POST['UserProfile']['position']) ? $_POST['UserProfile']['position'] : '';
             //\appxq\sdii\utils\VarDumper::dump($_POST);

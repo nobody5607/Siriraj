@@ -106,6 +106,17 @@
     .txt-logo-en{
         font-size: 16pt;
     }  
+    .input-group-addon {
+        padding: 8px 15px;
+        padding-right: 25px;
+    }
+    #UserProfile .control-label{text-align:left;}
+    
+    .setting-account{
+        border-bottom: 1px solid gainsboro;
+        padding: 15px;
+    }
+    .setting-account i{font-size:18pt;margin-right:10px;}
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end() ?> 
 

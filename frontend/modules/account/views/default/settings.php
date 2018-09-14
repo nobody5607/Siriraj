@@ -20,37 +20,16 @@ if($breadcrumb){
   
 ?>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
  
     <div class="panel panel-default">
         <div class="panel-heading">
             <div>
-                <?= Html::encode($this->title) ?>
-                <div class="pull-right">
-                    <?= Html::a(Yii::t('user', 'Change password'), ['password'], ['class' => 'btn btn-primary btn-change-password','style'=>'margin-top:-3px;']) ?>
-                </div>
+                <?= Html::encode($this->title) ?> 
             </div>
         </div>
         <div class="panel-body">
-            <?php 
-                $items = [
-                       [
-                           'label'=>'<i class="fa fa-cog"></i> '.Yii::t('user','Settings'),
-                           'content'=>$this->render("_serring",['model'=>$model]),
-                           'active'=>true
-                       ],
-                       [
-                           'label'=>'<i class="fa fa-user"></i> '.Yii::t('user','Account'),
-                           'content'=>$this->render("_account",['model'=>$user]),
-                       ]   
-                   ];
-
-                  echo TabsX::widget([
-                   'items'=>$items,
-                   'position'=>TabsX::POS_ABOVE,
-                   'encodeLabels'=>false
-               ]);
-           ?>
+             <?= $this->render("_serring",['model'=>$model, 'user'=>$user])?>
         </div>
     </div>
 </div> 
