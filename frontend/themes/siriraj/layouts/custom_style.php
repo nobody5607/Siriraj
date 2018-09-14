@@ -93,7 +93,7 @@
         color: #020202;
         background: #f3e4cabd;
         border-radius: 5px;
-        width: 40%;
+        width: 30%;
         margin: 0 auto;
     }
     
