@@ -79,7 +79,16 @@ class SessionManagementController extends Controller
             'data'=>$data
         ]);
     }
-    
+    public function actionGetKeywordSearch(){
+        $term    = Yii::$app->request->get('term', '');
+        $keyword =  \common\models\KeywordSearch::find()->where('word like :word', [':word'=>"%{$term}%"])->all();
+        $output  = [];
+        foreach($keyword as $k=>$v){
+            $output[$k] = ['label'=>$v['word'], 'value'=>$v['word']];
+        }
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $output;
+    }
     public function actionSearch(){
         $type_id    = Yii::$app->request->get('type_id', '');
         $txtsearch = Yii::$app->request->get('txtsearch', '');
