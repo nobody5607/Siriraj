@@ -162,16 +162,16 @@ class JFiles {
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
                 if($type != "pdf"){
-                    self::DocToPdf($path, "{$fileName}.{$file->extension}");
-            }else{
-                self::PdfToJpg($path, "{$fileName}.{$file->extension}");
-            }
+                    self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
+                }else{
+                    self::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
+                }
 
             }
             return ['type'=>"{$file->extension}"];
         }     
     }
-    public static function DocToPdf($path, $fileName){         
+    public static function DocToPdf($path, $fileName,$type=""){         
        $dirPath = Yii::getAlias('@storage')."{$path}";
        $viewPath = "{$path}";// storageUrl
        $folderName = "{$path}/pdf";
@@ -179,7 +179,7 @@ class JFiles {
        $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pdf:writer_pdf_Export {$path}/{$fileName} --outdir {$path}"; 
        exec($sql, $output, $return_var);
        $fileNameArr = explode('.', $fileName);
-       self::PdfToJpg($path, "{$fileNameArr[0]}.pdf");
+       self::PdfToJpg($path, "{$fileNameArr[0]}.pdf", $type);
        $data=[
                 //'id'=>$id,
                 'path'=>"{$path}/{$fileNameArr[0]}.pdf",
@@ -189,7 +189,7 @@ class JFiles {
             ];
        return true;         
     }
-    public static function PdfToJpg($path, $fileName){ 
+    public static function PdfToJpg($path, $fileName, $type=""){ 
        $dirPath = Yii::getAlias('@storage')."{$path}"; 
        $folderName = "{$path}/pdf"; 
        \backend\modules\sections\classes\JFiles::deleteDir("{$folderName}"); 
@@ -202,7 +202,9 @@ class JFiles {
 //$sql="convert -density 1000 -define pdf:fit-page=A4 {$path}/{$fileName} {$folderName}/preview.jpg";
 //$sql="convert -density 800 {$path}/{$fileName} {$folderName}/preview.jpg";
            exec($sql, $output, $return_var);
-           @unlink("{$path}/{$fileName}");
+           if($type != "pdf"){
+                @unlink("{$path}/{$fileName}"); 
+           }
            return true; 
        }
     }

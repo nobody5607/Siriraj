@@ -118,6 +118,36 @@ class SiteController extends Controller
     }
     
     
+    public function actionGetUrlFile(){
+        
+        if(\Yii::$app->user->isGuest){
+            return '';
+        }
+        $model = new \common\models\ReportDownload();
+         
+        $model->count = 1;
+        $model->user_id = \Yii::$app->user->id;
+        $model->create_at = date('Y-m-d');
+        $model->save();
+        
+        
+        
+        $id = \Yii::$app->request->get('id', '');
+        $multi = \Yii::$app->request->get('multi', '');
+        $file = \common\models\Files::findOne($id);
+        
+        $storageUrl = Yii::getAlias('@storage');
+        $path = "{$storageUrl}{$file['dir_path']}/{$file['file_name']}";
+        $view = "{$file['file_path']}/{$file['file_name']}";
+         
+        $data =[
+            'path'=>$view,
+            'name'=>$file['file_name_org']
+        ];
+        return \janpan\jn\classes\JResponse::getSuccess("Success", $data); 
+        
+    }
+    
     /*pdf*/
     
     public function actionDocToPdf(){
