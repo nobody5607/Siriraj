@@ -110,10 +110,11 @@ class SessionManagementController extends Controller
                 $keyword->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
                 $keyword->status = 1;
                 $keyword->date = date('Y-m-d H:i:s');
+                $keyword->word = $txtsearch;
                 if($keyword->save()){
                     
                 }else{
-                    //\appxq\sdii\utils\VarDumper::dump($keyword->errors);
+                   //\appxq\sdii\utils\VarDumper::dump($keyword->errors);
                 }
             }
              
