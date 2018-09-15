@@ -125,8 +125,7 @@ class JFiles {
                 
                       @unlink("{$filePath}.{$fileType[1]}");
                       //return ["type"=>$type];
-                      $output['detail']=$des1;
-                      $output['detai2']=$des2;
+                      $output['detai']= \yii\helpers\Json::encode($des1).\yii\helpers\Json::encode($des2); 
                       $output['type'] = $type;
                       
                       return $output;
@@ -151,8 +150,7 @@ class JFiles {
                 
                       @unlink("{$filePath}.{$fileType[1]}");
                       //return ["type"=>$type];
-                      $output['detail']=$des1;
-                      $output['detai2']=$des2;
+                      $output['detai']= \yii\helpers\Json::encode($des1).\yii\helpers\Json::encode($des2);
                       $output['type'] = $type;
                       
                       return $output;
@@ -180,10 +178,8 @@ class JFiles {
         if ($file->saveAs("{$filePath}.{$file->extension}")) {//save image
             exec("stat {$filePath}.{$file->extension}", $des1);
             exec("file {$filePath}.{$file->extension}", $des2); 
-            //return ["type"=>$type];
-            $output['detail'] = $des1;
-            $output['detai2'] = $des2;
-            
+            $output['detai']= \yii\helpers\Json::encode($des1).\yii\helpers\Json::encode($des2);
+             
 
             return $output;
             if($file){
@@ -259,10 +255,15 @@ class JFiles {
     public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
         $path = "{$filePath}.{$file->extension}";
-         
+        $output=[]; 
         $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
-                if($status == '2' && $file->extension == "mp4"){
+            exec("stat {$path}", $des1);
+            exec("file {$path}", $des2); 
+            $output['detai'] = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
+             
+
+            if($status == '2' && $file->extension == "mp4"){
                     return ['type'=>'mp4', 'default'=>'1'];
                     
                 }
@@ -278,9 +279,10 @@ class JFiles {
                 @unlink("{$filePath}_mark.mkv");
                // \appxq\sdii\utils\VarDumper::dump($path);
                 @unlink("{$path}");
-               
+            $output['type']='mp4';
+            $output['default']=0;
                  
-            return ['type'=>'mp4', 'default'=>'0'];
+            return $output;
         }  
          
     }
@@ -289,11 +291,17 @@ class JFiles {
          
         $path = "{$filePath}.{$file->extension}";
         $output = "{$filePath}.mp3"; 
+        $outputs=[];
         if ($file->saveAs($path)) {//save image
+            exec("stat {$path}", $des1);
+            exec("file {$path}", $des2); 
+            $outputs['detai'] = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
+            $outputs['type'] = 'mp3';
+            
                set_time_limit(1200); 
                 $template = "ffmpeg -i {$path} -acodec libmp3lame {$output}";
                 exec($template, $output, $return_var);           
-            return ['type'=>'mp3'];
+            return $outputs;
         }  
          
     }
