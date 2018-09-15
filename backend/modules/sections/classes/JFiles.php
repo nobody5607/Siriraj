@@ -105,6 +105,7 @@ class JFiles {
               $sql = "";
               $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
               
+              $output = [];
               //\appxq\sdii\utils\VarDumper::dump($mark);
               if(in_array($fileType[1], $default_type)){
                   if($fileType[1] == "jpeg"){
@@ -118,9 +119,17 @@ class JFiles {
                       $sql  = "convert {$filePath}_mark.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.{$fileType[1]}";
                       $sql2  = "convert {$filePath}_mark.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
                       @exec($template." && ".$sql." && ".$sql2, $out, $retval);
-                      @unlink("{$filePath}.{$fileType[1]}");
-                      return ["type"=>$type];
                       
+                      exec("stat {$filePath}.{$fileType[1]}", $des1);
+                      exec("file {$filePath}.{$fileType[1]}", $des2);
+                
+                      @unlink("{$filePath}.{$fileType[1]}");
+                      //return ["type"=>$type];
+                      $output['detail']=$des1;
+                      $output['detai2']=$des1;
+                      $output['type'] = $type;
+                      
+                      return $output;
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                                            
                    }
@@ -135,8 +144,17 @@ class JFiles {
                       $sql2  = "convert {$filePath}_mark.jpg -resize 200x200 {$thumbnail}_preview.jpg";
                        @exec($template." && ".$sql." && ".$sql2, $out, $retval);
                       //exec($template." && ".$sql, $out, $retval);
+                     
+                      exec("stat {$filePath}.{$fileType[1]}", $des1);
+                      exec("file {$filePath}.{$fileType[1]}", $des2);
+                
                       @unlink("{$filePath}.{$fileType[1]}");
-                      return ["type"=>"jpg"];
+                      //return ["type"=>$type];
+                      $output['detail']=$des1;
+                      $output['detai2']=$des1;
+                      $output['type'] = $type;
+                      
+                      return $output;
                  } 
               }
               
@@ -156,8 +174,17 @@ class JFiles {
     * @param $folderName folder name
     * @return boolean
     */
-    public static function uploadDocx($file,$filePath="",$path="", $fileName=""){        
+    public static function uploadDocx($file,$filePath="",$path="", $fileName=""){ 
+        $output = [];
         if ($file->saveAs("{$filePath}.{$file->extension}")) {//save image
+            exec("stat {$filePath}.{$file->extension}", $des1);
+            exec("file {$filePath}.{$file->extension}", $des2); 
+            //return ["type"=>$type];
+            $output['detail'] = $des1;
+            $output['detai2'] = $des1;
+            
+
+            return $output;
             if($file){
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
@@ -172,13 +199,14 @@ class JFiles {
                 }
 
             }
-            return ['type'=>"{$file->extension}"];
-        }     
+            $output['type'] = $file->extension;            
+        }
+        return $output;
     }
     //pptx to ppt
     public static function PptxToPpt($path, $fileName, $file){
        $type = "{$file->extension}";
-       set_time_limit(1200);
+       set_time_limit(1200);       
        $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to ppt {$path}/{$fileName}.{$type} --outdir {$path}"; 
        exec($sql, $output, $return_var);
        
