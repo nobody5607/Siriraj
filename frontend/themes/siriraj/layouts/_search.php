@@ -1,5 +1,6 @@
 <?php 
     $type = frontend\modules\sections\classes\JFiles::getTypeFile();
+    janpan\jn\assets\jqueryui\JQueryUiAssets::register($this);
     //\appxq\sdii\utils\VarDumper::dump($type);
 ?>
 
