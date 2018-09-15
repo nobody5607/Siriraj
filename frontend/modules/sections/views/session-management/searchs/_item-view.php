@@ -10,8 +10,11 @@
     $breadcrumb[] = ['label' => $content['name'], 'url' => ['/sections/section/content-management?content_id='.$content['id']]];
     //$mb = round(($meta_text['size']/1024)/1024);
     $size = \appxq\sdii\utils\SDUtility::convertToReadableSize($meta_text['size']);
+    $fileType = explode('.', $model->file_name);
+    $fileType = end($fileType);
+    //appxq\sdii\utils\VarDumper::dump(end($fileType));
     $meta_file = "<div class='label label-default'>
-                      <label>".Yii::t('file', 'Type')." : {$meta_text['type']}</label> &nbsp;&nbsp;
+                      <label>".Yii::t('file', 'Type')." : {$fileType}</label> &nbsp;&nbsp;
                       <label>".Yii::t('file', 'Size')." : {$size}</label>
                   </div>";
 ?>
@@ -35,7 +38,8 @@
                             ]);?>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>                  
+                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>
+                  <p><?= $model->description;?></p>  
                   <?= $meta_file?>
                 </div>
                 
