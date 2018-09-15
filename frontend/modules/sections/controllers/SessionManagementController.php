@@ -104,13 +104,19 @@ class SessionManagementController extends Controller
         
         if(!empty($model)){
             $keyword =  \common\models\KeywordSearch::find()->where(['word'=>$txtsearch])->one();
+            
             if(!$keyword){
                 $keyword = new \common\models\KeywordSearch();
                 $keyword->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
                 $keyword->status = 1;
                 $keyword->date = date('Y-m-d H:i:s');
-                $keyword->save();
+                if($keyword->save()){
+                    
+                }else{
+                    \appxq\sdii\utils\VarDumper::dump($keyword->errors);
+                }
             }
+             
         }
         $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
         $dataProvider = new \yii\data\ActiveDataProvider([
