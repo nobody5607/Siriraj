@@ -280,6 +280,7 @@ class FileManagementController extends Controller
                             $obj = \backend\modules\sections\classes\JFiles::uploadImage($file, $filePath, $fileType,$thumbnail,$watermark);
                             $fileNames = "{$realFileName}_mark.{$obj['type']}";
                             $file_view = "{$realFileName}_preview.jpg";
+                            $detail_meta =  "{$obj['detai']}";
                         }else if($fileType[0] === 'video' || in_array(end($fileNameArr), $objType)){
                              
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
@@ -292,26 +293,31 @@ class FileManagementController extends Controller
                            }
                            
                            $file_view = $fileNames;
+                           $detail_meta =  "{$obj['detai']}";
                             
                         }else if($fileType[0] === 'application' && !in_array(end($fileNameArr), $objType)){//docx pdf 
                              
                            $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath,$path,$realFileName);
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames;
+                           $detail_meta =  "{$obj['detai']}";
                            //\appxq\sdii\utils\VarDumper::dump($fileName);
                         }else if($fileType[0] === 'audio'){ 
                            $obj = \backend\modules\sections\classes\JFiles::uploadAudio($file,$filePath);
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames; 
+                           $detail_meta =  "{$obj['detai']}";
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                             //\appxq\sdii\utils\VarDumper::dump($obj);
                             $fileNames = "{$realFileName}.{$obj['type']}";
+                            $detail_meta =  "{$obj['detai']}";
                             $file_view = $fileNames;
+                            $detail_meta =  "{$obj['detai']}";
                             
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view);
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta);
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

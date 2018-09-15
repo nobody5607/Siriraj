@@ -23,7 +23,7 @@ class JFiles {
      * @param type $defaultFile default filename
      * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path='', $file_view=""){
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path='', $file_view="",$detail_meta=""){
         try{
             $meta = [];
             if(!empty($file->type)){
@@ -48,7 +48,8 @@ class JFiles {
             $files->file_type       = $model->file_type;
             $files->meta_text       = SDUtility::array2String($meta);
             $files->dir_path        = $dir_path;
-            $files->file_view      = $file_view;
+            $files->file_view       = $file_view;
+            $files->detail_meta    = $detail_meta;
             if($files->save()){
                 return true;
             }else{
@@ -106,7 +107,7 @@ class JFiles {
               $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
               
               $output = [];
-              //\appxq\sdii\utils\VarDumper::dump($mark);
+              //\appxq\sdii\utils\VarDumper::dump($output);
               if(in_array($fileType[1], $default_type)){
                   if($fileType[1] == "jpeg"){
                       $fileType[1]="jpg";
@@ -208,7 +209,7 @@ class JFiles {
        exec($sql, $output, $return_var);
        
        $result=exec("catppt {$path}/{$fileName}.ptt", $detail);
-       \appxq\sdii\utils\VarDumper::dump($detail);
+       //\appxq\sdii\utils\VarDumper::dump($detail);
        
     }
     public static function DocToPdf($path, $fileName,$type=""){         
