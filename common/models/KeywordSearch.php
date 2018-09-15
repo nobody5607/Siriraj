@@ -28,9 +28,8 @@ class KeywordSearch extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id'], 'integer'],
-            [['status'], 'string'],
+           
+            [['status'], 'integer'],
             [['date'], 'safe'],
             [['word'], 'string', 'max' => 255],
             [['id'], 'unique'],

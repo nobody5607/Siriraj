@@ -113,7 +113,7 @@ class SessionManagementController extends Controller
                 if($keyword->save()){
                     
                 }else{
-                    \appxq\sdii\utils\VarDumper::dump($keyword->errors);
+                    //\appxq\sdii\utils\VarDumper::dump($keyword->errors);
                 }
             }
              
