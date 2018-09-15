@@ -164,12 +164,27 @@ class JFiles {
                 if($type != "pdf"){
                     self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
                 }else{
+                    if($type != "pptx"){
+                        //pptx
+                        self::PptxToPpt($path,$fileName, $file);
+                    }
                     self::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
                 }
 
             }
             return ['type'=>"{$file->extension}"];
         }     
+    }
+    //pptx to ppt
+    public static function PptxToPpt($path, $fileName, $file){
+       $type = "{$file->extension}";
+       set_time_limit(1200);
+       $sql="export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to ppt {$path}/{$fileName}.{$type} --outdir {$path}"; 
+       exec($sql, $output, $return_var);
+       
+       $result=exec("catppt {$path}/{$fileName}.ptt", $detail);
+       \appxq\sdii\utils\VarDumper::dump($detail);
+       
     }
     public static function DocToPdf($path, $fileName,$type=""){         
        $dirPath = Yii::getAlias('@storage')."{$path}";
