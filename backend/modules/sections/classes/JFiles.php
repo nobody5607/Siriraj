@@ -126,10 +126,11 @@ class JFiles {
                       @unlink("{$filePath}.{$fileType[1]}");
                       //return ["type"=>$type];
                       $output['detail']=$des1;
-                      $output['detai2']=$des1;
+                      $output['detai2']=$des2;
                       $output['type'] = $type;
                       
                       return $output;
+                      //\appxq\sdii\utils\VarDumper::dump($output);
                       //$wm = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 -gravity SouthEast {$mark} -geometry +20+20  -composite {$filePath}.{$fileType[1]}";
                                            
                    }
@@ -151,7 +152,7 @@ class JFiles {
                       @unlink("{$filePath}.{$fileType[1]}");
                       //return ["type"=>$type];
                       $output['detail']=$des1;
-                      $output['detai2']=$des1;
+                      $output['detai2']=$des2;
                       $output['type'] = $type;
                       
                       return $output;
@@ -181,7 +182,7 @@ class JFiles {
             exec("file {$filePath}.{$file->extension}", $des2); 
             //return ["type"=>$type];
             $output['detail'] = $des1;
-            $output['detai2'] = $des1;
+            $output['detai2'] = $des2;
             
 
             return $output;
