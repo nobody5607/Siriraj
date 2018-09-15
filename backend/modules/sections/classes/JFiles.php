@@ -162,12 +162,12 @@ class JFiles {
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
                 if($type != "pdf"){
-                    self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
-                }else{
-                    if($type != "pptx"){
+                    if($type == "pptx"){
                         //pptx
                         self::PptxToPpt($path,$fileName, $file);
                     }
+                    self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
+                }else{                    
                     self::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
                 }
 
