@@ -101,11 +101,22 @@ class SessionManagementController extends Controller
             $model=$data->andWhere("file_type=:file_type", [":file_type"=>$type_id]);  
             //\appxq\sdii\utils\VarDumper::dump($type_id);
         }
+        
+        if(!empty($model)){
+            $keyword =  \common\models\KeywordSearch::find()->where(['word'=>$txtsearch])->one();
+            if(!$keyword){
+                $keyword = new \common\models\KeywordSearch();
+                $keyword->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                $keyword->status = 1;
+                $keyword->date = date('Y-m-d H:i:s');
+                $keyword->save();
+            }
+        }
         $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [
-                'pageSize' => 15,
+                'pageSize' => 5,
             ],
             'sort' => [
                 'defaultOrder' => [

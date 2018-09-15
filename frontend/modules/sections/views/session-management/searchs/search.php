@@ -8,7 +8,7 @@
         echo yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item'],
-            'layout' => "{items}",
+            //'layout' => "{items}",
             'itemView' => function ($model, $key, $index, $widget) {
             return $this->render('_item', [
                             'model' => $model,
@@ -32,7 +32,8 @@
                 'eventOnScroll'=>"function(){
                     let scrollHeight = $(document).height();
                     let scrollPosition = $(window).height() + $(window).scrollTop();
-                    if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                    if ((scrollHeight - scrollPosition) / scrollHeight == 0) {
+                        //alert('ok');
                         $( '.btnScroll' ).trigger('click');
                     }
                  }   

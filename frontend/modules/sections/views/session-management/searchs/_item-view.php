@@ -14,8 +14,8 @@
     $fileType = end($fileType);
     //appxq\sdii\utils\VarDumper::dump(end($fileType));
     $meta_file = "<div class='label label-default'>
-                      <label>".Yii::t('file', 'Type')." : {$fileType}</label> &nbsp;&nbsp;
-                      <label>".Yii::t('file', 'Size')." : {$size}</label>
+                      <label>".Yii::t('section', 'Type')." : {$fileType}</label> &nbsp;&nbsp;
+                      <label>".Yii::t('section', 'Size')." : {$size}</label>
                   </div>";
 ?>
 <div class="panel panel-default">

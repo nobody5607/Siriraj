@@ -22,4 +22,6 @@ return [
     'Please select a file.'=>'Please select a file.',
     'Data'=>'Data',
     'Return to'=>'Return to',
+    'Type'=>'Type',
+    'Size'=>'Size',
 ];

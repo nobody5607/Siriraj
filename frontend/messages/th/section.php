@@ -22,4 +22,6 @@ return [
     'Please select a file.'=>'กรุณาเลือกไฟล์',
     'Data'=>'ข้อมูล',
     'Return to'=>'กลับไปยัง',
+    'Type'=>'ประเภท',
+    'Size'=>'ขนาด',
 ];
