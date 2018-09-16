@@ -49,17 +49,17 @@ class Files extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('knowledges', 'ID'),
-            'name' => Yii::t('knowledges', 'Name'),
-            'file_type' => Yii::t('knowledges', 'image, video , sound'),
-            'description' => Yii::t('knowledges', 'files'),
-            'rstat' => Yii::t('knowledges', 'file ใหญ่ 1000X768,'),
-            'file_name' => Yii::t('knowledges', 'File Name'),
-            'file_thumbnail' => Yii::t('knowledges', 'ไฟล์เล็ก,'),
-            'file_name_org' => Yii::t('knowledges', 'file ต้นฉบับ ทุกคนไม่เห็น'),
-            'meta_text' => Yii::t('knowledges', 'Meta Text'),
-            'content_id' => Yii::t('knowledges', 'Content ID'),
-            'public' => Yii::t('knowledges', 'public, private'),
+            'id' => Yii::t('section', 'ID'),
+            'name' => Yii::t('section', 'Name'),
+            'file_type' => Yii::t('section', 'image, video , sound'),
+            'description' => Yii::t('section', 'files'),
+            'rstat' => Yii::t('section', 'Rstat'),
+            'file_name' => Yii::t('section', 'File Name'),
+            'file_thumbnail' => Yii::t('section', 'Thumbnail,'),
+            'file_name_org' => Yii::t('section', 'File Original'),
+            'meta_text' => Yii::t('section', 'Meta Text'),
+            'content_id' => Yii::t('section', 'Content ID'),
+            'public' => Yii::t('section', 'public, private'), 
         ];
     }
     

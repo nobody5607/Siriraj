@@ -265,7 +265,7 @@ class JFiles {
              
 
             if($status == '2' && $file->extension == "mp4"){
-                    return ['type'=>'mp4', 'default'=>'1'];
+                    return ['type'=>'mp4', 'default'=>'1', 'detai'=>$output['detai']];
                     
                 }
                set_time_limit(1200);

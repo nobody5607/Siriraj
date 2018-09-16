@@ -65,9 +65,7 @@
     $(document).on('hide.bs.modal','#file-modal', function () {
       location.reload();
     //Do stuff here
-   });
-   
-   
+   }); 
     
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
