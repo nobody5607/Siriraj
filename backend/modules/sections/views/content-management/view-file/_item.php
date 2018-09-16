@@ -25,19 +25,19 @@
                         'style'=>''
             ]);            
         }else if($model['file_type'] == '3'){
-            echo "
-                <video style='width:100%;height: 100px;' controls>
-                    <source src='{$model['file_path']}/{$model['file_name']}' type='video/mp4'>                 
-                    Your browser does not support the video tag.
-                </video>
-            ";         
+             
+            if(isset($model['file_thumbnail'])){
+                echo "<img src='${$model['file_thumbnail']}'>";
+            }else{
+                echo "            
+                    <div style='font-size: 50pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
+                ";   
+            }
+                
         }else if($model['file_type'] == '4'){
             echo "            
-                <audio controls style='width:100%;height: 100px;'>
-                    <source src='{$model['file_path']}/{$model['file_name']}' type='audio/mpeg'>                 
-                    Your browser does not support the video tag.
-                </audio>
-                ";
+                <div style='font-size: 50pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>
+            ";
         }else if($model['file_type'] == '6'){
             echo Html::img("{$model['file_path']}/{$model['file_name']}", 
                 [
