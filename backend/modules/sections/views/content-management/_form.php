@@ -95,6 +95,7 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
         $form.serialize()
     ).done(function(result) {
         if(result.status == 'success') {
+            
             <?= SDNoty::show('result.message', 'result.status')?>
             setTimeout(function(){
                 location.reload();
