@@ -57,9 +57,16 @@ use yii\helpers\Url;
                 ";
         }
         echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
-        echo "            
-                <div style='font-size: 50pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
-            ";
+        
+            if($model['file_thumbnail'] != ""){
+                $img = $model['file_thumbnail'];
+                //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
+                echo "<img src='{$img}' style='height:100px;' class='img img-rounded'>";
+            }else{
+                echo "            
+                    <div style='font-size: 45pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
+                ";   
+            } 
         echo "</a>";
     } else if ($model['file_type'] == '4') {
         if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))) {

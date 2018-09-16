@@ -21,7 +21,16 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
                         echo Html::img("{$image}",['class'=>'primary-img img img-responsive','alt'=>"{$model['file_name_org']}"]); 
                     }
                     else if($model['file_type'] == 3){
-                        echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>";
+                        if($model['file_thumbnail'] != ""){
+                            $img = $model['file_thumbnail'];
+                            //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
+                            echo "<img src='{$img}' style='height:180px;' class='primary-img img img-responsive'>";
+                        }else{
+                            echo "            
+                                <div style='font-size: 45pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
+                            ";   
+                        } 
+                        //echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>";
                     }
                     else if($model['file_type'] == 4){
                         echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>";
