@@ -28,7 +28,7 @@
             if($model['file_thumbnail'] != ""){
                 $img = $model['file_thumbnail'];
                 //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
-                echo "<img src='{$img}' style='height:100px;'>";
+                echo "<img src='{$img}' style='height:100px;' class='img img-rounded'>";
             }else{
                 echo "            
                     <div style='font-size: 45pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
