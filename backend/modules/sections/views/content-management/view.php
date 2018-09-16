@@ -19,67 +19,78 @@ $modal = "modal-contents";
                     <div class="box-header">
                         <span class="pull-right">
                             <?php
-                                echo yii\helpers\Html::button("<i class='fa fa-plus'></i>", [
-                                    'data-id' => $f['id'],
-                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
-                                    'file_type'=>$f['id'],
-                                    'data-action' => 'create',
-                                    'class' => 'btn btn-success btnCreateFile',
-                                    'title' => Yii::t('appmenu', 'Create'),
-                                    'data-url' => '/sections/session-management/create'
-                                ]);
+                            echo yii\helpers\Html::button("<i class='fa fa-plus'></i>", [
+                                'data-id' => $f['id'],
+                                'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                'file_type' => $f['id'],
+                                'data-action' => 'create',
+                                'class' => 'btn btn-success btnCreateFile',
+                                'title' => Yii::t('appmenu', 'Create'),
+                                'data-url' => '/sections/session-management/create'
+                            ]);
                             ?>
                             <?php
-                                echo yii\helpers\Html::button("<i class='fa fa-trash'></i>", [
-                                    'data-id' => $f['id'],
-                                    'data-parent_id' => Yii::$app->request->get('id', '0'),
-                                    'file_type'=>$f['id'],
-                                    'data-action' => 'create',
-                                    'class' => 'btn btn-danger btnDeleteBySelect',
-                                    'title' => Yii::t('appmenu', 'Delete'),
-                                    'data-url' => '/sections/session-management/create', 
-                                ]);
+                            echo yii\helpers\Html::button("<i class='fa fa-trash'></i>", [
+                                'data-id' => $f['id'],
+                                'data-parent_id' => Yii::$app->request->get('id', '0'),
+                                'file_type' => $f['id'],
+                                'data-action' => 'create',
+                                'class' => 'btn btn-danger btnDeleteBySelect',
+                                'title' => Yii::t('appmenu', 'Delete'),
+                                'data-url' => '/sections/session-management/create',
+                            ]);
                             ?> 
-                              
+
                         </span>
                         <i class="fa <?= $f['icon'] ?>"></i> <?= $f['name'] ?><br>
-                        <small id="label_<?= $f['id'] ?>"><?= Yii::t('file','Image')?></small>
+                        <small id="label_<?= $f['id'] ?>"><?= Yii::t('file', 'Image') ?></small>
                         <hr/>
                     </div>
                     <div class="box-body" id="panel-<?= $f['id'] ?>">
                         <div class="col-md-12">
-                            <label><input type="checkbox" id="checkAll" data-id="<?= $f['id'] ?>"> <?= Yii::t('section','Select All')?></label>  
+                            <label><input type="checkbox" id="checkAll-<?= $f['id'] ?>" data-id="<?= $f['id'] ?>"> <?= Yii::t('section', 'Select All') ?></label>  
                             <div id="files_<?= $f['id'] ?>" data-id='<?= $f['id'] ?>'></div>
+                            <?php \richardfan\widget\JSRegister::begin(); ?>
+                            <script>
+                                $("#checkAll-<?= $f['id'] ?>").click(function () {
+                                    let id = $(this).attr('data-id');
+                                    $('#panel-' + id + ' input:checkbox').not(this).prop('checked', this.checked);
+                                    return false;
+                                });//Check All
+
+                            </script>
+                            <?php \richardfan\widget\JSRegister::end(); ?>
                         </div>
                     </div>                     
                     <div class="box-footer read-all">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
-                                <?=  Html::a(Yii::t('section','More...'),"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
-                                    'id'=>"btn-{$f['id']}",
-                                    'data-action'=>'view-file',
-                                    'class'=>'content-popup btnCall btn btn-default btn-block',
-                                    'data-id'=>$f['id'],
-
-                                ]);?>
+                                <?=
+                                Html::a(Yii::t('section', 'More...'), "/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}", [
+                                    'id' => "btn-{$f['id']}",
+                                    'data-action' => 'view-file',
+                                    'class' => 'content-popup btnCall btn btn-default btn-block',
+                                    'data-id' => $f['id'],
+                                ]);
+                                ?>
                             </div>
                         </div>
                     </div>
-                     
+
                 </div>
             </div> 
         </div>
         <?php \richardfan\widget\JSRegister::begin(); ?>
-        <script>    
-            
-            get_form=function(url , params){
-                $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-                $('#<?= $modal?>').modal('show');
-                $.get(url, params, function(res){
-                    $('#<?= $modal?> .modal-content').html(res);
-                    
+        <script>
+
+            get_form = function (url, params) {
+                $('#<?= $modal ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+                $('#<?= $modal ?>').modal('show');
+                $.get(url, params, function (res) {
+                    $('#<?= $modal ?> .modal-content').html(res);
+
                 });
-            } 
+            }
             load_data = function () {
                 let url = '/sections/content-management/view-data-content'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
@@ -89,7 +100,7 @@ $modal = "modal-contents";
                 $.get(url, params, function (data) {
                     $('#' + select_id).html(data);
                 });
-                
+
                 return false;
 
             }
@@ -97,7 +108,7 @@ $modal = "modal-contents";
                 let url = '/sections/content-management/get-count-data'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "label_<?= $f['id'] ?>";
-                
+
                 let params = {content_id: content_id, type_id: "<?= $f['id'] ?>"};
                 $.get(url, params, function (data) {
                     //console.log(data);
@@ -106,79 +117,69 @@ $modal = "modal-contents";
                 return false;
 
             }
+           
             load_content_data();
-            load_data();            
-            
+            load_data();
+
         </script>
         <?php \richardfan\widget\JSRegister::end(); ?>
     <?php endif; ?>
 <?php endforeach; ?> 
 
- <?php \richardfan\widget\JSRegister::begin();?>
-    <script>
-            $("#checkAll").click(function () {
-                let id=$(this).attr('data-id');
-                 
-                $('#panel-'+id+' input:checkbox').not(this).prop('checked', this.checked);
-                 
-                //return false;
-                 
-            });//Check All
-            $('.btnDeleteBySelect').click(function () {
-                
-            
-                //yii.confirm('<?= Yii::t('file', 'Confirm Delete?')?>', function(){
-                    let id = $(this).attr('data-id'); 
-                    let url = '/sections/file-management/delete-file';
-                    $('#panel-'+id+' :checkbox:checked').each(function () {
-                        let dataID = $(this).val();
-                        if(!dataID){
-                            return;
-                        }
-                        if(dataID != "on"){
-                             $.post(url, {id:dataID}, function(result){                    
-                                <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
-                                $('#img-'+dataID).remove();    
-                             });
-                        }
-                    });
-                   
-                //}); 
-               return false; 
-            });
-            
-    </script>
-<?php \richardfan\widget\JSRegister::end();?>       
-<?php 
+
+<?php
 $modalf = 'file-modal';
 echo yii\bootstrap\Modal::widget([
-    'id'=>$modalf,
+    'id' => $modalf,
     'size' => 'modal-lg',
     'clientOptions' => [
         'backdrop' => false, 'keyboard' => false
     ],
-    'options'=>['tabindex' => false]
+    'options' => ['tabindex' => false]
 ]);
 ?>
-<?php richardfan\widget\JSRegister::begin();?>
- <script>
-     $('.btnCreateFile').on('click', function(){
-                let id = $(this).attr('data-id');
-                let content_id = '<?= Yii::$app->request->get('content_id', '') ?>';
-                $('#<?= $modalf ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-                $('#<?= $modalf ?>').modal('show');
-                let url = '/sections/file-management/upload-file';
-                let file_type = $(this).attr('file_type');
-                
-                $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
-                    $('#<?= $modalf ?> .modal-content').html(res);                    
-                });
-               return false;
-    }); 
- </script>
-<?php richardfan\widget\JSRegister::end();?>        
+<?php richardfan\widget\JSRegister::begin(); ?>
+<script>
+    $('.btnCreateFile').on('click', function () {
+        let id = $(this).attr('data-id');
+        let content_id = '<?= Yii::$app->request->get('content_id', '') ?>';
+        $('#<?= $modalf ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+        $('#<?= $modalf ?>').modal('show');
+        let url = '/sections/file-management/upload-file';
+        let file_type = $(this).attr('file_type');
 
-        
+        $.get(url, {id: id, file_type: file_type, content_id: content_id}, function (res) {
+            $('#<?= $modalf ?> .modal-content').html(res);
+        });
+        return false;
+    });
+    
+     $('.btnDeleteBySelect').click(function () {
+
+
+                //yii.confirm('<?= Yii::t('file', 'Confirm Delete?') ?>', function(){
+                let id = $(this).attr('data-id');
+                let url = '/sections/file-management/delete-file';
+                $('#panel-' + id + ' :checkbox:checked').each(function () {
+                    let dataID = $(this).val();
+                    if (!dataID) {
+                        return;
+                    }
+                    if (dataID != "on") {
+                        $.post(url, {id: dataID}, function (result) {
+    <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+                            $('#img-' + dataID).remove();
+                        });
+                    }
+                });
+
+                //}); 
+                return false;
+            });
+</script>
+<?php richardfan\widget\JSRegister::end(); ?>        
+
+
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
     .box.box-primary {

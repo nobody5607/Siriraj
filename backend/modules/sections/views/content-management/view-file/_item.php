@@ -86,8 +86,8 @@
 <?php \richardfan\widget\JSRegister::begin();?>
 <script>
         $("#checkAll").click(function () {
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });//Check All
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });//Check All
 </script>
 <?php \richardfan\widget\JSRegister::end();?>
  
