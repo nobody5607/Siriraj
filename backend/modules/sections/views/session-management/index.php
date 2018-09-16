@@ -12,7 +12,7 @@
     }
 ?> 
    
-<div class="row content-bar">
+<div class="row">
     <?= $this->render('left-content',[
         'dataProvider'=>$dataProvider, 
         'data_id'=> isset($_GET['id']) ? $_GET['id'] : $content_section['id'], 

@@ -30,8 +30,12 @@ $image = '';
 </div>
 <?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
-
-    #preview_icon{width:100px;height:100px;}
+ 
+    #preview_icon{
+        background: #eeeeee;
+        border: 1px solid #eeeeee;
+        width:100px;height:100px;
+    }
     /*file uploads*/
 
     .custom-file-upload {

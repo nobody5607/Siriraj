@@ -30,7 +30,8 @@ $this->title = Yii::t('section', 'Content');
         <div class="row">
             
             <div class="col-md-12">
-                <div class="form-group">
+                <div class="col-md-12">
+                    <div class="form-group">
 
                     <?php
                     echo "<label>".Yii::t('section','Section Name')."</label>";
@@ -41,12 +42,15 @@ $this->title = Yii::t('section', 'Content');
                     echo Html::hiddenInput('section_id', $model->section_id);
                     ?>
                 </div> 
+                </div>
             </div>
-            <div class="col-md-12">
+            <div >
                 <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
             </div>
             <div class="col-md-12">
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                <div class="col-md-12">
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                </div>
              
 
                 <div style="display: none;">

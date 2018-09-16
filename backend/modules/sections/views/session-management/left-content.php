@@ -3,9 +3,10 @@ $this->title = Yii::t('section', 'Section');
 use yii\helpers\Html;
 use yii\widgets\ListView;
 ?>
-<div class="col-md-3 col-border-right section-left">
-    <div class="box-body">
-        <div class="text-left">
+<div class="col-md-4 col-border-right section-left">
+    <div class="box box-primary">
+        <div class="box-body">
+        <div class="text-right">
             <?php
             echo Html::button("<i class='fa fa-plus'></i>", [
                 'data-id' => $data_id,
@@ -35,9 +36,10 @@ use yii\widgets\ListView;
                     ]);
                 },
                 //'emptyText'=>'',
-                'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> '. Yii ::t('section','Back'), Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #6d6b6b;padding:5px;position: absolute;    margin-top: 5px;']),
+                'emptyText'=> \yii\helpers\Html::a('<i class="fa fa-chevron-left"></i> '. Yii ::t('section','Back'), Yii::$app->request->referrer, ['data-url'=>Yii::$app->request->referrer, 'id'=>'backs','class'=>'', 'style'=>'margin-left:10px;    color: #6d6b6b;padding:5px;margin-top: 5px;']),
             ])
             ?>  
+    </div>
     </div>
 </div>   
 

@@ -48,6 +48,7 @@ if (Yii::$app->controller->action->id === 'login') {
             ['content' => $content]
         ) ?>
     </div>
+    <?= $this->render('custom_style')?>
     <?php $this->endBody() ?>
     <?= Html::endTag('body') ?>
     </html>

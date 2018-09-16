@@ -3,7 +3,7 @@
     $section_obj = \common\models\Sections::findOne($data_id);   
      
 ?>
-<div class="col-md-9 section-right"> 
+<div class="col-md-8 section-right"> 
     <?php if($public == '1'): ?>
 <!--    <div class="box box-primary">
         <div class="box-header">
@@ -49,7 +49,7 @@
      
     <div class="clearfix"></div>
     <div class="box box-primary">
-        <div class="box-header">
+        <div class="box-header text-right">
             <?php
                 echo Html::button("<i class='fa fa-plus'></i>", [
                     'data-id' => $content_section['id'],
