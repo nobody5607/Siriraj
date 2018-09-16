@@ -65,7 +65,10 @@
  
 ?>
 <div class="trendig-product pb-10 off-white-bg">
-    <h2 class="text-center" style="padding-top:20px;"><?= Yii::t('section','Data')?> : <?= $title?></h2>
+    <h2 class="text-center" style="padding-top: 20px;
+    background: #f3f3f3;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e8e6e1;"><?= Yii::t('section','Data')?> : <?= $title?></h2>
         <div class="container">
             
             <div class="trending-box">            

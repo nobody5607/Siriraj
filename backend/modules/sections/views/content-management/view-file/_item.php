@@ -24,7 +24,7 @@
                 'style' => 'height:120px;    margin: 0 auto;'
             ]);            
         }else if($model['file_type'] == '3'){
-             
+            
             if($model['file_thumbnail'] != ""){
                 $img = $model['file_thumbnail'];
                 //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
