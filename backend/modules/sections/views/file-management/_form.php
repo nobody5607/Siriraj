@@ -29,6 +29,9 @@ use appxq\sdii\helpers\SDHtml;
             <div class="col-md-12">
                 <?= $form->field($model, 'description')->textArea(['rows' =>7])->label(Yii::t('section','Note')) ?>
             </div>
+            <div class="col-md-5">                
+                    <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
+            </div>
              
         </div>    
     </div>

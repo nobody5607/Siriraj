@@ -104,6 +104,7 @@ class FileManagementController extends Controller
                 $post = Yii::$app->request->post()['Files'];
                 $model->description = $post['description'];
                 $model->file_name_org = $post['file_name_org'];
+                $model->file_thumbnail = $post['file_thumbnail'];
                 if ($model->save()) {		 
                     return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
                 } else {
