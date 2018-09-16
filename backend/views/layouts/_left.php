@@ -61,6 +61,12 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => Yii::$app->user->can('administrator'),
                 ],
                 [
+                    'label' => Yii::t('appmenu', 'Report Downlaod'),
+                    'url' => ['/viewcountermanagement/view-count/report-download'],
+                    'icon' => '<i class="fa fa-cloud-download"></i>',
+                    'visible' => Yii::$app->user->can('administrator'),
+                ],
+                [
                     'label' => Yii::t('appmenu', 'Templates'),
                     'url' => '#',
                     'icon' => '<i class="fa fa-columns"></i>',

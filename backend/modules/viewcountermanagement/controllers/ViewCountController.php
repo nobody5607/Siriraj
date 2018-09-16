@@ -60,10 +60,7 @@ class ViewCountController extends Controller
         ]);
     }
     
-    public function actionReportDownload()
-    { 
-        return $this->render('report-download');
-    }
+    
     
     public function actionPreview()
     {
@@ -142,7 +139,10 @@ class ViewCountController extends Controller
         ]);
     }
     
-    
+    public function actionReportDownload()
+    { 
+        return $this->render('report-download');
+    }
     //report download
     public function actionReportDownloadPreview()
     {
@@ -151,75 +151,58 @@ class ViewCountController extends Controller
         $month = Yii::$app->request->get('month', '');
         $year = Yii::$app->request->get('year', '');
         $start_date = "{$year}-{$month}-00";
-        if($month == "00" || $month == ""){            
-            $sql="
-                SELECT 
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-01-01' AND '{$year}-01-31') as m1,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-02-01' AND '{$year}-02-31') as m2,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-03-01' AND '{$year}-03-31') as m3,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-04-01' AND '{$year}-04-31') as m4, user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-05-01' AND '{$year}-05-31') as m5,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-06-01' AND '{$year}-06-31') as m6,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-07-01' AND '{$year}-07-31') as m7,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-08-01' AND '{$year}-08-31') as m8,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-09-01' AND '{$year}-09-31') as m9,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-10-01' AND '{$year}-10-31') as m10,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-11-01' AND '{$year}-11-31') as m11,user_id,
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-12-01' AND '{$year}-11-31') as m12,user_id  
-              FROM report_download limit 1
-            ";
-            $data = Yii::$app->db->createCommand($sql)->queryOne();
-            $datas = [$data['m1'],$data['m2'],$data['m3'],$data['m4'],$data['m5'],$data['m6'],$data['m7'],$data['m8'],$data['m9'],$data['m10'],$data['m11'],$data['m12']];
-            $labels = \appxq\sdii\utils\SDdate::getMonthThAll();
-            $labelFull = \appxq\sdii\utils\SDdate::getMonthFull();
-            $output = "";
-            $output .= "<h4>".Yii::t('section','Summarize')." ".Yii::t('section','Website Traffic Statistics')."</h4>";
-            $output .= "<div class='table-responsive'>";
-            $output .= "<table class='table table-bordered table-responsive'>";
-            $output .= "<thead><tr><th>".Yii::t('section', 'Month')."</th><th style='width:150px;text-align:center;'>".Yii::t('section','Number of downloads')."</tr></thead>";
-            foreach($labelFull as $k=>$v){ 
-                $k=$k+1;
-                $output .= "
-                    <tr>
-                        <td>{$v}</td>
-                        <td class='text-center'>{$data["m{$k}"]}</td>
-                         
-                    </tr>                     
-                ";
-                
+        $output = [];
+        if($month == "00" || $month == ""){
+            $sql = "SELECT
+                    t.id,t.user_id,		
+                    MONTH(t.create_at) as months, 
+                    YEAR(t.create_at) as years, 
+                    SUM(t.count) as counts,
+                                t.create_at
+                FROM report_download as t 
+                WHERE YEAR(t.create_at) = '{$year}'
+                GROUP BY   t.user_id ,MONTH(t.create_at)";
+            $data = Yii::$app->db->createCommand($sql)->queryAll(); 
+            if(!$data){
+                return "<div class='alert alert-danger'>ไม่พบข้อมูล</div>";
             }
-            $output .= "</table>";
-            $output .= "</div>";
+            $totalAll=0; 
+//            \appxq\sdii\utils\VarDumper::dump($data); 
+            $month = \appxq\sdii\utils\SDdate::getMonthFull();
+            foreach ($month as $k => $v) {
+                $output[$k + 1] = ['id' => $k + 1, 'name' => $v, 'data' => []];
+                foreach ($data as $k2 => $v2) {
+                    if ($v2['months'] == $k + 1) {
+                        $totalAll += $v2['counts'];
+                        $output[$k + 1]['totalAll'] = $totalAll;
+                        array_push($output[$k + 1]['data'], $v2); 
+                    }else{
+                        $totalAll = 0;
+                    }
+                }
+            }
+           return $this->renderAjax('report-download-preview', [ 
+                'output' => $output,
+                'print'=>$print 
+            ]);
         }else{
-            $labels = [\appxq\sdii\utils\SDdate::getMonthByKey($month-1)];
-            $labelFull = \appxq\sdii\utils\SDdate::getMonthFullByKey($month-1);
-            $output = "";
-            if((int)$month < 10){
-                $month = "0{$month}";
-            }
-            
             $sql="
-                SELECT 
-                (SELECT count(t1.id) FROM report_download as t1 WHERE t1.create_at BETWEEN '{$year}-00-01' AND '{$year}-$month-31') as m1
-                FROM tbl_view limit 1
+                SELECT *, sum(count) as counts FROM report_download 
+                WHERE create_at BETWEEN '{$year}-{$month}-01' and '{$year}-{$month}-31' 
+                GROUP BY user_id
             ";
-            $data = Yii::$app->db->createCommand($sql)->queryOne();
-            $datas = [$data['m1']];
-            $output .= "<h4>".Yii::t('section','Summarize')." ".Yii::t('section','Website Traffic Statistics')."</h4>";
-            $output .= "เดือน <b>{$labelFull}</b> จำนวนผู้เข้าชม <b>{$data['m1']}</b> คน";
-             
+            $data = Yii::$app->db->createCommand($sql)->queryAll(); 
+            $month = \appxq\sdii\utils\SDdate::getMonthFullByKey($month-1);
+            //\appxq\sdii\utils\VarDumper::dump($data);
+            return $this->renderAjax('report-download-preview-one', [ 
+                'data' => $data,
+                'month'=>$month,
+                'print'=>$print 
+            ]);
         }
-        $dataProvider = new \yii\data\ArrayDataProvider([
-            'allModels'=>$data
-        ]);
         
-        return $this->renderAjax('print', [ 
-            'dataProvider' => $dataProvider,
-            'print'=>$print,
-            'labels'=>$labels,
-            'datas'=>$datas,
-            'output'=>$output
-        ]);
+        
+        
     }
  
 }

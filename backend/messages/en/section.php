@@ -43,4 +43,5 @@ return [
     'Desired image size'=>'Desired image size',
     'Image Name'=>'Image Name',
     'Image Detail'=>'Image Detail',
+    'Report Download'=>'Report Download',
 ];
