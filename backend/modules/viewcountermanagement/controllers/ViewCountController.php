@@ -192,6 +192,9 @@ class ViewCountController extends Controller
                 GROUP BY user_id
             ";
             $data = Yii::$app->db->createCommand($sql)->queryAll(); 
+            if(!$data){
+                return "<div class='alert alert-danger'>ไม่พบข้อมูล</div>";
+            }
             $month = \appxq\sdii\utils\SDdate::getMonthFullByKey($month-1);
             //\appxq\sdii\utils\VarDumper::dump($data);
             return $this->renderAjax('report-download-preview-one', [ 
