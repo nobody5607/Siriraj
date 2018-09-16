@@ -256,6 +256,9 @@ class JFiles {
     public static function uploadVideo($file,$filePath,$watermark,$status){
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
         $path = "{$filePath}.{$file->extension}";
+        if($file->extension == "mp4"){
+            $path = "{$filePath}_mark.{$file->extension}";
+        }
         $output=[]; 
         $mark = Yii::getAlias('@storage')."/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
