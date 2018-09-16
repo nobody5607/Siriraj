@@ -15,144 +15,152 @@ use yii\helpers\Html;
             <div class="row" style="margin-bottom:10px;text-align: center;" id="preview-file">
                 <div class="col-md-12">                     
                     <div style="background: #292929; padding: 5px; border: 1px solid #bdbdbd; border-radius: 5px;">
-                        <?php
-                        if ($dataDefault['file_type'] == '2') {                            
-                            if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))) {
-                                //echo "<div class='label label-default pull-left'><a href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>Download</a></div>";
-                                echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
-                                echo "<div id='lightgallerys'>";
-                                echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
-                                echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
-                                    'class' => 'img img-responsive'
-                                ]);                                
-                                echo Html::endTag("div");                                
-                                echo "</div>";                                
-                                
-                            } else {
-
-                                echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
-                                echo "<div id=''>";
-                                echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
-                                    echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
-                                        'class' => 'img img-responsive'
-                                    ]);
-                                echo Html::endTag("div");
-                                echo "</div>";
-                            }
-                            $modelImage = $dataProvider->getModels();
-                                echo "<div id='lightgallery' style='height: 80px;
-                                                                    overflow: hidden;
-                                                                    display: flex;
-                                                                    flex-direction: row;
-                                                                    /* flex-basis: 54%; */
-                                                                    flex-wrap: wrap;
-                                                                    padding: 10px;'>";
-                                    foreach($modelImage as $k=>$v){
-                                        echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['description']}"]);
-                                        echo \yii\helpers\Html::img("{$v['file_path']}/{$v['file_name']}", [
-                                            'class' => 'img img-responsive',
-                                            'style'=>'width:80px;height:80px;    padding: 5px;'
+                        <?php if(Yii::$app->request->get('file_id') == ""): ?>
+                        <h2 style="color:#fff;font-size:30pt;">
+                                <?= Yii::t('section', 'Please Select File')?>
+                            </h2>
+                       <?php else:?>
+                            <?php
+                                if ($dataDefault['file_type'] == '2') {                            
+                                    if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))) {
+                                        //echo "<div class='label label-default pull-left'><a href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>Download</a></div>";
+                                        echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
+                                        echo "<div id='lightgallerys'>";
+                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                        echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
+                                            'class' => 'img img-responsive'
                                         ]);                                
-                                        echo Html::endTag("div"); 
+                                        echo Html::endTag("div");                                
+                                        echo "</div>";                                
+
+                                    } else {
+
+                                        echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
+                                        echo "<div id=''>";
+                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                            echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
+                                                'class' => 'img img-responsive'
+                                            ]);
+                                        echo Html::endTag("div");
+                                        echo "</div>";
                                     }
-                               echo "</div>"; 
+                                    $modelImage = $dataProvider->getModels();
+                                        echo "<div id='lightgallery' style='height: 80px;
+                                                                            overflow: hidden;
+                                                                            display: flex;
+                                                                            flex-direction: row;
+                                                                            /* flex-basis: 54%; */
+                                                                            flex-wrap: wrap;
+                                                                            padding: 10px;'>";
+                                            foreach($modelImage as $k=>$v){
+                                                echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['description']}"]);
+                                                echo \yii\helpers\Html::img("{$v['file_path']}/{$v['file_name']}", [
+                                                    'class' => 'img img-responsive',
+                                                    'style'=>'width:80px;height:80px;    padding: 5px;'
+                                                ]);                                
+                                                echo Html::endTag("div"); 
+                                            }
+                                       echo "</div>"; 
 
 
-                            // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
-                        } elseif ($dataDefault['file_type'] == 3) {
-                            echo"
-                                <video style='width:100%' controls controlsList='nodownload'>
-                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='video/mp4'>                 
-                                    Your browser does not support the video tag.
-                                </video>
-                            ";
-                        } elseif ($dataDefault['file_type'] == 4) {
-                            echo"
-                                <audio style='width:100%' controls controlsList='nodownload'>
-                                    <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='audio/mpeg'>                 
-                                    Your browser does not support the audio tag.
-                                </audio>
-                            ";
-                        } else {
-                            //echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
-                            $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
-                            $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
-                            $type = explode('.', $dataDefault['file_name']);
-                            $type = isset($type[1]) ? $type[1] : 'doc';
-                             
-                            if(in_array($type, $file_type)){
-                                echo " 
-                                    <iframe id='iframe' src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
-                                ";
-                                if($type == "doc" || $type == 'docx'){
-                                    echo "<div id='#myFrame' style='    background: #ffffff; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
-                                }else if($type == "xls" || $type == 'xlsx'){
-                                    echo "<div id='#myFrame' style='    background: url(https://c1-excel-15.cdn.office.net:443/x/s/161090431876__layouts/Resources/ewaembed.png); position: absolute; bottom: 12px; height: 25px; width: 28%;    right: 28px;'></div>";
-                                }else{
-                                    echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 20px; width: 28%;    right: 28px;'></div>";
-                                } 
-                                $this->registerJs("
-                                    function convertToPDF(){
-                                        let url='/site/doc-to-pdf';
-                                        let params={id:'".$dataDefault['id']."'};
-                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
-                                        $.post(url,params, function(data){
-                                            if(data['status'] == 'success'){
-                                                let id = data['data']['id'];
-                                                let path = data['data']['path'];
-                                                let sql = data['data']['sql'];
-                                                convert(id, path);
+                                    // echo yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", ['class'=>'img img-responsive','style'=>"width:1024px;"]);
+                                } elseif ($dataDefault['file_type'] == 3) {
+                                    echo"
+                                        <video style='width:100%' controls controlsList='nodownload'>
+                                            <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='video/mp4'>                 
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    ";
+                                } elseif ($dataDefault['file_type'] == 4) {
+                                    echo"
+                                        <audio style='width:100%' controls controlsList='nodownload'>
+                                            <source src='{$dataDefault['file_path']}/{$dataDefault['file_name']}' type='audio/mpeg'>                 
+                                            Your browser does not support the audio tag.
+                                        </audio>
+                                    ";
+                                } else {
+                                    //echo "{$dataDefault['file_path']}/{$dataDefault['file_name']}";
+                                    $api = \backend\modules\cores\classes\CoreOption::getParams("preview_doc", 'e');
+                                    $file_type = ['ppt','pptx','doc','docx','xls','xlsx']; 
+                                    $type = explode('.', $dataDefault['file_name']);
+                                    $type = isset($type[1]) ? $type[1] : 'doc';
+
+                                    if(in_array($type, $file_type)){
+                                        echo " 
+                                            <iframe id='iframe' src='{$api}{$dataDefault['file_path']}/{$dataDefault['file_name']}&amp;wdStartOn=1' width='100%' height='500px' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
+                                        ";
+                                        if($type == "doc" || $type == 'docx'){
+                                            echo "<div id='#myFrame' style='    background: #ffffff; position: absolute; bottom: 12px; height: 16px; width: 28%;    right: 28px;'></div>";
+                                        }else if($type == "xls" || $type == 'xlsx'){
+                                            echo "<div id='#myFrame' style='    background: url(https://c1-excel-15.cdn.office.net:443/x/s/161090431876__layouts/Resources/ewaembed.png); position: absolute; bottom: 12px; height: 25px; width: 28%;    right: 28px;'></div>";
+                                        }else{
+                                            echo "<div id='#myFrame' style='    background: #444444; position: absolute; bottom: 12px; height: 20px; width: 28%;    right: 28px;'></div>";
+                                        } 
+                                        $this->registerJs("
+                                            function convertToPDF(){
+                                                let url='/site/doc-to-pdf';
+                                                let params={id:'".$dataDefault['id']."'};
+                                                $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                                $.post(url,params, function(data){
+                                                    if(data['status'] == 'success'){
+                                                        let id = data['data']['id'];
+                                                        let path = data['data']['path'];
+                                                        let sql = data['data']['sql'];
+                                                        convert(id, path);
+                                                    }
+                                                }); 
                                             }
-                                        }); 
-                                    }
-                                    function convert(id, path){
-                                        let url='/site/create-file';
-                                        let params={id:id, path:path};
-                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
-                                        $.post(url,params, function(data){
-                                            if(data['status'] == 'success'){
-                                                view();
+                                            function convert(id, path){
+                                                let url='/site/create-file';
+                                                let params={id:id, path:path};
+                                                $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                                $.post(url,params, function(data){
+                                                    if(data['status'] == 'success'){
+                                                        view();
+                                                    }
+                                                });
                                             }
-                                        });
-                                    }
-                                    function view(){
-                                        let url='/site/view-file';
-                                        let params={id:'".$dataDefault['id']."'};
-                                        $.post(url,params, function(data){
-                                            $('#preview-file').html(data);
-                                        });
-                                    } 
-                                    view();
-                                    //convertToPDF();
-                                     
-                                ");
-                            }else if($type == 'pdf'){
-                                $this->registerJs("
-                                    function convert(){
-                                        let url='/site/create-file';
-                                        let params={id:'".$dataDefault['id']."'};
-                                        $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
-                                        $.post(url,params, function(data){
-                                            if(data['status'] == 'success'){
-                                                view();
+                                            function view(){
+                                                let url='/site/view-file';
+                                                let params={id:'".$dataDefault['id']."'};
+                                                $.post(url,params, function(data){
+                                                    $('#preview-file').html(data);
+                                                });
+                                            } 
+                                            view();
+                                            //convertToPDF();
+
+                                        ");
+                                    }else if($type == 'pdf'){
+                                        $this->registerJs("
+                                            function convert(){
+                                                let url='/site/create-file';
+                                                let params={id:'".$dataDefault['id']."'};
+                                                $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
+                                                $.post(url,params, function(data){
+                                                    if(data['status'] == 'success'){
+                                                        view();
+                                                    }
+                                                });
                                             }
-                                        });
+                                            function view(){
+                                                let url='/site/view-file';
+                                                let params={id:'".$dataDefault['id']."'};
+                                                $.post(url,params, function(data){
+                                                    $('#preview-file').html(data);
+                                                });
+                                            } 
+                                            view();
+                                            //convert();
+                                        ");
                                     }
-                                    function view(){
-                                        let url='/site/view-file';
-                                        let params={id:'".$dataDefault['id']."'};
-                                        $.post(url,params, function(data){
-                                            $('#preview-file').html(data);
-                                        });
-                                    } 
-                                    view();
-                                    //convert();
-                                ");
-                            }
-                            
-                           
-                        }
-                        ?>
+
+
+                                }
+                                ?>
+                       <?php endif; ?>
+                        
+                        
                     </div>
                 </div>
             </div> 
