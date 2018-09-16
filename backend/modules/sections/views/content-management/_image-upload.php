@@ -22,7 +22,7 @@ $image = '';
                 
                 <div id="div-upload-file">
 
-                    <?= Html::fileInput('upload_input', null, ['id' => 'upload-input', 'class' => '']) ?>                      
+                    <?= Html::fileInput('upload_input', null, ['id' => 'upload-input', 'class' => '','accept' => 'image/*']) ?>                      
                 </div>
             </div>
         </div>
