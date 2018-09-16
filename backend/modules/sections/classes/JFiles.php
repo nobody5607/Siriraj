@@ -180,9 +180,7 @@ class JFiles {
             exec("stat {$filePath}.{$file->extension}", $des1);
             exec("file {$filePath}.{$file->extension}", $des2); 
             $output['detai']= \yii\helpers\Json::encode($des1).\yii\helpers\Json::encode($des2);
-             
-
-            return $output;
+              
             if($file){
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
@@ -199,6 +197,7 @@ class JFiles {
             }
             $output['type'] = $file->extension;            
         }
+        \appxq\sdii\utils\VarDumper::dump($output);
         return $output;
     }
     //pptx to ppt
