@@ -47,24 +47,28 @@ $actionID = Yii::$app->controller->action->id;
                     'url' => ['/slideimg'],
                     'icon' => '<i class="fa fa-picture-o"></i> ',
                     'visible' => Yii::$app->user->can('administrator'),
+                    'active' => ($controllerID == 'slideimg') ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Themes Frontend'),
                     'url' => ['/theme'],
                     'icon' => '<i class="fa fa-rocket"></i> ',
                     'visible' => Yii::$app->user->can('administrator'),
+                    'active' => ($controllerID == 'theme') ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Website Traffic Statistics'),
                     'url' => ['/viewcountermanagement/view-count'],
                     'icon' => '<i class="fa fa-eye"></i>',
                     'visible' => Yii::$app->user->can('administrator'),
+                    'active' => ($moduleID=='viewcountermanagement' && $controllerID == 'view-count'&&  $actionID=="index") ? TRUE : FALSE,
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Report Downlaod'),
                     'url' => ['/viewcountermanagement/view-count/report-download'],
                     'icon' => '<i class="fa fa-cloud-download"></i>',
                     'visible' => Yii::$app->user->can('administrator'),
+                    'active' => ($moduleID=='viewcountermanagement' && $controllerID == 'view-count' &&  $actionID=="report-download") ? TRUE : FALSE,   
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Templates'),
@@ -109,14 +113,17 @@ $actionID = Yii::$app->controller->action->id;
                             'url' => ['/site/template-about'],
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
                             'visible' => Yii::$app->user->can('administrator'),
-                            'active' => ($moduleID == 'template' && $controllerID == 'site' && $actionID == "template-about") ? TRUE : FALSE,
+                             'active' => ($controllerID == 'site' && $actionID == "template-about") ? TRUE : FALSE,
+                              
                         ], [
                             'label' => Yii::t('appmenu', 'Contact Us'),
                             'url' => ['/site/template-contact'],
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'active' => ($controllerID == 'site' && $actionID == "template-contact") ? TRUE : FALSE,
                             'visible' => Yii::$app->user->can('administrator'),
                         ]
                     ],
+                   
                 ],
                 [
                     'label' => Yii::t('appmenu', 'Authentication'),

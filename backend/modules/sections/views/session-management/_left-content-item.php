@@ -11,7 +11,7 @@
     <div class="flex-2">
         <?php 
             $url = "/sections/session-management?id={$model['id']}";
-            $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 13);
+            $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 25);
          
             echo Html::a("<img src='{$model['icon']}' style='width:50px;' class='img img-rounded'> {$name_str}", $url, ['title'=>$model['name']]);
         ?>         
@@ -53,11 +53,13 @@
         flex-grow: 2;
     }
     .flex-drag{
-        margin-right:5px;
+        margin-right:10px;
+        line-height: 45px;
     }
     .flex-container:hover{
         background: #dddde2;
         border-radius: 3px;        
+        font-size: 12pt;
     }
     .flex-2 a{
         display: block;     

@@ -32,13 +32,17 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
                     <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                    <div class="col-md-12">
+                        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                    </div>
                 </div>
                 <div class="col-md-2" style="display:none;">
-                    <?php
+                    <div class="col-md-2">
+                        <?php
                         $model->public = ($model->public != '') ? $model->public : 1;
                         echo $form->field($model, 'public')->inline()->radioList(['1' => Yii::t('section', 'Yes'), '2' => Yii::t('section', 'No')])
                         ?>
+                    </div>
                 </div>
             </div>
             <div class="clearfix" style="display:none;">
@@ -51,7 +55,9 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
             </div> 
             
             <div class="col-md-12">
-                <?php  echo $form->field($model, 'detail')->textarea(['rows'=>'6']);?>
+                <div class="col-md-12">
+                    <?php  echo $form->field($model, 'detail')->textarea(['rows'=>'6']);?>
+                </div>
             </div>
 
             

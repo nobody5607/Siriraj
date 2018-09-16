@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    [
 		'class' => 'appxq\sdii\widgets\ActionColumn',
 		'contentOptions' => ['style'=>'width:80px;text-align: center;'],
-		'template' => '{view} {update} {delete}',
+		'template' => '{update} {delete}',
 	    ],
         ],
     ]); ?>
