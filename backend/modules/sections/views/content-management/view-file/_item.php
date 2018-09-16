@@ -27,7 +27,7 @@
         }else if($model['file_type'] == '3'){
              
             if(isset($model['file_thumbnail'])){
-                echo "<img src='${$model['file_thumbnail']}'>";
+                echo "<img src='{$model['file_thumbnail']}'>";
             }else{
                 echo "            
                     <div style='font-size: 50pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
