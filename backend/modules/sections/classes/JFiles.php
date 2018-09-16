@@ -197,7 +197,7 @@ class JFiles {
             }
             $output['type'] = $file->extension;            
         }
-        \appxq\sdii\utils\VarDumper::dump($output);
+        
         return $output;
     }
     //pptx to ppt
