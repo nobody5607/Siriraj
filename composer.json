@@ -57,7 +57,8 @@
         "2amigos/yii2-chartjs-widget": "~2.0",
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "lesha724/yii2-document-viewer": "*",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "phpoffice/phpexcel": "1.8.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

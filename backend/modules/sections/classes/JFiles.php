@@ -202,9 +202,13 @@ class JFiles {
                             $description = self::Doc2Docx($path, $fileName, $file);
                             $output['description'] = $description; 
                         }
+                    }else if($type == "xlsx" || $type == "xls"){ 
+                        $description =  self::Excel2Text("{$filePath}.{$file->extension}");
+                        $output['description'] = $description; 
+                    }else{
+                        $output['description'] = "";
                     }
-                    
-                    
+                     
                     self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
                 } else {
                     self::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
@@ -243,8 +247,30 @@ class JFiles {
         return $description;
         
     }
-    
-    
+    public static function Excel2Text($file) {
+        try{
+           // $file = Yii::getAlias('@webroot').'/'.$model->uploadPath.'/'.$model->file;
+            $inputFile = \PHPExcel_IOFactory::identify($file);
+            $objReader = \PHPExcel_IOFactory::createReader($inputFile);
+            $objPHPExcel = $objReader->load($file);
+        }catch (Exception $e){
+            Yii::$app->session->addFlash('error', 'เกิดข้อผิดพลาด'. $e->getMessage());
+        }
+
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+
+        $objWorksheet = $objPHPExcel->getActiveSheet();
+
+        foreach($objWorksheet->getRowIterator() as $rowIndex => $row){
+            $arr[] = $objWorksheet->rangeToArray('A'.$rowIndex.':'.$highestColumn.$rowIndex);
+        }
+        $arr = \yii\helpers\Json::encode($arr);
+        return $arr;
+    }
+     
+
     public static function PptToPptx($path, $fileName, $file) {
         $type = "{$file->extension}";
         set_time_limit(1200);
