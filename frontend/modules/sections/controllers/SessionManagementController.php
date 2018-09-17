@@ -81,7 +81,7 @@ class SessionManagementController extends Controller
     }
     public function actionGetKeywordSearch(){
         $term    = Yii::$app->request->get('term', '');
-        $keyword =  \common\models\KeywordSearch::find()->where('word like :word', [':word'=>"%{$term}%"])->all();
+        $keyword =  \common\models\KeywordSearch::find()->where('word like :word', [':word'=>"%{$term}%"])->limit('20')->all();
         $output  = [];
         foreach($keyword as $k=>$v){
             $output[$k] = ['label'=>$v['word'], 'value'=>$v['word']];

@@ -99,12 +99,12 @@
     
     .logo a {
         color: <?= $color_logo_text?>;
-        font-size: 20pt;
+        font-size: 18pt;
         line-height: 30px;
         font-family: sans-serif;
     }
     .txt-logo-en{
-        font-size: 16pt;
+        font-size: 14pt;
     }  
     .input-group-addon {
         padding: 8px 15px;
