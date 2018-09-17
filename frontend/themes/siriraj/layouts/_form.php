@@ -1,4 +1,9 @@
 <?php ?>
+<?php 
+   $controllerID = Yii::$app->controller->id ;
+   $actionID = Yii::$app->controller->action->id;
+   //\appxq\sdii\utils\VarDumper::dump($actionID);
+?>
 <div class="categorie-search-box">
     <form id="formSearch" class='ui-widget'>
         <div class="form-group">
@@ -40,6 +45,14 @@
       minLength: 2,
       select: function( event, ui ) {
         //log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+        let url = "/sections/session-management/search?type_id="+0+"&txtsearch="+ui.item.value;
+        let actionID = "<?= $actionID?>";
+        
+        if(actionID == "search"){
+           window.open(url,'_parent');
+        }else{
+            window.open(url,'_blank');  
+        }
       }
     } );
      
