@@ -190,7 +190,12 @@ class JFiles {
                         $description = self::Pptx2Text($path, $fileName, $file);
                         $output['description'] = $description;
                         self::PptxToPpt($path, $fileName, $file);
+                    }else if($type == "ppt"){
+                        $description = self::PptToPptx($path, $fileName, $file);
+                        $output['description'] = $description; 
                     }
+                    
+                    
                     self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
                 } else {
                     self::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
@@ -201,8 +206,21 @@ class JFiles {
 
         return $output;
     }
-    public static function Pptx2Text($path, $fileName, $file){
+    public static function PptToPptx($path, $fileName, $file) {
         $type = "{$file->extension}";
+        set_time_limit(1200);
+        $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pptx {$path}/{$fileName}.{$type} --outdir {$path}";
+        exec($sql, $output, $return_var); 
+        $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
+        $description = self::Pptx2Text($path, $fileName, $file, 'pptx');
+        return $description;
+    }
+    public static function Pptx2Text($path, $fileName, $file, $type=""){        
+        if($type != ""){
+            $type = $type;
+        }else{
+            $type = "{$file->extension}";
+        }
         $sql="/usr/bin/pptx2text {$path}/{$fileName}.{$type}";
         exec($sql, $output);
         return \yii\helpers\Json::encode($output);
