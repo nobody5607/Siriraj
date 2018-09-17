@@ -1,5 +1,6 @@
-<?php
-    $this->title = "Request Form";
+<?php 
+    $this->title = Yii::t('_app', 'Request information');
+    $this->params['breadcrumbs'][] = $this->title;
     use yii\helpers\Html;
     $template =  backend\modules\cores\classes\CoreOption::getParams('form_request');     
 ?>

@@ -1,5 +1,6 @@
 <?php 
     $this->title = Yii::t('template','Water mark video template');   
+    $this->params['breadcrumbs'][] = $this->title;
     use yii\widgets\Pjax;
 ?>
 <?php 

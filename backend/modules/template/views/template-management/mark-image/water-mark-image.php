@@ -1,5 +1,6 @@
 <?php 
-    $this->title = Yii::t('template','Water mark image template');   
+    $this->title = Yii::t('_app','Water mark image template');    
+    $this->params['breadcrumbs'][] = $this->title;
     use yii\widgets\Pjax;
 ?>
 <?php 

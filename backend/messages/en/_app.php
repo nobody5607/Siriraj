@@ -10,4 +10,7 @@ return [
     'Total'=>'Total',
     'Report Download'=>'Report Download',
     'Dashboard'=>'Dashboard',
+    'Water mark image template'=>'Water mark image template',
+    'Water mark video template'=>'Water mark video template',
+    'Example Data'=>'Example Data',
 ];

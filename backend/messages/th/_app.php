@@ -10,4 +10,7 @@ return [
     'Total'=>'รวม',
     'Report Download'=>'รายงานการดาวน์โหลดข้อมูล',
     'Dashboard'=>'แผงควบคุม',
+    'Water mark image template'=>'เทมเพลทลายน้ำรูปภาพ',
+    'Water mark video template'=>'เทมเพลทลายน้ำวีดีโอ',
+    'Example Data'=>'ตัวอย่างข้อมูล',
 ];

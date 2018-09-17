@@ -5,6 +5,7 @@
     <div class="col-md-12">
         <div class="pull-right">
             <a href="/theme" class="btn btn-success btn-sm" title="<?= Yii::t('appmenu','Themes Frontend')?>"><i class="fa fa-rocket"></i></a>
+            <a href="/slideimg" class="btn btn-warning btn-sm" title="<?= Yii::t('appmenu','Slider Image')?>"><i class="fa fa-picture-o"></i></a>
             <a href="/sections/session-management" class="btn btn-info btn-sm" title="<?= Yii::t('appmenu','Section Management')?>"><i class="fa fa-folder"></i></a>
         </div>
     </div>

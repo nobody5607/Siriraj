@@ -11,7 +11,7 @@ use appxq\sdii\helpers\SDHtml;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('appmenu', 'Example Data');
+$this->title = Yii::t('_app', 'Example Data');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

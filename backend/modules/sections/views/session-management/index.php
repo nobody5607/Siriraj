@@ -2,13 +2,16 @@
     use yii\bootstrap\Html;    
     \janpan\jn\assets\ListdataAsset::register($this);
     \janpan\jn\assets\EzfToolAsset::register($this);
-    $this->title= Yii::t('section',$title);    
+    
+    $this->title= Yii::t('section', ($title != "") ? $title : Yii::t('appmenu', 'Section Management'));   
+    
     if($breadcrumb){
        foreach($breadcrumb as $b){
         $this->params['breadcrumbs'][] = $b;  
       } 
     }else{
-       // $this->params['breadcrumbs'][]=$this->title;
+       //$this->title = Yii::t('section', 'Slider Image');
+       $this->params['breadcrumbs'][] = $this->title;
     }
 ?> 
    

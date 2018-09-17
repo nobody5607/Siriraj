@@ -5,8 +5,10 @@ use yii\bootstrap\ActiveForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
 use kartik\color\ColorInput; 
+  
  
- $this->title = "Themes";
+ $this->title = Yii::t('_app', 'Themes');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="box box-primary">

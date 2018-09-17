@@ -12,8 +12,10 @@ use appxq\sdii\helpers\SDHtml;
 /* @var $searchModel backend\modules\viewcountermanagement\models\ViewSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('content', 'สถิติการเข้าใช้งาน');
+$this->title = Yii::t('_app', 'Traffic statistics');
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 
 <div class="box box-primary">
