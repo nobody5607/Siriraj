@@ -3,11 +3,17 @@
 ?>
 <div class="row" style="margin-bottom:10px;">
     <div class="col-md-12">
-        <div class="pull-right">
-            <a href="/theme" class="btn btn-success btn-sm" title="<?= Yii::t('appmenu','Themes Frontend')?>"><i class="fa fa-rocket"></i></a>
-            <a href="/slideimg" class="btn btn-warning btn-sm" title="<?= Yii::t('appmenu','Slider Image')?>"><i class="fa fa-picture-o"></i></a>
-            <a href="/sections/session-management" class="btn btn-info btn-sm" title="<?= Yii::t('appmenu','Section Management')?>"><i class="fa fa-folder"></i></a>
+        <div class="pull-left">
+            <a href="/theme" class="btn btn-success btn-md" title="<?= Yii::t('appmenu','Themes Frontend')?>"><i class="fa fa-rocket"></i> <?= Yii::t('appmenu','Themes Frontend')?></a>
+            <a href="/slideimg" class="btn btn-warning btn-md" title="<?= Yii::t('appmenu','Slider Image')?>"><i class="fa fa-sliders"></i> <?= Yii::t('appmenu','Slider Image')?></a>
+            <a href="/example-data" class="btn btn-info btn-md" title="<?= Yii::t('_app','Example Data')?>"><i class="fa fa-table"></i> <?= Yii::t('_app','Example Data')?></a>
+         
+            <a href="/template/template-management/form-request" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Request information')?>"><i class="fa fa-files-o"></i> <?= Yii::t('_app', 'Request information')?></a>
+            <a href="/template/template-management/water-mark-image" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark image template')?>"><i class="fa fa-picture-o"></i> <?= Yii::t('_app', 'Water mark image template')?></a>
+            <a href="/template/template-management/water-mark-video" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark video template')?>"><i class="fa fa-file-video-o"></i> <?= Yii::t('_app', 'Water mark video template')?></a>
+         
         </div>
+            
     </div>
 </div>
 <div class="row">

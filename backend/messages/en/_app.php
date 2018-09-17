@@ -13,4 +13,5 @@ return [
     'Water mark image template'=>'Water mark image template',
     'Water mark video template'=>'Water mark video template',
     'Example Data'=>'Example Data',
+    'Themes'=>'Themes',
 ];
