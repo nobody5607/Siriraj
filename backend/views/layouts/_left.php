@@ -15,7 +15,14 @@ $actionID = Yii::$app->controller->action->id;
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => [ 
+            'items' => [
+                [
+                    'label' => Yii::t('_app', 'Dashboard'),
+                    'url' => ['/'],
+                    'icon' => '<i class="fa fa-tachometer"></i>',
+                    'active' => ($controllerID == 'site' && $actionID=="index") ? TRUE : FALSE,
+                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
+                ], 
                 [
                     'label' => Yii::t('appmenu', 'Section Management'),
                     'url' => ['/sections/session-management'],
@@ -64,7 +71,7 @@ $actionID = Yii::$app->controller->action->id;
                     'active' => ($moduleID=='viewcountermanagement' && $controllerID == 'view-count'&&  $actionID=="index") ? TRUE : FALSE,
                 ],
                 [
-                    'label' => Yii::t('appmenu', 'Report Downlaod'),
+                    'label' => Yii::t('_app', 'Report Download'),
                     'url' => ['/viewcountermanagement/view-count/report-download'],
                     'icon' => '<i class="fa fa-cloud-download"></i>',
                     'visible' => Yii::$app->user->can('administrator'),

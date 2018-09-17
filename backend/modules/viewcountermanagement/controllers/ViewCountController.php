@@ -95,16 +95,27 @@ class ViewCountController extends Controller
             $output .= "<div class='table-responsive'>";
             $output .= "<table class='table table-bordered table-responsive'>";
             $output .= "<thead><tr><th>".Yii::t('section', 'Month')."</th><th style='width:150px;text-align:center;'>".Yii::t('section','Number of visitors/Person')."</th></tr></thead>";
+            $total = 0;
             foreach($labelFull as $k=>$v){  
                 $k=$k+1;
+                $total += $data["m{$k}"];
                 $output .= "
                     <tr>
                         <td>{$v}</td>
                         <td class='text-center'>{$data["m{$k}"]}</td>
                     </tr>                     
-                ";
-                
+                "; 
             }
+            $output .= "<tfoot>";
+                $output .= "<tr>";
+                    $output .= "<td style='font-weight: bold;'>";
+                        $output .= \Yii::t('_app', 'Total');
+                    $output .= "</td>";
+                    $output .= "<td class='text-center;' style='font-weight: bold;text-align:center'>";
+                        $output .= $total;
+                    $output .= "</td>";
+                $output .= "</tr>";
+            $output .= "</tfoot>";
             $output .= "</table>";
             $output .= "</div>";
         }else{
@@ -158,7 +169,7 @@ class ViewCountController extends Controller
                     MONTH(t.create_at) as months, 
                     YEAR(t.create_at) as years, 
                     SUM(t.count) as counts,
-                                t.create_at
+                    t.create_at
                 FROM report_download as t 
                 WHERE YEAR(t.create_at) = '{$year}'
                 GROUP BY   t.user_id ,MONTH(t.create_at)";

@@ -46,7 +46,7 @@ class SiteController extends Controller
     
     public function actionIndex()
     {
-        //return $this->redirect(['/sections/section']);
+       
         return $this->render('index');
     }
     public function actionAbout()

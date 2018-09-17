@@ -17,7 +17,7 @@ return [
     'Delete'=>'ลบ',
     'Email'=>'อีเมล์',
     'Send'=>'ส่ง',
-    'Order Detail'=>'รายละเอียดการสั่งซื้อห',
+    'Order Detail'=>'รายละเอียดคำร้อง',
     
     'Quantity'=>'จำนวน',
     'Description'=>'ลักษณะ',

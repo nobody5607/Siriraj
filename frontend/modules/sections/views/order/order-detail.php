@@ -40,32 +40,7 @@
                           return $name;
                         }
                     ],
-                    [
-                        'format'=>'raw',
-                        'label'=> Yii::t('order','Meta text'),
-                        'value'=>function($model){
-                          $meta_file="";
-                          if($model->files){
-                              $meta_text = appxq\sdii\utils\SDUtility::string2Array($model->files->meta_text);
-                              $mb = round(($meta_text['size']/1024)/1024);
-                              $meta_file = "<div class='label label-default'>
-                                          <label>". Yii::t('file', 'Type')." : {$meta_text['type']}</label> &nbsp;&nbsp;
-                                          <label>". Yii::t('file', 'Size')." : {$mb} Mb</label>
-                                      </div>";
-                          }
-                          
-                          
-                          
-                          return $meta_file;
-                        }
-                    ],
-                    [
-                        'label'=> Yii::t('order','Description'),
-                        'value'=>function($model){
-                            $description = isset($model->files) ? $model->files->description : '';
-                          return $description;
-                        }
-                    ],         
+                         
                     [
                         'contentOptions'=>['style'=>'width:50px;'],
                         'attribute'=>'size',

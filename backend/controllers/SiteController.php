@@ -68,8 +68,17 @@ class SiteController extends Controller
     }   
     public function actionIndex()
     {
-        
-       return $this->render('index');
+       $file = \common\models\Files::find()->all();
+       $order = \common\models\Order::find()->all();
+       $user = \common\models\User::find()->all();
+       $year = date('Y');
+       $view = \common\models\View::find()->where('YEAR(date) = :date', [':date'=>"{$year}"])->all();
+       return $this->render('index',[
+           'file'=>$file,
+           'order'=>$order,
+           'user'=>$user,
+           'view'=>$view
+       ]);
     }
     public function beforeAction($action)
     {
