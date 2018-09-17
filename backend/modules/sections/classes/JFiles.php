@@ -223,9 +223,13 @@ class JFiles {
         }
         $sql="/usr/bin/docx2txt {$path}/{$fileName}.{$type}";
         exec($sql, $o);        
-        $sql="cat {$path}/{$fileName}.txt";
-        exec($sql, $output);
-        return \yii\helpers\Json::encode($output);
+       
+        $str = "";
+        $data=file("{$path}/{$fileName}.txt");  // ข้อมูลที่ได้จากการใช้ Function file() จะได้ออกมาเป็น Array แต่ละบัีนทัดข้อมูลที่เก็บใน File คือ 1 ค่า index ของ Array
+        for($i=0;$i<count($data);$i++){  // วนรอบเพื่อแสดงผลขอ้มูล
+            $str .= $data[$i];
+        }  
+        return $str;
          
     }
     
