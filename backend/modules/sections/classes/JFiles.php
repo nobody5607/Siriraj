@@ -250,7 +250,7 @@ class JFiles {
         set_time_limit(1200);
         $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pptx {$path}/{$fileName}.{$type} --outdir {$path}";
         exec($sql, $output, $return_var); 
-        $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
+        //$result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
         $description = self::Pptx2Text($path, $fileName, $file, 'pptx');
         return $description;
     }
