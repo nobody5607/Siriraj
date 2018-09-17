@@ -199,7 +199,8 @@ class JFiles {
                             $description = self::Docx2Text($path, $fileName, $file);
                             $output['description'] = $description;
                         }else{
-                            
+                            $description = self::Doc2Docx($path, $fileName, $file);
+                            $output['description'] = $description; 
                         }
                     }
                     
@@ -214,15 +215,6 @@ class JFiles {
 
         return $output;
     }
-    public static function PptToPptx($path, $fileName, $file) {
-        $type = "{$file->extension}";
-        set_time_limit(1200);
-        $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pptx {$path}/{$fileName}.{$type} --outdir {$path}";
-        exec($sql, $output, $return_var); 
-        $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
-        $description = self::Pptx2Text($path, $fileName, $file, 'pptx');
-        return $description;
-    }
     public static function Docx2Text($path, $fileName, $file, $type=""){        
         if($type != ""){
             $type = $type;
@@ -236,6 +228,28 @@ class JFiles {
         return \yii\helpers\Json::encode($output);
          
     }
+    
+    public static function Doc2Docx($path, $fileName, $file) {
+        $type = "{$file->extension}";
+        set_time_limit(1200);
+        $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to docx {$path}/{$fileName}.{$type} --outdir {$path}";
+        exec($sql, $output, $return_var); 
+        $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
+        $description = self::Doc2Docx($path, $fileName, $file, 'docx');
+        return $description;
+    }
+    
+    
+    public static function PptToPptx($path, $fileName, $file) {
+        $type = "{$file->extension}";
+        set_time_limit(1200);
+        $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pptx {$path}/{$fileName}.{$type} --outdir {$path}";
+        exec($sql, $output, $return_var); 
+        $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
+        $description = self::Pptx2Text($path, $fileName, $file, 'pptx');
+        return $description;
+    }
+    
     public static function Pptx2Text($path, $fileName, $file, $type=""){        
         if($type != ""){
             $type = $type;
