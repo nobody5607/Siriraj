@@ -283,6 +283,7 @@ class FileManagementController extends Controller
                             $fileNames = "{$realFileName}_mark.{$obj['type']}";
                             $file_view = "{$realFileName}_preview.jpg";
                             $detail_meta =  "{$obj['detai']}";
+                            $description = "";
                         }else if($fileType[0] === 'video' || in_array(end($fileNameArr), $objType)){
                              
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
@@ -296,6 +297,7 @@ class FileManagementController extends Controller
                            
                            $file_view = $fileNames;
                            $detail_meta =  "{$obj['detai']}";
+                           $description = "";
                             
                         }else if($fileType[0] === 'application' && !in_array(end($fileNameArr), $objType)){//docx pdf 
                              
@@ -303,12 +305,14 @@ class FileManagementController extends Controller
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames;
                            $detail_meta =  "{$obj['detai']}";
+                           $description = isset($obj['description']) ? $obj['description'] : '';
                            //\appxq\sdii\utils\VarDumper::dump($fileName);
                         }else if($fileType[0] === 'audio'){ 
                            $obj = \backend\modules\sections\classes\JFiles::uploadAudio($file,$filePath);
                            $fileNames = "{$realFileName}.{$obj['type']}";
                            $file_view = $fileNames; 
                            $detail_meta =  "{$obj['detai']}";
+                           $description = "";
                         }else{
                             $obj = \backend\modules\sections\classes\JFiles::uploadDocx($file,$filePath);
                             //\appxq\sdii\utils\VarDumper::dump($obj);
@@ -316,10 +320,11 @@ class FileManagementController extends Controller
                             $detail_meta =  "{$obj['detai']}";
                             $file_view = $fileNames;
                             $detail_meta =  "{$obj['detai']}";
+                            $description = isset($obj['description']) ? $obj['description'] : '';
                             
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta);
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta,$description);
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

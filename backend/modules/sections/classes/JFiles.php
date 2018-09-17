@@ -25,7 +25,7 @@ class JFiles {
      * @param type $defaultFile default filename
      * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "") {
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "", $description="") {
         try {
             $meta = [];
             if (!empty($file->type)) {
@@ -52,6 +52,7 @@ class JFiles {
             $files->dir_path = $dir_path;
             $files->file_view = $file_view;
             $files->detail_meta = $detail_meta;
+            $files->description = $description;
             if ($files->save()) {
                 return true;
             } else {
@@ -186,7 +187,8 @@ class JFiles {
                 if ($type != "pdf") {
                     if ($type == "pptx") {
                         //pptx
-                        self::Pptx2Text($path, $fileName, $file);
+                        $description = self::Pptx2Text($path, $fileName, $file);
+                        $output['description'] = $description;
                         self::PptxToPpt($path, $fileName, $file);
                     }
                     self::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
@@ -203,7 +205,8 @@ class JFiles {
         $type = "{$file->extension}";
         $sql="/usr/bin/pptx2text {$path}/{$fileName}.{$type}";
         exec($sql, $output);
-        \appxq\sdii\utils\VarDumper::dump($output);
+        return \yii\helpers\Json::encode($output);
+         
     }
 
     //pptx to ppt
