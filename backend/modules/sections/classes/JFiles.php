@@ -235,8 +235,9 @@ class JFiles {
         $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to docx {$path}/{$fileName}.{$type} --outdir {$path}";
         exec($sql, $output, $return_var); 
         //$result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
-        $description = self::Doc2Docx($path, $fileName, $file, 'docx');
+        $description = self::Docx2Text($path, $fileName, $file, 'docx');
         return $description;
+        
     }
     
     
