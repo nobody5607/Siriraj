@@ -185,14 +185,22 @@ class JFiles {
                 $fileNameArr = explode(".", $file->name);
                 $type = end($fileNameArr);
                 if ($type != "pdf") {
-                    if ($type == "pptx") {
-                        //pptx
-                        $description = self::Pptx2Text($path, $fileName, $file);
-                        $output['description'] = $description;
-                        self::PptxToPpt($path, $fileName, $file);
-                    }else if($type == "ppt"){
-                        $description = self::PptToPptx($path, $fileName, $file);
-                        $output['description'] = $description; 
+                    if ($type == "pptx" || $type == "ppt") {
+                        if($type == "pptx"){
+                            $description = self::Pptx2Text($path, $fileName, $file);
+                            $output['description'] = $description;
+                            self::PptxToPpt($path, $fileName, $file);
+                        }else{
+                            $description = self::PptToPptx($path, $fileName, $file);
+                            $output['description'] = $description; 
+                        }
+                    }else if($type == "docx" || $type == "doc"){
+                        if($type == "docx"){
+                            $description = self::Docx2Text($path, $fileName, $file);
+                            $output['description'] = $description;
+                        }else{
+                            
+                        }
                     }
                     
                     
@@ -214,6 +222,17 @@ class JFiles {
         $result = exec("catppt {$path}/{$fileName}.ptt", $detail); 
         $description = self::Pptx2Text($path, $fileName, $file, 'pptx');
         return $description;
+    }
+    public static function Docx2Text($path, $fileName, $file, $type=""){        
+        if($type != ""){
+            $type = $type;
+        }else{
+            $type = "{$file->extension}";
+        }
+        $sql="/usr/bin/docx2txt {$path}/{$fileName}.{$type}";
+        exec($sql, $output);
+        return \yii\helpers\Json::encode($output);
+         
     }
     public static function Pptx2Text($path, $fileName, $file, $type=""){        
         if($type != ""){
