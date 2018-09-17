@@ -87,6 +87,9 @@ class ViewCountController extends Controller
               FROM tbl_view limit 1
             ";
             $data = Yii::$app->db->createCommand($sql)->queryOne();
+             if(!$data){
+                return "<div class='alert alert-danger'>ไม่พบข้อมูล</div>";
+            }
             $datas = [$data['m1'],$data['m2'],$data['m3'],$data['m4'],$data['m5'],$data['m6'],$data['m7'],$data['m8'],$data['m9'],$data['m10'],$data['m11'],$data['m12']];
             $labels = \appxq\sdii\utils\SDdate::getMonthThAll();
             $labelFull = \appxq\sdii\utils\SDdate::getMonthFull();
