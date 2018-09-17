@@ -230,6 +230,8 @@ class JFiles {
             $type = "{$file->extension}";
         }
         $sql="/usr/bin/docx2txt {$path}/{$fileName}.{$type}";
+        exec($sql, $o);        
+        $sql="cat {$path}/{$fileName}.txt";
         exec($sql, $output);
         return \yii\helpers\Json::encode($output);
          
