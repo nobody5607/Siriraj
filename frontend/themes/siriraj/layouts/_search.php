@@ -27,12 +27,12 @@
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="logo mb-all-30">
-                    <a href="/">
+                    
                         <div class='txt-logo'>
-                            <div class="txt-logo-th">คลังความรู้พิพิธภัณฑ์ศิริราช</div>
-                            <div class="txt-logo-en">Siriraj Museum’s Storage</div>
+                            <div class="txt-logo-th"><a href="/">คลังความรู้พิพิธภัณฑ์ศิริราช</a></div>
+                            <div class="txt-logo-en"><a href="/" style="font-size:14pt;">Siriraj Museum’s Storage</a></div>
                         </div> 
-                    </a>
+                    
                 </div>
             </div>           
             
