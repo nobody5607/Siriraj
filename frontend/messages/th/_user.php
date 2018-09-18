@@ -34,7 +34,7 @@ return [
     'User Profile'=>'ข้อมูลส่วนตัว',
     'Image'=>'รูปภาพ',
     'Staff'=>'บุคลากร',
-    'Siriraj members wait 1-2 days for staff approval.'=>'สมาชิกศิริราชรอการอนุมัติพนักงาน 1-2 วันโดยสามารถใช้สิทธิสมาชิกทั่วไป',
+    'Siriraj members wait 1-2 days for staff approval.'=>'สมาชิกศิริราชรอการอนุมัติ 1-2 วันโดยสามารถใช้สิทธิ์สมาชิกทั่วไป',
     'Position'=>'ตำแหน่ง',
     'Approval'=>'อนุมัติแล้ว',
     'Pending'=>'รอดำเนินการ',
