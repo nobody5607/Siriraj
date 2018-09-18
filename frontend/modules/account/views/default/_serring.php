@@ -18,10 +18,8 @@ echo yii\bootstrap\Modal::widget([
 ]);
 ?>
 <div class="row"> 
-    <div class="col-md-6">
-        <?= $this->render("_account",['model'=>$user]);?>
-    </div>
-    <div class="col-md-6" style="    border-left: 1px solid #cac9c9;">
+    
+    <div class="col-md-7" style="border-right: 1px solid #cac9c9;">
         <?php
         $form = ActiveForm::begin([
                 'layout' => 'horizontal',
@@ -105,6 +103,9 @@ echo yii\bootstrap\Modal::widget([
             <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-info btn-block btn-lg categorie-search-box button']) ?>
         </div>
 <?php ActiveForm::end() ?>
+    </div>
+    <div class="col-md-5">
+        <?= $this->render("_account",['model'=>$user]);?>
     </div>
 </div>
 
