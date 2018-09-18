@@ -39,7 +39,7 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading"><?= $model['file_name_org']?></h4>
-                  <p><?= backend\modules\sections\classes\JFiles::lengthName($model->description, 150);?></p>  
+                  <p><?= backend\modules\sections\classes\JFiles::lengthName($model->details, 150);?></p>  
                   <?= $meta_file?>
                 </div>
                 
