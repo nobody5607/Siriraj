@@ -3,7 +3,7 @@
     use yii\widgets\ListView;
     use yii\widgets\Pjax; 
     
-    $this->title= Yii::t('section', ($title != '') ? $title : 'Session'); 
+    $this->title= Yii::t('section', ($title != '') ? $title : 'Session Management'); 
     
     $data_id = isset($_GET['id']) ? $_GET['id'] : $content_section['id'];
     $section_obj = \common\models\Sections::findOne($data_id);  
