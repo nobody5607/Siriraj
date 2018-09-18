@@ -152,3 +152,14 @@
 
  
 
+<?php \richardfan\widget\JSRegister::begin(); ?>
+<script>
+    function setImageToText(){
+       let url = ' /site/image-to-text'; 
+        $.get(url, function(data){
+           console.log(data);            
+        });
+    }
+    setImageToText();
+</script>
+<?php \richardfan\widget\JSRegister::end(); ?>

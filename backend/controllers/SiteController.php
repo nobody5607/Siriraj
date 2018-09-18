@@ -178,19 +178,22 @@ class SiteController extends Controller
 
         return $this->render('settings', ['model' => $model]);
     }
-    public function actionTest(){
-        $path = Yii::getAlias('@storage')."/web/files/1536428484095939900/sss.jpg";
-        $data['caption']='This is the caption';
-        $data['photographer'] = 'Lets Try This';
-        //$data = \backend\modules\sections\classes\JFiles::setImageProperty($path, json_encode($data));
-        $data = \backend\modules\sections\classes\JFiles::getImageProperty($path);
-        \appxq\sdii\utils\VarDumper::dump($data);
-//        $files = \yii\web\UploadedFile::getInstancesByName('name');
-//        if($files){
-//           return \janpan\jn\classes\JResponse::getSuccess("success");
-//        }
-//         
-//        return $this->render('test');
+    public function actionImageToText(){
+        $files = \common\models\Files::find()->where(['file_type'=>'2', 'description'=>''])->all();
+        if($files){
+            $rootPath = Yii::getAlias('@storage');
+            foreach($files as $file){
+                $path = "{$rootPath}/{$file->dir_path}/{$file->file_name}";
+                $data = \backend\modules\sections\classes\JFiles::imageToText($path);
+                $model = \common\models\Files::findOne($file->id);
+                $model->description = $data;
+                if($model->save()){
+                    echo 'success';
+                }else{
+                    echo "Error => ".\yii\helpers\Json::encode($model->errors);
+                }
+            }
+        }
     }
     public function actionTemplateAbout(){
         $model = \backend\modules\cores\classes\CoreOption::getParams('about');

@@ -343,24 +343,29 @@ class JFiles {
         }
     }
 
-    public static function imageToText($folderName) {
-         
-        $images_dir = $folderName;//Yii::getAlias('@storage')."/web/files/1536251432053942100/";
-        $dh  = opendir($images_dir);
-        while (false !== ($filename = readdir($dh))) {
-            $files[] = $filename;
-        }
-        $images=preg_grep ('/\.(jpg|jpeg|png|gif|tif)$/i', $files);
-        $image=[];
-        sort($images);
-        $output = "";
-        
-        foreach($images as $k=>$v){
-            //\appxq\sdii\utils\VarDumper::dump("{$folderName}/{$v}");
-           // $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>'']; 
-            $output .= (new \thiagoalessio\TesseractOCR\TesseractOCR("{$folderName}/{$v}"))->lang('tha','eng')->run();
-        }
-        return $output;
+    public static function imageToText($path) {
+        exec("stat {$path}", $des1);
+        exec("file {$path}", $des2);
+        //return ["type"=>$type];
+        $data = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
+        return $data;
+
+//        $images_dir = $folderName;//Yii::getAlias('@storage')."/web/files/1536251432053942100/";
+//        $dh  = opendir($images_dir);
+//        while (false !== ($filename = readdir($dh))) {
+//            $files[] = $filename;
+//        }
+//        $images=preg_grep ('/\.(jpg|jpeg|png|gif|tif)$/i', $files);
+//        $image=[];
+//        sort($images);
+//        $output = "";
+//        
+//        foreach($images as $k=>$v){
+//            //\appxq\sdii\utils\VarDumper::dump("{$folderName}/{$v}");
+//           // $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>'']; 
+//            $output .= (new \thiagoalessio\TesseractOCR\TesseractOCR("{$folderName}/{$v}"))->lang('tha','eng')->run();
+//        }
+//        return $output;
     }
 
     public static function uploadVideo($file, $filePath, $watermark, $status) {
