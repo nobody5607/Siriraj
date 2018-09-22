@@ -94,7 +94,8 @@ class SessionManagementController extends Controller
         $txtsearch = Yii::$app->request->get('txtsearch', '');
         $fileType = \common\models\FileType::findOne($type_id);
         $data = \common\models\Files::find();
-        $model = $data->where('description LIKE :description  OR detail_meta LIKE :detail_meta  OR file_name_org LIKE :file_name OR meta_text LIKE :meta_text',[
+        $model = $data->where('details LIKE :details OR description LIKE :description  OR detail_meta LIKE :detail_meta  OR file_name_org LIKE :file_name OR meta_text LIKE :meta_text',[
+            ':details'=>"%{$txtsearch}%",
             ':description'=>"%{$txtsearch}%",
             ':detail_meta'=>"%{$txtsearch}%",
             ':file_name'=>"%{$txtsearch}%",
