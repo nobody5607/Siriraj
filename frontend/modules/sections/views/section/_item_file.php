@@ -74,7 +74,7 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
  <?php                    \appxq\sdii\widgets\CSSRegister::begin()?>
 <style>
     .pro-img img { 
-        height: 180px;
+        
     }
     a, button, a:before {
         color:#1a1a1b;
