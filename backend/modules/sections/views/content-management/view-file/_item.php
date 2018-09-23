@@ -59,7 +59,7 @@
         }else{
             
         }
-        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org']);
+        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'], 25);
         echo "<div>{$name_str}</div>";
     ?>
 </a>
