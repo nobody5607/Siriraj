@@ -8,16 +8,19 @@
     $images_per_row = 3;
      
     $dh  = opendir($images_dir);
-    while (false !== ($filename = readdir($dh))) {
-        $files[] = $filename;
+    if($dh){
+        while (false !== ($filename = readdir($dh))) {
+            $files[] = $filename;
+        }
+        $images=preg_grep ('/\.(jpg|jpeg|png|gif|tif)$/i', $files);
+        $image=[];
+        sort($images);
+        foreach($images as $k=>$v){
+            $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>''];
+            //echo \yii\helpers\Html::img("{$url}/{$v}",['style'=>'width:100px;']);
+        }
     }
-    $images=preg_grep ('/\.(jpg|jpeg|png|gif|tif)$/i', $files);
-    $image=[];
-    sort($images);
-    foreach($images as $k=>$v){
-        $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>''];
-        //echo \yii\helpers\Html::img("{$url}/{$v}",['style'=>'width:100px;']);
-    }
+    
  
 ?>  
 <?php echo \janpan\jn\widgets\SlideTop::widget(['image' => $image])?>
