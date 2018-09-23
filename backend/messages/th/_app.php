@@ -14,4 +14,5 @@ return [
     'Water mark video template'=>'เทมเพลทลายน้ำวีดีโอ',
     'Example Data'=>'ตัวอย่างข้อมูล',
     'Themes'=>'ธีมส์',
+    'All'=>'ทั้งหมด',
 ];

@@ -91,7 +91,7 @@
         <div>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title"><?= Yii::t('_app','Traffic statistics')?> <?= Yii::t('_app','Year')?> <?= date('Y')?></h3> 
+                <h3 class="box-title"><?= Yii::t('_app','Traffic statistics')?> <?= Yii::t('_app','Year')?> <?= date('Y')?>   <a href="/viewcountermanagement/view-count"><?= Yii::t('_app','All')?></a></h3> 
             </div> 
             <div class="box-body" style="">
                 <div id="view-traffic"></div>
@@ -120,7 +120,7 @@
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"><?= Yii::t('_app','Report Download')?> <?= Yii::t('_app','Year')?> <?= date('Y')?></h3> 
+              <h3 class="box-title"><?= Yii::t('_app','Report Download')?> <?= Yii::t('_app','Year')?> <?= date('Y')?> <a href="/viewcountermanagement/view-count/report-download"><?= Yii::t('_app','All')?></a></h3> 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
