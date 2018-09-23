@@ -59,8 +59,8 @@
         }else{
             
         }
-        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'], 25);
-        echo "<div>{$name_str}</div>";
+        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'], 30);
+        echo "<div class='text-center'>{$name_str}</div>";
     ?>
 </a>
 
