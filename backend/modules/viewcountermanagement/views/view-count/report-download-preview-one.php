@@ -13,7 +13,7 @@
 <?php if ($print == '1'): ?>
     <div class="container">
     <?php endif; ?>  
-    <h3 class="text-center">รายงานเรื่องการดาวน์โหลดข้อมูลของ สมาชิกศิริราช และสมาชิกทั่วไปเดือน <?= $month; ?></h3>
+        <h3 class="text-center"><?= Yii::t('_app', 'Report download information of Siriraj members and members.')?> <?= $month; ?></h3>
     <table class="table table-responsive table-bordered">
         <thead>
             <tr> 

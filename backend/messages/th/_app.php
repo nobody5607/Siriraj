@@ -16,4 +16,9 @@ return [
     'Themes'=>'ธีมส์',
     'All'=>'ทั้งหมด',
     'Report download information of Siriraj members and members.'=>'รายงานเรื่องการดาวน์โหลดข้อมูลของสมาชิกศิริราชและสมาชิกทั่วไป',
+    
+    'Name'=>'ชื่อ-สกุล',
+    'Count'=>'จำนวนการดาวน์โหลด',
+    'Date'=>'วันที่ดาวน์โหลด',
+    'User Type'=>'ประเภทผู้ใช้',
 ];
