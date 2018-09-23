@@ -23,7 +23,7 @@
         echo \janpan\jn\widgets\SlideTop::widget(['image' => $image]);
    }else{
        echo "
-            <h2 style='color:#fff;font-size:30pt;'>Please Select File </h2>
+            <h2 style='color: #545151; font-size: 30pt;text-align: center;width: 100%;'>Please Select File </h2>
        ";
    } 
     
