@@ -41,7 +41,7 @@ class SlideTop extends \yii\base\Widget{
         \janpan\jn\assets\slidetop\SlideTopAssets::register($view);
         $js="
             $('.c').jCarousel({
-                type:'slidey-up',
+                type:'slidey-down',
                 carsize: {carwidth:760,carheight:1000},
                  auto: {
                     isauto:false,
