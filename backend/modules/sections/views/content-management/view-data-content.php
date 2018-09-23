@@ -8,7 +8,8 @@
         'id' => 'section-all'        
     ],
     'itemOptions' => function($model) {
-        return ['tag' => 'div','id'=>'img-'.$model['id'], 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 col-xs-4 text-center','style'=>'margin-bottom:80px;height: 100px;'];
+        return ['tag' => 'div','id'=>'img-'.$model['id'], 'data-id' => $model['id'], 
+            'class' => 'col-md-6'];
     },
     'layout' => "{items}\n",
     'itemView' => function ($model, $key, $index, $widget) {
