@@ -15,4 +15,5 @@ return [
     'Example Data'=>'Example Data',
     'Themes'=>'Themes',
     'All'=>'All',
+    'Report download information of Siriraj members and members.'=>'Report download information of Siriraj members and members.',
 ];

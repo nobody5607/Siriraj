@@ -15,4 +15,5 @@ return [
     'Example Data'=>'ตัวอย่างข้อมูล',
     'Themes'=>'ธีมส์',
     'All'=>'ทั้งหมด',
+    'Report download information of Siriraj members and members.'=>'รายงานเรื่องการดาวน์โหลดข้อมูลของสมาชิกศิริราชและสมาชิกทั่วไป',
 ];
