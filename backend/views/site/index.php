@@ -49,7 +49,7 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
         <a href="/viewcountermanagement/view-count" style="text-decoration: none;color:#000;">
         <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+            <span class="info-box-icon bg-red"><i class="fa fa-eye"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text"><?= Yii::t('_app','Traffic statistics')?></span>
