@@ -20,13 +20,16 @@
             $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>''];
             //echo \yii\helpers\Html::img("{$url}/{$v}",['style'=>'width:100px;']);
         }
-    
+        echo \janpan\jn\widgets\SlideTop::widget(['image' => $image]);
+   }else{
+       echo "
+            <h2 style='color:#fff;font-size:30pt;'>Please Select File </h2>
+       ";
    } 
     
     
  
-?>  
-<?php echo \janpan\jn\widgets\SlideTop::widget(['image' => $image])?>
+?>   
 
 
 
