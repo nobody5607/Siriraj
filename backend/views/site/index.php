@@ -124,7 +124,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <div id="report-download" style="    margin-bottom: -125px;"></div>
+                <div id="report-download"></div>
                 <?php \richardfan\widget\JSRegister::begin();?>
                     <script>
                         function getReportDownload(){
