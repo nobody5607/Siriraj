@@ -6,9 +6,10 @@
     $url = $viewPath;//Yii::getAlias('@storageUrl')."/web/files/1536251432053942100/";
     $thumbs_width = 200;
     $images_per_row = 3;
+    
+   if(file_exists($images_dir) && is_dir($images_dir)){
+       $dh  = opendir($images_dir);
      
-    $dh  = opendir($images_dir);
-    if($dh){
         while (false !== ($filename = readdir($dh))) {
             $files[] = $filename;
         }
@@ -19,7 +20,9 @@
             $image[$k] = ['src'=>"{$url}/{$v}", 'content'=>''];
             //echo \yii\helpers\Html::img("{$url}/{$v}",['style'=>'width:100px;']);
         }
-    }
+    
+   } 
+    
     
  
 ?>  
