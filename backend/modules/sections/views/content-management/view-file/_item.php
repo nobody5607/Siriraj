@@ -60,7 +60,7 @@
             
         }
         $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'], 30);
-        echo "<div class='text-center'>{$name_str}</div>";
+        echo "<div title='{$model['file_name_org']}' class='text-center'>{$name_str}</div>";
     ?>
 </a>
 
