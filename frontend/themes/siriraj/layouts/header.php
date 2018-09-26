@@ -63,14 +63,14 @@ use yii\helpers\Html;
         </div>
 <?php if($slide == '1'): ?>
         
-        <div class="slider_box" style="    background: #f3f3f3;">            
+        <div class="slider_box" style="background: #f3f3f3;">            
             <div class='container-fluid'>
                 <?php 
                     $images = \backend\modules\sections\classes\JContent::getImage(); 
                 ?>
                     <div>
                          
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-ride="carousel" data-interval="5000000000" data-pause="hover">
                            
 
                             <!-- Wrapper for slides -->
@@ -120,6 +120,7 @@ use yii\helpers\Html;
                 
             </div>
         </div>
+       
         <?php appxq\sdii\widgets\CSSRegister::begin();?>
         <style>
               .slider_box {
