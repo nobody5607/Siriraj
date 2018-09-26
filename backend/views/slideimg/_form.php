@@ -58,7 +58,7 @@ use appxq\sdii\helpers\SDHtml;
                         ?>
                     </div>
                     <?= $form->field($model, 'url')->textInput() ?> 
-<?= $form->field($model, 'detail')->textarea(['rows' => 6])->label(Yii::t('section', 'Image Name')) ?>
+<?= $form->field($model, 'detail')->textarea(['rows' => 6])->label(Yii::t('section', 'Caption ใต้ภาพ')) ?>
 <?= $form->field($model, 'forder')->textInput()->label(Yii::t('section', 'Order')) ?> 
 
 

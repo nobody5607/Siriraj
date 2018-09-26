@@ -43,7 +43,7 @@ class Slideimg extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('section', 'ID'),
             'name' => Yii::t('section', 'Image Name'),
-            'detail' => Yii::t('section', 'Image Detail'),
+            'detail' => Yii::t('section', 'Caption ใต้ภาพ'),
             'file_path' => Yii::t('section', 'File Path'),
             'view_path'=>Yii::t('section', 'View Path'),
             'forder'=>Yii::t('section', 'Order'),
