@@ -59,8 +59,8 @@
         }else{
             
         }
-        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org']);
-        echo "<div>{$name_str}</div>";
+        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['file_name_org'], 30);
+        echo "<div title='{$model['file_name_org']}' class='text-center'>{$name_str}</div>";
     ?>
 </a>
 
@@ -86,7 +86,7 @@
 <?php \richardfan\widget\JSRegister::begin();?>
 <script>
         $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
+           // $('input:checkbox').not(this).prop('checked', this.checked);
         });//Check All
 </script>
 <?php \richardfan\widget\JSRegister::end();?>

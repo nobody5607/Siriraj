@@ -92,23 +92,26 @@ use yii\helpers\Url;
             ";
         echo "</a>";
     } else if ($model['file_type'] == 5 || $model['file_type'] == 6 || $model['file_type'] == 7) {
-        if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin") || Yii::$app->user->can("users"))) {
+            if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin") || Yii::$app->user->can("users"))) {
+
+                echo "
+                                <div class='row'>
+                                    <div class='col-md-6 col-xs-6 col-sm-6'>
+                                        <label class='container' >
+                                            <input type='checkbox'  class='checkbox' name='check_str' data-id={$model['id']}>
+                                            <span class='checkmark'></span>
+                                        </label>
+                                    </div>
+                                    <div class='col-md-6 col-xs-6 col-sm-6' style='padding-top:5px;'>
+                                        <a title='Download' class='btn btn-sm btn-primary download pull-right' data-type='{$model['file_type']}' data-id='{$model['id']}' data-name='{$model['file_name_org']}' href='#'><i class='fa fa-download'></i></a>
+                                    </div>
+                                </div>
+                                <div class='clearfix'></div>
+                            ";
+            }       
             $fileNameStr = explode(".", $model['file_name']);
+            ///appxq\sdii\utils\VarDumper::dump($fileNameStr);
             $icon = "";
-            echo "
-                            <div class='row'>
-                                <div class='col-md-6 col-xs-6 col-sm-6'>
-                                    <label class='container' >
-                                        <input type='checkbox'  class='checkbox' name='check_str' data-id={$model['id']}>
-                                        <span class='checkmark'></span>
-                                    </label>
-                                </div>
-                                <div class='col-md-6 col-xs-6 col-sm-6' style='padding-top:5px;'>
-                                    <a title='Download' class='btn btn-sm btn-primary download pull-right' data-type='{$model['file_type']}' data-id='{$model['id']}' data-name='{$model['file_name_org']}' href='#'><i class='fa fa-download'></i></a>
-                                </div>
-                            </div>
-                            <div class='clearfix'></div>
-                        ";
             echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";                        
             if ($fileNameStr[1] == 'doc' || $fileNameStr[1] == 'docx') {
                 $icon = "<i class='fa fa-file-word-o'></i>";
@@ -123,9 +126,11 @@ use yii\helpers\Url;
             } else {
                 $icon = "<i class='fa fa-file-archive-o'></i>";
             }
-            echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'>{$icon}</div>";
+                //echo $icon;
+                
+                echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'>{$icon}</div>";
             echo "</a>";
-        }
+         
 //        echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
 //        
 //        echo "</a>";

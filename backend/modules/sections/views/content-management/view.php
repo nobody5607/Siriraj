@@ -53,8 +53,18 @@ $modal = "modal-contents";
                             <?php \richardfan\widget\JSRegister::begin(); ?>
                             <script>
                                 $("#checkAll-<?= $f['id'] ?>").click(function () {
-                                    let id = $(this).attr('data-id');
+                                    let id = $(this).attr('data-id'); 
+                                    //$('#checkAll-' + id + ' input:checkbox').not(this).prop('checked', this.checked);
+                                    
+                                    setTimeout(function(){ 
+                                        $('#checkAll-' + id).prop('checked', true); 
+                                    },100);    
                                     $('#panel-' + id + ' input:checkbox').not(this).prop('checked', this.checked);
+                                    if(this.checked == false){
+                                        setTimeout(function(){ 
+                                        $('#checkAll-' + id).prop('checked', false); 
+                                    },100); 
+                                    }
                                     return false;
                                 });//Check All
 

@@ -14,7 +14,7 @@
 <?php if ($print == '1'): ?>
 <div class="container">
 <?php endif; ?>  
-    <h3 class="text-center" style="margin-bottom:-20px;">รายงานเรื่องการดาวน์โหลดข้อมูลของ สมาชิกศิริราช และสมาชิกทั่วไป</h3>
+    <h3 class="text-center" style="margin-bottom:-120px"><?= Yii::t('_app', 'Report download information of Siriraj members and members.')?> ป</h3>
 <?php foreach ($output as $k => $month): ?>
         <div>
         <?php if ($month['data']): ?>
@@ -24,10 +24,10 @@
                 <thead>
                     <tr>
     <?php if ($month['data']): ?>
-                            <th>ชื่อ-สกุล</th>
-                            <th>จำนวนดาวน์โหลด</th>
-                            <th>วันที่ดาวน์โหลด</th>
-                            <th>ประเภทผู้ใช้</th>
+                        <th><?= Yii::t('_app', 'Name')?></th>
+                        <th><?= Yii::t('app','Count')?></th>
+                        <th><?= Yii::t('_app','Date')?></th>
+                        <th><?= Yii::t('_app','User Type')?></th>
     <?php endif; ?>
                     </tr>
                 </thead>

@@ -32,13 +32,13 @@
                           return $name;
                         }
                     ],                   
-                    [
-                        'label'=> Yii::t('order','Description'),
-                        'value'=>function($model){
-                            $description = isset($model->files) ? $model->files->description : '';
-                          return $description;
-                        }
-                    ],         
+//                    [
+//                        'label'=> Yii::t('order','details'),
+//                        'value'=>function($model){
+//                            $description = isset($model->files) ? $model->files->description : '';
+//                          return $description;
+//                        }
+//                    ],         
                      
                     [
                         'contentOptions'=>['style'=>'width:100px;'],

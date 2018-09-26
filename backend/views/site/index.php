@@ -49,7 +49,7 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
         <a href="/viewcountermanagement/view-count" style="text-decoration: none;color:#000;">
         <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+            <span class="info-box-icon bg-red"><i class="fa fa-eye"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text"><?= Yii::t('_app','Traffic statistics')?></span>
@@ -91,7 +91,7 @@
         <div>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title"><?= Yii::t('_app','Traffic statistics')?> <?= Yii::t('_app','Year')?> <?= date('Y')?></h3> 
+                <h3 class="box-title"><?= Yii::t('_app','Traffic statistics')?> <?= Yii::t('_app','Year')?> <?= date('Y')?>   <a href="/viewcountermanagement/view-count"><?= Yii::t('_app','All')?></a></h3> 
             </div> 
             <div class="box-body" style="">
                 <div id="view-traffic"></div>
@@ -120,11 +120,11 @@
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"><?= Yii::t('_app','Report Download')?> <?= Yii::t('_app','Year')?> <?= date('Y')?></h3> 
+              <h3 class="box-title"><?= Yii::t('_app','Report Download')?> <?= Yii::t('_app','Year')?> <?= date('Y')?> <a href="/viewcountermanagement/view-count/report-download"><?= Yii::t('_app','All')?></a></h3> 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-               <div id="report-download"></div>
+                <div id="report-download"></div>
                 <?php \richardfan\widget\JSRegister::begin();?>
                     <script>
                         function getReportDownload(){

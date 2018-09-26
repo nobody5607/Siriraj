@@ -26,7 +26,7 @@ use yii\helpers\Html;
                                         //echo "<div class='label label-default pull-left'><a href='{$dataDefault['file_path']}/{$dataDefault['file_name']}' download>Download</a></div>";
                                         echo "<div class='label label-default pull-right'>2124 x 1414 Pixel</div>";
                                         echo "<div id='lightgallerys'>";
-                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['details']}"]);
                                         echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                             'class' => 'img img-responsive'
                                         ]);                                
@@ -37,7 +37,7 @@ use yii\helpers\Html;
 
                                         echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
                                         echo "<div id=''>";
-                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['description']}"]);
+                                        echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['details']}"]);
                                             echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
                                                 'class' => 'img img-responsive'
                                             ]);
@@ -53,7 +53,7 @@ use yii\helpers\Html;
                                                                             flex-wrap: wrap;
                                                                             padding: 10px;'>";
                                             foreach($modelImage as $k=>$v){
-                                                echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['description']}"]);
+                                                echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['details']}"]);
                                                 echo \yii\helpers\Html::img("{$v['file_path']}/{$v['file_name']}", [
                                                     'class' => 'img img-responsive',
                                                     'style'=>'width:80px;height:80px;    padding: 5px;'
