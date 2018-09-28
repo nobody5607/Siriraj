@@ -37,7 +37,7 @@ echo yii\bootstrap\Modal::widget([
                     ],
                 ])
         ?>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             
             <div class="panel panel-default">
                 <div class="panel-heading"><?= Html::encode($this->title) ?></div>
@@ -94,6 +94,20 @@ echo yii\bootstrap\Modal::widget([
                             <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>สิทธิ์สมาชิกทั่วไป</h3>
+                        1. ดาวน์โหลด ภาพนิ่งขนาด 1024x768 pixel<br>
+                        2. ดาวน์โหลด ข้อมูลอักษร<br>
+                        <br>
+                    <h3>สิทธิ์สมาชิกศิริราช</h3>
+                        1.ดาวน์โหลด ภาพนิ่งขนาด 2024x1414 pixel<br>
+                        2.ดาวน์โหลด ข้อมูลอักษร<br>
+                        3.ดาวน์โหลด เสียงและวีดีโอ<br>
                 </div>
             </div>
         </div>
