@@ -65,27 +65,52 @@ use yii\helpers\Html;
     <?php
         $images = \backend\modules\sections\classes\JContent::getImage();
         $imagesMost = \backend\modules\sections\classes\JContent::getImageMost();
+        //\appxq\sdii\utils\VarDumper::dump($imagesMost);
     ?>
         <div class="row" style="padding-left:15px;padding-right:15px;background: #f0ede6;">    
             <div class="col-md-10">
-                <?php foreach ($images as $k=> $image):?>
-                    <div class="col-md-4" style="overflow: hidden;text-align: center;padding:5px;">
-                        <a href="<?= $image['url']?>">
-                            <img style="" class="" src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
-                        </a>
-                    </div>
-                <?php endforeach; ?>
+                <div class="trending-box" style="padding-left:10px;padding-right:10px;">
+                        <div class="product-list-box">
+                            <div class="row">
+                                <?php foreach ($images as $k => $image): ?>
+                                <div class="col-md-4 col-100" style="overflow:hidden;">
+                                        <div class="single-product">
+                                            <a href="/sections/section?id=1534738588018029900" style="color:#000;"> 
+                                                <div >
+                                                    <img style="" class="primary-img" src="<?= "{$image['view_path']}/{$image['name']}" ?>"  alt="<?= $image['detail'] ?>">
+                                                    
+                                                </div>  
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>    
+                        </div>    
+                    </div> 
             </div>
             <div class="col-md-2 text-center">
-                <h3 class="text-center">Most</h3>
-                <?php foreach ($imagesMost as $k=> $image):?>
-                    <div style="overflow: hidden;text-align: center;padding:5px;">
-                        <a href="<?= $image['url']?>">
-                            <img style="width:90%;" class="img img-responsive" src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
-                        </a>
+                    <h3 class="text-center">Most popular</h3>
+                    <div class="trending-box">
+                        <div class="product-list-box">
+                            <div class="row">
+                                <?php foreach ($imagesMost as $k => $image): ?>
+                                    <div class="col-md-6 col-30">
+                                        <div class="single-product" style="margin:5px 0">
+                                            <a href="/sections/section?id=1534738588018029900" style="color:#000;"> 
+                                                <div class="pro-img">
+                                                    <img style="" class="primary-img img img-responsive" src="<?= "{$image['view_path']}/{$image['name']}" ?>"  alt="<?= $image['detail'] ?>">
+                                                    
+                                                </div>  
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>    
+                        </div>    
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
         </div>
         
 <?php endif; ?>

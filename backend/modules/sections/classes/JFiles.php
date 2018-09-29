@@ -403,6 +403,13 @@ class JFiles {
             return $output;
         }
     }
+    public static function getThumbVideo($path, $videoFile,$getFromSecond=5, $size="120x90"){
+        $path = Yii::getAlias('@storage') . "/{$path}/";
+        $imageFile = "_thum.jpg";
+        $cmd = "ffmpeg -i {$path}{$videoFile} -an -ss $getFromSecond -s $size $imageFile";
+        set_time_limit(1200);
+        exec($template, $output, $return_var);
+    }
 
     public static function uploadAudio($file, $filePath) {
 

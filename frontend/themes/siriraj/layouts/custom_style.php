@@ -121,6 +121,18 @@
         content: " *";
         color: red;
     }
+    
+    @media screen and (max-width: 768px)
+    {
+        .col-30 {
+            width: 30.33%;
+            margin: 0 auto;
+        }
+        .col-100 {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end() ?> 
 

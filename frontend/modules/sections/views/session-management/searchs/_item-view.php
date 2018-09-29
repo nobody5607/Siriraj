@@ -63,7 +63,7 @@
         <?php endif; ?>
         
         <?php 
-             $fileTypeArr = ['3','4','5','6','7','8'];
+             $fileTypeArr = ['4','5','6','7','8'];
              //$fileAudio = ['mp3', ''];
              if(in_array($model['file_type'], $fileTypeArr)){
                 $fileNameStr = explode(".", $model['file_name']);

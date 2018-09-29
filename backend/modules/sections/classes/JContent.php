@@ -127,7 +127,7 @@ class JContent {
        return $image;
    }
    public static function getImageMost(){
-       $image = \common\models\Slideimg::find()->orderBy(['forder'=>SORT_ASC])->limit(4)->all();
+       $image = \common\models\Slideimg::find()->orderBy(['forder'=>SORT_ASC])->limit(15)->all();
        return $image;
    }
 }
