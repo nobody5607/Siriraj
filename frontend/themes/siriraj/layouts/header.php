@@ -115,7 +115,23 @@ use yii\helpers\Html;
         </div>
         
 <?php endif; ?>
-<div style="margin-top: 0px; height: 115px;padding-top: 0px;    background: #656565d4; padding-top: 30px;">
+
+<?php if(isset($_GET['txtsearch'])):?>
+        <div style="
+            margin-top: 0px;
+            height: 115px;
+            padding-top: 0px;
+            background: url(<?= Url::to('@web/images/landing1.jpg')?>);
+            padding-top: 210px;
+            height: 500px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-position: center; */
+
+         ">
+<?php else:?>
+            <div style="margin-top:0;height:115px;padding-top: 30px;background:#37373a;">    
+<?php endif; ?>    
     <div class="col-md-8 col-md-offset-2">
         <?php 
             $type = frontend\modules\sections\classes\JFiles::getTypeFile();

@@ -225,5 +225,25 @@ class SiteController extends Controller
             'viewPath'=>$viewPath
         ]);
     }
+    
+    public function actionGetVideo(){
+        $files = \common\models\Files::find()->where(['file_type'=>'3'])->all();
+        foreach($files as $file) {
+            $id             = $file['id'];
+            $file_thumbnail = $file['file_thumbnail'];
+            $file_name      = $file['file_name'];
+            $dirPath        = Yii::getAlias('@storage')."{$file['dir_path']}";
+            $videoFile      = "{$dirPath}/{$file_name}";
+            if( $file_thumbnail == "" ){
+                $file_thumbnail = \appxq\sdii\utils\SDUtility::getMillisecTime()."_mark.mp4";
+            }
+            $imageFile      = explode(".", $file_thumbnail);
+            $imageFile      = "{$dirPath}/{$imageFile[0]}.jpg";
+            //\appxq\sdii\utils\VarDumper::dump($videoFile);
+            \backend\modules\sections\classes\JFiles::getThumbVideo($videoFile, '00:00:05', '200x160', $imageFile);
+            \appxq\sdii\utils\VarDumper::dump($id);
+        }
+        
+    }
 
 }
