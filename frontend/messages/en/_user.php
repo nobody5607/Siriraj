@@ -39,4 +39,6 @@ return [
     'Approval'=>'Approval',
     'Pending'=>'Pending',
     
+    'General Membership'=>'General Membership'
+    
 ];

@@ -1,5 +1,5 @@
 <?php 
-    $type = frontend\modules\sections\classes\JFiles::getTypeFile();
+    
     janpan\jn\assets\jqueryui\JQueryUiAssets::register($this);
     //\appxq\sdii\utils\VarDumper::dump($type);
 ?>
@@ -44,14 +44,8 @@
     </div>
     <!-- Container End -->
 </div> 
+<div class="clearfix" style="margin-bottom: 20px;"></div>
 
-<div style="margin-top: 10px; height: 115px;padding-top: 0px;">
-    <div class="col-md-8 col-md-offset-2">
-        <?= $this->render("_form", ['type' => $type]) ?>     
-    </div>
-    <div class="clearfix" style="margin-bottom: 50px;"></div>
-    <!-- Cart Box End Here -->
-</div> 
 <?php 
    $controllerID = Yii::$app->controller->id ;
    $actionID = Yii::$app->controller->action->id;

@@ -61,7 +61,45 @@ use yii\helpers\Html;
                 <!-- Row End -->
             </div>                
         </div>
-<?php if($slide == '1'): ?>
+<?php if ($slide == '1'): ?>
+    <?php
+        $images = \backend\modules\sections\classes\JContent::getImage();
+        $imagesMost = \backend\modules\sections\classes\JContent::getImageMost();
+    ?>
+        <div class="row" style="padding-left:15px;padding-right:15px;background: #f0ede6;">    
+            <div class="col-md-10">
+                <?php foreach ($images as $k=> $image):?>
+                    <div class="col-md-4" style="overflow: hidden;text-align: center;padding:5px;">
+                        <a href="<?= $image['url']?>">
+                            <img style="" class="" src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="col-md-2 text-center">
+                <h3 class="text-center">Most</h3>
+                <?php foreach ($imagesMost as $k=> $image):?>
+                    <div style="overflow: hidden;text-align: center;padding:5px;">
+                        <a href="<?= $image['url']?>">
+                            <img style="width:90%;" class="img img-responsive" src="<?= "{$image['view_path']}/{$image['name']}"?>"  alt="<?= $image['detail']?>">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        
+<?php endif; ?>
+<div style="margin-top: 0px; height: 115px;padding-top: 0px;    background: #656565d4; padding-top: 30px;">
+    <div class="col-md-8 col-md-offset-2">
+        <?php 
+            $type = frontend\modules\sections\classes\JFiles::getTypeFile();
+        ?>
+        <?= $this->render("_form", ['type' => $type]) ?>     
+    </div>
+    <div class="clearfix" style=""></div>
+    <!-- Cart Box End Here -->
+</div>         
+<?php if($slide == '10'): ?>
         
         <div class="slider_box" style="background: #f3f3f3;">            
             <div class='container-fluid'>
