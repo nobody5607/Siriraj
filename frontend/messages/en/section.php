@@ -24,5 +24,12 @@ return [
     'Return to'=>'Return to',
     'Type'=>'Type',
     'Size'=>'Size',
-    'Most Popular'=>'เป็นที่นิยมมากที่สุด',
+    'Most Popular'=>'Most Popular',
+    'All categories'=>'All categories',
+    'Image'=>'Image',
+    'Video'=>'Video',
+    'Sound'=>'Sound',
+    'Document'=>'Document',
+    'Graphic design'=>'Graphic design',
+    'Other'=>'Other', 
 ];

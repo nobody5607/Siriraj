@@ -10,7 +10,7 @@
             <select class="bootstrap-select" id="select-type-search" name="poscats">
                 <option value="0"><?= Yii::t('section', 'Browse by Category') ?></option>
                 <?php foreach ($type as $t) { ?>
-                    <option value="<?= $t['id'] ?>" data-id='<?= $t['id'] ?>'><?= $t['name'] ?></option>                                     
+                <option value="<?= $t['id'] ?>" data-id='<?= $t['id'] ?>'><?= Yii::t('section',$t['name']) ?></option>                                     
                 <?php } ?>                               
             </select>
         </div>
