@@ -89,17 +89,18 @@ use yii\helpers\Html;
                         </div>    
                     </div> 
             </div>
-            <div class="col-md-2 text-center">
-                    <h3 class="text-center">Most popular</h3>
+            <div class="col-md-2 text-center" style="margin-top:10px;">
+                <h3 class="text-center"><?= Yii::t('section', 'Most Popular')?></h3>
                     <div class="trending-box">
                         <div class="product-list-box">
                             <div class="row">
                                 <?php foreach ($imagesMost as $k => $image): ?>
-                                    <div class="col-md-6 col-30">
-                                        <div class="single-product" style="margin:5px 0">
-                                            <a href="/sections/section?id=1534738588018029900" style="color:#000;"> 
+                                
+                                <div class="col-md-6 col-30" style="max-height: 50px; overflow: hidden;margin-bottom: 10px">
+                                        <div class="single-product" style="margin:5px 0" title="<?= $image['details'] ?>">
+                                            <a href="/sections/content-management/view-file?content_id=<?= $image['content_id']?>&file_id=<?= $image['id']?>&filet_id=<?= $image['file_type']?>" style="color:#000;" > 
                                                 <div class="pro-img">
-                                                    <img style="" class="primary-img img img-responsive" src="<?= "{$image['view_path']}/{$image['name']}" ?>"  alt="<?= $image['detail'] ?>">
+                                                    <img style="" class="primary-img img img-responsive img-rounded" src="<?= "{$image['file_path']}/thumbnail/{$image['file_view']}" ?>"  >
                                                     
                                                 </div>  
                                             </a>

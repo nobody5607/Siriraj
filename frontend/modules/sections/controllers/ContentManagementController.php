@@ -113,7 +113,23 @@ class ContentManagementController extends Controller
         if($file_id == ''){
             //$dataDefault = \common\models\Files::find()->where(['file_type'=>$filet_id])->one();
         }
-         //\appxq\sdii\utils\VarDumper::dump($dataDefault);
+        
+        /*save most popular*/
+        $most = \common\models\MostPopular::find()->where(['file_id'=>$file_id])->one();
+        if(!$most){
+            $most = new \common\models\MostPopular();
+            $most->id = \appxq\sdii\utils\SDUtility::getMillisecTime(); 
+            $most->file_id = $file_id;
+            $most->count = 1;
+            $most->date = new \yii\db\Expression('NOW()');
+            $most->save();
+        }else{
+            $most->count = $most->count + 1;
+            $most->date = new \yii\db\Expression('NOW()');
+            $most->save();
+        }
+        
+        //\appxq\sdii\utils\VarDumper::dump($file_id);
         
         
         

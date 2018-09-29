@@ -24,4 +24,5 @@ return [
     'Return to'=>'Return to',
     'Type'=>'Type',
     'Size'=>'Size',
+    'Most Popular'=>'เป็นที่นิยมมากที่สุด',
 ];

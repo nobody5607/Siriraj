@@ -127,7 +127,15 @@ class JContent {
        return $image;
    }
    public static function getImageMost(){
-       $image = \common\models\Slideimg::find()->orderBy(['forder'=>SORT_ASC])->limit(15)->all();
-       return $image;
+        $mostPopular = (new \yii\db\Query())
+               ->select('*')
+               ->from('most_popular as mpl')
+               ->innerJoin('tbl_files as tf', 'mpl.file_id = tf.id')
+               ->orderBy(['mpl.count'=>SORT_DESC])
+               ->limit(15)
+               ->all();
+       //\appxq\sdii\utils\VarDumper::dump($mostPopular); 
+       //$image = \common\models\Slideimg::find()->orderBy(['forder'=>SORT_ASC])->limit(15)->all();
+       return $mostPopular;
    }
 }
