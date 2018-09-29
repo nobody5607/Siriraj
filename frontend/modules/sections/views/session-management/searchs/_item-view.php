@@ -17,6 +17,8 @@
                       <label>".Yii::t('section', 'Type')." : {$fileType}</label> &nbsp;&nbsp;
                       <label>".Yii::t('section', 'Size')." : {$size}</label>
                   </div>";
+    $meta_file=""; 
+    $details = backend\modules\sections\classes\JFiles::lengthName($model['details'], 200);
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -34,7 +36,7 @@
                   <?= Html::img("{$model['file_path']}/thumbnail/{$model['file_name']}", 
                             [
                                 'class'=>'media-object',
-                                'style'=>'width:60px'
+                                'style'=>'width:150px;border-radius:3px;'
                             ]);?>
                 </div>
                 <div class="media-body">
@@ -50,49 +52,49 @@
         <a href="<?= $link_url?>" target="_blank">
             <div class="media">
                 <div class="media-left">
-                    <video style='width:95px' class="media-object" controls>
-                    <source src='<?php echo "{$model['file_path']}/{$model['file_name']}"; ?>' type='video/mp4'>                 
-                        Your browser does not support the video tag.
-                  </video>
+                    <img src="<?= $model['file_thumbnail']?>" style="width:100px;border-radius:3px;"/>
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading"><?= $model['file_name_org']?></h4>
-                  <?= $meta_file?>
+                  <?= $details?>
                 </div>  
             </div>
         </a>    
         <?php endif; ?>
         
         <?php 
-            if($model['file_type'] == '4'){
+             $fileTypeArr = ['3','4','5','6','7','8'];
+             //$fileAudio = ['mp3', ''];
+             if(in_array($model['file_type'], $fileTypeArr)){
+                $fileNameStr = explode(".", $model['file_name']);
+                $icon = "";
+                if ($fileNameStr[1] == 'doc' || $fileNameStr[1] == 'docx') {
+                    $icon = "<i class='fa fa-file-word-o'></i>";
+                } else if ($fileNameStr[1] == 'ppt' || $fileNameStr[1] == 'pptx') {
+                    $icon = "<i class='fa fa-file-powerpoint-o'></i>";
+                } else if ($fileNameStr[1] == 'xls' || $fileNameStr[1] == 'xlsx') {
+                    $icon = "<i class='fa fa-file-excel-o'></i>";
+                } else if ($fileNameStr[1] == 'pdf') {
+                    $icon = "<i class='fa fa-file-pdf-o'></i>";
+                } else if ($fileNameStr[1] == 'zip' || $fileNameStr[1] == 'rar') {
+                    $icon = "<i class='fa fa-file-pdf-o'></i>";
+                } else if ($model['file_type'] == "4") {
+                    $icon = "<i class='fa fa-file-audio-o'></i>";
+                }
+                else {
+                    $icon = "<i class='fa fa-file-archive-o'></i>";
+                }
+                
+                //echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'>{$icon}</div>";
                 echo "
-                  <a href='{$link_url}' target='_blank'>
+                  <a href='{$link_url}' target='_blank' style='color:#000'>
                         <div class='media'>
-                            <div class='media-left'>
-                                <audio style='width:95px' class='media-object' controls>
-                                <source src='{$model['file_path']}/{$model['file_name']}' type='audio/mpeg'>                 
-                                    Your browser does not support the video tag.
-                                </source>    
-                              </audio>
+                            <div class='media-left' style='font-size:90px;'>
+                                {$icon}
                             </div>
                             <div class='media-body'>
-                              <h4 class='media-heading'>{$model['file_name_org']}</h4>
-                              {$meta_file}
-                            </div>  
-                        </div>
-                    </a>
-                ";
-            }else if($model['file_type'] == '5' || $model['file_type'] == '6' || $model['file_type'] == '7'){
-                //echo $model['file_type'];
-                echo "
-                  <a href='{$link_url}' target='_blank'>
-                        <div class='media'>
-                            <div class='media-left'>
-                                <i class='fa fa-file-o' style='font-size:20pt;'></i>
-                            </div>
-                            <div class='media-body'>
-                              <h4 class='media-heading'>{$model['file_name_org']}</h4>
-                              {$meta_file}
+                              <h2 class='media-heading'>{$model['file_name_org']}</h2>
+                              {$details}
                             </div>  
                         </div>
                     </a>
