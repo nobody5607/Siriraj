@@ -99,12 +99,13 @@
     
     .logo a {
         color: <?= $color_logo_text?>;
-        font-size: 18pt;
+        font-size: 22pt;
         line-height: 30px;
         font-family: sans-serif;
     }
-    .txt-logo-en{
-        font-size: 14pt;
+    .txt-logo-en a{
+        font-size: 18pt;
+        padding-left:5px;
     }  
     .input-group-addon {
         padding: 8px 15px;
@@ -132,6 +133,21 @@
             width: 100%;
             margin: 0 auto;
         }
+    }
+    
+    .cart-box>ul>li>a i{
+        font-size: 30pt;
+    }
+    .header-bottom-list>li>a, .header-bottom-list>li>ul.ht-dropdown li a { 
+        font-size: 16pt;
+    }
+    .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 1.5em;
+    }
+    .pro-infos h4 {
+        font-size: 14pt;
+        text-align: center;
     }
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end() ?> 

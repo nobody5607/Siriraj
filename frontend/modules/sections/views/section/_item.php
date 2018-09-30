@@ -18,7 +18,7 @@ $noImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEiCAYAAABDd+8FAA
         </div> 
         <div class="pro-content">
             <div class="pro-infos">
-                <h4> <?= $model['name'] ?></h4>
+                <h2> <?= $model['name'] ?></h2>
                 <?php
                     $name_str = backend\modules\sections\classes\JFiles::lengthName($model['detail'], 30);
                 ?>

@@ -31,6 +31,8 @@
     <h2 class="text-center" style="padding-top: 20px;
     background: #f3f3f3;
     padding-bottom: 20px;
+        font-size: 22pt;
+    font-weight: bold;
     border-bottom: 1px solid #e8e6e1;"><?= Yii::t('section','Siriraj Museum ... more than you think.')?> : <?= $title?></h2>
     <?php endif; ?>
     <div class="container">

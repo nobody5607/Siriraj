@@ -18,7 +18,7 @@ $img = isset($model['thumn_image']) ? $model['thumn_image'] :  $noImage;
         </div> 
         <div class="pro-content">
             <div class="pro-infos">
-                <h4> <?= $model['name'] ?></h4>
+                <h2> <?= $model['name'] ?></h2>
                 <?php
                 $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 30);
                 ?>

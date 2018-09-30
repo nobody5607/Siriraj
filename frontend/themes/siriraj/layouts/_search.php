@@ -30,7 +30,7 @@
                     
                         <div class='txt-logo'>
                             <div class="txt-logo-th"><a href="/">คลังความรู้พิพิธภัณฑ์ศิริราช</a></div>
-                            <div class="txt-logo-en"><a href="/" style="font-size:14pt;">Siriraj Museum’s Storage</a></div>
+                            <div class="txt-logo-en"><a href="/">Siriraj Museum’s Storage</a></div>
                         </div> 
                     
                 </div>

@@ -29,7 +29,7 @@
                                 ]);
                             ?> 
             </span>
-            <h4><?= $dataDefault['file_name_org'] ?></h4>
+            <h2><?= $dataDefault['file_name_org'] ?></h2>
         </div> 
         <div class="box-body">
             

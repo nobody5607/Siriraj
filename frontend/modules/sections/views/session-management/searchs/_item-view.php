@@ -22,7 +22,7 @@
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="box-title"><?= $model->file_name_org?></h3> 
+        <h2 class="box-title"><?= $model->file_name_org?></h2> 
     </div>
     <!-- /.box-header -->
     <div class="panel-body" style="">
@@ -40,7 +40,7 @@
                             ]);?>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>
+                  <h2 class="media-heading"><?= $model['file_name_org']?></h2>
                   <p><?= backend\modules\sections\classes\JFiles::lengthName($model->details, 150);?></p>  
                   <?= $meta_file?>
                 </div>
@@ -59,7 +59,7 @@
                     
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><?= $model['file_name_org']?></h4>
+                  <h2 class="media-heading"><?= $model['file_name_org']?></h2>
                   <?= $details?>
                 </div>  
             </div>
