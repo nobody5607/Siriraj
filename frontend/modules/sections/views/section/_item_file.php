@@ -21,19 +21,21 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
                         echo Html::img("{$image}",['class'=>'primary-img img img-responsive','alt'=>"{$model['file_name_org']}"]); 
                     }
                     else if($model['file_type'] == 3){
-                        //echo strlen($model['file_thumbnail']); 
-                        if($model['file_thumbnail'] != "" && strlen($model['file_thumbnail']) > 100){
-                            $img = $model['file_thumbnail'];
-                            //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
-                            echo "<img src='{$img}' style='height:auto;' class='primary-img img img-responsive'>";
-                        }else{
-                            echo "            
-                                <div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
-                            ";   
-                        } 
-                        //echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>";
+                        $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
+                        echo Html::img($imgs,['class'=>'img img-responsive']);
+//                        if($model['file_thumbnail'] != "" && strlen($model['file_thumbnail']) > 100){
+//                            $img = $model['file_thumbnail'];
+//                            //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
+//                            echo "<img src='{$img}' style='height:auto;' class='primary-img img img-responsive'>";
+//                        }else{
+//                            echo "            
+//                                <div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
+//                            ";   
+//                        } 
+                          
                     }
                     else if($model['file_type'] == 4){
+                        
                         echo "<div style='font-size: 80pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>";
                     }
                     else if($model['file_type'] == 5 || $model['file_type'] == 6 || $model['file_type'] == 7){

@@ -52,7 +52,11 @@
         <a href="<?= $link_url?>" target="_blank">
             <div class="media">
                 <div class="media-left">
-                    <img src="<?= $model['file_thumbnail']?>" style="width:100px;border-radius:3px;"/>
+                    <?php 
+                        $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
+                        echo Html::img($imgs,['style'=>'width:100px;border-radius:3px;']);
+                    ?>
+                    
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading"><?= $model['file_name_org']?></h4>

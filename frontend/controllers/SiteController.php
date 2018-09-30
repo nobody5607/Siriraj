@@ -46,7 +46,19 @@ class SiteController extends Controller
     
     public function actionIndex()
     {
-       
+        $files = \common\models\Files::find()->where(['file_type'=>3])->all();
+        $storageUrl = Yii::getAlias('@storage');
+        set_time_limit(1200);
+        foreach($files as $key=>$file){
+            $dir_path = $storageUrl."".$file['dir_path'];
+            $fileName = $file['file_name'];
+            $filePath = "{$dir_path}/{$fileName}";
+            //\appxq\sdii\utils\VarDumper::dump($filePath);
+            $template="ffmpeg -y -i {$filePath} -ss 00:00:02 -s 200x145 -vframes 1 {$filePath}_.jpg";
+            exec($template, $output);
+        }
+        //\appxq\sdii\utils\VarDumper::dump($files);
+        
         return $this->render('index');
     }
     public function actionAbout()
