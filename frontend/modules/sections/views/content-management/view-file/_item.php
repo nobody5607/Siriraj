@@ -49,24 +49,29 @@ use yii\helpers\Url;
                                 <span class='checkmark'></span>
                             </label>
                         </div>
-                        <div class='col-md-6 col-xs-6 col-sm-6' style='padding-top:5px;'>
-                            <a title='Download' class='btn btn-sm btn-primary download pull-right' data-type='{$model['file_type']}' data-id='{$model['id']}' data-name='{$model['file_name_org']}' href='#'><i class='fa fa-download'></i></a>
+                        <div class='' style='padding-top:5px;padding-top: 13px;
+                                            position: absolute;
+                                            right: 33px;'>
+                            <a title='Download' class='btn btn-sm btn-primary download pull-right' data-type='{$model['file_type']}' data-id='{$model['id']}' data-name='{$model['file_name_org']}' href='#'><i class='fa fa-download' style='font-size: 12pt;'></i></a>
                         </div>
                     </div>
                     <div class='clearfix'></div>
                 ";
         }
         echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
-        
-            if($model['file_thumbnail'] != ""){
-                $img = $model['file_thumbnail'];
-                //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
-                echo "<img src='{$img}' style='height:100px;' class='img img-rounded'>";
-            }else{
-                echo "            
-                    <div style='font-size: 45pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
-                ";   
-            } 
+            echo "<div style='    margin: 0 auto; margin-top: 15px;'>";
+            $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
+            echo Html::img($imgs,['class'=>'img img-responsive' , 'style'=>'margin:0 auto;']);
+            echo "</div>";
+//            if($model['file_thumbnail'] != ""){
+//                $img = $model['file_thumbnail'];
+//                //\appxq\sdii\utils\VarDumper::dump($model['file_thumbnail']);
+//                echo "<img src='{$img}' style='height:100px;' class='img img-rounded'>";
+//            }else{
+//                echo "            
+//                    <div style='font-size: 45pt;text-align: center;padding-top: 15px;'><i class='fa fa-file-video-o'></i></div>
+//                ";   
+//            } 
         echo "</a>";
     } else if ($model['file_type'] == '4') {
         if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin"))) {
