@@ -115,19 +115,22 @@ class ContentManagementController extends Controller
         }
         
         /*save most popular*/
-        $most = \common\models\MostPopular::find()->where(['file_id'=>$file_id])->one();
-        if(!$most){
-            $most = new \common\models\MostPopular();
-            $most->id = \appxq\sdii\utils\SDUtility::getMillisecTime(); 
-            $most->file_id = $file_id;
-            $most->count = 1;
-            $most->date = new \yii\db\Expression('NOW()');
-            $most->save();
-        }else{
-            $most->count = $most->count + 1;
-            $most->date = new \yii\db\Expression('NOW()');
-            $most->save();
+        if($filet_id == '2') {
+            $most = \common\models\MostPopular::find()->where(['file_id'=>$file_id])->one();
+            if(!$most){
+                $most = new \common\models\MostPopular();
+                $most->id = \appxq\sdii\utils\SDUtility::getMillisecTime(); 
+                $most->file_id = $file_id;
+                $most->count = 1;
+                $most->date = new \yii\db\Expression('NOW()');
+                $most->save();
+            }else{
+                $most->count = $most->count + 1;
+                $most->date = new \yii\db\Expression('NOW()');
+                $most->save();
+            }
         }
+        
         
         //\appxq\sdii\utils\VarDumper::dump($file_id);
         
