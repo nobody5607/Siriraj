@@ -274,7 +274,7 @@ class FileManagementController extends Controller
                            if($obj['default'] == "2"){
                                $fileNames = "{$realFileName}.{$obj['type']}";
                            }else{
-                               $fileNames = "{$realFileName}_mark.{$obj['type']}";
+                               $fileNames = "{$realFileName}_marks.{$obj['type']}";
                            }
                            
                            $file_view = $fileNames;

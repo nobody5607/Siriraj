@@ -386,7 +386,7 @@ class JFiles {
                 return ['type' => 'mp4', 'default' => '1', 'detai' => $output['detai']];
             }
             set_time_limit(1200);
-            $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_mark.mp4"];
+            $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
             $w = $watermark['code'];
             if ($status == '2') {
                 $w = \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
