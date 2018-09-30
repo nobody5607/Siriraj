@@ -54,7 +54,7 @@
                 <div class="media-left">
                     <?php 
                         $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
-                        echo Html::img($imgs,['style'=>'width:100px;border-radius:3px;']);
+                        echo Html::img($imgs,['style'=>'width:200px;border-radius:3px;']);
                     ?>
                     
                 </div>

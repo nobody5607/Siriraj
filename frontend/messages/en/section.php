@@ -32,4 +32,7 @@ return [
     'Document'=>'Document',
     'Graphic design'=>'Graphic design',
     'Other'=>'Other', 
+    'Keyword'=>'Keyword',
+    'All' => 'All',
+    'Item'=>'Item',
 ];

@@ -1,9 +1,26 @@
 <?php 
     $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section', 'Section');
 ?>
+
 <div class="row" style="margin-top:20px;"> 
      
 <div class="col-md-10 col-md-offset-1">
+    <?php 
+        $itemCount = $dataProvider->getModels();
+        echo "<h1>";
+            echo Yii::t('section','Keyword');
+            echo " : ";
+            echo isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section','All');   
+            
+            
+            echo " ";
+            echo count($itemCount);
+            echo " ";
+            echo Yii::t('section', 'Item');
+        echo "</h1><br>"; 
+        
+        
+   ?>
     <?php 
         echo yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
