@@ -101,6 +101,7 @@ class FileManagementController extends Controller
                 $model->details = $post['details'];
                 $model->file_name_org = $post['file_name_org'];
                 $model->file_thumbnail = $post['file_thumbnail'];
+                $model->keywords = $post['keywords'];
 //                \appxq\sdii\utils\VarDumper::dump();
                 if ($model->save()) {		 
                     return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
