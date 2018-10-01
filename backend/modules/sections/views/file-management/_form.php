@@ -37,8 +37,12 @@ use appxq\sdii\helpers\SDHtml;
         </div>    
     </div>
     <div class="modal-footer">
-	<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	<?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <?= Html::submitButton('Submit', ['class'=>'btn btn-block btn-lg btn-primary']);?>
+            </div>
+        </div>
+	
     </div>
 
     <?php ActiveForm::end(); ?>
