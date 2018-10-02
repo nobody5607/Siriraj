@@ -6,7 +6,7 @@ use Yii;
 use yii\web\Controller;
 use frontend\models\ContactForm;
 use vova07\fileapi\actions\UploadAction as FileAPIUpload;
-
+use backend\modules\sections\classes\JFiles;
 /**
  * Class SiteController.
  */
@@ -43,7 +43,49 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    
+    public function actionDocToImage()
+    {
+        $files = \common\models\Files::find()->where(['file_type'=>5])->all();
+        $storageUrl = Yii::getAlias('@storage'); 
+        $output = [];
+        foreach($files as $key=>$file){
+            $dir_path = $storageUrl."".$file['dir_path'];
+            $fileName = $file['file_name'];
+            $filePath = "{$dir_path}/{$fileName}";
+            $fileNameArr = explode(".", $fileName); 
+            $type = end($fileNameArr); 
+            if ($type != "pdf") {
+                    if ($type == "pptx" || $type == "ppt") {
+                        if($type == "pptx"){
+                            $description = JFiles::Pptx2Text($path, $fileName, $file);
+                            $output['description'] = $description;
+                            JFiles::PptxToPpt($path, $fileName, $file);
+                        }else{
+                            $description = JFiles::PptToPptx($path, $fileName, $file);
+                            $output['description'] = $description; 
+                        }
+                    }else if($type == "docx" || $type == "doc"){
+                        if($type == "docx"){
+                            $description = JFiles::Docx2Text($path, $fileName, $file);
+                            $output['description'] = $description;
+                        }else{
+                            $description = JFiles::Doc2Docx($path, $fileName, $file);
+                            $output['description'] = $description; 
+                        }
+                    }else if($type == "xlsx" || $type == "xls"){ 
+                        $description =  JFiles::Excel2Text("{$filePath}.{$file->extension}");
+                        $output['description'] = $description; 
+                    }else{
+                        $output['description'] = "";
+                    }
+                     
+                    JFiles::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
+                } else {
+                    JFiles::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
+                }
+                \appxq\sdii\utils\VarDumper::dump($output);
+        } 
+    }
     public function actionIndex()
     {
         $files = \common\models\Files::find()->where(['file_type'=>3])->all();
