@@ -51,37 +51,37 @@ class SiteController extends Controller
         foreach($files as $key=>$file){
             $dir_path = $storageUrl."".$file['dir_path'];
             $fileName = $file['file_name'];
-            $filePath = "{$dir_path}/{$fileName}";
+            $path = "{$dir_path}/{$fileName}";
             $fileNameArr = explode(".", $fileName); 
             $type = end($fileNameArr); 
             if ($type != "pdf") {
                     if ($type == "pptx" || $type == "ppt") {
                         if($type == "pptx"){
-                            $description = JFiles::Pptx2Text($path, $fileName, $file);
+                            $description = JFiles::Pptx2Text($path, $fileName, $file, 'pptx');
                             $output['description'] = $description;
-                            JFiles::PptxToPpt($path, $fileName, $file);
+                            JFiles::PptxToPpt($path, $fileName, $file, 'pptx');
                         }else{
-                            $description = JFiles::PptToPptx($path, $fileName, $file);
+                            $description = JFiles::PptToPptx($path, $fileName, $file, 'ppt');
                             $output['description'] = $description; 
                         }
                     }else if($type == "docx" || $type == "doc"){
                         if($type == "docx"){
-                            $description = JFiles::Docx2Text($path, $fileName, $file);
+                            $description = JFiles::Docx2Text($path, $fileName, $file, 'docx');
                             $output['description'] = $description;
                         }else{
-                            $description = JFiles::Doc2Docx($path, $fileName, $file);
+                            $description = JFiles::Doc2Docx($path, $fileName, $file, 'doc');
                             $output['description'] = $description; 
                         }
                     }else if($type == "xlsx" || $type == "xls"){ 
-                        $description =  JFiles::Excel2Text("{$filePath}.{$file->extension}");
+                        $description =  JFiles::Excel2Text("{$path}");
                         $output['description'] = $description; 
                     }else{
                         $output['description'] = "";
                     }
                      
-                    JFiles::DocToPdf($path, "{$fileName}.{$file->extension}", $type);
+                    JFiles::DocToPdf($path, "{$fileName}", $type);
                 } else {
-                    JFiles::PdfToJpg($path, "{$fileName}.{$file->extension}", $type);
+                    JFiles::PdfToJpg($path, "{$fileName}", $type);
                 }
                 \appxq\sdii\utils\VarDumper::dump($output);
         } 

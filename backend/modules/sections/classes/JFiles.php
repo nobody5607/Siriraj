@@ -237,8 +237,13 @@ class JFiles {
          
     }
     
-    public static function Doc2Docx($path, $fileName, $file) {
-        $type = "{$file->extension}";
+    public static function Doc2Docx($path, $fileName, $file, $type="") {
+//        $type = "{$file->extension}";
+        if($type != ""){
+            $type = $type;
+        }else{
+            $type = "{$file->extension}";
+        }
         set_time_limit(1200);
         $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to docx {$path}/{$fileName}.{$type} --outdir {$path}";
         exec($sql, $output, $return_var); 
@@ -271,8 +276,13 @@ class JFiles {
     }
      
 
-    public static function PptToPptx($path, $fileName, $file) {
-        $type = "{$file->extension}";
+    public static function PptToPptx($path, $fileName, $file, $type = "") {
+        //$type = "{$file->extension}";
+        if($type != ""){
+            $type = $type;
+        }else{
+            $type = "{$file->extension}";
+        }
         set_time_limit(1200);
         $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to pptx {$path}/{$fileName}.{$type} --outdir {$path}";
         exec($sql, $output, $return_var); 
@@ -294,8 +304,13 @@ class JFiles {
     }
 
     //pptx to ppt
-    public static function PptxToPpt($path, $fileName, $file) {
-        $type = "{$file->extension}";
+    public static function PptxToPpt($path, $fileName, $file, $type="") {
+        //$type = "{$file->extension}";
+        if($type != ""){
+            $type = $type;
+        }else{
+            $type = "{$file->extension}";
+        }
         set_time_limit(1200);
         $sql = "export HOME=/var/www; /usr/bin/libreoffice --headless --convert-to ppt {$path}/{$fileName}.{$type} --outdir {$path}";
         exec($sql, $output, $return_var);
