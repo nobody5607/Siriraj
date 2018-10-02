@@ -52,6 +52,9 @@
             <div class="col-md-12">
                 <?= $form->field($model, 'detail')->textInput()?>
             </div>
+            <div class="col-md-12">
+                <?= $form->field($model, 'default_image')->inline()->radioList(['1'=>'Yes', '0'=>'No'], [])?>
+            </div>
         </div>
         
             

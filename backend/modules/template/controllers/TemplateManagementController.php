@@ -58,11 +58,13 @@ class TemplateManagementController extends \yii\web\Controller
     public function actionUpdate($id){
         $model = \backend\models\Watermark::findOne($id);
         $type = \Yii::$app->request->get('type', '');
+        
         //\appxq\sdii\utils\VarDumper::dump($type);
         if (Yii::$app->request->isPost) { 
             $folderName = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $files      = UploadedFile::getInstancesByName('file');
             $post = \Yii::$app->request->post('Watermark', '');
+            $default_image = $post['default_image'];
             
             
             if($post['default'] == 1){
@@ -86,6 +88,9 @@ class TemplateManagementController extends \yii\web\Controller
                     $target     = "{$path}/mark_".$genName.".png";
                     if ($f->saveAs($filePath)) {
                         $sql  = "convert {$filePath} -resize 120x120 {$target}";
+                        if($default_image == "1"){
+                            $sql  = "convert {$filePath} {$target}";
+                        }
                         exec($sql, $out, $retval);
                         @unlink($filePath);
                     }

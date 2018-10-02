@@ -29,7 +29,7 @@ class Watermark extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file_id', 'default'], 'integer'],
+            [['file_id', 'default','default_image'], 'integer'],
             [['name', 'path'], 'string', 'max' => 255],
             [['detail','code'], 'string'],
         ];
