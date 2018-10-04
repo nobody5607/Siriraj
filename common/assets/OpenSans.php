@@ -8,6 +8,6 @@ class OpenSans extends AssetBundle
 {
     public $sourcePath = '@bower/open-sans-fontface';
     public $css = [
-        'open-sans.css',
+        //'open-sans.css',
     ];
 }
