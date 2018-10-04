@@ -14,6 +14,8 @@
             
             
             echo " ";
+            echo Yii::t('section','Found all');
+            echo " ";
             echo count($itemCount);
             echo " ";
             echo Yii::t('section', 'Item');
@@ -24,8 +26,9 @@
     <?php 
         echo yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'item'],
+            'itemOptions' => ['class' => 'item col-md-4 col-50'],
             //'layout' => "{items}",
+            'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div><div class="row">{items}</div><div class="clearfix">{pager}</div>',
             'itemView' => function ($model, $key, $index, $widget) {
             return $this->render('_item', [
                             'model' => $model,
@@ -37,10 +40,17 @@
             },
             'pager' => [
                 'class' => \kop\y2sp\ScrollPager::className(),
-                'delay'=>'1000',
+                'delay'=>'100',
                 'triggerTemplate'=>'
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div style="
+                            margin: 0 auto;
+                            width: 100%;
+                            /* background: blue; */
+                            position: absolute;
+                            bottom: -20px;
+                            left: 0;
+                        ">
                             <div class="ias-trigger" style="text-align: center; cursor: pointer;"><a class="btn btn-primary btn-block btnScroll">{text}</a></div>
                         </div>
                     </div>
@@ -50,7 +60,7 @@
                     let scrollHeight = $(document).height();
                     let scrollPosition = $(window).height() + $(window).scrollTop();
                     if ((scrollHeight - scrollPosition) / scrollHeight == 0) {
-                        //alert('ok');
+                        //console.log(scrollPosition);
                         $( '.btnScroll' ).trigger('click');
                     }
                  }   
@@ -85,6 +95,20 @@
     .cd-breadcrumb, .cd-multi-steps { ;
         padding: 1px; 
         margin-bottom:30px;
+    }
+    .ias-spinner{
+            text-align: center;
+        position: absolute;
+        bottom: -20px;
+        width: 100%;
+        font-size: 20pt;
+    }
+    a.btn.btn-primary.btn-block.btnScroll {
+        color: #fff;
+        font-size: 10pt;
+        width: 50%;
+        margin: 0 auto;
+        /* position: absolute; */
     }
 </style>
 <?php    appxq\sdii\widgets\CSSRegister::end()?>

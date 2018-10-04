@@ -135,7 +135,7 @@ class SessionManagementController extends Controller
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [
-                'pageSize' => 5,
+                'pageSize' => 15,
             ],
             'sort' => [
                 'defaultOrder' => [
