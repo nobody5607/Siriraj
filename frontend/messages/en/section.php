@@ -35,5 +35,6 @@ return [
     'Keyword'=>'Keyword',
     'All' => 'All',
     'Item'=>'Item',
-    'Found all'=>'Found all' 
+    'Found all'=>'Found all',
+    'Loading data'=>'Loading data',
 ];

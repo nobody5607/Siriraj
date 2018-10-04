@@ -51,7 +51,7 @@
                             bottom: -20px;
                             left: 0;
                         ">
-                            <div class="ias-trigger" style="text-align: center; cursor: pointer;"><a class="btn btn-primary btn-block btnScroll">{text}</a></div>
+                            <div class="ias-trigger" style="text-align: center; cursor: pointer;"><a class="btn btn-primary btn-block btnScroll">'. Yii::t('section','Loading data').'</a></div>
                         </div>
                     </div>
                 ',
