@@ -14,7 +14,7 @@
 <?php if ($print == '1'): ?>
 <div class="container">
 <?php endif; ?>  
-    <h3 class="text-center" style="margin-bottom:-120px"><?= Yii::t('_app', 'Report download information of Siriraj members and members.')?> ป</h3>
+    <h3 class="text-center" style="margin-bottom:-120px"><?= Yii::t('_app', 'Report download information of Siriraj members and members.')?> </h3>
 <?php foreach ($output as $k => $month): ?>
         <div>
         <?php if ($month['data']): ?>

@@ -127,7 +127,7 @@ class ContentManagementController extends Controller
         $content            =  JContent::getContentById($content_id);
         $files              = \common\models\Files::find()
                 ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)',
-                        [':content_id'=>$content_id , ':file_type'=>$type_id])->all();
+                        [':content_id'=>$content_id , ':file_type'=>$type_id])->orderBy(['forder'=>SORT_ASC])->all();
 //\appxq\sdii\utils\VarDumper::dump($files);
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$files,
@@ -136,7 +136,8 @@ class ContentManagementController extends Controller
             ],
         ]);
         return $this->renderAjax("view-data-content",[
-             'dataProvider'=>$dataProvider
+             'dataProvider'=>$dataProvider,
+             'type_id'=>$type_id
         ]);
     }
     public function actionGetCountData(){

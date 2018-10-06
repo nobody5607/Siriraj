@@ -18,6 +18,7 @@ $modal = "modal-contents";
                 <div class="box box-primary">
                     <div class="box-header">
                         <span class="pull-right">
+                            
                             <?php
                             echo yii\helpers\Html::button("<i class='fa fa-plus'></i>", [
                                 'data-id' => $f['id'],
@@ -107,6 +108,7 @@ $modal = "modal-contents";
                 let select_id = "files_<?= $f['id'] ?>";
 
                 let params = {content_id: content_id, type_id: "<?= $f['id'] ?>"};
+                $('#' + select_id).html("<div>Loading...</div>");
                 $.get(url, params, function (data) {
                     $('#' + select_id).html(data);
                 });
@@ -120,6 +122,7 @@ $modal = "modal-contents";
                 let select_id = "label_<?= $f['id'] ?>";
 
                 let params = {content_id: content_id, type_id: "<?= $f['id'] ?>"};
+                $('#' + select_id).html("<div>Loading...</div>");
                 $.get(url, params, function (data) {
                     //console.log(data);
                     $('#' + select_id).html(data);

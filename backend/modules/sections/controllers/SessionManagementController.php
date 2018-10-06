@@ -146,6 +146,22 @@ class SessionManagementController extends Controller
                 $model->save();
             }
         }
+    }
+    public function actionForderFiles(){
+         
+        $data = Yii::$app->request->post('data' , '');
+        $data = explode(',', $data);
+        $defaultOrder = 10; 
+        
+        foreach($data as $id){
+            if($id != ""){
+                $model = \common\models\Files::findOne($id);
+                $model->forder = $defaultOrder;
+                $defaultOrder += 10;
+                $model->save();
+                    
+            }
+        }
     }     
     
 }

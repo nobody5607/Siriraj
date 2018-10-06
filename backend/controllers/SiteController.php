@@ -68,6 +68,7 @@ class SiteController extends Controller
     }   
     public function actionIndex()
     {
+         
        $file = \common\models\Files::find()->all();
        $order = \common\models\Order::find()->all();
        $user = \common\models\User::find()->all();
