@@ -17,7 +17,7 @@ $modal = "modal-contents";
         $content_id = Yii::$app->request->get('content_id');
         $files = \common\models\Files::find()
                         ->where('content_id=:content_id AND file_type=:file_type AND rstat not in(0,3)', [':content_id' => $content_id, ':file_type' => $f['id']])
-                        ->orderBy(['file_name_org'=>SORT_ASC])
+                        ->orderBy(['forder'=>SORT_ASC])
                         ->all();
             
            if($files){
