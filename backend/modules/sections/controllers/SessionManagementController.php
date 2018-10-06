@@ -150,9 +150,10 @@ class SessionManagementController extends Controller
     public function actionForderFiles(){
          
         $data = Yii::$app->request->post('data' , '');
+        $type_id = Yii::$app->request->post('type_id' , '');
         $data = explode(',', $data);
         $defaultOrder = 10; 
-        
+        //\appxq\sdii\utils\VarDumper::dump($data);
         foreach($data as $id){
             if($id != ""){
                 $model = \common\models\Files::findOne($id);

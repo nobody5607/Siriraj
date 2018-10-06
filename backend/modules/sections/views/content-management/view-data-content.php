@@ -1,7 +1,7 @@
 <?php 
     \janpan\jn\assets\ListdataAsset::register($this);
     \janpan\jn\assets\EzfToolAsset::register($this);
-    
+//    echo $type_id;
 ?>
 <div>
     <?=
@@ -32,11 +32,11 @@
         draggable:'.draggable',
         callback:function(e){
             var positionArray = [];
-            $('#ezf_dad').find('.dads-children').each(function(){
+            $('#panel-<?= $type_id?>  #ezf_dad').find('.dads-children').each(function(){
                 positionArray.push($(this).attr('data-id'));
             });
              
-            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder-files']) ?>',{data:positionArray.toString()},function(result){
+            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder-files']) ?>',{data:positionArray.toString(), type_id:'<?= $type_id?>'},function(result){
                 console.log(result);
                 return false;
             });
