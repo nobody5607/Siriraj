@@ -181,7 +181,8 @@ class OrderController extends Controller
                 'model'=>$model,
                 'count'=>count($orderDetail),
                 'product'=>$product,
-                 'title'=>$title 
+                 'title'=>$title,
+                'autoPrint'=>true   
               ]); 
             }else if($type == "preview"){
                return $this->renderAjax('preview',[
@@ -193,18 +194,20 @@ class OrderController extends Controller
               ]); 
             }else{
                 $content = $this->renderPartial('print',[
-                'template'=>$template,
-                'model'=>$model,
-                'count'=>count($orderDetail),
-                'product'=>$product,
-                 'title'=>$title 
-              ]); 
-                $layout = \kartik\mpdf\Pdf::ORIENT_PORTRAIT;
-                $paperSize = \kartik\mpdf\Pdf::FORMAT_A4;
-                $title  = "แบบฟอร์มคำร้องขอความอนุเคราะห์ไฟล์ ";
-                //$content = "<h1>ทดสอบ PDF 55555 >Submit</button></h1>";
-                $fileName = \yii\helpers\Url::to('@frontend/web/css/'.\appxq\sdii\utils\SDUtility::getMillisecTime().'.pdf');
-                \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
+                    'template'=>$template,
+                    'model'=>$model,
+                    'count'=>count($orderDetail),
+                    'product'=>$product,
+                    'title'=>$title,
+                     
+                  ]); 
+                if($email){
+                    $layout = \kartik\mpdf\Pdf::ORIENT_PORTRAIT;
+                    $paperSize = \kartik\mpdf\Pdf::FORMAT_A4;
+                    $title  = "แบบฟอร์มคำร้องขอความอนุเคราะห์ไฟล์ ";  
+                    $fileName = \yii\helpers\Url::to('@frontend/web/css/'.\appxq\sdii\utils\SDUtility::getMillisecTime().'.pdf');
+                    \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
+                }
                 return $this->render('send-mail',[
                     'template'=>$template,
                     'model'=>$model,
@@ -212,7 +215,7 @@ class OrderController extends Controller
                     'product'=>$product,
                     'title'=>$title,
                     'email'=>$email,
-                    'fileName'=>$fileName
+                    'fileName'=> isset($fileName) ? $fileName : ''
                 ]);
             }
             

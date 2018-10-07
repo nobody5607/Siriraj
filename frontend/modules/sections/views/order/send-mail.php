@@ -34,12 +34,13 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
                 if($email){
                     
                     \Yii::$app->mailer->compose()
-                    ->setFrom(['ncrc.damasac@gmail.com' => "Siriraj"])
+                    ->setFrom(['ncrc.damasac@gmail.com' => 'พิพิธภัณฑ์ศิริราช'])
                     ->setTo($email)
-                    ->setSubject('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ ' . \Yii::$app->name) 
+                    ->setSubject('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') 
                     ->attach($fileName)     
-                    ->setHtmlBody('ไฟล์ PDF แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์') //เลือกอยางใดอย่างหนึ่ง
+                    ->setHtmlBody('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') //เลือกอยางใดอย่างหนึ่ง
                     ->send();
+                    exec("rm -rf {$fileName}");
                 }
                  
                 ?>
