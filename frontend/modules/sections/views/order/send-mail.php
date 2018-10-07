@@ -37,7 +37,8 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
                     ->setFrom(['ncrc.damasac@gmail.com' => "Siriraj"])
                     ->setTo($email)
                     ->setSubject('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ ' . \Yii::$app->name) 
-                    ->setHtmlBody($data) //เลือกอยางใดอย่างหนึ่ง
+                    ->attach($fileName)     
+                    ->setHtmlBody('ไฟล์ PDF แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์') //เลือกอยางใดอย่างหนึ่ง
                     ->send();
                 }
                  

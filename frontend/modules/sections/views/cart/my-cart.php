@@ -15,7 +15,7 @@
         <!-- /.box-header -->
         <div class="panel-body" style="">
             <div id="dynamic-content-10">
-            <?= kartik\grid\GridView::widget([
+            <?=                \appxq\sdii\widgets\GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                   [
@@ -39,11 +39,11 @@
                       'label'=> Yii::t('cart','Item'),
                       'value'=>'pro_name'
                   ],
-                  [
-                      'attribute'=>'pro_detail',
-                      'label'=> Yii::t('cart','Detail'),
-                      'value'=>'pro_detail'
-                  ],
+//                  [
+//                      'attribute'=>'pro_detail',
+//                      'label'=> Yii::t('cart','Detail'),
+//                      'value'=>'pro_detail'
+//                  ],
                   [
                       'contentOptions'=>['style'=>'width:50px;text-align:center;'],
                       'attribute'=>'amount',

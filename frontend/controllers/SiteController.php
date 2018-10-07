@@ -7,6 +7,7 @@ use yii\web\Controller;
 use frontend\models\ContactForm;
 use vova07\fileapi\actions\UploadAction as FileAPIUpload;
 use backend\modules\sections\classes\JFiles;
+use kartik\mpdf\Pdf;
 /**
  * Class SiteController.
  */
@@ -298,6 +299,19 @@ class SiteController extends Controller
             \appxq\sdii\utils\VarDumper::dump($id);
         }
         
+    }
+    
+    public function actionPdf(){
+//        $content = $this->renderPartial('pdf', [
+//            
+//        ]);
+        
+        $layout = Pdf::ORIENT_PORTRAIT;
+        $paperSize = Pdf::FORMAT_A4;
+        $title  = "ทดสอบ PDF";
+        $content = "<h1>ทดสอบ PDF 55555 >Submit</button></h1>";
+        $fileName = \yii\helpers\Url::to('@frontend/web/css/test12.pdf');
+        \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
     }
 
 }

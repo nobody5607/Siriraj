@@ -16,12 +16,12 @@
         <!-- /.box-header -->
         <div class="panel-body" style="">
             <div id="dynamic-content-10">
-            <?= kartik\grid\GridView::widget([
+            <?=                \appxq\sdii\widgets\GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                   [
                       'format'=>'raw',
-                      'contentOptions'=>['style'=>'width:50px;'],
+                      'contentOptions'=>['style'=>'width:250px;'],
                       'attribute'=>'id',
                       'label'=> Yii::t('order','Order Id'),
                       'value'=>function($model){
@@ -33,7 +33,7 @@
                       'attribute'=>'create_date',
                       'label'=> Yii::t('order','Date'),
                       'value'=>function($model){
-                        return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
+                        return appxq\sdii\utils\SDdate::mysql2phpThDateSmall(isset($model->create_date) ? $model->create_date : '2018-00-00');
                       }
                   ],
 //                  [
@@ -55,19 +55,19 @@
                         'template'=>'{preview} {send-mail} {print} {delete}',
                         'buttons'=>[
                           'preview' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btn btn-info btn-sm', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-sm', 'target'=>'_blank']);   
                           },  
                           'send-mail' => function($url,$model,$key){
                               
-                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btn btn-success btn-sm', 'target'=>'_blank' ]);
+                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btns btn btn-success btn-sm', 'target'=>'_blank' ]);
                                
                           },
                           'print' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-print"></i>',$url."&type=print", ['title'=>Yii::t('order','Print'),'data-id'=>$model['id'], 'class'=>'btn btn-primary btn-sm', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-print"></i>',$url."&type=print", ['title'=>Yii::t('order','Print'),'data-id'=>$model['id'], 'class'=>'btns btn btn-primary btn-sm', 'target'=>'_blank']);   
                           },        
                           'delete' => function($url,$model,$key){
                               if($model['status'] == 1){
-                                  return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'],'title'=>Yii::t('order','Delete'), 'class'=>'btn btn-danger btn-sm btn-delete']);
+                                  return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'],'title'=>Yii::t('order','Delete'), 'class'=>'btns btn btn-danger btn-sm btn-delete']);
                               }
                           }
                         ]
@@ -116,6 +116,13 @@
             max-width: 100%;    
             margin-left: 0; 
         }
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>
+<?php \appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    .btns{
+        font-size:14pt;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>

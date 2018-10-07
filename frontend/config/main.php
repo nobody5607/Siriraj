@@ -14,7 +14,7 @@ $config = [
     'language' => 'th-TH',
     'modules' => [
         'gridview' =>  [
-        'class' => '\kartik\grid\Module'
+            'class' => '\kartik\grid\Module'
                 // enter optional module parameters below - only if you need to  
                 // use your own export download action or custom translation 
                 // message source

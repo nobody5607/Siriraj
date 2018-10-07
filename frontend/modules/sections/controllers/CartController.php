@@ -31,6 +31,7 @@ class CartController extends Controller
             $breadcrumbs[$key]=$v;
         } 
         $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+//        \appxq\sdii\utils\VarDumper::dump($dataProvider);
         return $this->render('my-cart',[
            'dataProvider' => $dataProvider,
            'breadcrumb'=>$breadcrumbs,

@@ -41,14 +41,14 @@
                         }
                     ],
                          
-                    [
-                        'contentOptions'=>['style'=>'width:50px;'],
-                        'attribute'=>'size',
-                        'label'=> Yii::t('order','Size'),
-                        'value'=>function($model){
-                          return isset($model->size) ? $model->size : '';
-                        }
-                    ],
+//                    [
+//                        'contentOptions'=>['style'=>'width:50px;'],
+//                        'attribute'=>'size',
+//                        'label'=> Yii::t('order','Size'),
+//                        'value'=>function($model){
+//                          return isset($model->size) ? $model->size : '';
+//                        }
+//                    ],
                     [
                         'contentOptions'=>['style'=>'width:50px;'],
                         'attribute'=>'quantity',
