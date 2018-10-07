@@ -1,7 +1,10 @@
 <?php 
     use yii\helpers\Html;
+    \janpan\jn\assets\ListdataAsset::register($this);
+    \janpan\jn\assets\EzfToolAsset::register($this);
     \janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
 //    \appxq\sdii\utils\VarDumper::dump($dataProvider);
+   $fileType = Yii::$app->request->get('filet_id', '');
 ?>
 <div class="col-md-8 view-file-left">
     <div class="box box-primary">
@@ -71,10 +74,10 @@
                 'options' => [
                     'tag' => 'div',
                     'class' => 'col-md-12',
-                    'id' => 'file_types',
+                    'id' => 'ezf_dad',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div','id'=>"img-{$model['id']}", 'data-id' => $model['id'], 'class' => 'col-md-3 col-sm-4 col-xs-6','style'=>'margin-bottom:150px;height: 80px;'];
+                    return ['tag' => 'div','id'=>"img-{$model['id']}", 'data-id' => $model['id'], 'class' => 'dads-children col-md-3 col-sm-4 col-xs-6','style'=>'height: 200px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {
@@ -98,31 +101,25 @@
 
 <?php 
     $modal = "modal-contents";
-?>
-<?php \richardfan\widget\JSRegister::begin(); ?>
-    <script>
-        setTimeout(function () {
-            $('#lightgallery').lightGallery();
-        }, 1000);
-        $('.btnCreateFile').on('click', function(){
-            let id = $(this).attr('data-id');
-            let content_id = '<?= Yii::$app->request->get('content_id', '')?>';
-            $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-            $('#<?= $modal?>').modal('show');
-            let url = '/sections/file-management/upload-file';
-            let file_type = $(this).attr('file_type');
-            $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
-                $('#<?= $modal?> .modal-content').html(res);
-            });
-           return false;
-        });
-    </script>
-<?php \richardfan\widget\JSRegister::end(); ?>
-
+?> 
     
     <?php \richardfan\widget\JSRegister::begin();?>
     <script>
-             
+           setTimeout(function () {
+                $('#lightgallery').lightGallery();
+            }, 1000);
+            $('.btnCreateFile').on('click', function(){
+                let id = $(this).attr('data-id');
+                let content_id = '<?= Yii::$app->request->get('content_id', '')?>';
+                $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+                $('#<?= $modal?>').modal('show');
+                let url = '/sections/file-management/upload-file';
+                let file_type = $(this).attr('file_type');
+                $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
+                    $('#<?= $modal?> .modal-content').html(res);
+                });
+               return false;
+            });  
             $('.btnDeleteBySelect').click(function () { 
                      
                     let url = '/sections/file-management/delete-file';
@@ -139,6 +136,20 @@
                         }
                     }); 
                return false; 
+            });
+            $('#ezf_dad').dad({
+                draggable:'.draggable',
+                callback:function(e){
+                    var positionArray = [];
+                    $('#ezf_dad').find('.dads-children').each(function(){
+                        positionArray.push($(this).attr('data-id'));
+                    });
+
+                    $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder-files']) ?>',{data:positionArray.toString(), type_id:'<?= $fileType?>'},function(result){
+                        console.log(result);
+                        return false;
+                    });
+                }
             });
             
     </script>
