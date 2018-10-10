@@ -71,7 +71,7 @@ use yii\helpers\Html;
             <div class="col-md-10">
                 <div class="trending-box" style="">
                         <div class="product-list-box">
-                            <div class="row">
+                            
                                 <?php foreach ($images as $k => $image): ?>
                                 <div class="col-md-4 col-100" style="overflow:hidden;">
                                         <div class="single-product">
@@ -85,7 +85,6 @@ use yii\helpers\Html;
                                         
                                     </div>
                                 <?php endforeach; ?>
-                            </div>    
                         </div>    
                     </div> 
             </div>
@@ -93,7 +92,7 @@ use yii\helpers\Html;
                 <h3 class="text-center"><?= Yii::t('section', 'Most Popular')?></h3>
                     <div class="trending-box">
                         <div class="product-list-box">
-                            <div class="row">
+                             
                                 <?php foreach ($imagesMost as $k => $image): ?>
                                 
                                 <div class="col-md-6 col-30" style="max-height: 50px; overflow: hidden;margin-bottom: 10px">
@@ -108,7 +107,7 @@ use yii\helpers\Html;
                                         
                                     </div>
                                 <?php endforeach; ?>
-                            </div>    
+                              
                         </div>    
                     </div>
                 </div>
