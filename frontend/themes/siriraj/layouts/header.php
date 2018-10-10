@@ -67,7 +67,7 @@ use yii\helpers\Html;
         $imagesMost = \backend\modules\sections\classes\JContent::getImageMost();
         //\appxq\sdii\utils\VarDumper::dump($imagesMost);
     ?>
-        <div class="row" style="padding-left:15px;padding-right:15px;background: #f0ede6;">    
+        <div class="row" style="">    
             <div class="col-md-10">
                 <div class="trending-box" style="padding-left:10px;padding-right:10px;">
                         <div class="product-list-box">
