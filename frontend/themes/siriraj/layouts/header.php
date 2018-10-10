@@ -96,7 +96,7 @@ use yii\helpers\Html;
                                 <?php foreach ($imagesMost as $k => $image): ?>
                                 
                                 <div class="col-md-6 col-30" style="max-height: 50px; overflow: hidden;margin-bottom: 10px">
-                                        <div class="single-product" style="margin:5px 0" title="<?= $image['details'] ?>">
+                                        <div class="single-product" style="" title="<?= $image['details'] ?>">
                                             <a href="/sections/content-management/view-file?content_id=<?= $image['content_id']?>&file_id=<?= $image['id']?>&filet_id=<?= $image['file_type']?>" style="color:#000;" > 
                                                 <div class="pro-img">
                                                     <img style="" class="primary-img img img-responsive img-rounded" src="<?= "{$image['file_path']}/thumbnail/{$image['file_view']}" ?>"  >
