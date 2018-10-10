@@ -132,7 +132,7 @@ class JContent {
                ->from('most_popular as mpl')
                ->innerJoin('tbl_files as tf', 'mpl.file_id = tf.id')
                ->orderBy(['mpl.count'=>SORT_DESC])
-               ->limit(15)
+               ->limit(10)
                ->all();
        //\appxq\sdii\utils\VarDumper::dump($mostPopular); 
        //$image = \common\models\Slideimg::find()->orderBy(['forder'=>SORT_ASC])->limit(15)->all();
