@@ -87,9 +87,9 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                         <div class="container">
                             <?php foreach ($imagesMost as $k => $image): ?>
 
-                            <div class="col-xs-6 over-hidden h-80">
+                            <div class="col-xs-6 over-hidden h-80 col-30">
                                 <a href="/sections/content-management/view-file?content_id=<?= $image['content_id'] ?>&file_id=<?= $image['id'] ?>&filet_id=<?= $image['file_type'] ?>" style="color:#000;" > 
-                                    <img  class="" src="<?= "{$image['file_path']}/thumbnail/{$image['file_view']}" ?>"  >
+                                    <img  class="height-100" src="<?= "{$image['file_path']}/thumbnail/{$image['file_view']}" ?>"  >
 
                                 </a>
                             </div>
@@ -111,14 +111,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                     margin-bottom: 10px;
                 }
                 .over-hidden{overflow: hidden;}
-
-                @media screen and (max-width:768px){
-                    .pdl-0{padding-left: 0px;}
-                    .mb-10{margin-bottom:10px;}
-                    .col-md-9 , .col-md-8 , .col-md-3, .col-md-4{
-                        max-width: 100%;
-                    }
-                }
+                .height-100{height:100%;} 
                  
 
             </style>

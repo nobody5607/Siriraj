@@ -126,13 +126,22 @@
     @media screen and (max-width: 768px)
     {
         .col-30 {
-            width: 30.33%;
-            margin: 0 auto;
+            width: 33.33%;
+            /*margin: 0 auto;*/
+            margin: 10px auto;
         }
         .col-100 {
             width: 100%;
             margin: 0 auto;
         }
+        .pdl-0{padding-left: 0px;}
+        .mb-10{margin-bottom:10px;}
+        .col-md-9 , .col-md-8 , .col-md-3, .col-md-4 , .container{
+            max-width: 100%;
+        }
+        .h-80{
+            height:120px;
+        } 
     }
     
     .cart-box>ul>li>a i{
