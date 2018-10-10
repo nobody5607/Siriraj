@@ -92,9 +92,8 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                                 </a>
                             </div>
 
-                        </div>
                     <?php endforeach; ?>
-                </div>
+                    </div>
             </div>
         </div>     
 
