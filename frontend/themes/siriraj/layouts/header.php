@@ -67,6 +67,7 @@ use yii\helpers\Html;
         $imagesMost = \backend\modules\sections\classes\JContent::getImageMost();
         //\appxq\sdii\utils\VarDumper::dump($imagesMost);
     ?>
+        <div class="container"> 
         <div class="row" style="">    
             <div class="col-md-10">
                 <div class="trending-box" style="">
@@ -112,6 +113,7 @@ use yii\helpers\Html;
                     </div>
                 </div>
         </div>
+       </div>     
         
 <?php endif; ?>
 
