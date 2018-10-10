@@ -68,7 +68,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
             //\appxq\sdii\utils\VarDumper::dump($imagesMost);
             ?>
             <div class="container"> 
-                <div class="row" style="">    
+                <div class="" style="">    
                     <div class="col-md-10">
 
                         <?php foreach ($images as $k => $image): ?>
@@ -81,8 +81,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                         <?php endforeach; ?>
                     </div>
                     <div class="col-md-2 text-center" style="">
-                        <h3 class="text-center"><?= Yii::t('section', 'Most Popular') ?></h3>
-                        <div class="clearfix"></div>
+                        
                         <?php foreach ($imagesMost as $k => $image): ?>
 
                             <div class="col-md-6">
