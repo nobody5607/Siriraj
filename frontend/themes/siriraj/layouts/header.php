@@ -74,7 +74,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                         <?php foreach ($images as $k => $image): ?>
                             <div class="col-md-4 col-100">
                                 <a href="/sections/section?id=1534738588018029900" style="color:#000;"> 
-                                    <img style="" class="primary-img" src="<?= "{$image['view_path']}/{$image['name']}" ?>"  alt="<?= $image['detail'] ?>">
+                                    <img style="" class="img img-responsive" src="<?= "{$image['view_path']}/{$image['name']}" ?>"  alt="<?= $image['detail'] ?>">
                                 </a>
 
                             </div>
