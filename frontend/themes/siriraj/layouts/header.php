@@ -110,11 +110,17 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                     overflow: hidden;
                     margin-bottom: 10px;
                 }
+                .over-hidden{overflow: hidden;}
 
                 @media screen and (max-width:768px){
                     .pdl-0{padding-left: 0px;}
                     .mb-10{margin-bottom:10px;}
+                    .col-md-9 , .col-md-8 , .col-md-3, .col-md-4{
+                        max-width: 100%;
+                    }
                 }
+                 
+
             </style>
             <?php \appxq\sdii\widgets\CSSRegister::end(); ?>
         <?php endif; ?>
