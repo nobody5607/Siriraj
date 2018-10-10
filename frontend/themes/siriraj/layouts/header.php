@@ -70,7 +70,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
             <div class="container"> 
                 <div class="" style="">    
                     <div class="col-md-9 mt-15">
-                        <div class="row">
+                        <div class="container">
                             <?php foreach ($images as $k => $image): ?>
                                 <div class="col-xs-4 col-100 over-hidden mt-10 pdl-0">
                                     <a href="/sections/section?id=1534738588018029900" style="color:#000;"> 
@@ -84,7 +84,8 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                     <div class="col-md-3 text-center" style="">
                         <h3 class="text-center pd-10"><?= Yii::t('section', 'Most Popular') ?></h3>
                         <div class="clearfix"></div>
-                        <?php foreach ($imagesMost as $k => $image): ?>
+                        <div class="container">
+                            <?php foreach ($imagesMost as $k => $image): ?>
 
                             <div class="col-xs-6 over-hidden h-80">
                                 <a href="/sections/content-management/view-file?content_id=<?= $image['content_id'] ?>&file_id=<?= $image['id'] ?>&filet_id=<?= $image['file_type'] ?>" style="color:#000;" > 
@@ -94,6 +95,7 @@ $website = \backend\modules\cores\classes\CoreOption::getParams("website", "e");
                             </div>
 
                         <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>     
