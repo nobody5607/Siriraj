@@ -69,7 +69,7 @@ use yii\helpers\Html;
     ?>
         <div class="row" style="">    
             <div class="col-md-10">
-                <div class="trending-box" style="padding-left:10px;padding-right:10px;">
+                <div class="trending-box" style="">
                         <div class="product-list-box">
                             <div class="row">
                                 <?php foreach ($images as $k => $image): ?>
@@ -89,7 +89,7 @@ use yii\helpers\Html;
                         </div>    
                     </div> 
             </div>
-            <div class="col-md-2 text-center" style="margin-top:10px;">
+            <div class="col-md-2 text-center" style="">
                 <h3 class="text-center"><?= Yii::t('section', 'Most Popular')?></h3>
                     <div class="trending-box">
                         <div class="product-list-box">
