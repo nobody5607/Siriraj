@@ -23,7 +23,7 @@ $fieldOptions2 = [
 ?>
 
 <div class="container">
-    <div class="row" style="margin-top:100px;">
+    <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading"><?= Yii::t('appmenu','Log into your account')?></div>
@@ -45,7 +45,7 @@ $fieldOptions2 = [
          
         <?= $form
             ->field($model, 'identity', $fieldOptions1)            
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('user','Username')) ?>
+            ->textInput(['autofocus'=>'autofocus','placeholder' => $model->getAttributeLabel('username')])->label(Yii::t('user','Username')) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
@@ -58,7 +58,7 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-md-8 col-md-offset-2">
-                <?= Html::submitButton(Yii::t('appmenu','Login'), ['class' => 'btn btn-primary btn-block btn-flat btn-lg', 'name' => 'login-button']) ?>
+                <?= Html::submitButton(Yii::t('appmenu','Login'), ['class' => 'btn btn-success btn-block btn-flat btn-lg', 'name' => 'login-button']) ?>
                 <br><a href="/account/sign-in/signup" class="text-center"><?= Yii::t('appmenu', 'Don\'t have an account, create a new account here')?></a>
             </div>
             <!-- /.col -->

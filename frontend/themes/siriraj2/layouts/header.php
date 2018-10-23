@@ -17,10 +17,10 @@
     <div class="col-md-6">
         <div class="navbar-menu">
             <ul>
-                <li class="active"><a  href="#home">HOME</a></li>
-                <li class="bg-green"><a href="#news">LOG IN</a></li>
-                <li class="bg-green"><a href="#contact">SIGI IN</a></li>
-                <li class="active clip-right"><a href="#about">MORE...</a></li>
+                <li class="active"><a  href="/"><?= Yii::t('section','HOME')?></a></li>
+                <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','LOG IN')?></a></li>
+                <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGI IN')?></a></li>
+                <li class="active clip-right"><a href="#"><?= Yii::t('section','MORE...')?></a></li>
             </ul>
         </div>
     </div>
@@ -28,13 +28,14 @@
     <div class="col-md-6 col-md-offset-4">
         <div class="navbar-menu-center">
             <ul>
-                <li ><a class="nav-active-left" href="#home">HIGHLIGHT</a></li>
-                <li ><a href="#news">TOP SEARCH</a></li>
+                <li ><a class="nav-active-left" href="/"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
+                <li ><a href="#"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
             </ul>
         </div>
     </div>
 </div>
 
+<?php if(empty($layoutSecond)):?>
 <!-- Slider Image -->
 <section class="multiple-items">
     <?php foreach($images as $k=>$i): ?>
@@ -44,13 +45,12 @@
         </div>
     <?php endforeach; ?>
 </section>      
+<?php endif; ?>
 
 
 <!-- Form Search -->      
 <div id="form-search">
-    <form>
-        <input type="text" class="form-control"/>
-    </form>
+    <?php echo $this->render('form-search')?>
 </div>
 
 <!-- Header Text -->
@@ -58,11 +58,13 @@
 
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
-    console.log('slide images');
-    $('.multiple-items').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
+    
+    $(function(){
+        $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
     });
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>

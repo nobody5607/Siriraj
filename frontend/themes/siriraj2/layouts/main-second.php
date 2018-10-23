@@ -14,12 +14,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
-        <?php Yii::$app->meta->displaySeo() ?>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        
-        
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
@@ -31,7 +28,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                     <?php
                     echo $this->render("header", [
                         'slide' => 1,
-                        'directoryAsset' => $directoryAsset
+                        'directoryAsset' => $directoryAsset,
+                        'layoutSecond'=>true
                     ]);
                     ?>
 

@@ -50,7 +50,7 @@ class SectionController extends Controller
         ]);  
         
         if($id){
-            $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+            $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
         }
         return $this->render("index",[
             'dataProvider'=>$dataProvider,
@@ -138,7 +138,7 @@ class SectionController extends Controller
                 ];
             }
         }
-        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+        $this->layout = "@frontend/themes/siriraj/layouts2/main-second"; 
         return $this->render("content-management", [
                     'breadcrumb' => $breadcrumb,
                     'title' => $content['name'],

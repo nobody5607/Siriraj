@@ -88,7 +88,16 @@ html body{background: #57a19f87;}
 .wd-100{
     width:99%;
 }
-
+.btn-success {
+    color: #fff;
+    background-color: #57a19f;
+    border-color: #498b8a;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #4d908e;
+    border-color: #4a8b8a;
+}
 /* desktop device */
 @media screen and (min-width:768px){
     .navbar-menu ul {padding:0;}

@@ -30,7 +30,7 @@ class CartController extends Controller
         foreach($breadcrumbs_arr as $key=>$v){
             $breadcrumbs[$key]=$v;
         } 
-        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+        $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
 //        \appxq\sdii\utils\VarDumper::dump($dataProvider);
         return $this->render('my-cart',[
            'dataProvider' => $dataProvider,
@@ -153,7 +153,7 @@ class CartController extends Controller
                     return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($model->errors));
                 } 
             }
-            $this->layout = "@frontend/themes/siriraj/layouts/main-second";
+            $this->layout = "@frontend/themes/siriraj2/layouts/main-second";
             return $this->render('step1',[
                 'model'=>$model,
                 'breadcrumb'=>$breadcrumbs

@@ -23,14 +23,6 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
 <?php $this->beginBody() ?>
 
 <div class="wrapper">
-        
-        <?php 
-            echo $this->render("header",[
-                'slide'=>0,
-                'directoryAsset'=>$directoryAsset
-            ]);
-        ?>
-  
         <div class="main-page-banner pb-50 off-white-bg home-3">
             <div class="container">
                 <?= $content;?>  

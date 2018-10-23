@@ -131,7 +131,7 @@ class SessionManagementController extends Controller
             }
              
         }
-        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+        $this->layout = "@frontend/themes/siriraj/layouts2/main-second"; 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [

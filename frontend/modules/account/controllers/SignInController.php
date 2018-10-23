@@ -21,7 +21,7 @@ class SignInController extends Controller
 {
     public function beforeAction($action)
     {
-      $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+      $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
       return parent::beforeAction($action);
     }
     /**

@@ -22,7 +22,7 @@ echo yii\bootstrap\Modal::widget([
     'options' => ['tabindex' => false]
 ]);
 ?>
-<div class="container" style="margin-top:30px;">
+<div class="" style="margin-top:30px;">
     
     <div class="row">
         <?php $form = ActiveForm::begin([
@@ -45,7 +45,7 @@ echo yii\bootstrap\Modal::widget([
                     <label style="color:red;margin-bottom:20px;">**  <?= Yii::t('_user','Siriraj members wait 1-2 days for staff approval.')?></label>
                      
                     <div class="col-md-12">
-                        <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'autofocus'=>'autofocus']) ?>
 
                         <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

@@ -38,6 +38,9 @@ $config = [
         ],
     ],
     'components' => [
+        'meta' => [
+            'class' => 'frontend\components\MetaComponent',
+        ],//seo config
         'i18n' => [
             'translations' => [
                 '*' => [
@@ -108,10 +111,15 @@ $config = [
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     //$config['bootstrap'][] = 'debug';
+    
     $config['bootstrap']['log'] = [
         'class' => 'common\components\LanguageSelector',
         'supportedLanguages' => ['en-US', 'th-TH'], //กำหนดรายการภาษาที่ support หรือใช้ได้
     ];
+//    $config['bootstrap']['log'][] = 'frontend\components\AppComponent';
+    //print_r($config['bootstrap']['log']);exit();
+    
+   // var_dump($config);
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         'allowedIPs' => ['127.0.0.1', '::1', '192.168.*.*'],

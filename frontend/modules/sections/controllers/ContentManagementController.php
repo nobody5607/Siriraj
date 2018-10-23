@@ -140,7 +140,7 @@ class ContentManagementController extends Controller
         $addTemplate    = JContent::addTemplate($content_id);
         $choice         = JContent::getChoice($content_id, $filet_id);
                 //\appxq\sdii\utils\VarDumper::dump($check_choice);
-        $this->layout = "@frontend/themes/siriraj/layouts/main-second"; 
+        $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
         return $this->render("view-file/index",[
             'breadcrumb'=>$breadcrumb,
             'dataProvider'=>$dataProvider,
