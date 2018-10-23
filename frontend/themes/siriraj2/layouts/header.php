@@ -12,7 +12,7 @@
 <div class="container">
     <div class="col-md-6"></div>
     <div class="col-md-6">
-        <div class="navbar-menu col-md-12">
+        <div class="navbar-menu">
             <ul>
                 <li class="active"><a  href="#home">HOME</a></li>
                 <li class="bg-green"><a href="#news">LOG IN</a></li>
