@@ -1,3 +1,6 @@
+<?php 
+    $images = \backend\modules\sections\classes\JContent::getImage();
+?>
 <header>
     <div class="container">
         <div class="col-md-1 text-center">
@@ -34,39 +37,12 @@
 
 <!-- Slider Image -->
 <section class="multiple-items">
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=1">
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=2">
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=3">
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=4">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=5">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=6">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=7">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=8">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
-    <div>
-        <img class="img img-responsive" src="http://placehold.it/350x300?text=9">
-        <div class="text-center captur-text">Test test testsfsd</div>
-    </div>
+    <?php foreach($images as $k=>$i): ?>
+        <div>
+            <img style="height: 210px;" class="img img-responsive img-rounded" src="<?= "{$i['view_path']}/{$i['name']}"?>">
+            <div class="text-center captur-text"><?= $i['detail']?></div>
+        </div>
+    <?php endforeach; ?>
 </section>      
 
 
