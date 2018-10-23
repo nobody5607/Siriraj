@@ -7,7 +7,7 @@ janpan\jn\assets\JScrollbarAssets::register($this);
 \appxq\sdii\assets\bootbox\BootBoxAsset::register($this);
 
 \frontend\themes\siriraj2\assets\Siriraj2Assets::register($this);
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/siriraj');
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/siriraj2');
 ?>
 
 <?php $this->beginPage() ?>
