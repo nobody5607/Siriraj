@@ -1,9 +1,9 @@
 <header>
     <div class="container">
         <div class="col-md-1 text-center">
-            <img src="https://srr.thaicarecloud.org/images/logosirirajweb3.png" class="img img-responsive"/>
+            <img id="logo" src="https://srr.thaicarecloud.org/images/logosirirajweb3.png" class="img img-responsive"/>
         </div>
-        <div class="col-md-11">
+        <div class="col-md-11 logo-text">
             <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
             <h3>Siriraj museum (Unravel) treasure</h3>
         </div>
