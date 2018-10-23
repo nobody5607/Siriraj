@@ -6,7 +6,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         // Index page
-        '' => '/sections/section',
+        '' => '/museum',
         // Pages
         'page/<slug>' => 'page/view',
         // Articles
