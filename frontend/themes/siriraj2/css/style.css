@@ -85,6 +85,9 @@ html body{background: #57a19f87;}
     border-bottom: 3px solid gray;
     color: #57a19f !important;
 }
+.wd-100{
+    width:99%;
+}
 
 /* desktop device */
 @media screen and (min-width:768px){
@@ -266,5 +269,10 @@ html body{background: #57a19f87;}
     .header-text{
         padding: 0px;
         font-size: 12pt;
+    }
+    
+    .footer {
+        font-size: 10pt;
+        font-style: italic;
     }
 }

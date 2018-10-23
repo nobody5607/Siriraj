@@ -33,6 +33,9 @@ $config = [
         'knowledges' => [
             'class' => 'frontend\modules\knowledges\Module',
         ],
+        'museum' => [
+            'class' => 'frontend\modules\museum\Module',
+        ],
     ],
     'components' => [
         'i18n' => [

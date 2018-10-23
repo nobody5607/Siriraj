@@ -33,7 +33,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                     ?>
 
                     <div id="mock-content">
-                        <?= $this->render('mock-content')?>
+                        <?= $content; ?>
+                        <?php //$this->render('mock-content')?>
                     </div>
                
                 </div>
