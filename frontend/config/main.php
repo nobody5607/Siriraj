@@ -70,7 +70,7 @@ $config = [
        'view' => [
             'theme' => [
                 'pathMap' => [
-                   '@frontend/views' => '@frontend/themes/siriraj'
+                   '@frontend/views' => '@frontend/themes/siriraj2'
                 ],
             ],
        ],

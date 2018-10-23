@@ -28,7 +28,7 @@
 ?>
 <script>
     
-     $('#panel-<?= $type_id?> #ezf_dad').dad({
+     $('#ezf_dad').dad({
         draggable:'.draggable',
         callback:function(e){
             var positionArray = [];
