@@ -4,7 +4,8 @@
     Yii::$app->meta->description = 'ค้นพบเรื่องราวประวัติศาสตร์ฝั่งธนฯ และการแพทย์ได้ที่นี่';
     Yii::$app->meta->image = 'https://srr.thaicarecloud.org/images/logosirirajweb3.png';//Yii::getAlias('@web').'/images/myimage.jpg';
 ?>
-
+<!-- Header Text -->
+<h2 class="text-center header-text"> ค้นพบเรื่องราวประวัติศาสตร์ฝั่งธนฯ และการแพทย์ได้ที่นี่</h2>
 <div id="content" class="content">
 <?=
 \yii\widgets\ListView::widget([

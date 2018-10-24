@@ -71,8 +71,7 @@
     <?php echo $this->render('form-search')?>
 </div>
 
-<!-- Header Text -->
-<h2 class="text-center header-text"> ค้นพบเรื่องราวประวัติศาสตร์ฝั่งธนฯ และการแพทย์ได้ที่นี่</h2>
+
 
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
