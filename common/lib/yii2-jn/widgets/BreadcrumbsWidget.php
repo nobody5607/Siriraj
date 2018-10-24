@@ -58,6 +58,7 @@ class BreadcrumbsWidget extends \yii\base\Widget{
             background-color: #ffffff00; 
             border: none;
         }
+        
         ";
         $view->registerCss($css);
 

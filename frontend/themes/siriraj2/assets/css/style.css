@@ -99,6 +99,11 @@ a:hover{text-decoration: none;}
     background-color: #4d908e;
     border-color: #4a8b8a;
 }
+
+a {
+    color: #415e5d;
+    text-decoration: none;
+}
 /* desktop device */
 @media screen and (min-width:768px){
     .navbar-menu ul {padding:0;}

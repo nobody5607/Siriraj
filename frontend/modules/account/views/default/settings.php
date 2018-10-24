@@ -69,6 +69,7 @@ if($breadcrumb){
     .btn-change-password{
         font-size: 1.25rem;
     }
+    
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
  

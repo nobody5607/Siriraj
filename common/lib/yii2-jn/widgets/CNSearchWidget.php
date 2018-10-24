@@ -163,7 +163,7 @@ class CNSearchWidget extends \yii\base\Widget{
             font-size: 18px;
           }
           .searchFilter .dropdown-menu .category_filters label {
-            margin-left: 15px;
+            margin-left: 50px;
           }
           @media (min-width: 1400px) {
             .ct-header .ct-jumbotron .inner {

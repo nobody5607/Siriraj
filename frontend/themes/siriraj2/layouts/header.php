@@ -4,6 +4,7 @@
     //appxq\sdii\utils\VarDumper::dump($images);
 ?>
 <header>
+    <a href='/'>
     <div class="container">
         <div class="col-md-1 text-center">
             <img id="logo" src="https://srr.thaicarecloud.org/images/logosirirajweb3.png" class="img img-responsive"/>
@@ -20,7 +21,7 @@
             ]);
             ?> 
         </div>
-    </div>
+    </div></a>
 </header>
 <div class="container">
     <div class="col-md-6"></div>
