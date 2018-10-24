@@ -51,6 +51,7 @@ class CNSearchWidget extends \yii\base\Widget{
     public function registerScript(){
         $view = $this->getView(); 
         $js="
+            
             function initTextSearch(){
                 let txt = '".isset($_GET['txtsearch']) ? isset($_GET['txtsearch']) : ''."';
                 $('#text-search-term').val(txt); 
