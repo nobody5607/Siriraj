@@ -52,14 +52,7 @@ class CNSearchWidget extends \yii\base\Widget{
         $view = $this->getView(); 
         $js="
             
-            function initTextSearch(){
-                let txt = '".isset($_GET['txtsearch']) ? isset($_GET['txtsearch']) : ''."';
-                $('#text-search-term').val(txt); 
-                console.log('textSearch', txt);
-                return false;    
-               
-            }
-            initTextSearch();
+            
             $('#text-search-id').val('');
             $('.category_filters li label').on('click', function(){
                 let label = $(this).text();
