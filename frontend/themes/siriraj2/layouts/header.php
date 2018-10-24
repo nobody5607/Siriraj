@@ -28,8 +28,16 @@
         <div class="navbar-menu">
             <ul>
                 <li class="active"><a  href="/"><?= Yii::t('section','HOME')?></a></li>
+                <?php if (Yii::$app->user->isGuest): ?> 
+                
                 <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','LOG IN')?></a></li>
                 <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGI IN')?></a></li>
+                <?php else: ?>
+                <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i>  <?= Yii::t('appmenu', 'My Profile') ?></a></li>
+                <!--<li class="bg-green"><a href="/sections/order/my-order"><i class="fa fa-check-square-o"></i>  <?= Yii::t('appmenu', 'My Orders') ?></a></li>-->
+                <li class="bg-green"><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'Logout') ?></a></li>
+                <?php endif; ?>
+                
                 <li class="active clip-right"><a href="#"><?= Yii::t('section','MORE...')?></a></li>
             </ul>
         </div>

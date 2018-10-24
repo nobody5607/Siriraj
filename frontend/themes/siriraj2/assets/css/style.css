@@ -64,7 +64,7 @@ a:hover{text-decoration: none;}
     padding: 6px 26px;
     text-decoration: none;
     text-decoration: none;
-    font-size: 14pt;
+    font-size: 12pt;
 }
 
 .navbar-menu ul li a:hover:not(.active) {
