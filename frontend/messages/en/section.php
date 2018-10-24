@@ -37,4 +37,12 @@ return [
     'Item'=>'Item',
     'Found all'=>'Found all',
     'Loading data'=>'Loading data',
+    'HOME'=>'HOME',
+    'LOG IN'=>'LOG IN',
+    'SIGI IN'=>'SIGI IN',
+    'MORE...'=>'MORE...',
+    'HIGHLIGHT'=>'HIGHLIGHT',
+    'TOP SEARCH'=>'TOP SEARCH',
+    ''=>'',
+    ''=>'',
 ];

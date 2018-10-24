@@ -35,30 +35,40 @@
     font-weight: bold;
     border-bottom: 1px solid #e8e6e1;"><?= Yii::t('section','Siriraj Museum ... more than you think.')?> : <?= $title?></h2>
     <?php endif; ?>
-    <div class="container">
-        <div class="trending-box">            
-            <div class="product-list-box">                  
-                    <?php 
-                        echo ListView::widget([
-                            'dataProvider' => $dataProvider,
-                            'itemOptions' => ['class' => 'col-md-3  col-50'],
-                           // 'layout' => '{items}',
-                            'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div><div class="row">{items}</div><div class="list-pager">{pager}</div>',
-//                            'options' => [
-//                                'tag' => 'div',
-//                                'class' => 'row',
-//                            ],
-                            'itemView' => function ($model, $key, $index, $widget) {
-                                return $this->render('_item', [
-                                    'model' => $model 
-                                ]);
-                            },
-                            'emptyText'=> ''        
-                        ]);
-                    ?> 
-            </div>
-            <!-- main-product-tab-area-->
-        </div>
+
+<div class="">
+    <?=
+        \yii\widgets\ListView::widget([
+            'dataProvider' => $dataProvider,
+            'options' => [
+                'tag' => 'div',
+                'class' => 'row',
+                //        'id' => 'section-all',
+                'id' => 'ezf_dad',
+            ],
+            'itemOptions' => function($model) {
+                return ['tag' => 'div','class' => 'bg-green flex-display mb10 wd-100 btn-parent', 'data-id'=>"{$model['id']}"];
+            },
+            'emptyText'=>false,        
+            'layout' => "{items}\n<div class='list-pager'>{pager}</div>",
+            'itemView' => function ($model, $key, $index, $widget) {
+
+                return $this->render('_item', ['model' => $model, 'key'=>$key+1]);
+            },
+        ]);
+    ?>
+    <?php richardfan\widget\JSRegister::begin();?>
+    <script>
+        $('.btn-parent').css({ cursor:'pointer' });
+        $('.btn-parent').on('click',function(){
+            let id = $(this).attr('data-id');   
+            let url = '/sections/section?id='+id;  
+            location.href = url;
+        });
+    </script>
+    <?php richardfan\widget\JSRegister::end();?>
+    
+        
     </div>
     <!-- Container End -->
 </div> 
@@ -71,28 +81,38 @@
     background: #f3f3f3;
     padding-bottom: 20px;
     border-bottom: 1px solid #e8e6e1;"><?= Yii::t('section','Data')?> : <?= $title?></h2>
-        <div class="container">
+        <div class="">
+            <?=
+                \yii\widgets\ListView::widget([
+                    'dataProvider' => $contentProvider,
+                    'options' => [
+                        'tag' => 'div',
+                        'class' => 'row',
+                        //        'id' => 'section-all',
+                        'id' => 'ezf_dad',
+                    ],
+                    'itemOptions' => function($model) {
+                        return ['tag' => 'div','class' => 'bg-green flex-display mb10 wd-100 btn-content', 'data-id'=>"{$model['id']}"];
+                    },
+                    'layout' => "{items}\n<div class='list-pager'>{pager}</div>",
+                    'itemView' => function ($model, $key, $index, $widget) {
+
+                        return $this->render('_item-content', ['model' => $model, 'key'=>$key+1]);
+                    },
+                ]);
+            ?>
             
-            <div class="trending-box">            
-                <div class="product-list-box">                          
-                        <?php 
-                            echo ListView::widget([
-                                'dataProvider' => $contentProvider,
-                                'itemOptions' => ['class' => 'col-md-3 col-50'],
-                                //'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
-                                'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div><div class="row">{items}</div><div class="list-pager">{pager}</div>',
-                                
-                                'itemView' => function ($model, $key, $index, $widget) {
-                                    return $this->render('_item-content', [
-                                        'model' => $model 
-                                    ]);
-                                },
-                                'emptyText'=> ''        
-                            ]);
-                        ?> 
-                </div>
-                <!-- main-product-tab-area-->
-            </div>
+            <?php richardfan\widget\JSRegister::begin();?>
+    <script>
+        $('.btn-content').css({ cursor:'pointer' });
+        $('.btn-content').on('click',function(){
+            let id = $(this).attr('data-id');   
+            let url = '/sections/section/content-management?content_id='+id;  
+            location.href = url;
+        });
+    </script>
+    <?php richardfan\widget\JSRegister::end();?>
+             
         </div>
         <!-- Container End -->
     </div>

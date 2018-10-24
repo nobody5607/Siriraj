@@ -45,7 +45,7 @@ class SectionController extends Controller
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
-                'pageSize' => 100,
+                'pageSize' => 10,
             ],
         ]);  
         
@@ -138,7 +138,7 @@ class SectionController extends Controller
                 ];
             }
         }
-        $this->layout = "@frontend/themes/siriraj/layouts2/main-second"; 
+        $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
         return $this->render("content-management", [
                     'breadcrumb' => $breadcrumb,
                     'title' => $content['name'],

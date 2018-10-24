@@ -16,21 +16,21 @@ class CNSearchWidget extends \yii\base\Widget{
         parent::run();
         $html = "";
         $html .= '
-              <div class="row searchFilter" >
+              <form class="row searchFilter" id="form-global-search" >
                  <div class="col-sm-12" >
                   <div class="input-group" >
-                   <input style="'.$this->customInputStyle.'" id="table_filter" type="text" id="text_search_params" class="form-control" aria-label="Text input with segmented button dropdown" >
-                   <div class="input-group-btn" >
+                   <input style="'.$this->customInputStyle.'" id="text-search-term" type="text" id="text_search_params" class="form-control" aria-label="Text input with segmented button dropdown" >
+                   <input type="hidden" name="text-search-id" id="text-search-id"/> 
+                    <div class="input-group-btn" >
                     <button style="'.$this->customDropDownStyle.'" type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >'.$this->labelSelect.'</span> <span class="caret" ></span></button>
                     <div class="dropdown-menu dropdown-menu-right" >
                        <ul class="category_filters" > '; 
-//        \appxq\sdii\utils\VarDumper::dump($this->data['types']);
                        if(!empty($this->data['types'])){
                            foreach($this->data['types'] as $k=>$t){
-                               
+                               $name = \Yii::t('section', $t['name']);
                                $html .= "
                                    <li >
-                                      <label for='{$t['name']}' >{$t['name']}</label>
+                                      <label data-id='{$t['id']}' for='{$name}'>{$name}</label>
                                     </li>
                                 "; 
                            }
@@ -39,19 +39,75 @@ class CNSearchWidget extends \yii\base\Widget{
         
         $html .= "     </ul>
                     </div>
-                    <button style='{$this->customBtnStyle}' id='searchBtn type='button class='{$this->btnClass}'><span class='glyphicon glyphicon-search >&nbsp;</span> <span class='label-icon ></span></button>
+                    <button style='{$this->customBtnStyle}' type='submit' id='searchBtn' class='{$this->btnClass}'><span class='glyphicon glyphicon-search >&nbsp;</span> <span class='label-icon ></span></button>
                    </div>
                   </div>
                  </div>
-              </div>    
+              </form>    
         ";        
         $this->registerScript();
         echo $html;
     }
     public function registerScript(){
         $view = $this->getView(); 
+        $js="
+            function initTextSearch(){
+                let txt = '".isset($_GET['txtsearch']) ? isset($_GET['txtsearch']) : ''."';
+                $('#text-search-term').val(txt); 
+                console.log('textSearch', txt);
+                return false;    
+               
+            }
+            initTextSearch();
+            $('#text-search-id').val('');
+            $('.category_filters li label').on('click', function(){
+                let label = $(this).text();
+                let id = $(this).attr('data-id');
+                $('#text-search-id').val(id);
+                $('.label-icon').text(label);
+                //return false;
+            });
+            
+            $('#form-global-search').on('submit', function(){
+                
+                let term = $('#text-search-term').val();
+                let type_id = $('#text-search-id').val();
+                let url = '/sections/session-management/search?type_id='+type_id+'&txtsearch='+term;
+                window.open(url,'_parent');
+                return false;
+            });
+            
+            $( '#text-search-term').autocomplete({
+                    source: function( request, response ) {
+                      $.ajax( {
+                        url: '/sections/session-management/get-keyword-search',
+                        dataType: 'json',
+                        data: {
+                          term: request.term
+                        },
+                        success: function( data ) {
+                          response( data );
+                        }
+                      } );
+                    },
+                    minLength: 2,
+                    select: function( event, ui ) {
+                    let type_id = $('#text-search-id').val();
+                    let url = '/sections/session-management/search?type_id='+type_id+'&txtsearch='+ui.item.value;
+                    window.open(url,'_parent');
+                  }
+            });
+
+        ";
+        
+        $view->registerJs($js);
         $css ="
-           
+           .ui-menu .ui-menu-item{
+            
+           }
+           .ui-menu .ui-menu-item {
+                background: #57a19f;
+            }
            .searchFilter.btn {
               display: inline-block;
               font-weight: 400;
@@ -211,6 +267,16 @@ class CNSearchWidget extends \yii\base\Widget{
                   right: 0px;
             }
           }
+          
+         @media screen and (max-width:768px){
+           
+                .searchFilter .glyphicon {
+                    margin-right: 4px;
+                }
+                button#searchBtn {
+                    width: 50px;
+                }
+           }
 
         ";
         $view->registerCss($css);

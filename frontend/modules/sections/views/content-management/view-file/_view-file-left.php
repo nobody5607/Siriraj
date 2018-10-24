@@ -178,7 +178,7 @@ use yii\helpers\Html;
                     'id' => 'file_types',
                 ],
                 'itemOptions' => function($model) {
-                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-4 col-50', 'style' => '    border: 1px solid #f3f3f3; margin-bottom:0px;'];
+                    return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'col-md-4 col-xs-6', 'style' => '    border: 1px solid #f3f3f3; margin-bottom:0px;'];
                 },
                 'layout' => "{pager}\n{items}\n",
                 'itemView' => function ($model, $key, $index, $widget) {

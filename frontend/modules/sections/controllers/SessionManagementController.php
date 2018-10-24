@@ -103,7 +103,8 @@ class SessionManagementController extends Controller
             ':keywords'=>"%{$txtsearch}%",        
                     
              
-        ]);
+        ])->orderBy(['file_type'=>SORT_ASC]);
+           
         if($type_id == 0 || $type_id == ""){
             $type_id = 1;
         }
@@ -131,7 +132,7 @@ class SessionManagementController extends Controller
             }
              
         }
-        $this->layout = "@frontend/themes/siriraj/layouts2/main-second"; 
+        $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $model,
             'pagination' => [

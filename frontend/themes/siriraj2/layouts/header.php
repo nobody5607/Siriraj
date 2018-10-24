@@ -1,14 +1,24 @@
 <?php 
     $images = \backend\modules\sections\classes\JContent::getImage();
+    ///sections/content-management/view-file?content_id=1536226767074797500&file_id=1538478070046184200&filet_id=2
+    //appxq\sdii\utils\VarDumper::dump($images);
 ?>
 <header>
     <div class="container">
         <div class="col-md-1 text-center">
             <img id="logo" src="https://srr.thaicarecloud.org/images/logosirirajweb3.png" class="img img-responsive"/>
         </div>
-        <div class="col-md-11 logo-text">
+        <div class="col-md-9 logo-text">
             <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
             <h3>Siriraj museum (Unravel) treasure</h3>
+        </div>
+        <div class="col-md-2 text-center">
+            <?php
+            echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+                'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+                'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
+            ]);
+            ?> 
         </div>
     </div>
 </header>
@@ -39,10 +49,10 @@
 <!-- Slider Image -->
 <section class="multiple-items">
     <?php foreach($images as $k=>$i): ?>
-        <div>
+        <a href="<?= $i['url']?>">
             <img style="height: 210px;" class="img img-responsive img-rounded" src="<?= "{$i['view_path']}/{$i['name']}"?>">
             <div class="text-center captur-text"><?= $i['detail']?></div>
-        </div>
+        </a>
     <?php endforeach; ?>
 </section>      
 <?php endif; ?>

@@ -16,7 +16,7 @@
         'id' => 'ezf_dad',
     ],
     'itemOptions' => function($model) {
-        return ['tag' => 'div','class' => 'bg-green flex-display mb10 wd-100'];
+        return ['tag' => 'div','class' => 'bg-green flex-display mb10 wd-100 btn-parent', 'data-id'=>"{$model['id']}"];
     },
     'layout' => "{items}\n",
     'itemView' => function ($model, $key, $index, $widget) {
@@ -26,3 +26,16 @@
 ]);
 ?>
 </div>
+
+
+
+<?php richardfan\widget\JSRegister::begin();?>
+<script>
+    $('.btn-parent').css({ cursor:'pointer' });
+    $('.btn-parent').on('click',function(){
+        let id = $(this).attr('data-id');   
+        let url = '/sections/section?id='+id;  
+        location.href = url;
+    });
+</script>
+<?php richardfan\widget\JSRegister::end();?>

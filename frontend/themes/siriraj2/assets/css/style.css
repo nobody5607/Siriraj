@@ -38,7 +38,7 @@ html body{background: #57a19f87;}
     padding: 6px 8px;
     text-decoration: none;
     text-decoration: none;
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 /* navbar menu*/
@@ -54,6 +54,7 @@ html body{background: #57a19f87;}
 .navbar-menu ul li {
     float: left;
 }
+a:hover{text-decoration: none;}
 
 
 .navbar-menu ul li a {
@@ -63,7 +64,7 @@ html body{background: #57a19f87;}
     padding: 6px 26px;
     text-decoration: none;
     text-decoration: none;
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 .navbar-menu ul li a:hover:not(.active) {
@@ -147,12 +148,12 @@ html body{background: #57a19f87;}
         width:40%;
     }
     .flex-display div h1{
-        font-size:26pt; 
+        font-size:20pt; 
         padding-bottom:5px;
         font-weight: bold;
         margin-top: 38%;
         color: #0f3e4a;
-        font-family: monospace;
+        /*font-family: monospace;*/
         /* border-bottom: 6px solid #F9F4D2; */
     }
     .flex-display div p{
