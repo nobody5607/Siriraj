@@ -7,8 +7,8 @@
         </div>
         <div class="pull-right social">
             <a href="#">
-                <img src='<?= Yii::getAlias('@storageUrl').'/images/www.png'?>' style="width:30px"/>
-                <img src='<?= Yii::getAlias('@storageUrl').'/images/facebook.png'?>' style="width:30px" />
+                <img src='<?= yii\helpers\Url::to('@web/images/www.png')?>' style="width:30px"/>
+                <img src='<?= yii\helpers\Url::to('@web/images/facebook.png')?>' style="width:30px" />
             </a>
         </div>
     </div>
