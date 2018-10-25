@@ -24,10 +24,12 @@
     </div></a>
 </header>
 <div class="container">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
+    <div class="col-md-5"></div>
+    <div class="col-md-7">
         <div class="navbar-menu">
             <ul>
+                
+                
                 <li class="active"><a  href="/"><?= Yii::t('section','HOME')?></a></li>
                 <?php if (Yii::$app->user->isGuest): ?> 
                 
@@ -38,8 +40,16 @@
                 <!--<li class="bg-green"><a href="/sections/order/my-order"><i class="fa fa-check-square-o"></i>  <?= Yii::t('appmenu', 'My Orders') ?></a></li>-->
                 <li class="bg-green"><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'Logout') ?></a></li>
                 <?php endif; ?>
-                
-                <li class="active clip-right"><a href="#"><?= Yii::t('section','MORE...')?></a></li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu ">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="clip-right active"><a class="menu-height"></a></li>
+               
             </ul>
         </div>
     </div>
@@ -59,7 +69,7 @@
 <section class="multiple-items">
     <?php foreach($images as $k=>$i): ?>
         <a href="<?= $i['url']?>">
-            <img style="height: 210px;" class="img img-responsive img-rounded" src="<?= "{$i['view_path']}/{$i['name']}"?>">
+            <img class="img img-responsive img-rounded image-sliders" src="<?= "{$i['view_path']}/{$i['name']}"?>">
             <div class="text-center captur-text"><?= $i['detail']?></div>
         </a>
     <?php endforeach; ?>

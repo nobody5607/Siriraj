@@ -5,7 +5,12 @@
             <div>เลขที่ 2 ถนนวังหลัง แขวงศิริราช เขตบางกอกน้อย กรุงเทพฯ 10700</div>
             <div>โทร. 024192601-2 , 26189</div>
         </div>
-        <div class="pull-right social">Facebook <i class="fa fa-facebook-square" aria-hidden="true"></i></div>
+        <div class="pull-right social">
+            <a href="#">
+                <img src='<?= Yii::getAlias('@storageUrl').'/images/www.png'?>' style="width:30px"/>
+                <img src='<?= Yii::getAlias('@storageUrl').'/images/facebook.png'?>' style="width:30px" />
+            </a>
+        </div>
     </div>
 </div>
 

@@ -30,7 +30,10 @@ html body{background: #57a19f87;}
 }
 .navbar-menu-center ul li {
     float: left;
+    position: relative;
+    transition-duration: 0.5s;
 }
+
 .navbar-menu-center ul li a {
     display: block;
     color: gray;
@@ -45,14 +48,22 @@ html body{background: #57a19f87;}
 .navbar-menu ul {
     list-style-type: none;
     margin: 0; 
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-color: transparent;
-    -webkit-clip-path: polygon(0% 0%, 96% 0, 100% 50%, 96% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 96% 0, 100% 50%, 96% 100%, 0% 100%);
+/*    -webkit-clip-path: polygon(0% 0%, 96% 0, 100% 50%, 96% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 96% 0, 100% 50%, 96% 100%, 0% 100%);*/
 }
-
+.open > .dropdown-menu{
+    display: block;
+    background: #415e5d;
+}
+.dropdown-menu{
+    border-radius:0;
+}
 .navbar-menu ul li {
     float: left;
+    position: relative;
+    transition-duration: 0.5s;
 }
 a:hover{text-decoration: none;}
 
@@ -68,11 +79,13 @@ a:hover{text-decoration: none;}
 }
 
 .navbar-menu ul li a:hover:not(.active) {
-    background-color: #2a3939;
+    /*background-color: #2a3939;*/
 }
 .clip-right{
+    /*-webkit-clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);*/
+    /*clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);*/
     -webkit-clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 35% 0, 100% 50%, 35% 100%, 0% 100%);
 }
 .bg-green{
     background: #5aa19f;
@@ -103,6 +116,15 @@ a:hover{text-decoration: none;}
 a {
     color: #415e5d;
     text-decoration: none;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+   background-color: transparent;
+}
+.menu-height{
+    height: 34px;
+}
+.image-sliders{
+    height: 210px;
 }
 /* desktop device */
 @media screen and (min-width:768px){
@@ -174,6 +196,16 @@ a {
 
 /* mobild */
 @media screen and (max-width:768px){
+    .image-sliders{
+        height: 90px;
+    }
+    .text-center.captur-text {
+        /* font-size: 4pt; */
+        display: none;
+    }
+    .menu-height{
+        height: 21px;
+    }
     .header-text { 
         padding: 30px;
         color: #0f3e4a;
