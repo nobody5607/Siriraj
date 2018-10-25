@@ -4,7 +4,7 @@ namespace janpan\jn\widgets;
 use yii\helpers\Html; 
 class CNSearchWidget extends \yii\base\Widget{
     public $data=[];
-    public $labelSelect='ดูตามประเภท';
+    public $labelSelect= 'ดูตามประเภท';
     public $btnClass = 'btn btn-primary';
     public $customBtnStyle = '';
     public $customInputStyle='';
