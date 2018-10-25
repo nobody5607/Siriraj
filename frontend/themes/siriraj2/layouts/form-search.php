@@ -9,6 +9,7 @@
        'data'=>[ 
            'types'=>$types
        ],
+       'labelSelect'=> Yii::t('section', 'View by category'),
        'customBtnStyle'=>'
             background: #F9F4B9;
             color: gray;

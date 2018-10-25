@@ -43,6 +43,6 @@ return [
     'MORE...'=>'MORE...',
     'HIGHLIGHT'=>'HIGHLIGHT',
     'TOP SEARCH'=>'TOP SEARCH',
-    ''=>'',
+    'View by category'=>'View by category',
     ''=>'',
 ];

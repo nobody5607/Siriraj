@@ -43,4 +43,5 @@ return [
     'MORE...'=>'ต่อไป...',
     'HIGHLIGHT'=>'ไฮไลท์',
     'TOP SEARCH'=>'ยอดนิยม',
+    'View by category'=>'ดูตามประเภท'
 ];
