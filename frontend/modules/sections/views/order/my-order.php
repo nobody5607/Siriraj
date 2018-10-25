@@ -1,6 +1,6 @@
 <?php 
     use yii\helpers\Html;
-    $this->title = Yii::t('order', 'My Order');
+    $this->title = Yii::t('appmenu', 'REQUEST INFORMATION');
     if($breadcrumb){
         echo janpan\jn\widgets\BreadcrumbsWidget::widget([
             'breadcrumb'=>$breadcrumb
@@ -11,7 +11,7 @@
 <div class="col-md-12" id="10" data-id="10" style="padding: 5px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-shopping-cart"></i> <?= Html::encode($this->title);?></div>              
+            <div class="panel-title"><i class="fa fa-file"></i> <?= Html::encode($this->title);?></div>              
         </div>
         <!-- /.box-header -->
         <div class="panel-body" style="">
@@ -55,19 +55,19 @@
                         'template'=>'{preview} {send-mail} {print} {delete}',
                         'buttons'=>[
                           'preview' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-sm', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-xs', 'target'=>'_blank']);   
                           },  
                           'send-mail' => function($url,$model,$key){
                               
-                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btns btn btn-success btn-sm', 'target'=>'_blank' ]);
+                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btns btn btn-success btn-xs', 'target'=>'_blank' ]);
                                
                           },
                           'print' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-print"></i>',$url."&type=print", ['title'=>Yii::t('order','Print'),'data-id'=>$model['id'], 'class'=>'btns btn btn-primary btn-sm', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-print"></i>',$url."&type=print", ['title'=>Yii::t('order','Print'),'data-id'=>$model['id'], 'class'=>'btns btn btn-primary btn-xs', 'target'=>'_blank']);   
                           },        
                           'delete' => function($url,$model,$key){
                               if($model['status'] == 1){
-                                  return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'],'title'=>Yii::t('order','Delete'), 'class'=>'btns btn btn-danger btn-sm btn-delete']);
+                                  return Html::a('<i class="fa fa-trash"></i>','#', ['data-id'=>$model['id'],'title'=>Yii::t('order','Delete'), 'class'=>'btns btn btn-danger btn-xs btn-delete']);
                               }
                           }
                         ]

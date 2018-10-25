@@ -1,7 +1,9 @@
 <?php 
     $images = \backend\modules\sections\classes\JContent::getImage();
+    $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 0;
     ///sections/content-management/view-file?content_id=1536226767074797500&file_id=1538478070046184200&filet_id=2
     //appxq\sdii\utils\VarDumper::dump($images);
+    
 ?>
 <header>
     <a href='/'>
@@ -13,7 +15,7 @@
             <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
             <h3>Siriraj museum (Unravel) treasure</h3>
         </div>
-        <div class="col-md-2 text-center">
+        <div class="col-md-2 text-center"> 
             <?php
             echo \lajax\languagepicker\widgets\LanguagePicker::widget([
                 'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
@@ -24,8 +26,8 @@
     </div></a>
 </header>
 <div class="container">
-    <div class="col-md-5"></div>
-    <div class="col-md-7">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
         <div class="navbar-menu">
             <ul>
                 
@@ -36,16 +38,17 @@
                 <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','LOG IN')?></a></li>
                 <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGI IN')?></a></li>
                 <?php else: ?>
-                <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i>  <?= Yii::t('appmenu', 'My Profile') ?></a></li>
-                <!--<li class="bg-green"><a href="/sections/order/my-order"><i class="fa fa-check-square-o"></i>  <?= Yii::t('appmenu', 'My Orders') ?></a></li>-->
-                <li class="bg-green"><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'Logout') ?></a></li>
+                    <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i>  <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
+                    <li class="bg-green"><a href="/sections/order/my-order"><i class="fa fa-check-square-o"></i>  <?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
                 <?php endif; ?>
                 <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
+                      <li><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
+                      <li><a href="/site/contact"><?= Yii::t('section','CONTACT US')?></a></li>
+                      <?php if (!Yii::$app->user->isGuest): ?> 
+                        <li><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'LOGOUT') ?></a></li>
+                      <?php endif; ?>
                     </ul>
                 </li>
                 <li class="clip-right active"><a class="menu-height"></a></li>
@@ -59,6 +62,16 @@
             <ul>
                 <li ><a class="nav-active-left" href="/"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
                 <li ><a href="#"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
+                <li>
+                    <a href="/sections/cart/my-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="my-cart">
+                            <?php if(!empty($cart)):?>
+                            <span class="badge" id="globalCart"> <?= $cart ?></span>  
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

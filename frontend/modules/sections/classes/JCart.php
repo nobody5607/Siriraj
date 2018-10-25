@@ -12,7 +12,7 @@ class JCart {
         $id = isset($arrData['id']) ? $arrData['id'] : '';
         $name = isset($arrData['name']) ? $arrData['name'] : '';
         $detail = isset($arrData['detail']) ? $arrData['detail'] : '';
-        $price = isset($arrData['price']) ? $arrData['price'] : '';
+        $price = isset($arrData['price']) ? $arrData['price'] : 0;
         $image = isset($arrData['image']) ? $arrData['image'] : '';
         $size = isset($arrData['size']) ? $arrData['size'] : '';
         
@@ -61,7 +61,7 @@ class JCart {
                         break;
                 }
             } else {
-                //echo "OK".$cart[$id]["amount"];exit();
+               // \appxq\sdii\utils\VarDumper::dump($price);
                 $cart[$id] = [
                     'id'            =>$id,
                     'pro_name'      => $name,

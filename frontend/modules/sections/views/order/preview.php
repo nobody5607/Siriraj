@@ -11,10 +11,11 @@
 <link href="<?= \yii\helpers\Url::to('@web/css/bootstrap.min.css')?>" rel="stylesheet" />
 
 <div class="container">
-    <a href="/sections/cart/my-check-out?step=1" class="btn btn-default" target="_blank"><?= Yii::t('order', 'Edit Profile')?></a>
+    
     <?php
         echo $data;
     ?>
+    <a href="/sections/cart/my-check-out?step=1" class="btn btn-info" target="_blank"><?= Yii::t('order', 'Edit')?></a>
 </div>
 
 

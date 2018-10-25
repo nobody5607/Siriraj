@@ -37,7 +37,7 @@ class OrderController extends Controller
                 'icon'=>'fa-bank'
             ],
             [
-                    'label' =>Yii::t('order','My Order'),
+                    'label' =>Yii::t('appmenu','REQUEST INFORMATION'),
             ]
         ];
         foreach($breadcrumbs_arr as $key=>$v){
