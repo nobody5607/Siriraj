@@ -43,5 +43,7 @@ return [
     'MORE...'=>'ต่อไป...',
     'HIGHLIGHT'=>'ไฮไลท์',
     'TOP SEARCH'=>'ยอดนิยม',
-    'View by category'=>'ดูตามประเภท'
+    'View by category'=>'ดูตามประเภท',
+    'ABOUT US'=>'เกี่ยวกับเรา',
+    'CONTACT US'=>'ติดต่อเรา',
 ];

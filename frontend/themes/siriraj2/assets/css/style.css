@@ -22,6 +22,7 @@ html body{
     display: block;
     padding:30px;
     font-size:16pt;
+    font-weight: bold;
 }
 .social{
     margin-bottom:10px;
