@@ -21,7 +21,7 @@ class CartController extends Controller
             [
                 'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                 'label' => \Yii::t('cart', 'My Cart')
@@ -94,7 +94,7 @@ class CartController extends Controller
             [
                 'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                     'label' =>\Yii::t('cart', 'My Cart'),

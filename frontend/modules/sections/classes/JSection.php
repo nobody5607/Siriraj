@@ -122,7 +122,7 @@ class JSection extends \yii\base\Component{
             $breadcrumbs[] = [
                 'label' =>'Home', 
                 'url' =>$url,
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ];
             if($data){                
                 

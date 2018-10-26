@@ -240,7 +240,15 @@ a {
         color: #4C2754;
         line-height: 5px;
     }
-}
+    .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after{
+        height: 16px;
+        width: 10px;
+        margin: 5px;     
+    }
+    .cd-breadcrumb li > *, .cd-multi-steps li > * {
+        font-size: 16pt;
+    }
+}/*min width*/
 
 /* mobild */
 @media screen and (max-width:768px){
@@ -375,8 +383,13 @@ a {
     }
     
     .footer {
-        font-size: 10pt;
-        font-style: italic;
+        background: #5AA1A0;
+        width: 100%;
+        display: block;
+        padding: 30px;
+        font-size: 18pt;
+        color: #4C2754;
+        font-weight: bold;
     }
     
     #globalCart {

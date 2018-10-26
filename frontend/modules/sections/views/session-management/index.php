@@ -29,7 +29,7 @@
                     <h5 style="color:#ddd;"><?= "<i class='fa {$section_obj['icon']}' style='font-size: 20pt; margin-right: 10px;'></i> {$name_str}"?></h5>                     
                         <?php
                         if (isset($_GET['id'])) {
-                            echo Html::a('<i class="fa fa-bank" style="font-size: 20pt; margin-right: 10px;"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
+                            echo Html::a('<i class="fa fa-home" style="font-size: 20pt; margin-right: 10px;"></i> Home', ['/sections/session-management'], ['class' => 'link', 'style' => 'color:#b9b9bc']);
                         }
                         ?>
            

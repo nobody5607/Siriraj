@@ -34,7 +34,7 @@ class OrderController extends Controller
             [
                 'label' => Yii::t('cart','Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                     'label' =>Yii::t('appmenu','REQUEST INFORMATION'),
@@ -67,7 +67,7 @@ class OrderController extends Controller
             [
                 'label' => Yii::t('section','Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                     'label' => Yii::t('appmenu','My Orders'),

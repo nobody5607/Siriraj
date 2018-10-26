@@ -62,7 +62,7 @@ public function beforeAction($action)
             [
                 'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                 'label' => \Yii::t('user', 'Settings')
@@ -99,7 +99,7 @@ public function beforeAction($action)
             [
                 'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                 'label' => \Yii::t('user', 'Change password')
@@ -150,7 +150,7 @@ public function beforeAction($action)
             [
                 'label' =>\Yii::t('cart', 'Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                 'label' => \Yii::t('user', 'Change password')

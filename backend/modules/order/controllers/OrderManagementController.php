@@ -210,7 +210,7 @@ class OrderManagementController extends Controller
             [
                 'label' => Yii::t('section','Home'), 
                 'url' =>'/sections/session-management',
-                'icon'=>'fa-bank'
+                'icon'=>'fa-home'
             ],
             [
                     'label' => Yii::t('appmenu','My Orders'),
