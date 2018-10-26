@@ -83,7 +83,7 @@ a:hover{text-decoration: none;}
 .navbar-menu ul li a {
     display: block;
     color: white;
-    text-align: center;
+    text-align: left;
     padding: 6px 26px;
     text-decoration: none;
     text-decoration: none;
@@ -423,7 +423,7 @@ img#preview_icon {
     .navbar-menu ul li a{
         display: block;
         color: white;
-        text-align: center;
+        text-align: left;
         padding: 5px 5px;
         text-decoration: none;
         text-decoration: none;
