@@ -2,7 +2,12 @@
     background: #ffffff73;
     padding: 30px;
 }
-html body{background: #57a19f87;}
+html body{
+    background: #57a19f87;
+    font-family: 'TH Sarabun New';
+    color:#4C2754;
+    font-size: 16pt;
+}
 .color-y{
     background: #F9F4B9;
 }
@@ -42,7 +47,7 @@ html body{background: #57a19f87;}
     padding: 6px 8px;
     text-decoration: none;
     text-decoration: none;
-    font-size: 14pt;
+    font-size: 16pt;
 }
 
 /* navbar menu*/
@@ -56,7 +61,7 @@ html body{background: #57a19f87;}
 }
 .open > .dropdown-menu{
     display: block;
-    background: #415e5d;
+    background:#cde4e3;
 }
 .dropdown-menu{
     border-radius:0;
@@ -65,7 +70,8 @@ html body{background: #57a19f87;}
     float: left;
     position: relative;
     transition-duration: 0.5s;
-        margin-left: -1px;
+    margin-left: -1px;
+    border-bottom: 1px solid #405e5d;
 }
 a:hover{text-decoration: none;}
 
@@ -77,7 +83,7 @@ a:hover{text-decoration: none;}
     padding: 6px 26px;
     text-decoration: none;
     text-decoration: none;
-    font-size: 12pt;
+    font-size: 16pt;
 }
 
 .navbar-menu ul li a:hover:not(.active) {
@@ -87,7 +93,8 @@ a:hover{text-decoration: none;}
     /*-webkit-clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);*/
     /*clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);*/
     -webkit-clip-path: polygon(0% 0%, 80% 0, 100% 50%, 79% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 35% 0, 100% 50%, 35% 100%, 0% 100%);
+    /*clip-path: polygon(0% 0%, 35% 0, 100% 50%, 35% 100%, 0% 100%);*/
+        clip-path: polygon(1% -1%, 35% 0, 100% 50%, 35% 107%, 0% 100%);
 }
 .bg-green{
     background: #5aa19f;
@@ -123,13 +130,28 @@ a {
    background-color: transparent;
 }
 .menu-height{
-    height: 34px;
+    height: 42px;
 }
 .image-sliders{
     height: 210px;
 }
 #mock-content{
     margin:10px;
+}
+.form-control {
+    font-size: 16pt;
+    color: #4C2754;
+}
+
+.panel-default > .panel-heading {
+    color: #4C2754;
+    background-color: #57a19f;
+    border-color: #447f7e;
+}
+.panel-body {
+    padding: 15px;
+    color: #4C2754;
+    background: #57a19f;
 }
 /* desktop device */
 @media screen and (min-width:768px){
@@ -204,6 +226,12 @@ a {
         width:80%;
         margin:0 auto;
     }
+    .logo-text h3 {
+        font-size: 26pt;
+        margin-top: 30px;
+        color: #4C2754;
+        line-height: 5px;
+    }
 }
 
 /* mobild */
@@ -216,7 +244,7 @@ a {
         display: none;
     }
     .menu-height{
-        height: 21px;
+        height: 32px;
     }
    
     .hr{
@@ -280,14 +308,12 @@ a {
         font-weight: bold;
         margin-top: 20%;
         color: #0f3e4a;
-        font-family: sans-serif;
         margin-top:-1px;
     }
     .flex-display div p{
         font-size:8pt;
         font-style: italic;
         color: #0f3e4a;
-        font-family: sans-serif;
     }
     .pd-5{
         padding:5px;
@@ -311,8 +337,9 @@ a {
         text-align: center; 
     }
     .logo-text h3{
-        font-size: 10pt;
+        font-size: 20pt;
         margin-top: 10px;
+        color:#4C2754
     }
 
     /* menu bar */
@@ -323,10 +350,10 @@ a {
         padding: 5px 5px;
         text-decoration: none;
         text-decoration: none;
-        font-size: 6pt;
+        font-size: 12pt;
     }
     .navbar-menu-center ul li a {
-        font-size: 8pt;
+        font-size: 16pt;
     }
 
     .slick-prev:before, .slick-next:before{
@@ -336,7 +363,6 @@ a {
         padding: 0px;
         font-size: 12pt;
         color: #0f3e4a;
-        font-family: sans-serif;
         font-weight: bold;
     }
     
@@ -356,5 +382,23 @@ a {
     }
     .navbar-menu ul {
         margin-left: -40px;
+    }
+    h1{font-size:10pt;}
+    .cd-breadcrumb, .cd-multi-steps {
+        width: 100%;
+        max-width: 1377px;
+        padding: 0.5em 0em;
+        margin: 0em auto;
+        background-color: #ffffff00;
+        border: none;
+        font-size: 8pt;
+    }
+    .header-section{
+        padding-top: 20px;
+        background: transparent;
+        padding-bottom: 20px;
+        font-size: 10pt;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
     }
 }

@@ -10,7 +10,8 @@ class Siriraj2Assets extends AssetBundle{
         'slick/slick.css',
         'slick/slick-theme.css',
         'css/style.css',
-        'font_awesome/css/font-awesome.min.css'
+        'font_awesome/css/font-awesome.min.css',
+        'css/fonts/stylesheet.css'
         
         //'css/ionicons.min.css',
          

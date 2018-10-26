@@ -30,14 +30,14 @@
         ',
        'customDropDownStyle'=>'
             background: #cce4e3;
-            font-size: 14pt;
-            padding: 7px;
+            font-size: 16pt;
+            padding: 5px;
             border: none;
             border-radius: 0px;
             -webkit-clip-path: polygon(6% 0, 100% 1%, 100% 100%, 6% 98%, 0% 50%);
             clip-path: polygon(-4% 0, 100% 0%, 100% 100%, 10% 98%, 0% 50%);
             margin-left: -20px;
-            margin-top: 1px;
+            margin-top: -1px;
        '
    ]);
 ?>

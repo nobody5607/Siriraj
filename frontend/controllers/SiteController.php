@@ -313,5 +313,9 @@ class SiteController extends Controller
         $fileName = \yii\helpers\Url::to('@frontend/web/css/test12.pdf');
         \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
     }
+    
+    public function actionTopSearch(){
+     echo 'ok';   
+    }
 
 }

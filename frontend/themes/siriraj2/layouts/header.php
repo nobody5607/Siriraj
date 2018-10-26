@@ -61,7 +61,7 @@
         <div class="navbar-menu-center">
             <ul>
                 <li ><a class="nav-active-left" href="/"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
-                <li ><a href="#"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
+                <li ><a href="#" id="btnTopSearch"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
                 <li>
                     <a href="/sections/cart/my-cart">
                         <i class="fa fa-shopping-cart"></i>
@@ -96,16 +96,32 @@
 </div>
 
 
-
+<?php
+    echo \appxq\sdii\widgets\ModalForm::widget([
+        'id' => 'modal-top-search',
+        'size' => 'modal-xxl',
+        'tabindexEnable' => false,
+    ]);
+?>
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
-    
-    $(function(){
-        $('.multiple-items').slick({
+    $('.multiple-items').hide();
+    setTimeout(function(){
+       $('.multiple-items').show(); 
+       $('.multiple-items').slick({
             infinite: true,
             slidesToShow: 3,
             slidesToScroll: 3
         });
-    });
+    },1000);
+    $('#btnTopSearch').on('click', function(){
+        alert('ok');
+//        $('#modal-top-search .modal-content').html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
+//        let url = '/site/top-search';
+//        $.get(url,function(data){
+//            $('#modal-top-search .modal-content').html(data); 
+//        });
+//       return false;
+    }); 
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
