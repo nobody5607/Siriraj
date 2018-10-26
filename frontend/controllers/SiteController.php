@@ -315,7 +315,7 @@ class SiteController extends Controller
     }
     
     public function actionTopSearch(){
-     echo 'ok';   
+      return $this->renderAjax('top-search');   
     }
 
 }

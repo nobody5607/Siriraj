@@ -30,7 +30,7 @@ use yii\helpers\Html;
             <div class="panel panel-default" id="box">
                 <div class="panel-heading"><b><?= Yii::t('section','Rules')?></b></div>
                 <div class="panel-body">
-                   <h4 class="text-left">ขอความอนุเคราะห์ภาพหรือข้อมูล โปรดปฏิบัติตามกติกา ดังนี้ </h4>
+                   <h4 class="text-left header-request-panel">ขอความอนุเคราะห์ภาพหรือข้อมูล โปรดปฏิบัติตามกติกา ดังนี้ </h4>
                     <div>
                         <p>1. <i class="fa fa-check-square-o"></i> คลิกเลือกภาพหรือข้อมูลที่ต้องการ เลือกลงตะกร้า</p> 
                         <p>2. ระบบจะรวบรวมข้อมูล ออกเป็นแบบฟอร์มให้ท่านกรอกคำร้องขอ</p>

@@ -6,9 +6,10 @@
             <div>โทร. 024192601-2 , 26189</div>
         </div>
         <div class="pull-right social">
-            <a href="#">
-                <img src='<?= yii\helpers\Url::to('@web/images/www.png')?>' style="width:30px"/>
-                <img src='<?= yii\helpers\Url::to('@web/images/facebook.png')?>' style="width:30px" />
+            <a href="http://www.sirirajmuseum.com" target="_blank">
+                <img src='<?= yii\helpers\Url::to('@web/images/www.png') ?>' style="width:30px"/>
+            </a>
+            <a target="_blank" href="http://www.facebook.com/siriraj.museum"><img src='<?= yii\helpers\Url::to('@web/images/facebook.png') ?>' style="width:30px" />
             </a>
         </div>
     </div>

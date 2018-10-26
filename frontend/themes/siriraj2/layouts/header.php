@@ -99,7 +99,7 @@
 <?php
     echo \appxq\sdii\widgets\ModalForm::widget([
         'id' => 'modal-top-search',
-        'size' => 'modal-xxl',
+        'size' => 'modal-lg',
         'tabindexEnable' => false,
     ]);
 ?>
@@ -115,13 +115,13 @@
         });
     },1000);
     $('#btnTopSearch').on('click', function(){
-        alert('ok');
-//        $('#modal-top-search .modal-content').html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
-//        let url = '/site/top-search';
-//        $.get(url,function(data){
-//            $('#modal-top-search .modal-content').html(data); 
-//        });
-//       return false;
+        $('#modal-top-search').modal('show');
+        $('#modal-top-search .modal-content').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-fw"></i></div>');
+        let url = '/site/top-search';
+        $.get(url,function(data){
+            $('#modal-top-search .modal-content').html(data); 
+        });
+       return false;
     }); 
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>

@@ -28,7 +28,7 @@ if($breadcrumb){
     <?= $form->field($model, 'password_confirm')->passwordInput(['maxlength' => true])?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('user', 'Submit'), ['class' => 'btn btn-info btn-lg btn-block']) ?>
+        <?= Html::submitButton(Yii::t('user', 'Submit'), ['class' => 'btn btn-success btn-lg btn-block']) ?>
     </div>
 
     <?php ActiveForm::end() ?>

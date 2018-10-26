@@ -25,7 +25,7 @@ use yii\helpers\Url;
                                 <span class='checkmark' style='margin-top: -5px;'></span>
                             </label>
                         </div>
-                        <div class='col-md-6 col-xs-6 col-sm-6' style='padding-top:5px;'>
+                        <div class='col-md-6 col-xs-6 col-sm-6' style='padding-top:0px;'>
                             <a title='Download' class='btn btn-sm btn-primary download pull-right' data-type='{$model['file_type']}' data-id='{$model['id']}' data-name='{$model['file_name_org']}' href='#'><i class='fa fa-download'></i></a>
                         </div>
                     </div>
