@@ -78,12 +78,8 @@
     </div>
 </div>
 
-<?php if(empty($layoutSecond)):?>
 <!-- Slider Image -->
 <div id="slideer-image"></div>      
-<?php endif; ?>
-
-
 <!-- Form Search -->      
 <div id="form-search">
     <?php echo $this->render('form-search')?>
