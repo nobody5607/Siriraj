@@ -145,7 +145,8 @@ a {
     height: 42px;
 }
 .image-sliders{
-    height: 210px;
+    height: 220px;
+    border-radius: 10px;
 }
 #mock-content{
     margin:10px;
@@ -314,10 +315,14 @@ img#preview_icon {
         color: #4C2754;
     }
     .captur-text{
-        width:80%;
-        margin:0 auto;
+        width: 99%;
+        margin: 0 auto;
         font-weight: bold;
         color: #4C2754;
+        background: #57a19f;
+        border-radius: 3px;
+        height: 70px;
+        padding: 5px;
     }
     .logo-text h3 {
         font-size: 26pt;
