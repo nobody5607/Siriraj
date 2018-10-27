@@ -32,7 +32,7 @@
 
 <?php richardfan\widget\JSRegister::begin();?>
 <script>
-    $('.btn-parent').css({ cursor:'pointer' });
+    //$('.btn-parent').css({ cursor:'pointer' });
     $('.btn-parent').on('click',function(){
         let id = $(this).attr('data-id');   
         let url = '/sections/section?id='+id;  

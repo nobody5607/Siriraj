@@ -42,6 +42,15 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                
                 </div>
                  <?php echo $this->render('footer'); ?> 
+        
+        
+        <?php \appxq\sdii\widgets\CSSRegister::begin();?>
+        <style>
+            html , body ,a{
+                cursor: url('./images/cursor.png'),auto;
+            }
+        </style>
+        <?php \appxq\sdii\widgets\CSSRegister::end();?>
         <?php $this->endBody() ?>
     </body>
 </html>

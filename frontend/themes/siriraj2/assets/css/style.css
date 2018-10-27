@@ -7,6 +7,8 @@ html body{
     font-family: 'TH Sarabun New';
     color:#4C2754;
     font-size: 16pt;
+     
+    
 }
 .color-y{
     background: #F9F4B9;
@@ -211,6 +213,10 @@ img#preview_icon {
     margin: 10px;
 }
 .item-search-row {
+    margin: 0 auto;
+}
+.height-100 {
+    height: 130px;
     margin: 0 auto;
 }
 /* desktop device */
