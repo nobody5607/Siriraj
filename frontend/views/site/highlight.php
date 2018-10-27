@@ -11,14 +11,10 @@
 </section> 
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
-    $('.multiple-items').hide();
-    setTimeout(function(){
-       $('.multiple-items').show(); 
        $('.multiple-items').slick({
             infinite: true,
             slidesToShow: 3,
             slidesToScroll: 3
         });
-    },1000); 
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
