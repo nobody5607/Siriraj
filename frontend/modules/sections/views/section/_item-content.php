@@ -11,24 +11,17 @@ use yii\helpers\ArrayHelper;
     $img = isset($model['thumn_image']) ? $model['thumn_image'] :  $noImage;
 //    appxq\sdii\utils\VarDumper::dump($model);
 ?>
-<?php if ($key % 2 == 0): ?>
-    <div class="text-center pd-5 wd-40 over-hidden" >
-        <h1><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['name'], 30)) ?></h1>
-        <hr class="hr"/>
-        <p><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['description'], 60)) ?></p>  
-    </div>
-    <div class="img1 color-y border-left flex-image wd-60 ">
-        <img class="img1 flex-img flex-img-responsive img-right" src="<?= isset($model['thumn_image']) ? $model['thumn_image'] : $noImage ?>">
-    </div>
-<?php else: ?>
-    <div  class="img2 color-y  border-right flex-image wd-60">
-        <img class="img2 flex-img flex-img-responsive img-left" src="<?= isset($model['thumn_image']) ? $model['thumn_image'] : $noImage ?>">
-    </div>
-    <div class="text-center pd-5 wd-40 over-hidden">
-        <h1><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['name'], 30)) ?></h1>
-        <hr class="hr"/>
-        <p><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['description'], 60)) ?></p>  
-    </div>
-<?php endif; ?>
+<div class="single-product">
+    <a href="<?= $url?>"> 
+        <div class="pro-img">
+            <img class="primary-img img img-responsive img-thumbnail" src="<?= $img?>">
+        </div> 
+        <div class="pro-content">
+            <div class="pro-infos">
+                <h2 title="<?= $model['name']?>"><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['name'], 30)) ?></h2>
+                <p title="<?= $model['description']?>"><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['description'], 60)) ?></p>
+            </div>
 
-
+        </div>
+    </a>
+</div>

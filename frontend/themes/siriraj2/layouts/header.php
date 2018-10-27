@@ -27,7 +27,7 @@
 </header>
 <div class="container">
     <div class="col-md-6"></div>
-    <div class="col-md-6">
+    <div class="col-md-6 float-right">
         <div class="navbar-menu">
             <ul>
                 

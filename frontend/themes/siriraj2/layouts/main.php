@@ -37,6 +37,13 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
 
                     <div id="mock-content">
                         <?= $content; ?>
+                        <?php \appxq\sdii\widgets\CSSRegister::begin();?>
+        <style>
+            html , body {
+                cursor: url('./images/cursro-37.png'),auto;
+            }
+        </style>
+        <?php \appxq\sdii\widgets\CSSRegister::end();?>
                         <?php //$this->render('mock-content')?>
                     </div>
                
@@ -44,13 +51,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                  <?php echo $this->render('footer'); ?> 
         
         
-        <?php \appxq\sdii\widgets\CSSRegister::begin();?>
-        <style>
-            html , body ,a{
-                cursor: url('./images/cursor.png'),auto;
-            }
-        </style>
-        <?php \appxq\sdii\widgets\CSSRegister::end();?>
+        
         <?php $this->endBody() ?>
     </body>
 </html>

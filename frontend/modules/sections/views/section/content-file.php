@@ -32,12 +32,13 @@
                         }
                         .header-text-content small, .header-text-content i{ color:#2e5857;font-size: 14pt; } 
                         .single-product{
-                            background:#fff;
-                            height:300px;
-                            padding:5px;
+                            background: #54a19f29;
+                            height: 300px;
+                            padding: 5px;
                             border-radius: 3px;
-                            box-shadow: 1px 1px 1px #a5cdcc;
+                            /*box-shadow: 0px 1px 1px #94c5c2;*/
                             margin-bottom: 10px;
+                            border: 1px solid #a7cecc;
                         }
                         .single-product .pro-img{
                             width:99%;
@@ -48,6 +49,7 @@
                             /* text-align: center; */
                             margin: 0 auto;
                             height: 100%;
+                            width:100%;
                         }
                         .pro-content .pro-infos h2{
                             font-size:14pt;

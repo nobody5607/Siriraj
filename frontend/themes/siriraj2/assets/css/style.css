@@ -160,8 +160,11 @@ a {
 .panel-body {
     padding: 15px;
     color: #4C2754;
-    background: #57a19f8a;
+    background: #e2f1f0;
 } 
+.panel-footer{
+    background:#e1f1f0 !important;
+}
 
 .modal-header {
     padding: 15px;
@@ -221,6 +224,14 @@ img#preview_icon {
 }
 .form-control {
     font-size: 16pt !important;
+}
+.pro-content {
+    background: #54a19f5c;
+    padding: 3px;
+    border-radius: 5px;
+    color: #4b3779;
+    margin-top: 5px;
+    font-size: 16pt;
 }
 
 /* desktop device */
@@ -493,4 +504,5 @@ img#preview_icon {
         font-weight: bold;
         border-bottom: 1px solid transparent;
     }
+    .float-right{float: right;}
 }
