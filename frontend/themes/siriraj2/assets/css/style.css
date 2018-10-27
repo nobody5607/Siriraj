@@ -219,6 +219,10 @@ img#preview_icon {
     height: 130px;
     margin: 0 auto;
 }
+.form-control {
+    font-size: 16pt !important;
+}
+
 /* desktop device */
 @media screen and (min-width:768px){
     #globalCart {
