@@ -97,7 +97,8 @@ class ContentManagementController extends Controller
         $file_id            = \Yii::$app->request->get('file_id', '');
         $filet_id           = \Yii::$app->request->get('filet_id', '');
         $content            =  JContent::getContentById($content_id);
-        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);   
+        $breadcrumb         = JSection::getBreadcrumb($content['section_id']);  
+        
         
         $breadcrumb[]       = ['label' =>$content['name'],'url' => ["/sections/section/content-management?content_id={$content['id']}"]];  
         $files              = \common\models\Files::find()
@@ -138,6 +139,7 @@ class ContentManagementController extends Controller
         
         /* add template */
         $addTemplate    = JContent::addTemplate($content_id);
+        
         $choice         = JContent::getChoice($content_id, $filet_id);
                 //\appxq\sdii\utils\VarDumper::dump($check_choice);
         $this->layout = "@frontend/themes/siriraj2/layouts/main-second"; 

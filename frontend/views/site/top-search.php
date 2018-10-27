@@ -1,7 +1,11 @@
 
 <?php 
      $images = \backend\modules\sections\classes\JContent::getImageMost();
+     //\appxq\sdii\utils\VarDumper::dump($images);
 ?>
+<?php if(!$images):?>
+<h2 class="alert alert-info"><?= Yii::t('section','Not fount data')?></h2>
+<?php endif; ?>
 <section class="multiple-items">
     <?php foreach($images as $k=>$i): ?>
     <?php $detail = backend\modules\sections\classes\JFiles::lengthName($i['details'], 60);?>

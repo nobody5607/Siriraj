@@ -14,6 +14,7 @@ if ($breadcrumb) {
 }
 $modal = "modal-contents";
 ?>
+
 <?php foreach ($file_type as $key => $f): ?>
     <?php if ($key > 0): ?>
         <div class="row">
