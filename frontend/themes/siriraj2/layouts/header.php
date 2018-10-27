@@ -1,5 +1,5 @@
 <?php 
-    $images = \backend\modules\sections\classes\JContent::getImage();
+   
     $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 0;
     ///sections/content-management/view-file?content_id=1536226767074797500&file_id=1538478070046184200&filet_id=2
     //appxq\sdii\utils\VarDumper::dump($images);
@@ -61,7 +61,7 @@
     <div class="col-md-6 col-md-offset-4">
         <div class="navbar-menu-center">
             <ul>
-                <li ><a class="nav-active-left" href="/"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
+                <li ><a href="#" id="btnHighlight"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
                 <li ><a href="#" id="btnTopSearch"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
                 <li>
                     <a href="/sections/cart/my-cart">
@@ -80,49 +80,46 @@
 
 <?php if(empty($layoutSecond)):?>
 <!-- Slider Image -->
-<section class="multiple-items">
-    <?php foreach($images as $k=>$i): ?>
-        <a href="<?= $i['url']?>">
-            <img class="img img-responsive img-rounded image-sliders" src="<?= "{$i['view_path']}/{$i['name']}"?>">
-            <div class="text-center captur-text"><?= $i['detail']?></div>
-        </a>
-    <?php endforeach; ?>
-</section>      
+<div id="slideer-image"></div>      
 <?php endif; ?>
 
 
 <!-- Form Search -->      
 <div id="form-search">
     <?php echo $this->render('form-search')?>
-</div>
+</div> 
 
-
-<?php
-    echo \appxq\sdii\widgets\ModalForm::widget([
-        'id' => 'modal-top-search',
-        'size' => 'modal-lg',
-        'tabindexEnable' => false,
-    ]);
-?>
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
-    $('.multiple-items').hide();
-    setTimeout(function(){
-       $('.multiple-items').show(); 
-       $('.multiple-items').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3
-        });
-    },1000);
-    $('#btnTopSearch').on('click', function(){
-        $('#modal-top-search').modal('show');
-        $('#modal-top-search .modal-content').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-fw"></i></div>');
-        let url = '/site/top-search';
+    
+    function loadHighlight(){
+       let url = '/site/highlight';
+       
+       $('#btnHighlight').addClass('nav-active-right');
+        $('#btnTopSearch').removeClass('nav-active-left');
+       
+       loadSlideImage(url);
+       return false;
+    }
+    function loadSlideImage(url){
+        $('#slideer-image').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-fw"></i></div>');
         $.get(url,function(data){
-            $('#modal-top-search .modal-content').html(data); 
+            $('#slideer-image').html(data); 
         });
+        return false;
+    }
+    $('#btnHighlight').on('click', function(){
+        loadHighlight();
+        return false;
+    }); 
+    $('#btnTopSearch').on('click', function(){
+        $('#btnHighlight').removeClass('nav-active-right');
+        $('#btnTopSearch').addClass('nav-active-left');
+        let url = '/site/top-search';
+        loadSlideImage(url);
        return false;
     }); 
+    
+    loadHighlight();
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>

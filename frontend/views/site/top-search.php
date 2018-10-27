@@ -1,25 +1,28 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title"><?= Yii::t('section', 'TOP SEARCH')?></h4>
-</div>
-<div class="modal-body">
-    <?php 
-        $topSearch = \backend\modules\sections\classes\JContent::getImageMost();
-//        appxq\sdii\utils\VarDumper::dump($topSearch);
-        
-    ?>
-    <div class="row item-search-row">
-        
-        <?php foreach ($topSearch as $k => $image): ?>
-        <?php 
-            $detail = backend\modules\sections\classes\JFiles::lengthName($image['details'], 30);
-        ?>
-        <div class="col-md-2 col-xs-4 top-search-items">
-            <a title='<?= $image['details']?>' target="_BLANK" href="/sections/content-management/view-file?content_id=<?= $image['content_id'] ?>&file_id=<?= $image['id'] ?>&filet_id=<?= $image['file_type'] ?>" style="color:#000;" > 
-                <img  class="height-100 img img-responsive img-rounded" src="<?= "{$image['file_path']}/thumbnail/{$image['file_view']}" ?>"  >
-                <p><?= $detail?></p>
-            </a>
-        </div>
-        <?php endforeach;?>
-    </div>
-</div>
+
+<?php 
+     $images = \backend\modules\sections\classes\JContent::getImageMost();
+?>
+<section class="multiple-items">
+    <?php foreach($images as $k=>$i): ?>
+    <?php $detail = backend\modules\sections\classes\JFiles::lengthName($i['details'], 60);?>
+        <a title='<?= $i['details']?>' target="_BLANK" href="/sections/content-management/view-file?content_id=<?= $i['content_id'] ?>&file_id=<?= $i['id'] ?>&filet_id=<?= $i['file_type'] ?>">    
+            <img class="img img-responsive img-rounded image-sliders" src="<?= "{$i['file_path']}/thumbnail/{$i['file_view']}"?>">
+            <div class="text-center captur-text"><?= $detail?></div>
+            
+        </a>
+    <?php endforeach; ?>
+</section> 
+<?php richardfan\widget\JSRegister::begin(); ?>
+<script>
+    $('.multiple-items').hide();
+    setTimeout(function(){
+       $('.multiple-items').show(); 
+       $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+    },1000);
+    
+</script>
+<?php richardfan\widget\JSRegister::end(); ?>

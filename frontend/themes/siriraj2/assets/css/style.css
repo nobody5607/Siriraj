@@ -110,10 +110,16 @@ a:hover{text-decoration: none;}
 }
 
 .nav-active-left{
+    border-left: 2px solid gray;
+    border-bottom: 3px solid gray;
+    color: #4C2754 !important;
+}
+.nav-active-right{
     border-right: 2px solid gray;
     border-bottom: 3px solid gray;
     color: #4C2754 !important;
 }
+
 .wd-100{
     width:99%;
 }
@@ -232,6 +238,7 @@ img#preview_icon {
     color: #4b3779;
     margin-top: 5px;
     font-size: 16pt;
+    height: 100px;
 }
 
 /* desktop device */
@@ -329,6 +336,52 @@ img#preview_icon {
     .cd-breadcrumb, .cd-multi-steps {
         border: 1px solid transparent;
     }
+    
+    
+    .header-text-content{
+        padding: 10px;  
+        text-align: left; 
+        background: #57a19f; 
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+            text-align: center;
+            height: 100px;
+    }
+    .header-text-content small, .header-text-content i{ color:#2e5857;font-size: 14pt; } 
+    .single-product{
+        /*background: #54a19f29;*/
+        height: 330px;
+        padding: 5px;
+        border-radius: 3px;
+        /*box-shadow: 0px 1px 1px #94c5c2;*/
+        margin-bottom: 10px;
+        /*border: 1px solid #a7cecc;*/
+    }
+    .single-product .pro-img{
+        width:99%;
+        margin:0 auto;
+        text-align: center;
+    }
+    .pro-img img {
+        /* text-align: center; */
+        margin: 0 auto;
+        height: 100%;
+        width:100%;
+    }
+    .pro-content .pro-infos h2{
+        font-size:18pt;
+        text-align: center;
+        overflow: hidden;
+        font-weight: bold
+    }
+    .pro-content .pro-infos p{
+        line-height: 18px;
+        text-align: center;
+    }
+    .pro-img{
+        height:180px;overflow:hidden;
+    }
+    a:hover{text-decoration: none;}
     
 }/*min width*/
 
@@ -505,4 +558,32 @@ img#preview_icon {
         border-bottom: 1px solid transparent;
     }
     .float-right{float: right;}
+    
+    
+    
+    .single-product .pro-img {
+            /* width: 99%; */
+            margin: 0 auto;
+            text-align: center;
+            height: 100px;
+        }
+        .pro-content .pro-infos h2{
+            font-size:10pt;
+            text-align: center;
+        }
+        .pro-img{
+            height: auto;
+        }
+        .single-product{
+            /*height: 170px;*/
+            height:auto;
+        }
+        .pro-img img {
+            /* text-align: center; */
+            margin: 0 auto;
+            height: 100%;
+        }
+        .pro-content .pro-infos p{
+            display: none;
+        }
 }

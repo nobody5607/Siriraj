@@ -21,76 +21,7 @@
                             ?>
                         </div>    
                     <?php endforeach; ?>
-                    <?php appxq\sdii\widgets\CSSRegister::begin()?>
-                    <style>
-                        .header-text-content{
-                            padding: 10px;  
-                            text-align: left; 
-                            background: #57a19f; 
-                            border-top-left-radius: 3px;
-                            border-top-right-radius: 3px;
-                        }
-                        .header-text-content small, .header-text-content i{ color:#2e5857;font-size: 14pt; } 
-                        .single-product{
-                            background: #54a19f29;
-                            height: 300px;
-                            padding: 5px;
-                            border-radius: 3px;
-                            /*box-shadow: 0px 1px 1px #94c5c2;*/
-                            margin-bottom: 10px;
-                            border: 1px solid #a7cecc;
-                        }
-                        .single-product .pro-img{
-                            width:99%;
-                            margin:0 auto;
-                            text-align: center;
-                        }
-                        .pro-img img {
-                            /* text-align: center; */
-                            margin: 0 auto;
-                            height: 100%;
-                            width:100%;
-                        }
-                        .pro-content .pro-infos h2{
-                            font-size:14pt;
-                            text-align: center;
-                            overflow: hidden;
-                            
-                        }
-                        .pro-img{
-                            height:180px;overflow:hidden;
-                        }
-                        a:hover{text-decoration: none;}
-                        /* mobild */
-                        @media screen and (max-width:768px){
-                            .single-product .pro-img {
-                                /* width: 99%; */
-                                margin: 0 auto;
-                                text-align: center;
-                                height: 100px;
-                            }
-                            .pro-content .pro-infos h2{
-                                font-size:10pt;
-                                text-align: center;
-                            }
-                            .pro-img{
-                                height: auto;
-                            }
-                            .single-product{
-                                /*height: 170px;*/
-                                height:auto;
-                            }
-                            .pro-img img {
-                                /* text-align: center; */
-                                margin: 0 auto;
-                                height: 100%;
-                            }
-                            .pro-content .pro-infos p{
-                                display: none;
-                            }
-                        }
-                    </style>
-                    <?php appxq\sdii\widgets\CSSRegister::end();?>
+                    
                 </div>  
 
                 <div class="row" style="margin-top:10px;">

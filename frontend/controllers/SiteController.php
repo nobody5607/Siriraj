@@ -317,5 +317,8 @@ class SiteController extends Controller
     public function actionTopSearch(){
       return $this->renderAjax('top-search');   
     }
+    public function actionHighlight(){
+      return $this->renderAjax('highlight');   
+    }
 
 }
