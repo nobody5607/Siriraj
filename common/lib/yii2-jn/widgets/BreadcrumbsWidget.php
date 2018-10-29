@@ -53,7 +53,7 @@ class BreadcrumbsWidget extends \yii\base\Widget{
         .cd-breadcrumb, .cd-multi-steps{
             width: 99%;
             max-width: 1377px;
-            padding: 0.5em 1em;
+            padding: 0.1em 0.5em;
             margin: 0em auto;
             background-color: #ffffff00; 
             border: none;

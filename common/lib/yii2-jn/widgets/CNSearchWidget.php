@@ -159,7 +159,7 @@ class CNSearchWidget extends \yii\base\Widget{
           }
           .searchFilter .dropdown-menu .category_filters li {
             list-style-type: none;
-            padding: 2px 10px;
+            padding: 2px 25px;
             font-size: 18px;
           }
           .searchFilter .dropdown-menu .category_filters label {

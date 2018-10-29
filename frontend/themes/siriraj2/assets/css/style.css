@@ -160,9 +160,11 @@ a {
 }
 
 .panel-default > .panel-heading {
-    color: #4C2754;
+    color: #ffffff;
     background-color: #57a19f;
     border-color: #447f7e;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 .panel{
         background-color: transparent !important;
