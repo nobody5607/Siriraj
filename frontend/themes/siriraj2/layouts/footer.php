@@ -3,7 +3,7 @@
         <div class="pull-left">
             <div>พิพิธภัณฑ์ศิริราช</div>
             <div>เลขที่ 2 ถนนวังหลัง แขวงศิริราช เขตบางกอกน้อย กรุงเทพฯ 10700</div>
-            <div>โทร. 024192601-2 , 26189</div>
+            <div>โทร. 024192601-2 , 2618-9</div>
         </div>
         <div class="pull-right social">
             <a href="http://www.sirirajmuseum.com" target="_blank">
