@@ -276,7 +276,7 @@ class CNSearchWidget extends \yii\base\Widget{
                 }
            }
            
-    .glyphicon {
+    #searchBtn .glyphicon {
         position: relative;
         top: 5px;
     }
