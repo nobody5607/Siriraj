@@ -384,7 +384,7 @@ section {
         /* text-align: center; */
         margin: 0 auto;
         height: 100%;
-        width:100%;
+        /*width:100%;*/
     }
     .pro-content .pro-infos h2{
         font-size:18pt;
