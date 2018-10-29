@@ -49,7 +49,7 @@ $this->title = Yii::t('section', 'Content');
             </div>
             <div class="col-md-12">
                 <div class="col-md-12">
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true])->hint('ไม่ควรเกิน 100 ตัวอักษร') ?> 
                 </div>
              
 

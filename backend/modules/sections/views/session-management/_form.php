@@ -33,7 +33,7 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> 
+                        <?= $form->field($model, 'name')->textInput(['maxlength' => true])->hint('ไม่ควรเกิน 100 ตัวอักษร') ?> 
                     </div>
                 </div>
                 <div class="col-md-2" style="display:none;">
