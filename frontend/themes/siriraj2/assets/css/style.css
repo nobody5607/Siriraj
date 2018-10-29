@@ -25,6 +25,8 @@ html body{
     padding:30px;
     font-size:16pt;
     font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
 }
 .social{
     margin-bottom:10px;
@@ -51,6 +53,7 @@ html body{
     text-decoration: none;
     text-decoration: none;
     font-size: 16pt;
+    letter-spacing: 1px;
 }
 
 /* navbar menu*/
@@ -86,7 +89,7 @@ a:hover{text-decoration: none;}
     display: block;
     color: white;
     text-align: left;
-    padding: 6px 26px;
+    padding: 6px 12px;
     text-decoration: none;
     text-decoration: none;
     font-size: 16pt;
@@ -105,7 +108,7 @@ a:hover{text-decoration: none;}
 .bg-green{
     background: #5aa19f;
 }
-.active {
+.nav_active {
     background-color: #425e5d;
 }
 
@@ -244,6 +247,7 @@ img#preview_icon {
 
 .slick-slide img{
     margin:0 auto;
+        width: 90%;
 }
 section {
     padding: 0em 0 !important;
@@ -311,30 +315,33 @@ section {
         padding-bottom:5px;
         font-weight: bold;
         margin-top: 38%;
-        color: #4C2754;
+        color: #fff;
         /*font-family: monospace;*/
         /* border-bottom: 6px solid #F9F4D2; */
     }
     .flex-display div p{
         font-size:24pt;
         font-style: italic;
-        color: #4C2754;
+        color: #fff;
     }
     .captur-text{
-        width: 99%;
+        width: 86%;
         margin: 0 auto;
         font-weight: bold;
-        color: #4C2754;
+        color: #fff;
         background: #57a19f;
         border-radius: 3px;
         height: 70px;
         padding: 5px;
+        letter-spacing: 1px;
     }
     .logo-text h3 {
         font-size: 26pt;
         margin-top: 30px;
         color: #4C2754;
         line-height: 5px;
+        font-weight: bold;
+        letter-spacing: 1px;
     }
     .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after{
         height: 16px;
@@ -469,13 +476,13 @@ section {
         padding-bottom:5px;
         font-weight: bold;
         margin-top: 20%;
-        color: #4C2754;
+        color: #fff;
         margin-top:-1px;
     }
     .flex-display div p{
         font-size:8pt;
         font-style: italic;
-        color: #4C2754;
+        color: #fff;
     }
     .pd-5{
         padding:5px;
@@ -501,7 +508,9 @@ section {
     .logo-text h3{
         font-size: 20pt;
         margin-top: 10px;
-        color:#4C2754
+        color:#4C2754;
+            font-weight: bold;
+            letter-spacing: 1px;
     }
 
     /* menu bar */
@@ -534,8 +543,9 @@ section {
         display: block;
         padding: 30px;
         font-size: 18pt;
-        color: #4C2754;
         font-weight: bold;
+        color: #fff;
+        letter-spacing: 1px;
     }
     
     #globalCart {

@@ -163,7 +163,9 @@ class CNSearchWidget extends \yii\base\Widget{
             font-size: 18px;
           }
           .searchFilter .dropdown-menu .category_filters label {
-            margin-left: 50px;
+            color: #fff;
+            margin-left: 35px;
+            font-size: 16pt;
           }
           @media (min-width: 1400px) {
             .ct-header .ct-jumbotron .inner {
@@ -225,9 +227,11 @@ class CNSearchWidget extends \yii\base\Widget{
             }
             .searchFilter .label-icon {
               display: inline-block;  
+              font-weight: bold;
+              color: #4d2655;
             }
             .searchFilter .glyphicon {
-              margin-right: -5px;
+              margin-right: 15px;
             }
             .ct-header .ct-jumbotron {
               top: 0;
@@ -271,6 +275,11 @@ class CNSearchWidget extends \yii\base\Widget{
                     width: 50px;
                 }
            }
+           
+    .glyphicon {
+        position: relative;
+        top: 5px;
+    }
 
         ";
         $view->registerCss($css);

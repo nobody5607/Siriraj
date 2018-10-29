@@ -46,4 +46,7 @@ return [
     'View by category'=>'ดูตามประเภท',
     'ABOUT US'=>'เกี่ยวกับเรา',
     'CONTACT US'=>'ติดต่อเรา',
+    
+    'SIGN IN'=>'เข้าสู่ระบบ',
+    'SIGN UP'=>'สมัครสมาชิก',
 ];

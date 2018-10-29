@@ -46,4 +46,7 @@ return [
     'View by category'=>'View by category',
     'ABOUT US'=>'ABOUT US',
     'CONTACT US'=>'CONTACT US',
+    
+    'SIGN IN'=>'SIGN IN',
+    'SIGN UP'=>'SIGN UP',
 ];

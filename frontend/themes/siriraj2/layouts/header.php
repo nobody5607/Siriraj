@@ -32,16 +32,17 @@
             <ul>
                 
                 
-                <li class="active"><a  href="/"><?= Yii::t('section','HOME')?></a></li>
+                <li class="nav_active"><a  href="/"><?= Yii::t('section','HOME')?></a></li>
                 <?php if (Yii::$app->user->isGuest): ?> 
                 
-                <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','LOG IN')?></a></li>
-                <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGI IN')?></a></li>
+                <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','SIGN IN')?></a></li>
+                <li class="bg-green"><a href='#'>/</a></li>
+                <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGN UP')?></a></li>
                 <?php else: ?>
                     <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i>  <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
                    
                 <?php endif; ?>
-                <li class="dropdown active">
+                <li class="dropdown nav_active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
                       <li><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
@@ -52,7 +53,7 @@
                       <?php endif; ?>
                     </ul>
                 </li>
-                <li class="clip-right active"><a class="menu-height"></a></li>
+                <li class="clip-right nav_active"><a class="menu-height"></a></li>
                
             </ul>
         </div>
