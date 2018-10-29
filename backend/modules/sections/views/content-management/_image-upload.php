@@ -52,11 +52,11 @@ $image = '';
     }
     #upload-action{margin-bottom:10px;}
     .upload-msg{
-    margin: 10px auto;
-    overflow: hidden;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+        margin: 10px auto;
+        overflow: hidden;
+        text-align: center;
+        width: 100px;
+        height: 100px;
     /* background: #f1efef57; */
     /* padding: 8px; */
     /* border-radius: 5px; */
@@ -94,12 +94,12 @@ $image = '';
         enableExif: true,
         viewport: {
             width: 200,
-            height: 190,
+            height: 150,
             type: 'square' //square, circle
         },
         boundary: {
-            width: 200,
-            height: 150
+            width: 300,
+            height: 250
         }
     });
 
