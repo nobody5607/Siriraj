@@ -349,7 +349,12 @@ section {
         margin: 5px;     
     }
     .cd-breadcrumb li > *, .cd-multi-steps li > * {
-        font-size: 16pt;
+        font-size: 18pt;
+        font-weight: bold;
+        color: #4e4581;
+    }
+    .no-touch .cd-breadcrumb a:hover, .no-touch .cd-multi-steps a:hover{
+        color: #4c2f6c;
     }
     .cd-breadcrumb, .cd-multi-steps {
         border: 1px solid transparent;
@@ -362,10 +367,13 @@ section {
         background: #57a19f; 
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
-            text-align: center;
-            height: 100px;
+        text-align: center;
     }
-    .header-text-content small, .header-text-content i{ color:#2e5857;font-size: 14pt; } 
+    .header-text-content small, .header-text-content i{ 
+        color: #ffffff;
+        font-size: 16pt;
+        font-weight: bold;
+    } 
     .single-product{
         /*background: #54a19f29;*/
         height: 330px;
