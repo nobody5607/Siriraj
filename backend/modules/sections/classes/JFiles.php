@@ -461,7 +461,7 @@ class JFiles {
             $len = $len * 1;
         }
         if (strlen($gname) > $len) {
-            $gname = mb_substr($gname, 0, $len, "utf-8") . '...';
+            $gname = mb_substr($gname, 0, $len, "utf-8") . '';
         }
 
         return $gname;

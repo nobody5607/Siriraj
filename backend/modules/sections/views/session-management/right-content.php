@@ -1,6 +1,7 @@
 <?php
     use yii\helpers\Html;
-    $section_obj = \common\models\Sections::findOne($data_id);   
+    $section_obj = \common\models\Sections::findOne($data_id);  
+    
      
 ?>
 <div class="col-md-8 section-right"> 
