@@ -322,5 +322,15 @@ class SiteController extends Controller
     public function actionHighlight(){
       return $this->renderAjax('highlight');   
     }
+    
+    public function actionDemo()
+    {
+        
+        $section = \common\models\Sections::find()->where(['rstat' => 3])->all();
+        foreach ($section as $s) {
+            \backend\modules\sections\classes\CNParent::deleteSection($s['id']);
+        }
+        \appxq\sdii\utils\VarDumper::dump('success');
+    }
 
 }
