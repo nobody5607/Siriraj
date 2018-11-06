@@ -16,12 +16,7 @@
             <h3>Siriraj museum (Unravel) treasure</h3>
         </div>
         <div class="col-md-2 text-center"> 
-            <?php
-            echo \lajax\languagepicker\widgets\LanguagePicker::widget([
-                'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
-                'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
-            ]);
-            ?> 
+            
         </div>
     </div></a>
 </header>
@@ -62,8 +57,10 @@
     <div class="col-md-6 col-md-offset-4">
         <div class="navbar-menu-center">
             <ul>
-                <li ><a href="#" id="btnHighlight"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
-                <li ><a href="#" id="btnTopSearch"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
+                <?php if(empty($layoutSecond)):?>
+                    <li ><a href="#" id="btnHighlight"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
+                    <li ><a href="#" id="btnTopSearch"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
+                <?php endif; ?>
                 <li>
                     <a href="/sections/cart/my-cart">
                         <i class="fa fa-shopping-cart"></i>
@@ -80,7 +77,9 @@
 </div>
 
 <!-- Slider Image -->
-<div id="slideer-image"></div>      
+<?php if(empty($layoutSecond)):?>
+<div id="slideer-image"></div>  
+<?php endif; ?>
 <!-- Form Search -->      
 <div id="form-search">
     <?php echo $this->render('form-search')?>

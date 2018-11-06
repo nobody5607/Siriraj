@@ -326,9 +326,18 @@ class SiteController extends Controller
     public function actionDemo()
     {
         
-        $section = \common\models\Sections::find()->where(['rstat' => 3])->all();
-        foreach ($section as $s) {
-            \backend\modules\sections\classes\CNParent::deleteSection($s['id']);
+//        $section = \common\models\Sections::find()->where(['rstat' => 3])->all();
+//        foreach ($section as $s) {
+//            \backend\modules\sections\classes\CNParent::deleteSection($s['id']);
+//        }
+        
+        $content = \common\models\Contents::find()->where('rstat = 3')->all();
+        foreach($content as $c){
+            $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();
+            foreach($files as $f){
+                $f->rstat = 3;
+                $f->update();
+            }
         }
         \appxq\sdii\utils\VarDumper::dump('success');
     }
