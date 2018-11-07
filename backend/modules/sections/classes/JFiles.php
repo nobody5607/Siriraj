@@ -25,7 +25,7 @@ class JFiles {
      * @param type $defaultFile default filename
      * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "", $description="") {
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "", $description="", $require_file='') {
         try {
             $meta = [];
             if (!empty($file->type)) {
@@ -53,6 +53,7 @@ class JFiles {
             $files->file_view = $file_view;
             $files->detail_meta = $detail_meta;
             $files->description = $description;
+            $file->require_file = $require_file;
             if ($files->save()) {
                 return true;
             } else {
@@ -135,8 +136,8 @@ class JFiles {
                     exec("file {$filePath}.{$fileType[1]}", $des2);
 
                     //original file
-                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_org.{$fileType[1]}";
-                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_org.{$fileType[1]}";
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
                     @exec($sql10 . " && " . $sql11, $out, $retval);
                     
                     @unlink("{$filePath}.{$fileType[1]}");
@@ -165,8 +166,8 @@ class JFiles {
                     
                     
                     //original file
-                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_org.{$fileType[1]}";
-                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_org.{$fileType[1]}";
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
                     @exec($sql10 . " && " . $sql11, $out, $retval);
 
                     @unlink("{$filePath}.{$fileType[1]}");

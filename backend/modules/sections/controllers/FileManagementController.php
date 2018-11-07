@@ -249,6 +249,7 @@ class FileManagementController extends Controller
                     $out=[];
                     $obj=['type'=>''];
                     $file_view = "";
+                    $require_file = '';
                     foreach ($files as $file) {                        
                         $fileName       = $file->baseName . '.' . $file->extension;
                         $realFileName   = md5($folderName . time());// . '.' . $file->extension;
@@ -268,6 +269,8 @@ class FileManagementController extends Controller
                             $file_view = "{$realFileName}_preview.jpg";
                             $detail_meta =  "{$obj['detai']}";
                             $description = "";
+                            
+                            $require_file = "{$realFileName}_2124.{$obj['type']},{$realFileName}_1024.{$obj['type']}";
                         }else if($fileType[0] === 'video' || in_array(end($fileNameArr), $objType)){
                              
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
@@ -308,7 +311,7 @@ class FileManagementController extends Controller
                             
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta,$description);
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta,$description, $require_file);
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             

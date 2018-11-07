@@ -37,7 +37,7 @@ class Files extends \yii\db\ActiveRecord
         return [
 //            [['id'], 'required'],
             [['id', 'rstat', 'content_id', 'public','user_create','forder'], 'integer'],
-            [['meta_text','file_path','dir_path','file_view','description','file_thumbnail','detail_meta','details','keywords','url_origin_file'], 'string'],
+            [['meta_text','file_path','dir_path','file_view','description','file_thumbnail','detail_meta','details','keywords','url_origin_file','require_file'], 'string'],
             [['name', 'file_type', 'file_name', 'file_name_org'], 'string', 'max' => 255],
             [['id'], 'unique'],
         ];
