@@ -34,7 +34,7 @@ class Contents extends \yii\db\ActiveRecord
     {
         return [
             [['name','thumn_image'], 'required'],
-            [['id', 'section_id', 'rstat', 'public', 'user_create'], 'integer'],
+            [['id', 'section_id', 'rstat', 'public', 'user_create','forder'], 'integer'],
             [['description'], 'string'],
             [['content_date', 'create_date','thumn_image'], 'safe'],
             [['name'], 'string', 'max' => 255],

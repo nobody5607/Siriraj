@@ -72,7 +72,7 @@
                         'id' => 'section-all',
                     ],
                     'itemOptions' => function($model) {
-                        return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'box-footer box-comments'];
+                        return ['tag' => 'div', 'data-id' => $model['id'], 'class' => 'dad box-footer box-comments '];
                     },
                     'layout' => "{items}\n{pager}",
                     'itemView' => function ($model, $key, $index, $widget) {
@@ -84,6 +84,36 @@
     </div>
 
 </div>
+<?php richardfan\widget\JSRegister::begin();?>
+<script>
+    $("#section-all").sortable({
+        update:function( event, ui ){
+            let dataObj = [];
+            $(this).find('.dad').each(function(index){
+                dataObj.push($(this).attr('data-id'));
+                //dataObj[index] = {id:$(this).attr('data-id'), forder:$(this).attr('data-forder')} 
+            });
+            //console.warn(dataObj);
+            saveOrder(dataObj);
+        }
+    });
+    function saveOrder(dataObj){
+        let dataStr = dataObj.join();
+        let url ='/sections/session-management/order-content';
+        $.post(url,{data:dataStr}, function(result){
+            console.log(result);
+            if(result.status == 'success') {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } else {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } 
+        });
+        return false;
+        
+    }
+</script>
+<?php richardfan\widget\JSRegister::end();?>
+
 <?php \appxq\sdii\widgets\CSSRegister::begin();?>
 <style>
     .box-comments {

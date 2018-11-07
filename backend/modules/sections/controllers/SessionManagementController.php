@@ -164,6 +164,19 @@ class SessionManagementController extends Controller
                     
             }
         }
-    }     
+    } 
+     public function actionOrderContent(){
+         $data = Yii::$app->request->post('data' , '');
+         $data = explode(',', $data);
+         $defaultOrder = 10; 
+         foreach($data as $id){
+              $model = \common\models\Contents::findOne($id);
+              $model->forder = $defaultOrder;
+              $defaultOrder += 10;
+              $model->save();
+         }
+         return \janpan\jn\classes\JResponse::getSuccess("success");
+         //\appxq\sdii\utils\VarDumper::dump($data);
+     }
     
 }

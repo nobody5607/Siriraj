@@ -53,9 +53,9 @@ class JContent {
                     ->where('rstat not in(0,3)');                    
                      
             if($type == '2'){
-                $content = $data->andWhere(['public'=>2]);//private
+                $content = $data->andWhere(['public'=>2])->orderBy(['forder'=>SORT_ASC]);//private
             }else{
-                $content = $data->andWhere(['public'=>1]);//public
+                $content = $data->andWhere(['public'=>1])->orderBy(['forder'=>SORT_ASC]);//public
             }
             return $content->all();
         } catch (Exception $ex) {
@@ -73,9 +73,9 @@ class JContent {
                     ->where('rstat not in(0,3)')
                     ->andWhere('section_id=:id',[':id'=>$id]);   
             if($type == '2'){
-                $content = $data->andWhere(['public'=>2]);//private
+                $content = $data->andWhere(['public'=>2])->orderBy(['forder'=>SORT_ASC]);//private
             }else{
-                $content = $data->andWhere(['public'=>1]);//public
+                $content = $data->andWhere(['public'=>1])->orderBy(['forder'=>SORT_ASC]);//public
             } 
             return $content->all();
         } catch (Exception $ex) {
