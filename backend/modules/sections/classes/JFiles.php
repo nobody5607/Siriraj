@@ -113,6 +113,7 @@ class JFiles {
 
             $output = [];
             //\appxq\sdii\utils\VarDumper::dump($output);
+            // เช็คประเภทไฟล์ 
             if (in_array($fileType[1], $default_type)) {
                 if ($fileType[1] == "jpeg") {
                     $fileType[1] = "jpg";
@@ -126,11 +127,18 @@ class JFiles {
                     
                     $sql2 = "convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
                     
+                    //2124x1414 
+                    
                     @exec($template . " && " . $sql . " && " . $sql2, $out, $retval);
 
                     exec("stat {$filePath}.{$fileType[1]}", $des1);
                     exec("file {$filePath}.{$fileType[1]}", $des2);
 
+                    //original file
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_org.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_org.{$fileType[1]}";
+                    @exec($sql10 . " && " . $sql11, $out, $retval);
+                    
                     @unlink("{$filePath}.{$fileType[1]}");
                     //return ["type"=>$type];
                     $output['detai'] = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
@@ -154,6 +162,12 @@ class JFiles {
 
                     exec("stat {$filePath}.{$fileType[1]}", $des1);
                     exec("file {$filePath}.{$fileType[1]}", $des2);
+                    
+                    
+                    //original file
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_org.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_org.{$fileType[1]}";
+                    @exec($sql10 . " && " . $sql11, $out, $retval);
 
                     @unlink("{$filePath}.{$fileType[1]}");
                     //return ["type"=>$type];
