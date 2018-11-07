@@ -61,10 +61,8 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
             <div class="pro-content">
                 <div class="pro-infos">
                     <h2 title='<?= $model['file_name_org']?>'> <?= $name_str ?></h2>
-                    <?php
-                        $name_str = backend\modules\sections\classes\JFiles::lengthName($model['details'], 66);
-                    ?>
-                    <p title="<?= $model['details'] ?>"><?= $name_str ?></p>
+                   
+                    
                 </div>
 
             </div>
