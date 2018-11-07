@@ -271,6 +271,7 @@ class FileManagementController extends Controller
                             $description = "";
                             
                             $require_file = "{$realFileName}_2124.{$obj['type']},{$realFileName}_1024.{$obj['type']}";
+                            
                         }else if($fileType[0] === 'video' || in_array(end($fileNameArr), $objType)){
                              
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 

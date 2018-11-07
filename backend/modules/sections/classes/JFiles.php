@@ -53,7 +53,7 @@ class JFiles {
             $files->file_view = $file_view;
             $files->detail_meta = $detail_meta;
             $files->description = $description;
-            $file->require_file = $require_file;
+            $file->require_files = $require_file;
             if ($files->save()) {
                 return true;
             } else {
