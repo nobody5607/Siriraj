@@ -188,21 +188,8 @@ $('#order-grid-pjax').on('click', 'tbody tr td a', function() {
     if(action === 'update' || action === 'view') {
 	modalOrder(url);
     } else if(action === 'delete') {
-	yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete this item?')?>', function() {
-	    $.post(
-		url
-	    ).done(function(result) {
-		if(result.status == 'success') {
-		    <?= SDNoty::show('result.message', 'result.status')?>
-		    $.pjax.reload({container:'#order-grid-pjax'});
-		} else {
-		    <?= SDNoty::show('result.message', 'result.status')?>
-		}
-	    }).fail(function() {
-		<?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
-		console.log('server error');
-	    });
-	});
+        alert('ok');
+	
     }
     return false;
 });

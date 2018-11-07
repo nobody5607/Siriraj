@@ -56,13 +56,13 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => Yii::$app->user->can('administrator'),
                     'active' => ($controllerID == 'slideimg') ? TRUE : FALSE,
                 ],
-                [
-                    'label' => Yii::t('appmenu', 'Themes Frontend'),
-                    'url' => ['/theme'],
-                    'icon' => '<i class="fa fa-rocket"></i> ',
-                    'visible' => Yii::$app->user->can('administrator'),
-                    'active' => ($controllerID == 'theme') ? TRUE : FALSE,
-                ],
+//                [
+//                    'label' => Yii::t('appmenu', 'Themes Frontend'),
+//                    'url' => ['/theme'],
+//                    'icon' => '<i class="fa fa-rocket"></i> ',
+//                    'visible' => Yii::$app->user->can('administrator'),
+//                    'active' => ($controllerID == 'theme') ? TRUE : FALSE,
+//                ],
                 [
                     'label' => Yii::t('appmenu', 'Website Traffic Statistics'),
                     'url' => ['/viewcountermanagement/view-count'],
@@ -132,27 +132,27 @@ $actionID = Yii::$app->controller->action->id;
                     ],
                    
                 ],
-                [
-                    'label' => Yii::t('appmenu', 'Authentication'),
-                    'url' => '#',
-                    'icon' => '<i class="fa fa-cogs"></i>',
-                    'options' => ['class' => 'treeview'],
-                    'visible' => Yii::$app->user->can('administrator'),
-                    'items' => [
-                        [
-                            'label' => Yii::t('appmenu', 'Role'),
-                            'url' => ['/rbac/access/role'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ],
-                        [
-                            'label' => Yii::t('appmenu', 'Permission'),
-                            'url' => ['/rbac/access/permission'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ]
-                    ],
-                ],
+//                [
+//                    'label' => Yii::t('appmenu', 'Authentication'),
+//                    'url' => '#',
+//                    'icon' => '<i class="fa fa-cogs"></i>',
+//                    'options' => ['class' => 'treeview'],
+//                    'visible' => Yii::$app->user->can('administrator'),
+//                    'items' => [
+//                        [
+//                            'label' => Yii::t('appmenu', 'Role'),
+//                            'url' => ['/rbac/access/role'],
+//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                            'visible' => Yii::$app->user->can('administrator'),
+//                        ],
+//                        [
+//                            'label' => Yii::t('appmenu', 'Permission'),
+//                            'url' => ['/rbac/access/permission'],
+//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                            'visible' => Yii::$app->user->can('administrator'),
+//                        ]
+//                    ],
+//                ],
                 [
                     'label' => Yii::t('appmenu', 'Settings'),
                     'url' => '#',

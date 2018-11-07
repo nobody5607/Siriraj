@@ -10,6 +10,7 @@
         <?= Html::encode($this->title);?>
     </div>
     <div class="box-body">
+        <div style="    width: 650px;">
         <?php 
             echo \janpan\jn\widgets\FroalaEditorWidget::widget([
                 'name'=>'template',
@@ -19,10 +20,11 @@
             ]);    
 
         ?>
+        </div>
     </div>
     <div class="box-footer">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-7">
                 <?= Html::button('Submit', ['class'=>'btn btn-primary btn-block btn-lg btnSubmit'])?>
             </div>
         </div>

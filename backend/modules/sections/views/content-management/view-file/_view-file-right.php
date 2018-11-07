@@ -7,12 +7,12 @@ use yii\helpers\Html;
         <div class="box-body">
             <div class="pull-right">
                 <?php
-                echo Html::button("<i class='fa fa-pencil'></i> " .Yii::t('section','Edit'), [
+                echo Html::button("<i class='fa fa-pencil'></i> ", [
                     'content-id' => isset($_GET['content_id']) ? $_GET['content_id'] : '',
                     'filet-id'=> isset($dataDefault['id']) ? $dataDefault['id'] : '',
                     'data-action' => 'create-choice',
                     'class' => 'btn btn-primary btnCalls',
-                    'title' => Yii::t('appmenu', 'Add'),
+                    'title' => Yii::t('appmenu', 'Edit'),
                     'data-url' => '/sections/file-management/create'
                 ]);
                 ?> 

@@ -9,7 +9,7 @@
     <h4 class="modal-title"><?= Html::encode($this->title)?></h4>
 </div>
 <div class="modal-body">
-    <?= kartik\grid\GridView::widget([
+    <?=    yii\grid\GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     [

@@ -6,6 +6,7 @@
             'breadcrumb'=>$breadcrumb
         ]);  
     }
+    
 ?>
 <div class="col-md-12" id="10" data-id="10" style="padding: 5px;">
     <div class="panel panel-default">
@@ -15,7 +16,7 @@
         <!-- /.box-header -->
         <div class="panel-body" style="">
             <div id="dynamic-content-10">
-            <?= kartik\grid\GridView::widget([
+            <?= yii\grid\GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     [
@@ -40,15 +41,6 @@
                           return $name;
                         }
                     ],
-                         
-//                    [
-//                        'contentOptions'=>['style'=>'width:50px;'],
-//                        'attribute'=>'size',
-//                        'label'=> Yii::t('order','Size'),
-//                        'value'=>function($model){
-//                          return isset($model->size) ? $model->size : '';
-//                        }
-//                    ],
                     [
                         'contentOptions'=>['style'=>'width:50px;'],
                         'attribute'=>'quantity',

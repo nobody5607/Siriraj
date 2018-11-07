@@ -35,11 +35,12 @@
                 <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGN UP')?></a></li>
                 <?php else: ?>
                     <li class="bg-green"><a href="/account/default/settings"> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
-                   <li class="bg-green"><a href="/sections/order/my-order"><?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
+                    <li class="bg-green"><a href="/sections/order/my-order"><?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
                 <?php endif; ?>
                 <li class="dropdown nav_active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
+                        <li><a href="/sections/cart/my-cart"><?= Yii::t('section','รายการคำร้องขอ')?></a></li>
                       <li><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
                       <li><a href="/site/contact"><?= Yii::t('section','CONTACT US')?></a></li>
                       <?php if (!Yii::$app->user->isGuest): ?> 

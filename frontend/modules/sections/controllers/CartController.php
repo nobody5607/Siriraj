@@ -112,12 +112,71 @@ class CartController extends Controller
             $breadcrumbs[$key]=$v;
         } 
         
-        if($step == 1){            
-             
+        
+        
+        if($step == 1){  
+            
+            $order = new \common\models\Order();
+            $order->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $order->create_date = new \yii\db\Expression('NOW()');
+            $order->status = 1;
+            $order->user_id = $user_id;
+            if ($order->save()) {
+                
+                foreach (Yii::$app->session["cart"] as $key => $v) {
+                    $order_detail = new \common\models\OrderDetail();
+                    $order_detail->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                    $order_detail->order_id = $order->id;
+                    $order_detail->product_id = $v['id'];
+                    $order_detail->price = $v['sum'];
+                    $order_detail->quantity = $v['amount'];
+                    $order_detail->size = $v['size'];
+                    //\appxq\sdii\utils\VarDumper::dump($order_detail);
+                    if ($order_detail->save()) {
+                        
+                        //delete cart
+                        \frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"], 1, 'del');
+                    }
+                }
+                Yii::$app->session["cart"] = [];
+                return $this->redirect(['/sections/order/my-order']);
+                
+                //return $this->redirect(['/sections/order/my-order']);
+                //return \janpan\jn\classes\JResponse::getSuccess("Successfully");
+                //success
+            }
+
+            //end
+
             $model = \common\models\Shipper::find()->where(['user_id'=>$user_id])->one();
+            \appxq\sdii\utils\VarDumper::dump($model);
             if(!$model){
                 $model = new \common\models\Shipper();
                 $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                
+                $order = new \common\models\Order();
+                $order->create_date = new \yii\db\Expression('NOW()');
+                $order->status = 1;
+                $order->user_id = $user_id;
+                if ($order->save()) {
+                    foreach (Yii::$app->session["cart"] as $key => $v) {
+                        $order_detail = new \common\models\OrderDetail();
+                        $order_detail->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+                        $order_detail->order_id = $order->id;
+                        $order_detail->product_id = $v['id'];
+                        $order_detail->price = $v['sum'];
+                        $order_detail->quantity = $v['amount'];
+                        $order_detail->size = $v['size'];
+                        if ($order_detail->save()) {
+                            //delete cart
+                            //\frontend\modules\sections\classes\JCart::addCart($v['id'], Yii::$app->session["cart"], 1, 'del');
+                        }
+                    }
+                    //Yii::$app->session["cart"] = [];
+                    //return $this->redirect(['/sections/order/my-order']);
+                    return \janpan\jn\classes\JResponse::getSuccess("Successfully");
+                    //success
+                }
             }
             if($model->load(Yii::$app->request->post())){
                 $model->user_id = $user_id; 
@@ -154,6 +213,7 @@ class CartController extends Controller
                 } 
             }
             $this->layout = "@frontend/themes/siriraj2/layouts/main-second";
+            return $this->redirect(['/sections/order/my-order']);
             return $this->render('step1',[
                 'model'=>$model,
                 'breadcrumb'=>$breadcrumbs

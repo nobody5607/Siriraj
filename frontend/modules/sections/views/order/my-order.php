@@ -55,7 +55,7 @@
                         'template'=>'{preview} {send-mail} {print} {delete}',
                         'buttons'=>[
                           'preview' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id=1536467432080124500&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-xs', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id={$model['id']}&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-xs', 'target'=>'_blank']);   
                           },  
                           'send-mail' => function($url,$model,$key){
                               

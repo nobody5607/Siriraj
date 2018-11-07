@@ -66,7 +66,7 @@
                     'template' => '{update}',  // the default buttons + your custom button
                     'buttons' => [
                         'update' => function($url, $model, $key) {     // render your custom button
-                            return yii\helpers\Html::a("<i class='fa fa-edit'></i> Edit", '#', ['data-url'=>$url,'class'=>'btn btn-primary', 'data-action'=>'update']);
+                            return yii\helpers\Html::a("<i class='fa fa-edit'></i>", '#', ['data-url'=>$url,'class'=>'btn btn-primary', 'data-action'=>'update']);
                         }
                     ]
                 ]        

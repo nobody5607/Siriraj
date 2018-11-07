@@ -60,7 +60,7 @@ class OrderController extends Controller
                 'pageSize' => 100,
             ],
         ]);
-       // \appxq\sdii\utils\VarDumper::dump($dataProvider);
+        //\appxq\sdii\utils\VarDumper::dump($model->all());
 
         $breadcrumbs=[];
         $breadcrumbs_arr = [
@@ -137,6 +137,7 @@ class OrderController extends Controller
             $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
             $model = \common\models\Shipper::find()->where(['user_id'=> Yii::$app->user->id])->one();
             $orderDetail = \common\models\OrderDetail::find()->where(['order_id'=>$id])->all();
+           // \appxq\sdii\utils\VarDumper::dump($id);
             $file_arr = [];
             if($orderDetail){
                 foreach($orderDetail as $key=>$o){
@@ -151,10 +152,12 @@ class OrderController extends Controller
                         'file_name'=> isset($files->file_name) ? $files->file_name : '',
                         'meta_text'=> isset($files->meta_text) ? $files->meta_text : '',
                     ]; 
+                    
                 }
                 sort($file_arr); 
                // \appxq\sdii\utils\VarDumper::dump($files);
             }
+            
             $product = "";
             $title = "";
             if($file_arr){

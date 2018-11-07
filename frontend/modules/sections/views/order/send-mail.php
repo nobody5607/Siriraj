@@ -2,12 +2,27 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('order', "Send Email");
-\Yii::$app->name = "Siriraj";
-$date = isset($model->date) ? appxq\sdii\utils\SDdate::mysql2phpDate($model->date) : "";
-$modelForm = ['product' => isset($product) ? $product : '', 'count' => isset($count) ? $count : '', 'detail' => isset($model['note']) ? $model['note'] : '', 'date' => $date, 'sitecode' => isset($model->sitecode) ? $model->sitecode : '', 'name' => "{$model['firstname']} {$model['lastname']}", 'title' => $title, 'address' => isset($model->companey_name) ? $model->companey_name : '', 'tel' => isset($model->tel) ? $model->tel : ''];
-$data = \backend\modules\sections\classes\JFiles::getTemplateMark($modelForm, $template->option_value);
-$email_default = \backend\modules\cores\classes\CoreOption::getParams('email_request');
+    $this->title = Yii::t('order', "Send Email");
+    \Yii::$app->name = "Siriraj";
+    $date = isset($model->date) ? appxq\sdii\utils\SDdate::mysql2phpDate($model->date) : "";
+    
+    $fullName = Yii::$app->user->identity->userProfile->firstname .' '.Yii::$app->user->identity->userProfile->lastname;
+    $sitecode = isset(Yii::$app->user->identity->userProfile->sitecode) ? Yii::$app->user->identity->userProfile->sitecode : '';
+    $modelForm = [
+         'product' => isset($product) ? $product : '',
+         'count' => isset($count) ? $count : '',
+         'detail' => isset($model['note']) ? $model['note'] : '',
+         'date' => date('d/m/Y'),
+         'sitecode' => $sitecode,
+         'name' => $fullName,
+         'title' => $title,
+         'address' => isset($model->companey_name) ? $model->companey_name : '',
+         'tel' => isset($model->tel) ? $model->tel : ''
+     ];
+    
+    //$modelForm = ['product' => isset($product) ? $product : '', 'count' => isset($count) ? $count : '', 'detail' => isset($model['note']) ? $model['note'] : '', 'date' => $date, 'sitecode' => isset($model->sitecode) ? $model->sitecode : '', 'name' => "{$model['firstname']} {$model['lastname']}", 'title' => $title, 'address' => isset($model->companey_name) ? $model->companey_name : '', 'tel' => isset($model->tel) ? $model->tel : ''];
+    $data = \backend\modules\sections\classes\JFiles::getTemplateMark($modelForm, $template->option_value);
+    $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_request');
 ?>
 <br>
 <div class="row">
@@ -75,9 +90,20 @@ $email_default = \backend\modules\cores\classes\CoreOption::getParams('email_req
     }
     .btn-group-lg>.btn, .btn-lg {
         padding: .5rem 1rem;
-        font-size: 2.25rem;
+        font-size: 20pt;
         line-height: 1.5;
         border-radius: .3rem;
+    }
+    .btn-sm, .btn-group-sm > .btn {
+        padding: 5px 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+    .btn-success:active:hover, .btn-success.active:hover, .open > .dropdown-toggle.btn-success:hover, .btn-success:active:focus, .btn-success.active:focus, .open > .dropdown-toggle.btn-success:focus, .btn-success:active.focus, .btn-success.active.focus, .open > .dropdown-toggle.btn-success.focus {
+        color: #fff;
+        background-color: #57a19f;
+        border-color: #509694;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end();?>
