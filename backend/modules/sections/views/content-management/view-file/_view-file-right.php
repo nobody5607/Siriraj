@@ -25,7 +25,7 @@ use yii\helpers\Html;
             </div>     
             <div class="border-bottom">
                 <label>
-                    <i class="fa fa-user" aria-hidden="true"></i> <?= Yii::t('Section','By')?> : <?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?> s
+                    <i class="fa fa-user" aria-hidden="true"></i> <?= Yii::t('Section','By')?> : <?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?>
                 </label>    
             </div>
 

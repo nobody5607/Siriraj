@@ -32,6 +32,9 @@ use appxq\sdii\helpers\SDHtml;
             <div class="col-md-12">
                 <?= $form->field($model, 'keywords')->textArea(['rows' =>5])->label(Yii::t('section','Keyword')) ?>
             </div>
+            <div class="col-md-12">
+                <?= $form->field($model, 'url_origin_file')->textInput()->label('ที่อยู่ไฟล์ภาพต้นฉบับ') ?>
+            </div>
              
              
         </div>    

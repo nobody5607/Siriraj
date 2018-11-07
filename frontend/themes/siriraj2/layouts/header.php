@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-9 logo-text">
             <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
-            <h3>Siriraj museum (Unravel) treasure</h3>
+            <h3>Siriraj Museum Treasure</h3>
         </div>
         <div class="col-md-2 text-center"> 
             
