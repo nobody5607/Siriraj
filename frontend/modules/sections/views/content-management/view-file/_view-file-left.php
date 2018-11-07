@@ -53,7 +53,7 @@ use yii\helpers\Html;
                                                                             flex-wrap: wrap;
                                                                             padding: 10px;'>";
                                             foreach($modelImage as $k=>$v){
-                                                echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => "{$v['details']}"]);
+                                                echo Html::beginTag("div", ['class' => '', 'data-src' => "{$v['file_path']}/{$v['file_name']}", 'data-sub-html' => ""]);
                                                 echo \yii\helpers\Html::img("{$v['file_path']}/{$v['file_name']}", [
                                                     'class' => 'img img-responsive',
                                                     'style'=>'width:80px;height:80px;    padding: 5px;'

@@ -17,7 +17,6 @@ $noImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEiCAYAAABDd+8FAA
         <div class="pro-content">
             <div class="pro-infos">
                 <h2 title="<?= $model['name']?>"><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['name'], 30)) ?></h2>
-                <p title="<?= $model['detail']?>"><?= Html::encode(backend\modules\sections\classes\JFiles::lengthName($model['detail'], 60)) ?></p>
             </div>
 
         </div>
