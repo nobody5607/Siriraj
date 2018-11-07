@@ -21,9 +21,13 @@ use yii\widgets\ListView;
         <?=
             ListView::widget([
                 'id' => 'ezf_dad',
-                'dataProvider' => $dataProvider,                 
+                'dataProvider' => $dataProvider,
+                'options' => [
+                    'tag' => 'div',
+                    'id' => 'sections',
+                ],
                 'itemOptions' => function($model){
-                    return ['class' => 'item dads-children', 'data-id'=>$model->id];
+                    return ['class' => 'dad', 'data-id'=>$model->id];
                 },
                 'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
                 'itemView' => function ($model, $key, $index, $widget) {
@@ -43,3 +47,32 @@ use yii\widgets\ListView;
     </div>
 </div>   
 
+<?php richardfan\widget\JSRegister::begin();?>
+<script>
+    $("#sections").sortable({
+        update:function( event, ui ){
+            let dataObj = [];
+            $(this).find('.dad').each(function(index){
+                dataObj.push($(this).attr('data-id'));
+                //dataObj[index] = {id:$(this).attr('data-id'), forder:$(this).attr('data-forder')} 
+            });
+            //console.warn(dataObj);
+            saveOrder(dataObj, 'section');
+        }
+    });
+    function saveOrder(dataObj, type){
+        let dataStr = dataObj.join();
+        let url ='/sections/session-management/order-content';
+        $.post(url,{data:dataStr, type:type}, function(result){
+            console.log(result);
+            if(result.status == 'success') {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } else {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } 
+        });
+        return false;
+        
+    }
+</script>
+<?php richardfan\widget\JSRegister::end();?>

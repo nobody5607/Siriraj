@@ -167,10 +167,16 @@ class SessionManagementController extends Controller
     } 
      public function actionOrderContent(){
          $data = Yii::$app->request->post('data' , '');
+         $type = Yii::$app->request->post('type' , '');
          $data = explode(',', $data);
          $defaultOrder = 10; 
          foreach($data as $id){
-              $model = \common\models\Contents::findOne($id);
+             if($type === 'section'){
+                 $model = \common\models\Sections::findOne($id);
+             }else{
+                 $model = \common\models\Contents::findOne($id);
+             }
+              
               $model->forder = $defaultOrder;
               $defaultOrder += 10;
               $model->save();

@@ -6,46 +6,7 @@
 ?>
 <div class="col-md-8 section-right"> 
     <?php if($public == '1'): ?>
-<!--    <div class="box box-primary">
-        <div class="box-header">
-            <h4><?= "<i class='fa {$section_obj['icon']}'></i> {$section_obj['name']}"?></h4>
-             
-        </div>
-        <div class="box-body">            
-            <div class="content-data" style="display: flex;flex-direction: column;margin-top:20px;margin-bottom:50px;">                    
-                 
-                <div style="margin-bottom: -25px;">
-                    <div class="pull-left">
-                        <div>
-                            <dl class="dl-horizontal">
-                                <dt><i class="fa fa-calendar"> วันที่สร้าง:</i></dt>
-                                <dd><?= appxq\sdii\utils\SDdate::mysql2phpDate($section_obj['create_date'])?></dd>
-                                <dt><i class="fa fa-user"> โดย:</i></dt>
-                                <dd><?= common\modules\cores\User::getProfileNameByUserId($section_obj['create_by'])?></dd>
-                            </dl>
-                              
-                        </div>                        
-                    </div>
-                    <div class="pull-right">
-                        <?php                                     
-                            echo Html::button("<i class='fa fa-pencil'></i>", [
-                                'data-id' => $data_id,
-                                'data-parent_id' => isset($section_obj['parent_id']) ? $section_obj['parent_id'] : '',
-                                'data-action' => 'update',
-                                'class' => 'btn btn-primary btn-xs btnCall',
-                                'title' => Yii::t('appmenu', 'Edit'),
-                                'data-url' => '/sections/session-management/update'
-                            ]);
-                        ?> 
-                    </div>
-                </div>
-                <div class="clearfix"><hr/></div>
-                <div id="content-html">                    
-                    <?= $content_section->content; ?>
-                </div> 
-            </div>             
-        </div>
-    </div>-->
+
     <?php endif; ?>
      
     <div class="clearfix"></div>
@@ -94,13 +55,13 @@
                 //dataObj[index] = {id:$(this).attr('data-id'), forder:$(this).attr('data-forder')} 
             });
             //console.warn(dataObj);
-            saveOrder(dataObj);
+            saveOrder(dataObj, 'content');
         }
     });
-    function saveOrder(dataObj){
+    function saveOrder(dataObj , type){
         let dataStr = dataObj.join();
         let url ='/sections/session-management/order-content';
-        $.post(url,{data:dataStr}, function(result){
+        $.post(url,{data:dataStr, type:type}, function(result){
             console.log(result);
             if(result.status == 'success') {
                 <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>

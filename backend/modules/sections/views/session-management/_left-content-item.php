@@ -4,8 +4,8 @@
 
 <div class="flex-container">
     <div class="flex-drag">
-        <span>            
-            <span><i class="fa fa-bars draggable"></i></span>
+        <span style="margin:2px;">            
+            <span><i class=""></i></span>
         </span>          
     </div>
     <div class="flex-2">

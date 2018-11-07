@@ -89,18 +89,18 @@
 ]);
 ?>
 <script>
-     $('#ezf_dad').dad({
-        draggable:'.draggable',
-        callback:function(e){
-            var positionArray = [];
-            $('#ezf_dad').find('.dads-children').each(function(){
-                positionArray.push($(this).attr('data-id'));
-            });
-            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder'])?>',{data:positionArray.toString()},function(result){
-                console.log(result);
-                return false;
-            });
-        }
-    });
+//     $('#ezf_dad').dad({
+//        draggable:'.draggable',
+//        callback:function(e){
+//            var positionArray = [];
+//            $('#ezf_dad').find('.dads-children').each(function(){
+//                positionArray.push($(this).attr('data-id'));
+//            });
+//            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder'])?>',{data:positionArray.toString()},function(result){
+//                console.log(result);
+//                return false;
+//            });
+//        }
+//    });
 </script>
 <?php \richardfan\widget\JSRegister::end(); ?>
