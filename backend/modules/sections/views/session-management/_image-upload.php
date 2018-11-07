@@ -13,16 +13,16 @@ $image = '';
                 <?= Html::img($model->icon, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="upload-edit">
                 <div id="upload-edit"></div>
                 <div id="upload-action" class="text-center">
                     <a id="save-upload" class="btn btn-success"><?= Yii::t('user', 'Save Icon') ?></a>
                 </div> 
                <?= $form->field($model, 'icon')->hiddenInput(['id'=>'change_icon'])?> 
-                
+                <label><span style="color:red">*</span> ไฟล์ต้องเป็น .jpg​ หรือ .png</label>
                 <div id="div-upload-file">
-
+                    
                     <?= Html::fileInput('upload_input', null, ['id' => 'upload-input', 'class' => '','accept' => 'image/*']) ?>                      
                 </div>
             </div>

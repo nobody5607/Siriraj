@@ -28,7 +28,8 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
     <div class="modal-body">
         <div class="row"> 
             <div class="clearfix">
-                <div class="col-md-5">                
+                <div class="col-md-5">  
+                    
                     <?= $this->render('_image-upload', ['model' => $model, 'form' => $form]) ?>
                 </div>
                 <div class="col-md-12">

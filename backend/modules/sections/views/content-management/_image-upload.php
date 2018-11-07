@@ -12,14 +12,14 @@ $image = '';
                 <?= Html::img($model->thumn_image, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-ุ">
             <div class="upload-edit">
                 <div id="upload-edit"></div>
                 <div id="upload-action" class="text-center">
                     <a id="save-upload" class="btn btn-success"><?= Yii::t('user', 'Save Icon') ?></a>
                 </div> 
-               <?= $form->field($model, 'thumn_image')->hiddenInput(['id'=>'change_icon'])?> 
-                
+               <?= $form->field($model, 'thumn_image')->hiddenInput(['id'=>'change_icon'])->label('รูปภาพขนาดเล็ก')?> 
+                <label><span style="color:red">*</span> ไฟล์ต้องเป็น .jpg​ หรือ .png</label>
                 <div id="div-upload-file">
 
                     <?= Html::fileInput('upload_input', null, ['id' => 'upload-input', 'class' => '','accept' => 'image/*']) ?>                      

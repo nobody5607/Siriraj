@@ -70,7 +70,13 @@ class SessionManagementController extends Controller
             $model->create_by = Yii::$app->user->id;
             $model->create_date = new \yii\db\Expression('NOW()');  
             $model->public = $public;
-	    if ($model->load(Yii::$app->request->post())) {		 
+            
+	    if ($model->load(Yii::$app->request->post())) {
+                //\appxq\sdii\utils\VarDumper::dump();
+                $checkName = Sections::find()->where(['name'=>$_POST['Sections']['name']])->andWhere('rstat <> 3')->one();
+                if(!empty($checkName)){
+                    return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                }
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Create data complete'), $model);
 		} else {
@@ -96,7 +102,10 @@ class SessionManagementController extends Controller
 	    $model =  Sections::findOne($id);
              
 	    if ($model->load(Yii::$app->request->post())) {
-                 
+                $checkName = Sections::find()->where(['name'=>$_POST['Sections']['name']])->andWhere('id != :id  AND rstat <> 3', [':id'=>$id])->one();
+                if(!empty($checkName)){
+                    return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                } 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Update data complete'), $model);
 		} else {

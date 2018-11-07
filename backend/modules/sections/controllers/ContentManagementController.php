@@ -63,6 +63,12 @@ class ContentManagementController extends Controller
         $public                 = \Yii::$app->request->get('public', '1');         
         
         if ($model->load(Yii::$app->request->post())) {
+            
+            $checkName = Contents::find()->where(['name' => $_POST['Contents']['name']])->andWhere('rstat <> 3')->one();
+            if (!empty($checkName)) {
+                return \janpan\jn\classes\JResponse::getError("{$_POST['Contents']['name']} ถูกใช้งานแล้ว");
+            }
+
             $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $model->rstat       = 1; 
             $model->user_create = Yii::$app->user->id;
@@ -86,6 +92,14 @@ class ContentManagementController extends Controller
         $model                  = Contents::findOne($id);
          
         if ($model->load(Yii::$app->request->post())) { 
+            
+            $checkName = Contents::find()->where(['name' => $_POST['Contents']['name']])
+                    ->andWhere('id != :id AND rstat <> 3', [':id' => $id])->one();
+           // \appxq\sdii\utils\VarDumper::dump($id);
+            if (!empty($checkName)) {
+                return \janpan\jn\classes\JResponse::getError("{$_POST['Contents']['name']} ถูกใช้งานแล้ว");
+            }
+            
             $model->rstat       = 1; 
             $model->user_create = Yii::$app->user->id;
             $model->create_date = new \yii\db\Expression('NOW()');
