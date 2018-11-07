@@ -43,6 +43,7 @@ echo yii\bootstrap\Modal::widget([
                 <div class="panel-heading"><?= Html::encode($this->title) ?></div>
                 <div class="panel-body">
                     <label style="color:red;margin-bottom:20px;">**  <?= Yii::t('_user','Siriraj members wait 1-2 days for staff approval.')?></label>
+                    
                      
                     <div class="col-md-12">
                         <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'autofocus'=>'autofocus']) ?>
@@ -84,17 +85,22 @@ echo yii\bootstrap\Modal::widget([
                                 ?>             
                             </div> 
                     </div>
-
+                    
                             
 
                 </div>
+                
                 <div class="panel-footer">
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block btn-lg']) ?>
                         </div>
                     </div>
+                    
                 </div>
+            </div>
+            <div class="text-center">
+                <label style="color:red;margin-bottom:20px;">หมายเหตุ * คือข้อบังคับต้องกรอก</label>
             </div>
         </div>
         <div class="col-md-4">
@@ -111,6 +117,7 @@ echo yii\bootstrap\Modal::widget([
                 </div>
             </div>
         </div>
+        
         <?php ActiveForm::end() ?>
     </div>
 </div>  
@@ -133,7 +140,15 @@ echo yii\bootstrap\Modal::widget([
         position: absolute;
         left: 85%;
     }
+    .btn{
+        font-size:18pt;
+    }
 
 </style>
 <?php appxq\sdii\widgets\CSSRegister::end(); ?>
- 
+ <?php $this->registerCss("
+    div.required label.control-label:after {
+        content: \" *\";
+        color: red;
+    }
+")?>

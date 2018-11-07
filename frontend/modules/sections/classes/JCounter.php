@@ -15,5 +15,9 @@ class JCounter extends \yii\base\Component{
           return $model->errors;
       }
     }
+    public static function getView(){
+        $model = \common\models\View::find()->select('count(*)')->scalar();
+        return $model;
+    }
      
 }
