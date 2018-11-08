@@ -12,25 +12,38 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['body-class'] = 'login-page';
 ?>
 <div class="login-box">
-
-    <div class="login-logo">
-        <?= Html::encode($this->title) ?>
-    </div>
-
     <div class="login-box-body">
+        <div class="login-logo">
+            <img src="<?= \yii\helpers\Url::to('@web/images/logosirirajweb.png') ?>"/>
+            <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
+            <h3>Siriraj Museum Treasure</h3>
+        </div>
         <?php $form = ActiveForm::begin(['id' => 'login-form']) ?>
 
         <div class="body">
-            <?= $form->field($model, 'identity') ?>
+            <?= $form->field($model, 'identity')->label('Username') ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
             <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'simple']) ?>
         </div>
 
         <div class="footer">
-            <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-flat btn-block']) ?>
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-flat btn-block btn-lg']) ?>
         </div>
 
         <?php ActiveForm::end() ?>
     </div>
 
 </div>
+<?php 
+    $css= "
+        .btn-primary{
+        margin-bottom:50px;}
+      .login-box, .register-box {
+            width: 500px;
+            margin: 7% auto;
+            
+        }  
+        .form-control{height:45px;}
+    ";
+    $this->registerCss($css);
+?>

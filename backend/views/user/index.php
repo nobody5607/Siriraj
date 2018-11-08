@@ -3,6 +3,7 @@
 use yii\bootstrap\Html;
 use yii\grid\GridView;
 use common\models\User;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\UserSearch */
@@ -13,17 +14,36 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-default">
     <div class="box-header">
-        <?= yii\helpers\Html::encode($this->title)?>
-        <div class="pull-right">
+        
+        <div class="col-md-7 pull-left">
+            <?php
+            ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'method' => 'get', 'action' => Yii::$app->urlManager->createUrl(['user'])]);
+            ?>
+            <div class="row">
+                <div class="col-md-10 col-sm-10 col-xs-10">
+                    <?= \yii\helpers\Html::textInput('search', '', ['class' => 'form-control', 'placeholder' => 'ค้นหาผู้ใช้']) ?>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <?= \yii\helpers\Html::submitButton('<i class="fa fa-search"></i> ค้นหา', ['class' => 'btn btn-primary']) ?>
+                </div>
+            </div>
+            <?php ActiveForm::end(); ?>
+            <br />
+        </div>
+        <div class="col-md-5 pull-right text-right">
+            <a href="<?= \yii\helpers\Url::to('@web/files/001.xls')?>"><i class="fa fa-download"></i> ดาวน์โหลดตัวอย่างไฟล์</a> &nbsp;
             <?= Html::a(Yii::t('backend', '<i class="fa fa-upload"></i> นำเข้าไฟล์ Excel'), ['create'], ['class' => 'btn btn-warning btnImportExcelFile']) ?>
-            <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i>'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i> เพิ่มผู้ใช้'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>    
     </div>
     <div class="box-body">
         <div class="">
-            <?=            appxq\sdii\widgets\GridView::widget([
+
+            
+            
+            <?=  appxq\sdii\widgets\GridView::widget([
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'tableOptions'=>['class'=>'table table-hover table-bordered table-responsive'],
             'columns' => [
                 
@@ -36,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ], 
                 [
                     'contentOptions'=>['style'=>'widh:150px;'],
-                    'label' => Yii::t('_user','Uswename'),
+                    'label' => Yii::t('_user','ชื่อผู้ใช้งาน'),
                     'value' => function ($model) {
                         return $model->username;
                     } 
@@ -63,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     } 
                 ],
                 [
+                    'contentOptions' => ['style'=>'width:180px;text-align: center;'],
                     'label' => Yii::t('_user','Site Code'),
                     'value' => function ($model) {
                         return isset($model->userProfile->sitecode) ? $model->userProfile->sitecode : '';
@@ -80,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                        
                                         'data-id' => $model->id,
                                         'data-action'=>'admin',
-                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'admin'])
+                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'manager'])
                             ]);
                         } else {
 
@@ -89,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                                        'style'=>'padding: 6px 6px 16px 6px;',
                                         'data-id' => $model->id,
                                         'data-action'=>'admin',
-                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'admin'])
+                                        'data-url' => yii\helpers\Url::to(['/user/manager', 'id' => $model->id, 'auth' => 'manager'])
                             ]);
                         }
                     },
@@ -97,6 +118,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     'headerOptions' => ['style' => 'text-align: center;'],
                     'contentOptions' => ['style' => 'width:90px;text-align: center;'],
                 ],
+                [
+                    'contentOptions' => ['style'=>'width:150px;text-align: center;'],
+                    'label' => Yii::t('_user', 'อนุมัติโดย'),
+                    'value' => function ($model) {
+                        $model = common\models\UserProfile::findOne(isset($model->userProfile->approval_by) ? $model->userProfile->approval_by : '0');
+                        if($model){
+                            return "{$model->firstname} {$model->lastname}";
+                        }else{
+                            return ' ';
+                        }
+                    }
+                ],
+                [
+                    'contentOptions' => ['style'=>'width:100px;text-align: center;'],
+                    'label' => Yii::t('_user', 'วันที่สมัคร'),
+                    'value' => function ($model) {
+                       return date('d/m/Y  H:i:s', $model->created_at);
+
+                    }
+                ],
+        //approval_by
                 [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
                         'headerOptions' => ['style'=>'width:80px;text-align: center;'],

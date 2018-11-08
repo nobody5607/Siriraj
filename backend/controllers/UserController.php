@@ -41,15 +41,32 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $dataProvider->sort = [
-            'defaultOrder' => ['created_at' => SORT_DESC],
-        ];
+        //$searchModel = new UserSearch();
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $search = Yii::$app->request->get('search', '');
+        
+        $user = User::find()->innerJoinWith('userProfile', true);
+ ;
+        
+        $user->orFilterWhere(['like', 'username', $search])
+                ->orFilterWhere(['like', 'email', $search])
+                ->orFilterWhere(['like','firstname',  $search])
+                ->orFilterWhere(['like','lastname',  $search])
+                ->orFilterWhere(['like','sap_id',  $search])
+                ->orFilterWhere(['like','sitecode',  $search]);
+        
+        
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $user,
+            'pagination' => ['pagesize' => 100],
+        ]);
+        //\appxq\sdii\utils\VarDumper::dump($_GET);
+//        $dataProvider->sort = [
+//            'defaultOrder' => ['created_at' => SORT_DESC],
+//        ];
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            //'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -183,13 +200,17 @@ class UserController extends Controller
     
     public function actionManager($id, $auth) { 
       
+        //administrator , users , manager
         $getAuth = \Yii::$app->authManager->getAssignment($auth, $id);
         $roles_db = ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
-
+        
+         
         if ($id == \Yii::$app->user->identity->getId()) {            
-            return \janpan\jn\classes\JResponse::getError(\yii\helpers\Json::encode($id));
+            
+            return \janpan\jn\classes\JResponse::getError("ไม่สามารถอนุมัติตัวเองได้");
         } else {
             $authorRole = Yii::$app->authManager->getRole($auth);
+            //\appxq\sdii\utils\VarDumper::dump($authorRole);
             //Yii::$app->authManager->revoke($authorRole, $id);
             $model = UserProfile::findOne($id);
             if($model->approval == 1){
@@ -197,8 +218,11 @@ class UserController extends Controller
                 $model->approval = 0;
                 $model->save();
             }else{
+                $userId = Yii::$app->user->id;
+                $setAuth = Yii::$app->authManager->revoke($authorRole, $id);
                 $setAuth = Yii::$app->authManager->assign($authorRole, $id);
                 $model->approval = 1;
+                $model->approval_by = $userId;
                 $model->save();
             }
             
@@ -253,6 +277,7 @@ class UserController extends Controller
                         $approval = ($v['G'] == 'Active') ? 1 : 0;
                         $nameArr  = explode(' ', $name);
                         
+                        
                         $model = new UserForm();
                         $model->setScenario('create');
                         $model->username    = $username;
@@ -264,6 +289,7 @@ class UserController extends Controller
                         $model->lastname    = $nameArr[2];
                         $model->sitecode    = $sitecode;
                         $model->sap_id      = $sapid;
+                        $model->sex         = $nameArr[0];;
                         //\appxq\sdii\utils\VarDumper::dump($model);
                         if(!$model->save()){
                             return \janpan\jn\classes\JResponse::getError("error ", $model->errors);

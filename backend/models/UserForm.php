@@ -17,7 +17,7 @@ class UserForm extends Model
     public $password;
     public $status;
     public $roles;
-    public $firstname, $lastname, $sitecode, $sap_id,$position;
+    public $firstname, $lastname, $sitecode, $sap_id,$position, $sex;
 
     private $model;
 
@@ -52,6 +52,8 @@ class UserForm extends Model
                 }
             ],
             ['email', 'string', 'max' => 255],
+            ['sex', 'string', 'max' => 255],
+                    
 
             ['password', 'required', 'on' => 'create'],
             ['password', 'string', 'min' => 6, 'max' => 32],
@@ -129,7 +131,14 @@ class UserForm extends Model
             }
             $model->generateAuthKey();
             if ($model->save() && $isNewRecord) {
-                $data_obj = ['position'=> $this->position,'firstname'=> $this->firstname, 'lastname'=> $this->lastname, 'sitecode'=>$this->sitecode, 'sap_id'=> $this->sap_id];
+                $data_obj = [
+                    'position'=> $this->position,
+                    'firstname'=> $this->firstname, 
+                    'lastname'=> $this->lastname, 
+                    'sitecode'=>$this->sitecode,
+                    'sap_id'=> $this->sap_id,
+                    'sex'=>$this->sex    
+                  ];
                 $model->afterSignup($data_obj);
             }
             $auth = Yii::$app->authManager;
