@@ -16,7 +16,7 @@ class UserUpload extends Model
     public function rules()
     {
         return [
-            [['filename'], 'file', 'extensions' => 'xls,xlsx', 'skipOnEmpty' => true]
+            [['filename'], 'file', 'extensions' => 'csv,xls,xlsx', 'skipOnEmpty' => true]
         ];
     }
 

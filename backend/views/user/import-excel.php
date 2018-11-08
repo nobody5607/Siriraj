@@ -20,7 +20,7 @@ $form = ActiveForm::begin([
 
     <?php
     echo $form->field($model, 'filename')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+//        'options' => ['accept' => 'csv'],
     ]);
     ?>
 

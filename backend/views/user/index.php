@@ -178,7 +178,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $modal = 'modal-user';
     echo \appxq\sdii\widgets\ModalForm::widget([
         'id' => $modal,
-        'size' => 'modal-xxl',
+        'size' => 'modal-md',
         'tabindexEnable' => false,
     ]);
 ?>
