@@ -27,7 +27,11 @@ use appxq\sdii\helpers\SDHtml;
                 <?= $form->field($model, 'file_name_org')->textInput()->label(Yii::t('section','File Name')) ?>
             </div> 
             <div class="col-md-12">
-                <?= $form->field($model, 'details')->textArea(['rows' =>7])->label(Yii::t('section','Note')) ?>
+                <?php  echo $form->field($model, 'details')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [
+                        'toolbar_size'=>'sm',
+                        'options'=>['class'=>'eztemplate'],
+                    ])->label(Yii::t('section','Note'));//->hint('Default Template <a class="btn btn-warning btn-xs btn-template" data-widget="{tab-widget}">Use Default</a>'); 
+                ?>
             </div>
             <div class="col-md-12">
                 <?= $form->field($model, 'keywords')->textArea(['rows' =>5])->label(Yii::t('section','Keyword')) ?>

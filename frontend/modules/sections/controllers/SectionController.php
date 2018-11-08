@@ -45,7 +45,7 @@ class SectionController extends Controller
         $contentProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$content,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 12,
             ],
         ]);  
         
