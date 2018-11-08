@@ -258,6 +258,9 @@ section {
 }
 /* desktop device */
 @media screen and (min-width:768px){
+    .slick-list{
+        height: 300px;
+    }
     #globalCart {
         background: #f47736;
         /*font-size: 10pt;*/
@@ -417,6 +420,9 @@ section {
 
 /* mobild */
 @media screen and (max-width:768px){
+    .slick-list{
+        height: 100px;
+    }
     .image-sliders{
         height: 90px;
     }
