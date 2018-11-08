@@ -205,4 +205,83 @@ class UserController extends Controller
             return \janpan\jn\classes\JResponse::getSuccess("Success");
         }
     }
+    
+    public function actionImportExcel()
+    {
+        $model=new \backend\models\UserUpload();
+        if($model->load(Yii::$app->request->post()) ){
+            
+            $files = \yii\web\UploadedFile::getInstance($model, 'filename');
+            $newFile = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $fileLocation    = Yii::getAlias('@storage') . "/web/images/{$newFile}.{$files->extension}";
+            //if($files->saveAs($fileLocation)){
+                //\appxq\sdii\utils\VarDumper::dump($fileLocation);
+            
+                try{
+                    ini_set('memory_limit', '-1');
+                    ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+                    set_time_limit(0);
+                    $fileLocation = '/Users/chanpan/www/srr/storage/web/images/1541690821013037200.xls';
+                    $inputFileType = \PHPExcel_IOFactory::identify($fileLocation);  
+                    $objReader = \PHPExcel_IOFactory::createReader($inputFileType);  
+                    $objReader->setReadDataOnly(true);  
+                    $objPHPExcel = $objReader->load($fileLocation);  
+                    
+                    // for No header
+                    $objWorksheet = $objPHPExcel->setActiveSheetIndex(0);
+                    $highestRow = $objWorksheet->getHighestRow();
+                    $highestColumn = $objWorksheet->getHighestColumn();
+                    
+                    
+                    $r = -1;
+                    $namedDataArray = array();
+                    for ($row = 2; $row <= $highestRow; ++$row) {
+                        $dataRow = $objWorksheet->rangeToArray('A'.$row.':'.$highestColumn.$row,null, true, true, true);
+                        if ((isset($dataRow[$row]['A'])) && ($dataRow[$row]['A'] > '')) {
+                            ++$r;
+                            $namedDataArray[$r] = $dataRow[$row];
+                        }
+                    }
+                   // \appxq\sdii\utils\VarDumper::dump($namedDataArray);
+                    foreach($namedDataArray as $k=>$v){
+                        $username = "{$v['A']}";
+                        $password = "{$v['A']}";
+                        $sapid    = "{$v['A']}";
+                        $name     = "{$v['B']}";
+                        $position = "{$v['C']}";
+                        $sitecode = "{$v['D']},{$v['E']},{$v['F']}";
+                        $approval = ($v['G'] == 'Active') ? 1 : 0;
+                        $nameArr  = explode(' ', $name);
+                        
+                        $model = new UserForm();
+                        $model->setScenario('create');
+                        $model->username    = $username;
+                        $model->password    = $password;
+                        $model->email       = "{$username}@gmail.com";
+                        $model->status      = 1;
+                        $model->position    = $position;
+                        $model->firstname   = $nameArr[1];
+                        $model->lastname    = $nameArr[2];
+                        $model->sitecode    = $sitecode;
+                        $model->sap_id      = $sapid;
+                        //\appxq\sdii\utils\VarDumper::dump($model);
+                        if(!$model->save()){
+                            return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
+                        }
+                    }
+                    return \janpan\jn\classes\JResponse::getSuccess("success");
+                    
+                    
+                } catch (\Exception $ex) {
+                    return \janpan\jn\classes\JResponse::getError('อ่านข้อมูล error'.$ex);
+                }
+                
+                 
+            //}//end if
+            //\appxq\sdii\utils\VarDumper::dump($files->extension);
+            
+        }
+        return $this->renderAjax('import-excel', ['model'=>$model]); 
+    }
+
 }

@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-header">
         <?= yii\helpers\Html::encode($this->title)?>
         <div class="pull-right">
+            <?= Html::a(Yii::t('backend', '<i class="fa fa-upload"></i> นำเข้าไฟล์ Excel'), ['create'], ['class' => 'btn btn-warning btnImportExcelFile']) ?>
             <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i>'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>    
     </div>
@@ -130,8 +131,28 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
+<?php
+    $modal = 'modal-user';
+    echo \appxq\sdii\widgets\ModalForm::widget([
+        'id' => $modal,
+        'size' => 'modal-xxl',
+        'tabindexEnable' => false,
+    ]);
+?>
  <?php \richardfan\widget\JSRegister::begin();?>
 <script>
+    $('.btnImportExcelFile').on('click' , function(){
+       
+       let url = '/user/import-excel';
+        $('#<?= $modal?>').modal('show');
+        $('#<?= $modal?> .modal-content').html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
+        $.get(url,function(data){
+            $('#<?= $modal?> .modal-content').html(data); 
+        }); 
+           
+       return false;
+    });
     
     $('.manager-btn').click(function(){
         let url = $(this).attr('data-url');
