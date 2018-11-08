@@ -238,14 +238,14 @@ class UserController extends Controller
             $files = \yii\web\UploadedFile::getInstance($model, 'filename');
             $newFile = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $fileLocation    = Yii::getAlias('@storage') . "/web/images/{$newFile}.{$files->extension}";
-            //if($files->saveAs($fileLocation)){
+            if($files->saveAs($fileLocation)){
                 //\appxq\sdii\utils\VarDumper::dump($fileLocation);
             
                 try{
                     ini_set('memory_limit', '-1');
                     ini_set('max_execution_time', 300); //300 seconds = 5 minutes
                     set_time_limit(0);
-                    $fileLocation = '/Users/chanpan/www/srr/storage/web/images/1541690821013037200.xls';
+                   // $fileLocation = '/Users/chanpan/www/srr/storage/web/images/1541690821013037200.xls';
                     $inputFileType = \PHPExcel_IOFactory::identify($fileLocation);  
                     $objReader = \PHPExcel_IOFactory::createReader($inputFileType);  
                     $objReader->setReadDataOnly(true);  
@@ -295,6 +295,7 @@ class UserController extends Controller
                             return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
                         }
                     }
+                    exec("rm -rf {$fileLocation}");
                     return \janpan\jn\classes\JResponse::getSuccess("success");
                     
                     
@@ -303,7 +304,7 @@ class UserController extends Controller
                 }
                 
                  
-            //}//end if
+            }//end if
             //\appxq\sdii\utils\VarDumper::dump($files->extension);
             
         }
