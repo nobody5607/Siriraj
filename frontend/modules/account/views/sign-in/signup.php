@@ -33,6 +33,7 @@ echo yii\bootstrap\Modal::widget([
                             'label' => 'col-md-3',
                             'offset' => 'col-sm-offset-2',
                             'wrapper' => 'col-md-6',
+                            'hint' =>  'col-md-6 col-sm-offset-3',
                         ],
                     ],
                 ])
@@ -46,7 +47,8 @@ echo yii\bootstrap\Modal::widget([
                     
                      
                     <div class="col-md-12">
-                        <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'autofocus'=>'autofocus']) ?>
+                        <?= $form->field($model, 'username')
+                ->textInput(['maxlength' => true, 'autofocus'=>'autofocus','placeholder'=>'ควรกรอกเป็นภาษาอังกฤษ']) ?>
 
                         <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
