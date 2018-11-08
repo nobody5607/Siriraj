@@ -229,7 +229,41 @@ class UserController extends Controller
             return \janpan\jn\classes\JResponse::getSuccess("Success");
         }
     }
-    
+    public function actionSaveUser(){
+        
+        try{
+            $username = \Yii::$app->request->post('username', '');
+            $password = \Yii::$app->request->post('password', '');
+            $email = \Yii::$app->request->post('email', '');
+            $status = \Yii::$app->request->post('status', '');
+            $position = \Yii::$app->request->post('position', '');
+            $firstname = \Yii::$app->request->post('firstname', '');
+            $lastname = \Yii::$app->request->post('lastname', '');
+            $sitecode = \Yii::$app->request->post('sitecode', '');
+            $sap_id = \Yii::$app->request->post('sap_id', '');
+            $sex = \Yii::$app->request->post('sex', '');
+
+            $model = new UserForm();
+            $model->setScenario('create');
+            $model->username = $username;
+            $model->password = $password;
+            $model->email = $email;
+            $model->status = 1;
+            $model->position = $position;
+            $model->firstname = $firstname;
+            $model->lastname = $lastname;
+            $model->sitecode = $sitecode;//isset($sitecode) ? $sitecode : '';
+            $model->sap_id = $sap_id;// isset($sapid) ? $sapid : '';
+            $model->sex = $sex; //isset($sex) ? $sex : '';
+            if($model->save()){
+                return \janpan\jn\classes\JResponse::getSuccess('Success');
+            }else{
+                return \janpan\jn\classes\JResponse::getError('Error');
+            }
+        } catch (\yii\db\Exception $ex) {
+            return \janpan\jn\classes\JResponse::getError('Error', $ex);
+        }
+    }
     public function actionImportExcel()
     {
         $model=new \backend\models\UserUpload();
@@ -278,26 +312,37 @@ class UserController extends Controller
                         $approval = ($v['G'] == 'Active') ? 1 : 0;
                         $nameArr  = explode(' ', $name);
                         
-                        $model = new UserForm();
-                        $model->setScenario('create');
-                        $model->username    = isset($username) ? $username : '123456';
-                        $model->password    = isset($password) ? $password : '123456';
-                        $model->email       = "{$username}@gmail.com";
-                        $model->status      = 1;
-                        $model->position    = $position;
-                        $model->firstname   = isset($nameArr[1]) ? $nameArr[1] : '';
-                        $model->lastname    = isset($nameArr[2]) ? $nameArr[2] : '';
-                        $model->sitecode    = isset($sitecode) ? $sitecode : '';
-                        $model->sap_id      = isset($sapid) ? $sapid : '';
-                        $model->sex         = isset($nameArr[0]) ? $nameArr[0] : '';
-                        $out[$k] = ['firstname'=>$model->firstname, 'lastname'=>$model->lastname];
-                        if(!$model->save()){
-                            return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
-                        }
+//                        $model = new UserForm();
+//                        $model->setScenario('create');
+//                        $model->username    = isset($username) ? $username : '123456';
+//                        $model->password    = isset($password) ? $password : '123456';
+//                        $model->email       = "{$username}@gmail.com";
+//                        $model->status      = 1;
+//                        $model->position    = $position;
+//                        $model->firstname   = isset($nameArr[1]) ? $nameArr[1] : '';
+//                        $model->lastname    = isset($nameArr[2]) ? $nameArr[2] : '';
+//                        $model->sitecode    = isset($sitecode) ? $sitecode : '';
+//                        $model->sap_id      = isset($sapid) ? $sapid : '';
+//                        $model->sex         = isset($nameArr[0]) ? $nameArr[0] : '';
+                        $out[$k] = [
+                            'username'=>isset($username) ? $username : '123456',
+                            'password'=>isset($username) ? $username : '123456',
+                            'email'=> "{$username}@gmail.com",
+                            'status'=>1,
+                            'firstname'=>isset($nameArr[1]) ? $nameArr[1] : '', 
+                            'lastname'=> isset($nameArr[2]) ? $nameArr[2] : '',
+                            'position'=> isset($position) ? $position : '',
+                            'sitecode'=> isset($sitecode) ? $sitecode : '',  
+                            'sap_id'=>   isset($sapid) ? $sapid : '',
+                            'sex'=>      isset($nameArr[0]) ? $nameArr[0] : ''  
+                        ];
+//                        if(!$model->save()){
+//                            return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
+//                        }
                     }
                    
                     exec("rm -rf {$fileLocation}");
-                    return \janpan\jn\classes\JResponse::getSuccess("success");
+                    return \janpan\jn\classes\JResponse::getSuccess("success", $out);
                     
                     
                 } catch (\yii\base\Exception $ex) {
