@@ -21,7 +21,11 @@ $form = ActiveForm::begin([
     <?php
     echo $form->field($model, 'filename')->widget(FileInput::classname(), [
 //        'options' => ['accept' => 'csv'],
-    ]);
+    ])->label('ไฟล์')
+            ->hint(
+                    "<span style='color:#F44336;'>* หมายเหตุ ขนาดข้อมูลในไฟล์ Excel ไม่ควรเกิน 500 - 1000 แถว เนื่องจากจะทำให้ระบบช้า<br> และ รูปแบบข้อมูลจะต้องตรงตาม Template ตัวอย่าง เท่านั้น <br> และ ไฟล์จะต้องเป็น .xls , xlsx เท่านั้น</span>
+                    <div><a href=".\yii\helpers\Url::to('@web/files/001.xls')."><i class=\"fa fa-download\"></i> ดาวน์โหลด Template  ตัวอย่าง</a></div>    
+            ");
     ?>
 
 
@@ -56,7 +60,7 @@ $form = ActiveForm::begin([
                 <?= SDNoty::show('result.message', 'result.status')?>     
                 setTimeout(function(){
                     location.reload();
-                });            
+                },1000);            
             } else {
 //                let error = result;
                 let error = JSON.stringify(result.data);

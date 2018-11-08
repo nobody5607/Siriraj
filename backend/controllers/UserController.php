@@ -239,7 +239,7 @@ class UserController extends Controller
             $newFile = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $fileLocation    = Yii::getAlias('@storage') . "/web/images/{$newFile}.{$files->extension}";
             if($files->saveAs($fileLocation)){
-                //\appxq\sdii\utils\VarDumper::dump($fileLocation);
+               // \appxq\sdii\utils\VarDumper::dump($fileLocation);
             
                 try{
                     ini_set('memory_limit', '-1');
@@ -266,7 +266,8 @@ class UserController extends Controller
                             $namedDataArray[$r] = $dataRow[$row];
                         }
                     }
-                   // \appxq\sdii\utils\VarDumper::dump($namedDataArray);
+                    $out = [];
+                   //\appxq\sdii\utils\VarDumper::dump($namedDataArray);
                     foreach($namedDataArray as $k=>$v){
                         $username = "{$v['A']}";
                         $password = "{$v['A']}";
@@ -277,30 +278,30 @@ class UserController extends Controller
                         $approval = ($v['G'] == 'Active') ? 1 : 0;
                         $nameArr  = explode(' ', $name);
                         
-                        
                         $model = new UserForm();
                         $model->setScenario('create');
-                        $model->username    = $username;
-                        $model->password    = $password;
+                        $model->username    = isset($username) ? $username : '123456';
+                        $model->password    = isset($password) ? $password : '123456';
                         $model->email       = "{$username}@gmail.com";
                         $model->status      = 1;
                         $model->position    = $position;
-                        $model->firstname   = $nameArr[1];
-                        $model->lastname    = $nameArr[2];
-                        $model->sitecode    = $sitecode;
-                        $model->sap_id      = $sapid;
-                        $model->sex         = $nameArr[0];;
-                        //\appxq\sdii\utils\VarDumper::dump($model);
+                        $model->firstname   = isset($nameArr[1]) ? $nameArr[1] : '';
+                        $model->lastname    = isset($nameArr[2]) ? $nameArr[2] : '';
+                        $model->sitecode    = isset($sitecode) ? $sitecode : '';
+                        $model->sap_id      = isset($sapid) ? $sapid : '';
+                        $model->sex         = isset($nameArr[0]) ? $nameArr[0] : '';
+                        $out[$k] = ['firstname'=>$model->firstname, 'lastname'=>$model->lastname];
                         if(!$model->save()){
                             return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
                         }
                     }
+                   
                     exec("rm -rf {$fileLocation}");
                     return \janpan\jn\classes\JResponse::getSuccess("success");
                     
                     
-                } catch (\Exception $ex) {
-                    return \janpan\jn\classes\JResponse::getError('อ่านข้อมูล error'.$ex);
+                } catch (\yii\base\Exception $ex) {
+                    return \janpan\jn\classes\JResponse::getError('อ่านข้อมูลไม่สำเร็จ รูปแบบไฟล์ไม่ถูกต้อง');
                 }
                 
                  

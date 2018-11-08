@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <br />
         </div>
         <div class="col-md-5 pull-right text-right">
-            <a href="<?= \yii\helpers\Url::to('@web/files/001.xls')?>"><i class="fa fa-download"></i> ดาวน์โหลดตัวอย่างไฟล์</a> &nbsp;
+            <a href="<?= \yii\helpers\Url::to('@web/files/001.xls')?>"><i class="fa fa-download"></i> ดาวน์โหลด Template ตัวอย่าง</a> &nbsp;
             <?= Html::a(Yii::t('backend', '<i class="fa fa-upload"></i> นำเข้าไฟล์ Excel'), ['create'], ['class' => 'btn btn-warning btnImportExcelFile']) ?>
             <?= Html::a(Yii::t('backend', '<i class="fa fa-plus"></i> เพิ่มผู้ใช้'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>    
