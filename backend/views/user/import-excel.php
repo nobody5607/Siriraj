@@ -108,6 +108,9 @@ $form = ActiveForm::begin([
         });
         if(count_end == 0){
             <?= SDNoty::show('result.message', 'result.status') ?>
+            setTimeout(function(){
+                location.reload();
+            },1000);
                     }                
         let html ='';
             html += `
