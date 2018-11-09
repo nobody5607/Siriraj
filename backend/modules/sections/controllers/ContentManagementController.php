@@ -116,15 +116,21 @@ class ContentManagementController extends Controller
             'public'=>$public
         ]);
     }
-    public function actionDelete(){          
+    public function actionDelete(){    
+        
         if (Yii::$app->getRequest()->isAjax) {
-            $id             = \Yii::$app->request->post('id', '');	     
+            $id             = \Yii::$app->request->post('id', '');	
             $model          =  Contents::findOne($id);            
             $model->rstat   = 3;
+            \backend\modules\sections\classes\CNParent::deleteContent($id);
             if($model->id == 0){
                 return \janpan\jn\classes\JResponse::getError(\Yii::t('content', 'Delete Error!'));
             }
 	    if ($model->save()) {
+                $content = Contents::find()->where('rstat = 3')->all();
+                foreach($content as $c=>$v){
+                    \backend\modules\sections\classes\CNParent::deleteContent($v['id']);
+                }
                 return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('content', 'Delete data complete'), $model);
             } else {
                 return \janpan\jn\classes\JResponse::getError(\Yii::t('content', 'Delete Error!'));
