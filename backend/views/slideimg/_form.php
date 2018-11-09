@@ -104,6 +104,9 @@ use appxq\sdii\helpers\SDHtml;
 <?= SDNoty::show('result.message', 'result.status') ?>
                     $('#modal-slideimg').modal('toggle');
                     $.pjax.reload({container: "#slideimg-grid-pjax", async: false});
+                    setTimeout(function(){
+                        location.reload();
+                    },1000);
                     $('.btn').prop('disabled', false);
                 } else {
 <?= SDNoty::show('result.message', 'result.status') ?>

@@ -128,7 +128,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $label = Yii::t('section', 'Delete');
                                 return Html::a('<span class="fa fa-trash"></span> '.Yii::t('order','Delete'), yii\helpers\Url::to(['/order/order-management/delete', 'id' => $model->id]), [
                                             'title'         => $label,
-                                            'class'         => 'btn btn-danger btn-xs',
+                                            'data-id'       =>$model->id,
+                                            'class'         => 'btn btn-danger btn-xs btnDeleteItems',
                                             'data-action'   => 'delete',
                                             'data-pjax'     =>0,
                                             'data-confirm'  => Yii::t('section','Are you sure you want to delete this item?'),
@@ -154,54 +155,26 @@ $this->params['breadcrumbs'][] = $this->title;
     //'key' => 'bootstrap-modal',
     'position' => \yii\web\View::POS_READY
 ]); ?>
-<script>
-// JS script
-$('#order-grid-pjax').on('click', '#modal-addbtn-order', function() {
-    modalOrder($(this).attr('data-url'));
-});
-
-$('#order-grid-pjax').on('click', '#modal-delbtn-order', function() {
-    selectionOrderGrid($(this).attr('data-url'));
-});
-
-$('#order-grid-pjax').on('click', '.select-on-check-all', function() {
-    window.setTimeout(function() {
-	var key = $('#order-grid').yiiGridView('getSelectedRows');
-	disabledOrderBtn(key.length);
-    },100);
-});
-
-$('#order-grid-pjax').on('click', '.selectionOrderIds', function() {
-    var key = $('input:checked[class=\"'+$(this).attr('class')+'\"]');
-    disabledOrderBtn(key.length);
-});
-
-$('#order-grid-pjax').on('dblclick', 'tbody tr', function() {
-    var id = $(this).attr('data-key'); 
-    modalOrder('/order/order-management/order-detail?order_id='+id);
-});	
-
-$('#order-grid-pjax').on('click', 'tbody tr td a', function() {
-    var url = $(this).attr('href');
-    var action = $(this).attr('data-action');
-
-    if(action === 'update' || action === 'view') {
-	modalOrder(url);
-    } else if(action === 'delete') {
-        alert('ok');
-	
-    }
-    return false;
-});
-
-function disabledOrderBtn(num) {
-    if(num>0) {
-	$('#modal-delbtn-order').attr('disabled', false);
-    } else {
-	$('#modal-delbtn-order').attr('disabled', true);
-    }
-}
-
+<script> 
+    
+$('.btnDeleteItems').on('click', function(){
+        let url = $(this).attr('href');
+        let id = $(this).attr('data-id');
+        yii.confirm('<?= Yii::t('app', 'ยืนยันการลบ')?>', function() {
+           $.post(url, {id:id}, function(result){
+              if(result.status == 'success') {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		    setTimeout(function(){
+                        location.reload();
+                    },1000);
+		} else {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		}
+           }); 
+        });
+        //modalOrder(url);
+        return false;
+});    
 function selectionOrderGrid(url) {
     yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
 	$.ajax({
@@ -220,11 +193,7 @@ function selectionOrderGrid(url) {
 	});
     });
 }
-$('.order_details').on('click', function(){
-    let url = $(this).attr('href');
-    modalOrder(url);
-    return false;
-});
+
 function modalOrder(url) {
     $('#modal-order .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
     $('#modal-order').modal('show')
