@@ -15,6 +15,7 @@ use yii\helpers\Html;
                     'title' => Yii::t('appmenu', 'Edit'),
                     'data-url' => '/sections/file-management/create'
                 ]);
+                //appxq\sdii\utils\VarDumper::dump($dataDefault);
                 ?> 
             </div>
             <label>
@@ -26,6 +27,7 @@ use yii\helpers\Html;
             <div class="border-bottom">
                 <label>
                     <i class="fa fa-user" aria-hidden="true"></i> <?= Yii::t('Section','By')?> : <?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?>
+                    <br> <i class="fa fa-calendar"></i> วันที่อัปโหลด <?= \appxq\sdii\utils\SDdate::mysql2phpDateTime($dataDefault['create_date'])?>
                 </label>    
             </div>
 
