@@ -97,6 +97,7 @@ class FileManagementController extends Controller
             $filet_id           = \Yii::$app->request->get('filet_id', '');
             $model              = \common\models\Files::findOne($filet_id); 
 	    if ($model->load(Yii::$app->request->post())) {
+                
                 $post = Yii::$app->request->post()['Files'];
                 $model->details = $post['details'];
                 $model->file_name_org = $post['file_name_org'];
@@ -130,6 +131,12 @@ class FileManagementController extends Controller
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = $this->findModel($id);
 	    if ($model->load(Yii::$app->request->post())) { 
+                
+                $checkName = \common\models\Files::find()->where(['file_name_org'=>$_POST['Files']['file_name_org']])->andWhere('id <> :id', [':id'=>$id])->one();
+                if(!empty($checkName)){
+                    return \janpan\jn\classes\JResponse::getError("{$_POST['Files']['file_name_org']} ถูกใช้งานแล้ว");
+                }
+                
                 if($model->default == 1){
                     $choice = ContentChoice::find()->where(['content_id'=>$model->content_id, 'type'=>$model->type])->all();
                     foreach($choice as $c){
