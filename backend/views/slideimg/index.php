@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel-body">
         <?php  Pjax::begin(['id'=>'slideimg-grid-pjax']);?>
-    <?= GridView::widget([
+    <?=        GridView::widget([
 	'id' => 'slideimg-grid',
 	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['slideimg/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-slideimg']). ' ' .
 		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['slideimg/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-slideimg', 'disabled'=>true]),
@@ -88,6 +88,7 @@ $('#slideimg-grid-pjax').on('click', '#modal-delbtn-slideimg', function() {
     selectionSlideimgGrid($(this).attr('data-url'));
 });
 
+
 $('#slideimg-grid-pjax').on('click', '.select-on-check-all', function() {
     window.setTimeout(function() {
 	var key = $('#slideimg-grid').yiiGridView('getSelectedRows');
@@ -105,7 +106,7 @@ $('#slideimg-grid-pjax').on('dblclick', 'tbody tr', function() {
     modalSlideimg('<?= Url::to(['slideimg/update', 'id'=>''])?>'+id);
 });	
 
-$('#slideimg-grid-pjax').on('click', 'tbody tr td a', function() {
+$('.grid-view').on('click', 'tbody tr td a', function() {
     var url = $(this).attr('href');
     var action = $(this).attr('data-action');
 
@@ -139,7 +140,7 @@ function disabledSlideimgBtn(num) {
     }
 }
 
-function selectionSlideimgGrid(url) {
+function modalSlideimgselectionSlideimgGrid(url) {
     yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
 	$.ajax({
 	    method: 'POST',
@@ -157,6 +158,9 @@ function selectionSlideimgGrid(url) {
 	});
     });
 }
+$('#modal-addbtn-slideimg').on('click', function() {
+    modalSlideimg($(this).attr('data-url'));
+});
 
 function modalSlideimg(url) {
     $('#modal-slideimg .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');

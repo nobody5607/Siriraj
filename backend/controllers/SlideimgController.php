@@ -133,6 +133,7 @@ class SlideimgController extends Controller
      */
     public function actionUpdate($id)
     {
+       
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = $this->findModel($id);
 
