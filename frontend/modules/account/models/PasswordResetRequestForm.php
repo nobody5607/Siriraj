@@ -12,7 +12,7 @@ use common\models\User;
 class PasswordResetRequestForm extends Model
 {
     public $email;
-    public $verifyCode;
+//    public $verifyCode;
 
     /**
      * @inheritdoc
@@ -26,7 +26,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist', 'targetClass' => User::class, 'filter' => ['status' => User::STATUS_ACTIVE]],
 
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            //['verifyCode', 'captcha'],
         ];
     }
 
@@ -37,7 +37,7 @@ class PasswordResetRequestForm extends Model
     {
         return [
             'email' => Yii::t('frontend', 'Email'),
-            'verifyCode' => Yii::t('frontend', 'Verification code'),
+//            'verifyCode' => Yii::t('frontend', 'Verification code'),
         ];
     }
 
@@ -63,11 +63,12 @@ class PasswordResetRequestForm extends Model
         if (!$user->save()) {
             return false;
         }
-
+        //\appxq\sdii\utils\VarDumper::dump($user);
+        $name = 'คลังสมบัติของพิพิธภัณฑ์ศิริราช(Siriraj Museum Treasure)';
         return Yii::$app->mailer->compose('passwordReset', ['user' => $user])
-            ->setFrom([Yii::$app->params['robotEmail'] => Yii::$app->name . ' robot'])
+            ->setFrom([Yii::$app->params['robotEmail'] => 'Siriraj Museum Treasure' . ' robot'])
             ->setTo($this->email)
-            ->setSubject(Yii::t('frontend', 'Password reset for {name}', ['name' => Yii::$app->name]))
+            ->setSubject(Yii::t('frontend', 'รีเซ็ตรหัสผ่าน {name}', ['name' => $name]))
             ->send();
     }
 }

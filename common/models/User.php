@@ -37,6 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_ADMINISTRATOR = 'administrator';
 
     const EVENT_AFTER_SIGNUP = 'afterSignup';
+    public $password_reset_token;//common\models\User::password_reset_token
 
     /**
      * @inheritdoc

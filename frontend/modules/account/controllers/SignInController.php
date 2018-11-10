@@ -163,11 +163,12 @@ class SignInController extends Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post())) {
+            //\appxq\sdii\utils\VarDumper::dump($_POST);
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', Yii::t('frontend', 'Check your email for further instructions.'));
+                Yii::$app->session->setFlash('success', Yii::t('frontend', 'ตรวจสอบอีเมลของคุณเพื่อดูคำแนะนำเพิ่มเติม'));
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('frontend', 'Sorry, we are unable to reset password for the provided email address.'));
+                Yii::$app->session->setFlash('error', Yii::t('frontend', 'ขออภัยเราไม่สามารถรีเซ็ตรหัสผ่านสำหรับที่อยู่อีเมลที่ให้มาได้'));
             }
 
             return $this->refresh();
