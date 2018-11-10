@@ -25,7 +25,7 @@ class JFiles {
      * @param type $defaultFile default filename
      * @param type $file array type , size ?
      */
-    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "", $description="", $require_file='') {
+    public static function Save($model, $fileName, $content_id, $path, $defaultFile, $file, $dir_path = '', $file_view = "", $detail_meta = "", $description="", $require_file='', $file_thumbnail='') {
         try {
             $meta = [];
             if (!empty($file->type)) {
@@ -54,6 +54,7 @@ class JFiles {
             $files->detail_meta = $detail_meta;
             $files->description = $description;
             $files->require_files = $require_file;
+            $files->$file_thumbnail = $file_thumbnail;
             if ($files->save()) {
                 return true;
             } else {
@@ -412,6 +413,7 @@ class JFiles {
             exec("stat {$path}", $des1);
             exec("file {$path}", $des2);
             $output['detai'] = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
+            $output['file_thumbnail'] = self::getThumbVideo($path, '5', '120x90', "{$filePath}.jpg");
 
 
             if ($status == '2' && $file->extension == "mp4") {

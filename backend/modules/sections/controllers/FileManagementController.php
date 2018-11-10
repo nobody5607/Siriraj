@@ -241,6 +241,7 @@ class FileManagementController extends Controller
             $model->file_type       = $file_type;
             $folderName                 = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $files                      = UploadedFile::getInstancesByName('name'); 
+            $file_thumbnail             = '';
             //\appxq\sdii\utils\VarDumper::dump($model->file_type);
             if ($files) {
                 
@@ -289,7 +290,7 @@ class FileManagementController extends Controller
                            }else{
                                $fileNames = "{$realFileName}_marks.{$obj['type']}";
                            }
-                           
+                           $file_thumbnail = $obj['file_thumbnail'];
                            $file_view = $fileNames;
                            $detail_meta =  "{$obj['detai']}";
                            $description = "";
@@ -319,7 +320,7 @@ class FileManagementController extends Controller
                             
                         }
                         
-                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta,$description, $require_file);
+                        $save_data = \backend\modules\sections\classes\JFiles::Save($model, "{$fileNames}", $content_id, $viewPath, $fileName, $file, "{$folder}/{$folderName}", $file_view,$detail_meta,$description, $require_file, $file_thumbnail);
                     }
                     return \janpan\jn\classes\JResponse::getSuccess("Upload {$realFileName} Success"); 
                 }             
