@@ -10,7 +10,7 @@ ListView::widget([
     'id' => 'ezf_dad',
     'dataProvider' => $dataProvider,
     'itemOptions' => ['class' => 'item dads-children'],
-    'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+    'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager" style="text-align: center;">{pager}</div>',
     'itemView' => function ($model, $key, $index, $widget) {
         return $this->render('_left-content-item', [
                     'model' => $model,

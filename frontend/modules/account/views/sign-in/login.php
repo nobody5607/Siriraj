@@ -54,10 +54,10 @@ $fieldOptions2 = [
 
         <div class="row">
             <div class="col-xs-12">
-                <?= $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('user','Remember me next time')) ?>
+                <?php // $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('user','Remember me next time')) ?>
             </div>
             <!-- /.col -->
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-3">
                 <?= Html::submitButton(Yii::t('appmenu','Login'), ['class' => 'btn btn-success btn-block btn-flat btn-lg', 'name' => 'login-button']) ?>
                 <br><a href="/account/sign-in/signup" class="text-center"><?= Yii::t('appmenu', 'Don\'t have an account, create a new account here')?></a>
             </div>

@@ -11,7 +11,7 @@
         'dataProvider' => $contentProvider,
         'itemOptions' => ['class' => ''],
         'layout' => "{items}\n{pager}",
-        //'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager">{pager}</div>',
+        //'layout' => '<div class=" sidebar-nav-title text-right" ></div>{items}<div class="list-pager" style="text-align: center;">{pager}</div>',
         'itemView' => function ($model, $key, $index, $widget) {
             return $this->render('_right-content-dynamic-item', [
                         'model' => $model,

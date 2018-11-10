@@ -46,7 +46,7 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
                 return ['tag' => 'div', 'class' => 'col-md-3 col-xs-6', 'data-id' => "{$model['id']}"];
             },
             'emptyText' => false,
-            'layout' => "{items}\n<div class='list-pager'>{pager}</div>",
+            'layout' => "{items}\n <div class='list-pager text-center' style='text-align: center;'>{pager}</div>",
             'itemView' => function ($model, $key, $index, $widget) {
 
                 return $this->render('_item', ['model' => $model, 'key' => $key + 1]);
@@ -85,14 +85,20 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
                 'itemOptions' => function($model) {
                     return ['tag' => 'div', 'class' => 'col-md-3 col-xs-6', 'data-id' => "{$model['id']}"];
                 },
-                'layout' => "{items}\n<div class='list-pager'>{pager}</div>",
+                'layout' => "{items}\n<div class='list-pager clearfix' style='text-align: center;'>{pager}</div>",
                 'itemView' => function ($model, $key, $index, $widget) {
 
                     return $this->render('_item-content', ['model' => $model, 'key' => $key + 1]);
                 },
             ]);
             ?>
-
+            <?php richardfan\widget\JSRegister::begin();?>
+                <style>
+                    .list-pager{
+                        text-align: center;
+                    }
+                </style>
+            <?php richardfan\widget\JSRegister::end();?>
             <?php richardfan\widget\JSRegister::begin(); ?>
             <script>
                 $('.btn-content').css({cursor: 'pointer'});
@@ -108,6 +114,7 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
         <!-- Container End -->
     </div>
 <?php endif; ?>
+
 
 
  
