@@ -54,7 +54,7 @@ class JFiles {
             $files->detail_meta = $detail_meta;
             $files->description = $description;
             $files->require_files = $require_file;
-            $files->$file_thumbnail = $file_thumbnail;
+            $files->file_thumbnail = $file_thumbnail;
             if ($files->save()) {
                 return true;
             } else {

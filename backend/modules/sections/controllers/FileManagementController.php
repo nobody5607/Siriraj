@@ -284,7 +284,7 @@ class FileManagementController extends Controller
                              
                            $watermark = \backend\models\Watermark::find()->where(['default'=>1, 'type'=>'3'])->one(); 
                            $obj = \backend\modules\sections\classes\JFiles::uploadVideo($file,$filePath, $watermark, $status);                           
-                           \appxq\sdii\utils\VarDumper::dump($obj['file_thumbnail']);
+                           //\appxq\sdii\utils\VarDumper::dump($obj['file_thumbnail']);
                            if($obj['default'] == "2"){
                                $fileNames = "{$realFileName}.{$obj['type']}";
                            }else{
