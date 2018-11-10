@@ -415,9 +415,9 @@ class JFiles {
             $output['detai'] = \yii\helpers\Json::encode($des1) . \yii\helpers\Json::encode($des2);
             $output['file_thumbnail'] = self::getThumbVideo($path, '5', '120x90', "{$filePath}.jpg");
 
-
+            
             if ($status == '2' && $file->extension == "mp4") {
-                return ['type' => 'mp4', 'default' => '1', 'detai' => $output['detai']];
+                return ['type' => 'mp4', 'default' => '1', 'detai' => $output['detai'], 'file_thumbnail'=>$output['file_thumbnail']];
             }
             set_time_limit(1200);
             $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
@@ -437,16 +437,12 @@ class JFiles {
             return $output;
         }
     }
-    public static function getThumbVideo($videoFile,$getFromSecond='5', $size="120x90" ,$imageFile){
-        //$path = Yii::getAlias('@storage') . "/{$path}/";
-        //$imageFile = "_thum.jpg";
+    public static function getThumbVideo($videoFile,$getFromSecond='5', $size="120x90" ,$imageFile){ 
         set_time_limit(1200);
-        $cmd = "ffmpeg -i {$videoFile} -an -ss $getFromSecond -s $size -vframes 1 $imageFile -y";
-        //\appxq\sdii\utils\VarDumper::dump($cmd);
-        //ffmpeg -i 3863202ad4d5b0d286fc7e52de0a1cca.mp4 -an -ss 00:00:05  -s 120x90 -vframes 1 x.jpg
-        //set_time_limit(1200);
+        $cmd = "ffmpeg -i {$videoFile} -an -ss {$getFromSecond} -s {$size} -vframes 1 {$imageFile} -y"; 
         exec($cmd, $output, $return_var);
-        return $output;
+        $fileName = explode('/', $imageFile);
+        return end($fileName);
     }
 
     public static function uploadAudio($file, $filePath) {
