@@ -3,9 +3,9 @@
 use yii\helpers\Html;
 ?>
 <div style='margin-bottom:10px;text-align:center;'>
-    <span>            
+<!--    <span>            
         <button class="btn btn-default btn-xs"><i class="fa fa-bars draggable"></i></button>
-    </span> 
+    </span> -->
     <?php
     echo Html::button("<i class='fa fa-trash'></i>", [
         'data-id' => $model['id'],
