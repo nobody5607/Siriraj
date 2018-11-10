@@ -422,8 +422,8 @@ class JFiles {
             
             if ($status == '2' && $file->extension == "mp4") {
                 
-                $mv = "mv {$path} {$pathTo}";
-                exec($mv, $output, $return_var);
+                //$mv = "mv {$path} {$pathTo}";
+                //exec($mv, $output, $return_var);
                 return [
                     'file_thumbnail'=>$output['file_thumbnail'],
                     'type' => 'mp4',
