@@ -290,6 +290,7 @@ class FileManagementController extends Controller
                            }else{
                                $fileNames = "{$realFileName}_marks.{$obj['type']}";
                            }
+                           \appxq\sdii\utils\VarDumper::dump($obj);
                            $file_thumbnail = $obj['file_thumbnail'];
                            $file_view = $fileNames;
                            $detail_meta =  "{$obj['detai']}";

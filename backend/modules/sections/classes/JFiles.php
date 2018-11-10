@@ -442,7 +442,7 @@ class JFiles {
         $cmd = "ffmpeg -i {$videoFile} -an -ss {$getFromSecond} -s {$size} -vframes 1 {$imageFile} -y"; 
         exec($cmd, $output, $return_var);
         $fileName = explode('/', $imageFile);
-        \appxq\sdii\utils\VarDumper::dump($fileName);
+        
         return end($fileName);
     }
 
