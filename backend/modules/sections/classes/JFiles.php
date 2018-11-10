@@ -406,7 +406,10 @@ class JFiles {
         $path = "{$filePath}.{$file->extension}";
         if ($file->extension == "mp4") {
             $path = "{$filePath}_mark.{$file->extension}";
-            $pathTo = "{$filePath}_marks.{$file->extension}";
+            if ($status == '2'){//video clip
+                $path = "{$filePath}_marks.{$file->extension}";
+            }
+            //
         }
         $output = [];
         $mark = Yii::getAlias('@storage') . "/{$watermark['path']}/{$watermark['name']}";
