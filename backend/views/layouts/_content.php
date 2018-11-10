@@ -50,13 +50,13 @@ use lo\modules\noty\Wrapper;
                         box-sizing: border-box;
                         position: relative;
                         box-sizing: content-box;
-                        width: 24px;
+                        width: 26px;
                         height: 20px;
                         border-width: 0;
                         transition: all 0.3s linear;
                         margin-right: 10px;
                         position: relative;
-                        top: 5px;
+                        top: 7px;
                     }
                </style>
                <?php appxq\sdii\widgets\CSSRegister::end();?>
