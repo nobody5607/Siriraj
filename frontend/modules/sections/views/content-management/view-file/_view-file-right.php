@@ -10,13 +10,11 @@ use yii\helpers\Html;
                 <i class="fa fa-info-circle" aria-hidden="true"></i> <?= Yii::t('section','Note')?>
             </label>
             <div class="border-bottom">
-                <div style="word-wrap:break-word; 
-    height: 250px;
-    overflow-x: auto;"><?= $dataDefault['details'] ?></div>
+                <div><?= $dataDefault['details'] ?></div>
             </div>     
             <div class="border-bottom">
                 <label>
-                    <i class="fa fa-user" aria-hidden="true"></i> <b><?= Yii::t('section','By')?></b> : <?= \common\modules\cores\User::getProfileNameByUserId($dataDefault['user_create']) ?>
+                    <i class="fa fa-calendar"></i> อัพเดตล่าสุด: <?php echo appxq\sdii\utils\SDdate::mysql2phpThDateTime($dataDefault['create_date'])?>
                 </label>    
             </div>
 

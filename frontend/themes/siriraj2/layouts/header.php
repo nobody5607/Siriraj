@@ -11,12 +11,16 @@
         <div class="col-md-1 text-center">
             <img id="logo" src="https://srr.thaicarecloud.org/images/logosirirajweb3.png" class="img img-responsive"/>
         </div>
-        <div class="col-md-9 logo-text">
+        <div class="col-md-7 logo-text">
             <h3>คลังสมบัติของพิพิธภัณฑ์ศิริราช</h3>
             <h3>Siriraj Museum Treasure</h3>
         </div>
-        <div class="col-md-2 text-center"> 
-            
+        <div class="col-md-3 text-center"> 
+             <?php if (!Yii::$app->user->isGuest): ?> 
+            <a href="/account/default/settings">
+                ยินดีต้อนรับ  : <?= Yii::$app->user->identity->userProfile->firstname. ' '.Yii::$app->user->identity->userProfile->lastname;?>
+            </a>
+            <?php endif; ?>
         </div>
     </div></a>
 </header>
@@ -34,8 +38,9 @@
                 <li class="bg-green"><a href='#'>/</a></li>
                 <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGN UP')?></a></li>
                 <?php else: ?>
-                    <li class="bg-green"><a href="/account/default/settings"> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
                     <li class="bg-green"><a href="/sections/order/my-order"><?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
+                    <li class="bg-green"><a href="/account/default/settings"> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
+                    
                 <?php endif; ?>
                 <li class="dropdown nav_active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
@@ -64,7 +69,7 @@
                 <?php endif; ?>
                 <li>
                     <a href="/sections/cart/my-cart">
-                        <i class="fa fa-shopping-cart"></i>
+                        <img src="<?= \yii\helpers\Url::to('@web/images/cart.png')?>" style="width:25px;"/>
                         <span class="my-cart">
                             <?php if(!empty($cart)):?>
                             <span class="badge" id="globalCart"> <?= $cart ?></span>  

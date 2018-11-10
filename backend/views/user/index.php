@@ -89,7 +89,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         return isset($model->userProfile->sitecode) ? $model->userProfile->sitecode : '';
                         
                     } 
-                ],         
+                ],  
+                        
+               [
+                    'contentOptions' => ['style'=>'width:180px;text-align: center;'],
+                    'label' => Yii::t('_user','ประเภทผู้ใช้'),
+                    'value' => function ($model) {
+                        $userRole = Yii::$app->authManager->getRolesByUser($model->id);
+                        if(!$userRole){
+                            return 'ผู้ใช้ทั่วไป';
+                        }
+                        $roles = [];
+                        foreach($userRole as $v){
+                            array_push($roles, $v->description);
+                        }
+                        return implode(',', $roles);
+//                        \appxq\sdii\utils\VarDumper::dump($userRole);
+//                        $rows = yii\helpers\ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
+//                        \appxq\sdii\utils\VarDumper::dump($rows);
+                        
+                    } 
+                ],  
+                        
                 [
                     'header' => Yii::t('_user', 'approval'),
                     'value' => function ($model) {
