@@ -59,7 +59,7 @@
        });
    } 
    delete_form=function(url, id){
-        yii.confirm('<?= Yii::t('user', 'Confirm Delete?') ?>', function(){
+        yii.confirm('<?= Yii::t('user', 'แน่ใจหรือว่าจะลบข้อมูลนี้') ?>', function(){
             $.post(url, {id:id}, function(result){
                if(result.status == 'success'){
                     <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>

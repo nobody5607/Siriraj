@@ -29,12 +29,13 @@ use appxq\sdii\helpers\SDHtml;
             <div class="col-md-12">
                 <?php  echo $form->field($model, 'details')->widget(\janpan\jn\widgets\FroalaEditorWidget::className(), [
                         'toolbar_size'=>'sm',
+                        'clientOptions'=>['heightMin'=>150],
                         'options'=>['class'=>'eztemplate'],
                     ])->label(Yii::t('section','Note'));//->hint('Default Template <a class="btn btn-warning btn-xs btn-template" data-widget="{tab-widget}">Use Default</a>'); 
                 ?>
             </div>
             <div class="col-md-12">
-                <?= $form->field($model, 'keywords')->textArea(['rows' =>5])->label(Yii::t('section','Keyword')) ?>
+                <?= $form->field($model, 'keywords')->textArea(['rows' =>2])->label(Yii::t('section','Keyword')) ?>
             </div>
             <div class="col-md-12">
                 <?= $form->field($model, 'url_origin_file')->textInput()->label('ที่อยู่ไฟล์ภาพต้นฉบับ') ?>

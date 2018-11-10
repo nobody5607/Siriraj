@@ -75,7 +75,8 @@ class SessionManagementController extends Controller
                 //\appxq\sdii\utils\VarDumper::dump();
                 $checkName = Sections::find()->where(['name'=>$_POST['Sections']['name']])->andWhere('rstat <> 3')->one();
                 if(!empty($checkName)){
-                    return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                    //return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                    return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
                 }
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Create data complete'), $model);
@@ -104,7 +105,8 @@ class SessionManagementController extends Controller
 	    if ($model->load(Yii::$app->request->post())) {
                 $checkName = Sections::find()->where(['name'=>$_POST['Sections']['name']])->andWhere('id != :id  AND rstat <> 3', [':id'=>$id])->one();
                 if(!empty($checkName)){
-                    return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                    //return \janpan\jn\classes\JResponse::getError("{$_POST['Sections']['name']} ถูกใช้งานแล้ว");
+                    return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
                 } 
 		if ($model->save()) {
 		    return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Update data complete'), $model);

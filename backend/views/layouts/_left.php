@@ -24,7 +24,7 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ], 
                 [
-                    'label' => Yii::t('appmenu', 'Section Management'),
+                    'label' => Yii::t('appmenu', 'คลังสมบัติของของพิพิธภัณฑ์ศิริราช'),
                     'url' => ['/sections/session-management'],
                     'icon' => '<i class="fa fa-folder"></i>',
                     'active' => ($moduleID == 'sections' && $controllerID == 'session-management') ? TRUE : FALSE,
