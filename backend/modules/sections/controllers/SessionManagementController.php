@@ -170,9 +170,9 @@ class SessionManagementController extends Controller
                 $model->forder = $defaultOrder;
                 $defaultOrder += 10;
                 $model->save();
-                    
             }
         }
+        return \janpan\jn\classes\JResponse::getSuccess('success');
     } 
      public function actionOrderContent(){
          $data = Yii::$app->request->post('data' , '');

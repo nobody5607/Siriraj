@@ -51,7 +51,7 @@ use lo\modules\noty\Wrapper;
                         position: relative;
                         box-sizing: content-box;
                         width: 26px;
-                        height: 20px;
+                        height: 23px;
                         border-width: 0;
                         transition: all 0.3s linear;
                         margin-right: 10px;

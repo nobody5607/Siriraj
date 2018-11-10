@@ -9,9 +9,9 @@
             'dataProvider' => $dataProvider,
             'options' => [
                 'tag' => 'div',
-                'class' => 'row',
+                'class' => 'row .ezf_dad',
         //        'id' => 'section-all',
-                'id'=>'ezf_dad',
+                'id'=>'ezf_dad-'.$type_id,
             ],
             'itemOptions' => function($model) {
                 return ['tag' => 'div','id'=>'img-'.$model['id'], 'data-id' => $model['id'], 'class' => 'col-md-2 col-sm-4 text-center item dads-children','style'=>'height: 200px;'];
@@ -23,24 +23,34 @@
         ]);
 ?>
 </div>
-<?php
-\richardfan\widget\JSRegister::begin();
-?>
+
+
+<?php \richardfan\widget\JSRegister::begin();?>
 <script>
-    
-     $('#ezf_dad').dad({
-        draggable:'.draggable',
-        callback:function(e){
-            var positionArray = [];
-            $('#panel-<?= $type_id?>  #ezf_dad').find('.dads-children').each(function(){
-                positionArray.push($(this).attr('data-id'));
+    $("#ezf_dad-<?= $type_id?>").sortable({
+        update:function( event, ui ){
+            let dataObj = [];
+            $(this).find('.item').each(function(index){
+                dataObj.push($(this).attr('data-id'));
             });
-             
-            $.post('<?= \yii\helpers\Url::to(['/sections/session-management/forder-files']) ?>',{data:positionArray.toString(), type_id:'<?= $type_id?>'},function(result){
-                console.log(result);
-                return false;
-            });
+            //console.log(dataObj);
+            saveOrder(dataObj);
         }
-    });
+        //item
+    }); 
+    function saveOrder(dataObj){
+        let dataStr = dataObj.join();
+        let url ='/sections/session-management/forder-files';
+        $.post(url,{data:dataStr}, function(result){
+            if(result.status == 'success') {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } else {
+                <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>
+            } 
+        });
+        return false;
+        
+    }
+    ///sections/session-management/forder-files
 </script>
 <?php \richardfan\widget\JSRegister::end(); ?>
