@@ -417,7 +417,12 @@ class JFiles {
 
             
             if ($status == '2' && $file->extension == "mp4") {
-                return ['type' => 'mp4', 'default' => '1', 'detai' => $output['detai'], 'file_thumbnail'=>$output['file_thumbnail']];
+                return [
+                    'file_thumbnail'=>$output['file_thumbnail'],
+                    'type' => 'mp4',
+                    'default' => '1', 
+                    'detai' => $output['detai']
+                ];
             }
             set_time_limit(1200);
             $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
