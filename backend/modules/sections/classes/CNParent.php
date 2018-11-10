@@ -44,8 +44,7 @@ class CNParent {
                     $c->rstat = '3';
                     $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();
                     foreach($files as $f){
-                        $f->rstat = '3';
-                        $f->save();
+                        $f->delete();
                     }
                 }
             }
