@@ -406,6 +406,7 @@ class JFiles {
         $path = "{$filePath}.{$file->extension}";
         if ($file->extension == "mp4") {
             $path = "{$filePath}_mark.{$file->extension}";
+            $pathTo = "{$filePath}_marks.{$file->extension}";
         }
         $output = [];
         $mark = Yii::getAlias('@storage') . "/{$watermark['path']}/{$watermark['name']}";
@@ -417,6 +418,9 @@ class JFiles {
 
             
             if ($status == '2' && $file->extension == "mp4") {
+                
+                $mv = "mv {$path} {$pathTo}";
+                exec($mv, $output, $return_var);
                 return [
                     'file_thumbnail'=>$output['file_thumbnail'],
                     'type' => 'mp4',
