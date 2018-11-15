@@ -211,7 +211,7 @@ class OrderManagementController extends Controller
        \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
         $urlFile = \Yii::getAlias('@storageUrl');
        
-        $data = ['filename'=>$name , 'path'=>"{$urlFile}/pdf/"];
+        $data = ['filename'=>$name , 'path'=>"{$urlFile}/web/pdf/"];
         return \janpan\jn\classes\JResponse::getSuccess("Success", $data, 'download');
 
 }
