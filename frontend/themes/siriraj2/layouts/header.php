@@ -25,8 +25,8 @@
     </div></a>
 </header>
 <div class="container">
-    <div class="col-md-6"></div>
-    <div class="col-md-6 float-right">
+    <div class="col-md-5"></div>
+    <div class="col-md-7 float-right">
         <div class="navbar-menu">
             <ul>
                 
@@ -34,22 +34,26 @@
                 <li class="nav_active"><a  href="/"><i class='fa fa-home'></i> <?= Yii::t('section','HOME')?></a></li>
                 <?php if (Yii::$app->user->isGuest): ?> 
                 
-                <li class="bg-green"><a href="/account/sign-in/login"><?= Yii::t('section','SIGN IN')?></a></li>
-                <li class="bg-green"><a href='#'>/</a></li>
-                <li class="bg-green"><a href="/account/sign-in/signup"><?= Yii::t('section','SIGN UP')?></a></li>
-                <?php else: ?>
-                    <li class="bg-green"><a href="/sections/order/my-order"><?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
-                    <li class="bg-green"><a href="/account/default/settings"> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li>
-                    
+                <li class="bg-green nav-login"><a href="/account/sign-in/login"><i class="fa fa-sign-in"></i> <?= Yii::t('section','SIGN IN')?></a></li>
+                <li class="bg-green space"><a href='#'>/</a></li>
+                <li class="bg-green nav-signup"><a href="/account/sign-in/signup"><i class=""></i> <?= Yii::t('section','SIGN UP')?></a></li>
                 <?php endif; ?>
+                <?php if (!Yii::$app->user->isGuest): ?> 
+                <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li> 
+                <?php endif; ?>
+                
+                <li class="bg-green"><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
+                <li class="bg-green"><a href="/site/contact"><?= Yii::t('section','CONTACT US')?></a></li>
+                
                 <li class="dropdown nav_active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
-                        <li><a href="/sections/cart/my-cart"><?= Yii::t('section','รายการคำร้องขอ')?></a></li>
-                      <li><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
-                      <li><a href="/site/contact"><?= Yii::t('section','CONTACT US')?></a></li>
+                        
+                      
                       <?php if (!Yii::$app->user->isGuest): ?> 
-                         
+                        
+                        <li><a href="/sections/order/my-order"><?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a></li>
+                        <li><a href="/sections/cart/my-cart"><?= Yii::t('section','รายการคำร้องขอ')?></a></li>
                         <li><a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'LOGOUT') ?></a></li>
                       <?php endif; ?>
                     </ul>
@@ -125,3 +129,19 @@
     loadHighlight();
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
+
+<?php \appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    .space{
+       padding: 0;
+        width: 20px;
+    }
+    .nav-login{
+        padding:0px;
+            padding: 0px;
+    /* background: blue; */
+    margin-right: -12px;
+
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>

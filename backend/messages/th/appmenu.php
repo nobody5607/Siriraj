@@ -44,7 +44,7 @@ return [
     'Users Management'=>'การจัดการผู้ใช้',
     'Order Management'=>'การจัดการใบคำร้อง',
     'Private Section Management'=>'การจัดการห้องลับ',
-    'Section Management'=>'คลังความรู้ของพิพิธภัณฑ์ศิริราช',
+    'Section Management'=>'คลังสมบัติของของพิพิธภัณฑ์ศิริราช',
     'Main'=>'Main',
     'File manager'=>'จัดการไฟล์',
     'Key storage'=>'พื้นที่เก็บข้อมูลหลัก',

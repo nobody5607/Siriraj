@@ -29,8 +29,8 @@
                 <div class="logo mb-all-30">
                     
                         <div class='txt-logo'>
-                            <div class="txt-logo-th"><a href="/">คลังความรู้พิพิธภัณฑ์ศิริราช</a></div>
-                            <div class="txt-logo-en"><a href="/">Siriraj Museum’s Storage</a></div>
+                            <div class="txt-logo-th"><a href="/">คลังสมบัติของของพิพิธภัณฑ์ศิริราช</a></div>
+                            <div class="txt-logo-en"><a href="/">Siriraj Museum Treasure</a></div>
                         </div> 
                     
                 </div>
