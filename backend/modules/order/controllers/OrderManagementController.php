@@ -150,6 +150,84 @@ class OrderManagementController extends Controller
             return \janpan\jn\classes\JResponse::getError("Delete error"); 
         }        
     }
+    public function actionDownload(){
+        $id = Yii::$app->request->get('id', '');
+        $order = Order::findOne($id);
+        // \appxq\sdii\utils\VarDumper::dump($order);
+        $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
+        $model = \common\models\Shipper::find()->where(['user_id' => $order->user_id])->one();
+        $orderDetail = \common\models\OrderDetail::find()->where(['order_id' => $id])->all();
+        $file_arr = [];
+        if ($orderDetail) {
+            foreach ($orderDetail as $key => $o) {
+                $files = \common\models\Files::find()->where(['id' => $o->product_id])->one();
+                $file_arr[$key] = [
+                    'id' => isset($files->id) ? $files->id : '',
+                    'file_type' => isset($files->file_type) ? $files->file_type : '',
+                    'file_type_name' => isset($files->type->name) ? $files->type->name : '',
+                    'size' => isset($o->sizes->label) ? $o->sizes->label : '',
+                    'file_name_org' => isset($files->file_name_org) ? $files->file_name_org : '',
+                    'file_name' => isset($files->file_name) ? $files->file_name : '',
+                    'meta_text' => isset($files->meta_text) ? $files->meta_text : '',
+                ];
+            }
+            sort($file_arr);
+        }
+        $product = "";
+        $title = "";
+        if ($file_arr) {
+            $n = 1;
+            $checkType = $this->groupByPartAndType($file_arr);
+            foreach ($checkType as $c) {
+                $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
+                $title .= "{$c['file_type_name']} / ";
+                foreach ($file_arr as $key => $value) {
+                    $meta_text = substr($value['file_name'], -4, 5);
+                    if ($value['file_type'] == $c['file_type']) {
+                        $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
+                            </div>";
+                    }
+                }
+                $n++;
+            }
+        }
+        
+        $title = substr($title, 0, strlen($title) - 2);
+        $content = $this->renderPartial('download', [
+        'template' => $template,
+         'model' => $model,
+         'count' => count($orderDetail),
+         'product' => $product,
+         'title' => $title,
+        ]);
+        $layout = \kartik\mpdf\Pdf::ORIENT_PORTRAIT;
+        $paperSize = \kartik\mpdf\Pdf::FORMAT_A4;
+        $title = "แบบฟอร์มคำร้องขอความอนุเคราะห์ไฟล์ ";
+        
+        $path = Yii::getAlias('@storage') . "/web/files";
+        $fileName = \appxq\sdii\utils\SDUtility::getMillisecTime().'.pdf';
+        
+        $fileName = "{$path}/{$fileName}";
+        //\frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
+        $urlFile = Yii::getAlias('@storageUrl');
+        $viewFile = "{$urlFile}/files/{$fileName}";
+        return \janpan\jn\classes\JResponse::getSuccess("Success", ['filename'=>$viewFile], 'download');
+
+}
+public function groupByPartAndType($input) {
+        $output = Array();
+
+        foreach ($input as $value) {
+            $output_element = &$output[$value['file_type'] . "_" . $value['file_type']];
+            $output_element['file_type'] = $value['file_type'];
+            $output_element['file_type_name'] = $value['file_type_name'];
+            $output_element['size'] = $value['size'];
+            //!isset($output_element['file_type']) && $output_element['file_type'] = 0;
+            //$output_element['count'] += $value['count'];
+        }
+
+        return array_values($output);
+    }
 
     public function actionDeletes() {
 	if (Yii::$app->getRequest()->isAjax) {

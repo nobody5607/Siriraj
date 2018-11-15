@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
                         'contentOptions' => ['style'=>'width:50px;text-align: center;'],
-                        'template' => '{delete}',
+                        'template' => '{delete} {download}',
                         'headerOptions' => ['style' => 'width:250px'],
                         'buttons' => [
                             'view' => function ($url, $model) {
@@ -121,6 +121,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'title'         => $label,
                                             'class'         => 'btn btn-primary btn-xs',
                                             'data-action'   => 'update',
+                                            'data-pjax'     =>0
+                                    ]);
+                            },
+                            'download' => function ($url, $model) {
+                                
+                                return Html::a('<span class="fa fa-file-pdf-o"> ดาวน์โหลด PDF</span> ', yii\helpers\Url::to(['/order/order-management/download', 'id' => $model->id]), [
+                                            'title'         => 'ดาวน์โหลด PDF',
+                                            'class'         => 'btn btn-primary btn-xs btnDownload',
+                                            'data-action'   => 'download',
                                             'data-pjax'     =>0
                                     ]);
                             }, 
@@ -150,13 +159,29 @@ $this->params['breadcrumbs'][] = $this->title;
     'size'=>'modal-lg',
 ]);
 ?>
-
+<a href="#" id="downloadFile">Download</a>
 <?php  \richardfan\widget\JSRegister::begin([
     //'key' => 'bootstrap-modal',
     'position' => \yii\web\View::POS_READY
 ]); ?>
 <script> 
-    
+    //btnDownload
+$('#downloadFile').hide();    
+$('.btnDownload').on('click', function(){
+        let url = $(this).attr('href');
+        let id = $(this).attr('data-id');
+        $.post(url, {id:id}, function(result){
+              if(result.status == 'success') {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		    console.log(result);
+                    $('#downloadFile').attr('href', result['data']['filename']);
+                    location.href = `${result['data']['filename']}`;
+		} else {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		}
+        }); 
+        return false;
+});     
 $('.btnDeleteItems').on('click', function(){
         let url = $(this).attr('href');
         let id = $(this).attr('data-id');
