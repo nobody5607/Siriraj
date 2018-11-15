@@ -204,14 +204,15 @@ class OrderManagementController extends Controller
         $paperSize = \kartik\mpdf\Pdf::FORMAT_A4;
         $title = "แบบฟอร์มคำร้องขอความอนุเคราะห์ไฟล์ ";
         
-        $path = Yii::getAlias('@storage') . "/web/files";
-        $fileName = \appxq\sdii\utils\SDUtility::getMillisecTime().'.pdf';
+        $path = Yii::getAlias('@storage') . "/web/pdf";
+        $name = \appxq\sdii\utils\SDUtility::getMillisecTime().'.pdf';
         
-        $fileName = "{$path}/{$fileName}";
-        //\frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
-        $urlFile = Yii::getAlias('@storageUrl');
-        $viewFile = "{$urlFile}/files/{$fileName}";
-        return \janpan\jn\classes\JResponse::getSuccess("Success", ['filename'=>$viewFile], 'download');
+        $fileName = "{$path}/{$name}";
+       \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
+        $urlFile = \Yii::getAlias('@storageUrl');
+       
+        $data = ['filename'=>$name , 'path'=>"{$urlFile}/pdf/"];
+        return \janpan\jn\classes\JResponse::getSuccess("Success", $data, 'download');
 
 }
 public function groupByPartAndType($input) {
