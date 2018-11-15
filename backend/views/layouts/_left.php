@@ -132,65 +132,65 @@ $actionID = Yii::$app->controller->action->id;
                     ],
                    
                 ],
-//                [
-//                    'label' => Yii::t('appmenu', 'Authentication'),
-//                    'url' => '#',
-//                    'icon' => '<i class="fa fa-cogs"></i>',
-//                    'options' => ['class' => 'treeview'],
-//                    'visible' => Yii::$app->user->can('administrator'),
-//                    'items' => [
+                [
+                    'label' => Yii::t('appmenu', 'Authentication'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-cogs"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'visible' => (Yii::$app->user->id == 1),
+                    'items' => [
+                        [
+                            'label' => Yii::t('appmenu', 'Role'),
+                            'url' => ['/rbac/access/role'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ],
+                        [
+                            'label' => Yii::t('appmenu', 'Permission'),
+                            'url' => ['/rbac/access/permission'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
+                        ]
+                    ],
+                ],
+                [
+                    'label' => Yii::t('appmenu', 'Settings'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-cog"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'visible' => (Yii::$app->user->id == 1),
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'Gii'),
+                            'url' => ['/gii'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'visible' => YII_ENV_DEV,
+                        ],
+                        ['label' => Yii::t('appmenu', 'File manager'), 'url' => ['/file-manager/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
 //                        [
-//                            'label' => Yii::t('appmenu', 'Role'),
-//                            'url' => ['/rbac/access/role'],
+//                            'label' => Yii::t('backend', 'DB manager'),
+//                            'url' => ['/db-manager/default/index'],
 //                            'icon' => '<i class="fa fa-angle-double-right"></i>',
 //                            'visible' => Yii::$app->user->can('administrator'),
 //                        ],
 //                        [
-//                            'label' => Yii::t('appmenu', 'Permission'),
-//                            'url' => ['/rbac/access/permission'],
+//                            'label' => Yii::t('backend', 'System information'),
+//                            'url' => ['/phpsysinfo/default/index'],
 //                            'icon' => '<i class="fa fa-angle-double-right"></i>',
 //                            'visible' => Yii::$app->user->can('administrator'),
-//                        ]
-//                    ],
-//                ],
-//                [
-//                    'label' => Yii::t('appmenu', 'Settings'),
-//                    'url' => '#',
-//                    'icon' => '<i class="fa fa-cog"></i>',
-//                    'options' => ['class' => 'treeview'],
-//                    'visible' => Yii::$app->user->can('administrator'),
-//                    'items' => [
-//                        [
-//                            'label' => Yii::t('backend', 'Gii'),
-//                            'url' => ['/gii'],
-//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-//                            'visible' => YII_ENV_DEV,
 //                        ],
-//                        ['label' => Yii::t('appmenu', 'File manager'), 'url' => ['/file-manager/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-////                        [
-////                            'label' => Yii::t('backend', 'DB manager'),
-////                            'url' => ['/db-manager/default/index'],
-////                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-////                            'visible' => Yii::$app->user->can('administrator'),
-////                        ],
-////                        [
-////                            'label' => Yii::t('backend', 'System information'),
-////                            'url' => ['/phpsysinfo/default/index'],
-////                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-////                            'visible' => Yii::$app->user->can('administrator'),
-////                        ],
-//                        ['label' => Yii::t('appmenu', 'Key storage'), 'url' => ['/key-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                        ['label' => Yii::t('appmenu', 'Cache'), 'url' => ['/service/cache'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                        ['label' => Yii::t('appmenu', 'Clear assets'), 'url' => ['/service/clear-assets'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-//                        [
-//                            'label' => Yii::t('appmenu', 'Logs'),
-//                            'url' => ['/log/index'],
-//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-//                            'badge' => Log::find()->count(),
-//                            'badgeOptions' => ['class' => 'label-danger'],
-//                        ],
-//                    ],
-//                ],
+                        ['label' => Yii::t('appmenu', 'Key storage'), 'url' => ['/key-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('appmenu', 'Cache'), 'url' => ['/service/cache'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        ['label' => Yii::t('appmenu', 'Clear assets'), 'url' => ['/service/clear-assets'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                        [
+                            'label' => Yii::t('appmenu', 'Logs'),
+                            'url' => ['/log/index'],
+                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+                            'badge' => Log::find()->count(),
+                            'badgeOptions' => ['class' => 'label-danger'],
+                        ],
+                    ],
+                ],
             ],
         ])
         ?>
