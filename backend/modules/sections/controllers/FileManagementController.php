@@ -93,6 +93,7 @@ class FileManagementController extends Controller
     {
 	if (Yii::$app->getRequest()->isAjax) { 
             
+            
             $content_id         = \Yii::$app->request->get('content_id', '');
             $filet_id           = \Yii::$app->request->get('filet_id', '');
             $model              = \common\models\Files::findOne($filet_id); 
@@ -105,6 +106,12 @@ class FileManagementController extends Controller
                 $model->keywords = $post['keywords'];
                 $model->url_origin_file = $post['url_origin_file'];
 //                \appxq\sdii\utils\VarDumper::dump();
+                
+                $checkName = \common\models\Files::find()->where(['file_name_org'=>$post['file_name_org']])->andWhere('id != :id', [':id'=>$filet_id])->one();
+                if(!empty($checkName)){
+                    return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
+                } 
+                
                 if ($model->save()) {		 
                     return \janpan\jn\classes\JResponse::getSuccess(Yii::t('file', 'Update completed.'), $model);
                 } else {
