@@ -173,7 +173,8 @@ $('.btnDownload').on('click', function(){
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		   // console.log(result);
                    // $('#downloadFile').attr('href', result['data']['filename']);
-                    location.href = `${result['data']['path']}/${result['data']['filename']}`;
+                    let uri = `${result['data']['path']}/${result['data']['filename']}`;
+                    window.open(uri, '_BLANK');
 		} else {
 		    <?= SDNoty::show('result.message', 'result.status')?>
 		}
