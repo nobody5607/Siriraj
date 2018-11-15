@@ -179,10 +179,13 @@ echo yii\bootstrap\Modal::widget([
                         return;
                     }
                     if (dataID != "on") {
-                        $.post(url, {id: dataID}, function (result) {
-    <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
-                            $('#img-' + dataID).remove();
+                        yii.confirm('<?= Yii::t('app', 'คุณต้องการลบรายการเหล่านี้หรือไม่?')?>', function() {
+                            $.post(url, {id: dataID}, function (result) {
+                                <?= \appxq\sdii\helpers\SDNoty::show('result.message', 'result.status') ?>
+                                $('#img-' + dataID).remove();
+                            });
                         });
+                       
                     }
                 });
 
