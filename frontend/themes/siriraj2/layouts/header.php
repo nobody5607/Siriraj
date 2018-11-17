@@ -41,10 +41,19 @@
                 <?php if (!Yii::$app->user->isGuest): ?> 
                 <li class="bg-green"><a href="/account/default/settings"><i class="fa fa-user"></i> <?= Yii::t('appmenu', 'MY PROFILE') ?></a></li> 
                 <?php endif; ?>
-                
                 <li class="bg-green"><a href="/site/about"><?= Yii::t('section','ABOUT US')?></a></li>
                 <li class="bg-green"><a href="/site/contact"><?= Yii::t('section','CONTACT US')?></a></li>
-                
+                <li class="bg-green nav-signup">
+                    <a href="/sections/cart/my-cart">
+                        <img src="<?= \yii\helpers\Url::to('@web/images/cart-icon.png')?>" style="width:25px;"/>
+                       ตะกร้าสินค้า
+                        <span class="my-cart">
+                            <?php if(!empty($cart)):?>
+                            <span class="badge" id="globalCart"> 1<?= $cart ?></span>  
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </li>
                 <li class="dropdown nav_active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::t('section','MORE...')?> <span class="caret"></span></a>
                     <ul class="dropdown-menu ">
@@ -71,16 +80,7 @@
                     <li ><a href="#" id="btnHighlight"><?= Yii::t('section', 'HIGHLIGHT')?></a></li>
                     <li ><a href="#" id="btnTopSearch"><?= Yii::t('section', 'TOP SEARCH')?></a></li>
                 <?php endif; ?>
-                <li>
-                    <a href="/sections/cart/my-cart">
-                        <img src="<?= \yii\helpers\Url::to('@web/images/cart.png')?>" style="width:25px;"/>
-                        <span class="my-cart">
-                            <?php if(!empty($cart)):?>
-                            <span class="badge" id="globalCart"> <?= $cart ?></span>  
-                            <?php endif; ?>
-                        </span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </div>

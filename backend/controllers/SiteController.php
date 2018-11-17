@@ -65,7 +65,11 @@ class SiteController extends Controller
                 'path' => '@storage/web/images/avatars',
             ],
         ];
-    }   
+    } 
+    public function actionTest()
+    {
+        return $this->render('test');
+    }
     public function actionIndex()
     {
          

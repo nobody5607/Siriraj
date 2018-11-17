@@ -95,6 +95,7 @@ class SessionManagementController extends Controller
         $fileType = \common\models\FileType::findOne($type_id);
         $data = \common\models\Files::find();
         
+        
         $model = $data->where('keywords LIKE :keywords OR details LIKE :details OR description LIKE :description  OR detail_meta LIKE :detail_meta  OR file_name_org LIKE :file_name OR meta_text LIKE :meta_text',[
             ':details'=>"%{$txtsearch}%",
             ':description'=>"%{$txtsearch}%",
@@ -105,7 +106,7 @@ class SessionManagementController extends Controller
                     
              
         ])->orderBy(['file_type'=>SORT_ASC])->groupBy(['id', 'file_name_org']);
-//\appxq\sdii\utils\VarDumper::dump($model->all());
+        //\appxq\sdii\utils\VarDumper::dump($model->all());
            
         if($type_id == 0 || $type_id == ""){
             $type_id = 1;
@@ -146,10 +147,12 @@ class SessionManagementController extends Controller
                 ]
             ],
         ]);            
+        
         return $this->render("searchs/search",[
             'dataProvider'=>$dataProvider,
             'txtsearch'=> isset($txtsearch) ? $txtsearch : '',
-            'fileType'=>$fileType
+            'fileType'=>$fileType,
+            'countSearch'=>count($model->all())
         ]); 
     }
 }

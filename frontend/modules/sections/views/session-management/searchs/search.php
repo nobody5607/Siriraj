@@ -10,23 +10,25 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
         echo "<h1>";
         echo Yii::t('section', 'Keyword');
         echo " : ";
-        echo isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section', 'All');
-
+        echo (\Yii::$app->request->get('txtsearch', '') == '') ? 'ทั้งหมด' : \Yii::$app->request->get('txtsearch');
+        
 
         echo " ";
         echo Yii::t('section', 'Found all');
         echo " ";
-        echo count($itemCount);
+        echo $countSearch;
         echo " ";
         echo Yii::t('section', 'Item');
-        echo "</h1><br>";
+        echo "</h1>";
         ?>
         <?php
+        
         echo yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item col-md-4 col-xs-6'],
             //'layout' => "{items}",
-            'layout' => '<div class=" sidebar-nav-title text-right" >{summary}</div><div class="row">{items}</div><div class="clearfix">{pager}</div>',
+            'layout' => '<div class=" sidebar-nav-title text-left" ><h3>{summary}</h3></div><div class="row">{items}</div><div class="clearfix"><div class="row " style="margin:0 auto;text-align:center;">{pager}</div></div>',
+
             'itemView' => function ($model, $key, $index, $widget) {
                 return $this->render('_item', [
                             'model' => $model,
@@ -35,35 +37,7 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
                             //'widget' => $widget,
                             'ezf_id' => $model['id'],
                 ]);
-            },
-            'pager' => [
-                'class' => \kop\y2sp\ScrollPager::className(),
-                'delay' => '100',
-                'triggerTemplate' => '
-                    <div class="row">
-                        <div style="
-                            margin: 0 auto;
-                            width: 100%;
-                            /* background: blue; */
-                            position: absolute;
-                            bottom: -20px;
-                            left: 0;
-                        ">
-                            <div class="ias-trigger" style="text-align: center; cursor: pointer;"><a class="btn btn-primary btn-block btnScroll">' . Yii::t('section', 'Loading data') . '</a></div>
-                        </div>
-                    </div>
-                ',
-                'noneLeftText' => '',
-                'eventOnScroll' => "function(){
-                    let scrollHeight = $(document).height();
-                    let scrollPosition = $(window).height() + $(window).scrollTop();
-                    if ((scrollHeight - scrollPosition) / scrollHeight == 0) {
-                        //console.log(scrollPosition);
-                        $( '.btnScroll' ).trigger('click');
-                    }
-                 }   
-                "
-            ]
+            }
         ]);
         ?> 
     </div>
@@ -108,11 +82,6 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
         margin: 0 auto;
         /* position: absolute; */
     }
-</style>
-<?php appxq\sdii\widgets\CSSRegister::end() ?>
-
-<?php appxq\sdii\widgets\CSSRegister::begin() ?>
-<style>
     .header-text-content{
         padding: 10px;  
         text-align: left; 
@@ -140,7 +109,7 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
         height: 100%;
     }
     .pro-content .pro-infos h2{
-        font-size:14pt;
+        font-size:16pt;
         text-align: center;
         overflow: hidden;
 

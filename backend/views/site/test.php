@@ -1,29 +1,72 @@
-<?php 
-    kartik\file\FileInputAsset::register($this);
-?>
-<div class="file-loading">
-    <input id="input-700" name="name[]" type="file" multiple>
+<?php \appxq\sdii\widgets\CSSRegister::begin(); ?>
+<style>
+    .dad{
+        height:100px;
+        padding:1px;
+        border:1px solid #ecf0f5;
+        text-align: center;
+        line-height: 100px;
+        z-index: 1;
+         
+    }
+    .panel-left, .panel-right{
+        background:gray;
+        
+    }
+    #container{
+        min-height: 300px;
+    }
+    #container h1{
+        min-height: 300px;
+        line-height: 300px;
+        text-align: center;
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end(); ?>
+
+<!-- left -->
+<div class="col-md-4 panel-left" id="source">
+    <div class="row" id="drag-left">
+        <?php for($i=1; $i<=12; $i++):?>
+            <div class="dad col-md-3" data-id='<?= $i?>'>Demo1 <?= $i?></div>
+        <?php endfor; ?>
+    </div>
 </div>
+<div class="col-md-1"></div>
+<div class="col-md-6 panel-right">
+    <div id="container"><h1>Drop file ตรงนี้</h1></div>
+</div>
+ 
 
-<br><br><br><br><br><br>
-<?php \richardfan\widget\JSRegister::begin();?>
+<?php \richardfan\widget\JSRegister::begin() ?>
 <script>
-    $("#input-700").fileinput({
-        uploadUrl: "/site/test",
-        uploadExtraData: function() {
-            return {
-                userid: 1,
-                username: 'xxx'
-            };
-        } 
+    //drag and drop 
+    $("#drag-left div").draggable({
+        cursor: 'move',
+        helper: 'clone',
     });
-    $("#input-700").on("filepredelete", function(jqXHR) {
-        var abort = true;
-        if (confirm("Are you sure you want to delete this image?")) {
-            abort = false;
+    $(".panel-right").droppable({
+         hoverClass : 'ui-state-highlight',
+         accept: ":not(.ui-sortable-helper)",
+         cursor: 'move',
+        drop: function (event, ui) {
+            $('h1').remove();
+            $(ui.draggable).removeClass('ui-draggable ui-draggable-handle');
+            $('#container').append($(ui.draggable).clone());
         }
-        return abort; // you can also send any data/object that you can receive on `filecustomerror` event
     });
-</script>
-<?php \richardfan\widget\JSRegister::end();?>
 
+    //source 
+    $(".panel-right #container").sortable({
+        cursor: 'move',
+        update:function( event, ui ){
+            let dataObj = [];
+            $(this).find('.dad').each(function(index){
+                dataObj.push($(this).attr('data-id'));
+            });
+            console.log(dataObj);
+        }
+     });
+
+</script>
+<?php \richardfan\widget\JSRegister::end(); ?>
