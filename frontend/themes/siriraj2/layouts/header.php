@@ -69,6 +69,13 @@
             .image-sliders {
                 height: 65px;
             }
+            .single-product {
+                /* height: 170px; */
+                margin-top: 10px;
+            }
+            .header-section{
+                font-size:16pt;
+            }
         }
         @media screen and (min-width: 768px) {
             #navbar-desktop{
