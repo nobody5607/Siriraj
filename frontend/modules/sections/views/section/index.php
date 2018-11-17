@@ -92,13 +92,15 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
                 },
             ]);
             ?>
-            <?php richardfan\widget\JSRegister::begin();?>
+            <?php appxq\sdii\widgets\CSSRegister::begin();?>
                 <style>
                     .list-pager{
                         text-align: center;
                     }
                 </style>
-            <?php richardfan\widget\JSRegister::end();?>
+            <?php appxq\sdii\widgets\CSSRegister::end();?>
+                
+                
             <?php richardfan\widget\JSRegister::begin(); ?>
             <script>
                 $('.btn-content').css({cursor: 'pointer'});

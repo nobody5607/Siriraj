@@ -26,11 +26,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/themes/sir
                 <div class="container" id="container">
 
                     <?php
-                    echo $this->render("header", [
-                        'slide' => 1,
-                        'directoryAsset' => $directoryAsset,
-                        'layoutSecond'=>true
-                    ]);
+                        echo $this->render("header", [
+                            'slide' => 1,
+                            'directoryAsset' => $directoryAsset,
+                            'layoutSecond'=>true
+                        ]);
                     ?>
 
                     <div id="mock-content">

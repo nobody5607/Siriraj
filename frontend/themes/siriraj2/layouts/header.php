@@ -25,8 +25,7 @@
     </div></a>
 </header>
 <div class="container">
-    <div class="col-md-12">
-        <div class="navbar-menu" id="navbar-desktop" style='display:none;'>
+        <div class="navbar-menu" id="navbar-desktop" >
             <ul>
                 <?php if (!Yii::$app->user->isGuest): ?>
                     <?= $this->render('navbar-user') ?>
@@ -36,13 +35,47 @@
 
             </ul>
         </div>
-        <div id="navbar-mobile" style="display: none;">
+        <div id="navbar-mobile" >
             <?= $this->render('navbar-mobile')?>
         </div>
-    </div>
     <?php appxq\sdii\widgets\CSSRegister::begin()?>
     <style>
-        
+        @media screen and (max-width: 768px) {
+            #navbar-mobile{
+                display: block;
+            }
+            #navbar-desktop{
+                display: none;
+            }
+            .container {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+            .cd-breadcrumb li::after, .cd-multi-steps li::after {
+                display: inline-block;
+                content: '\00bb';
+                margin: 0px 0.0em;
+                color: #959fa5;
+            }
+            .cd-breadcrumb li > *, .cd-multi-steps li > * {
+                font-size: 14pt;
+            }
+            .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after {
+                margin-top: -5px;
+            }
+            .pro-content .pro-infos h2 {
+                font-size: 16pt;
+            }
+            .image-sliders {
+                height: 65px;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            #navbar-desktop{
+                display: block;
+            }
+            #navbar-mobile{display: none;}
+        }
     </style>
     <?php appxq\sdii\widgets\CSSRegister::end()?>
     <div class="clearfix"></div>
@@ -74,11 +107,11 @@
     var windowWidth = jQuery(window).width();
     //console.log(windowWidth);
     if(windowWidth > 769){
-        $('#navbar-desktop').show();
-        $('#navbar-mobile').hide();
+        //$('#navbar-desktop').show();
+        //$('#navbar-mobile').hide();
     }else{
-        $('#navbar-desktop').hide();
-        $('#navbar-mobile').show();
+        //$('#navbar-desktop').hide();
+        //$('#navbar-mobile').show();
     }
     
     
