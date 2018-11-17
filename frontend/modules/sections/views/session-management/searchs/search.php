@@ -11,7 +11,6 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
         echo Yii::t('section', 'Keyword');
         echo " : ";
         echo (\Yii::$app->request->get('txtsearch', '') == '') ? 'ทั้งหมด' : \Yii::$app->request->get('txtsearch');
-        
 
         echo " ";
         echo Yii::t('section', 'Found all');
