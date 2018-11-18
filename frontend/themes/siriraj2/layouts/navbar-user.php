@@ -8,7 +8,7 @@
         ตะกร้าสินค้า
         <span class="my-cart">
             <?php if (!empty($cart)): ?>
-                <span class="badge" id="globalCart"> 1<?= $cart ?></span>  
+                <span class="badge" id="globalCart"><?= $cart ?></span>  
             <?php endif; ?>
         </span>
     </a>

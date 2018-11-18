@@ -19,7 +19,7 @@ $image = "{$model['file_path']}/thumbnail/{$model['file_view']}";
                         echo Html::img("{$image}",['class'=>'primary-img img img-responsive img-thumbnail','alt'=>"{$model['file_name_org']}"]); 
                     }
                     else if($model['file_type'] == 3){
-                        $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
+                        $imgs = "{$model['file_path']}/{$model['file_thumbnail']}";
                         echo Html::img($imgs,['class'=>'img img-responsive img-thumbnail']);
 //                        if($model['file_thumbnail'] != "" && strlen($model['file_thumbnail']) > 100){
 //                            $img = $model['file_thumbnail'];

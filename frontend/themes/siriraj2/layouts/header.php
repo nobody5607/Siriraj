@@ -2,7 +2,7 @@
    
     $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 0;
     ///sections/content-management/view-file?content_id=1536226767074797500&file_id=1538478070046184200&filet_id=2
-    //appxq\sdii\utils\VarDumper::dump($images);
+    //appxq\sdii\utils\VarDumper::dump($cart);
     
 ?>
 <header>
@@ -28,7 +28,7 @@
         <div class="navbar-menu" id="navbar-desktop" >
             <ul>
                 <?php if (!Yii::$app->user->isGuest): ?>
-                    <?= $this->render('navbar-user') ?>
+                    <?= $this->render('navbar-user', ['cart'=>$cart]) ?>
                 <?php else: ?>
                     <?= $this->render('navbar-guest') ?>
                 <?php endif; ?>
@@ -36,7 +36,7 @@
             </ul>
         </div>
         <div id="navbar-mobile" >
-            <?= $this->render('navbar-mobile')?>
+            <?= $this->render('navbar-mobile', ['cart'=>$cart])?>
         </div>
     
     <?php if(Yii::$app->user->isGuest):?>

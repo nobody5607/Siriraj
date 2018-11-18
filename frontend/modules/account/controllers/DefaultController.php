@@ -145,25 +145,7 @@ public function beforeAction($action)
      */
     public function actionView($id)
     {
-        $breadcrumbs=[];
-        $breadcrumbs_arr = [
-            [
-                'label' =>\Yii::t('cart', 'Home'), 
-                'url' =>'/sections/session-management',
-                'icon'=>'fa-home'
-            ],
-            [
-                'label' => \Yii::t('user', 'Change password')
-            ]
-        ];
-        foreach($breadcrumbs_arr as $key=>$v){
-            $breadcrumbs[$key]=$v;
-        }
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-            'profile' => UserProfile::findOne($id),
-            'breadcrumb'=>$breadcrumbs
-        ]);
+        return $this->redirect(['/site/index']);
     }
 
     /**
