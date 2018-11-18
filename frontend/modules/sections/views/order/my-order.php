@@ -36,6 +36,28 @@
                         return appxq\sdii\utils\SDdate::mysql2phpThDateSmall(isset($model->create_date) ? $model->create_date : '2018-00-00');
                       }
                   ],
+                  [
+                        'format'=>'raw',
+                        'attribute'=>'create_date',
+                        'label'=>'สถานะ',
+                        'value'=>function($model){
+
+                            $items = ['1'=>'รอ' , '2'=>'ส่งข้อมูลแล้ว', '3'=>'ไม่อนุมัติ', '100'=>''];
+                            if(isset($model->status)){
+                                return $items[$model->status];
+                            }else{
+                                return $items[100];
+                            }
+                        },      
+                    ], 
+                [
+                    'format' => 'raw',
+                    'attribute' => 'conditions',
+                    'label' => 'หมายเหตุ',
+                    'value' => function($model) {
+                            return isset($model['conditions']) ? $model['conditions'] : '';
+                    },
+                ],        
 //                  [
 //                    
 //                      'attribute'=>'status',

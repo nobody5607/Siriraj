@@ -44,7 +44,7 @@ use yii\helpers\Html;
             <div class="panel-body">
                 <?php 
                     if($email){
-                        echo "<div class='alert alert-info'>Send email {$email} success</div>";
+                        echo "<div class='alert alert-info'>ส่ง email {$email} เรียบร้อย รออนุมมัติจากพิพิธภัณฑ์</div>";
                     }
                 ?>
                 <div class="form-group">

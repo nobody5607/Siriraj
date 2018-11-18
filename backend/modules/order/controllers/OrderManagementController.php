@@ -87,26 +87,26 @@ class OrderManagementController extends Controller
 	}
     }
 
-     
+    
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = $this->findModel($id);
 
 	    if ($model->load(Yii::$app->request->post())) {	
-                $invoice= \common\models\Invoice::find()->where(['order_id'=>$id])->one();
-                if(!$invoice){
-                    $invoice = new \common\models\Invoice();
-                    $invoice->id = 'INV'.\appxq\sdii\utils\SDUtility::getMillisecTime();
-                }
-                $invoice->order_id = $id;
-                $invoice->create_date = new \yii\db\Expression('NOW()');
-                $invoice->admin_id = Yii::$app->user->id;
-                $invoice->user_id = $model->user_id;
+//                $invoice= \common\models\Invoice::find()->where(['order_id'=>$id])->one();
+//                if(!$invoice){
+//                    $invoice = new \common\models\Invoice();
+//                    $invoice->id = 'INV'.\appxq\sdii\utils\SDUtility::getMillisecTime();
+//                }
+//                $invoice->order_id = $id;
+//                $invoice->create_date = new \yii\db\Expression('NOW()');
+//                $invoice->admin_id = Yii::$app->user->id;
+//                $invoice->user_id = $model->user_id;
 		if ($model->save()) {
-                    if($model->status != 1){
-                         $invoice->save();
-                    }                   
+//                    if($model->status != 1){
+//                         $invoice->save();
+//                    }                   
 		   return \janpan\jn\classes\JResponse::getSuccess("Update successfully", $model);
 		} else {
 		   return \janpan\jn\classes\JResponse::getError("Update successfully"); 

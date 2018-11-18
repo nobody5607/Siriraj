@@ -85,33 +85,46 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'format'=>'raw',
                 'attribute'=>'create_date',
-                'label'=>'Date',
+                'label'=>'วันที่ขอความอนุเคราะห์',
                 'value'=>function($model){
                     return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
-                },
-//                'filter' => kartik\date\DatePicker::widget([
-//                    'model' => $searchModel, 
-//                    'name' => 'create_date', 
-//                   // 'value' => date('Y-m-d'),
-//                    'pluginOptions' => [
-//                        'format' => 'yyyy-mm-dd',
-//                        'autoclose' => true,
-//                        'autoUpdateInput' => false
-//                    ]
-//                ])         
+                },      
             ],
-            [
+           [
+                'format'=>'raw',
+                'attribute'=>'status',
+                'label'=>'สถานะ',
+                'value'=>function($model){
+                    
+                    $items = ['1'=>'รอ' , '2'=>'ส่งข้อมูลแล้ว', '3'=>'ไม่อนุมัติ', '100'=>''];
+                    if(isset($model->status)){
+                        return $items[$model->status];
+                    }else{
+                        return $items[100];
+                    }
+                }, 
+                'filter'=>['1'=>'รอ' , '2'=>'ส่งข้อมูลแล้ว', '3'=>'ไม่อนุมัติ', '100'=>''],        
+            ], 
+        [
+            'format' => 'raw',
+            'attribute' => 'conditions',
+            'label' => 'หมายเหตุ',
+            'value' => function($model) {
+                    return isset($model['conditions']) ? $model['conditions'] : '';
+            },
+        ],
+        [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
                         'contentOptions' => ['style'=>'width:50px;text-align: center;'],
-                        'template' => '{delete} {download}',
+                        'template' => '{confirm} {download} {delete} ',
                         'headerOptions' => ['style' => 'width:250px'],
                         'buttons' => [
-                            'view' => function ($url, $model) {
-                                $label = Yii::t('section', 'View Detail');
-                                return Html::a('<span class="fa fa-eye"></span> ', yii\helpers\Url::to(['/order/order-management/view', 'id' => $model->id]), [
+                            'confirm' => function ($url, $model) {
+                                $label = Yii::t('section', 'แก้ไข');
+                                return Html::a('<span class="fa fa-pencil"> แก้ไข</span> ', yii\helpers\Url::to(['/order/order-management/update', 'id' => $model->id]), [
                                             'title'         => $label,
-                                            'class'         => 'btn btn-default btn-xs',
-                                            'data-action'   => 'view',
+                                            'class'         => 'btn btn-primary btn-xs btnEdit',
+                                            'data-action'   => 'edit',
                                             'data-pjax'     =>0
                                     ]);
                             }, 
@@ -128,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 
                                 return Html::a('<span class="fa fa-file-pdf-o"> ดาวน์โหลด PDF</span> ', yii\helpers\Url::to(['/order/order-management/download', 'id' => $model->id]), [
                                             'title'         => 'ดาวน์โหลด PDF',
-                                            'class'         => 'btn btn-primary btn-xs btnDownload',
+                                            'class'         => 'btn btn-success btn-xs btnDownload',
                                             'data-action'   => 'download',
                                             'data-pjax'     =>0
                                     ]);
@@ -199,6 +212,11 @@ $('.btnDeleteItems').on('click', function(){
         //modalOrder(url);
         return false;
 });    
+$('.btnEdit').on('click' ,function(){
+ let url = $(this).attr('href');
+  modalOrder(url);
+  return false;
+});
 function selectionOrderGrid(url) {
     yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
 	$.ajax({

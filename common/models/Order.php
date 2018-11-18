@@ -30,7 +30,7 @@ class Order extends \yii\db\ActiveRecord
         return [
              
             [['id', 'user_id', 'status'], 'integer'],
-            [['create_date','admin_id'], 'safe'],
+            [['create_date','admin_id','conditions'], 'safe'],
             [['id'], 'unique'],
         ];
     }

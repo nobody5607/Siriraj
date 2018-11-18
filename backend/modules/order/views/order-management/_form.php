@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
-
-$this->title = Yii::t('order', 'Orders Management');
+// รอ / ส่งข้อมูลแล้ว / ไม่อนุมัติ 
+$this->title = Yii::t('order', 'แก้ไขสถานะคำร้องขอข้อมูล');
 ?>
 
 <div class="order-form">
@@ -21,10 +21,12 @@ $this->title = Yii::t('order', 'Orders Management');
 
     <div class="modal-body">	 
 	<?php
-            $items = ['1'=>'Unpaid' , '2'=>Yii::t('order', 'Delivered')];
+            $items = ['1'=>'รอ' , '2'=>'ส่งข้อมูลแล้ว', '3'=>'ไม่อนุมัติ'];
             echo $form->field($model, 'status')->radioList($items, [])->label(false);
         ?>
+        <?= $form->field($model, 'conditions')->textarea()->label('หมายเหตุ')?>
     </div>
+    
     <div class="modal-footer">
         <div class="col-md-4 col-md-offset-4">
             <?= Html::submitButton('Submit',['class'=>'btn btn-lg btn-primary btn-block']) ?>
@@ -50,7 +52,9 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
         if(result.status == 'success') {
             <?= SDNoty::show('result.message', 'result.status')?>
             $(document).find('#modal-order').modal('hide');
-            $.pjax.reload({container:'#order-grid-pjax'});
+            setTimeout(function(){
+                location.reload();
+            },1000);
         } else {
             <?= SDNoty::show('result.message', 'result.status')?>
         } 
