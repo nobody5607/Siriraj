@@ -40,6 +40,9 @@
         </div>
     <?php appxq\sdii\widgets\CSSRegister::begin()?>
     <style>
+        .pro-content .pro-infos h2 {
+            padding: 5px;
+        }
         @media screen and (max-width: 768px) {
             #navbar-mobile{
                 display: block;
@@ -75,6 +78,13 @@
             }
             .header-section{
                 font-size:16pt;
+            }
+            .pro-content{
+                height: 95px;
+                overflow: hidden;
+            }
+            h1 {
+                font-size: 18pt;
             }
         }
         @media screen and (min-width: 768px) {
