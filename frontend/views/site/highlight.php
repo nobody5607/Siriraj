@@ -8,7 +8,7 @@
     ?>
         <a href="<?= $i['url']?>">
             <img class="img img-responsive img-rounded image-sliders" src="<?= "{$i['view_path']}/{$i['name']}"?>">
-            <div class="text-center captur-text"><?= $fileName?></div>
+            <div class="text-center captur-text"><?= \yii\helpers\Html::encode($fileName)?></div>
         </a>
     <?php endforeach; ?>
 </section> 

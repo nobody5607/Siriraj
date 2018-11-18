@@ -45,19 +45,21 @@
 <?php appxq\sdii\widgets\CSSRegister::begin(); ?>
 <style>
    .topnav {
-  overflow: hidden;
-  background-color: #5aa19f;
-}
+        overflow: hidden;
+        background-color: #5aa19f;
+        border-radius: 5px;
+      }
 
 .topnav a {
   float: left;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 5px 10px;
   text-decoration: none;
   font-size: 16pt;
   font-weight: bold;
+  
 }
 
 .topnav a:hover {

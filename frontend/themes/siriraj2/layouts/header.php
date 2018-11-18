@@ -117,6 +117,9 @@
                 display: block;
             }
             #navbar-mobile{display: none;}
+            .panel-title {
+                font-size: 16pt;
+            }
         }
     </style>
     <?php appxq\sdii\widgets\CSSRegister::end()?>
