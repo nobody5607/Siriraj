@@ -4,7 +4,7 @@
 <li class="bg-green"><a href="/site/about"><?= Yii::t('section', 'ABOUT US') ?></a></li>
 <li class=" nav-active"><a href="/site/contact"><?= Yii::t('section', 'CONTACT US') ?></a></li>
 <li class="bg-green">
-    <a href="/sections/cart/my-cart">
+    <a href="/sections/cart/my-cart" class="nav-cart-popup">
         <img src="<?= \yii\helpers\Url::to('@web/images/cart-icon.png') ?>" style="width:25px;"/>
         ตะกร้าสินค้า
         <span class="my-cart">

@@ -38,6 +38,31 @@
         <div id="navbar-mobile" >
             <?= $this->render('navbar-mobile')?>
         </div>
+    
+    <?php if(Yii::$app->user->isGuest):?>
+        <?php 
+            $modalId = 'modal-mark';
+            echo yii\bootstrap\Modal::widget([
+                'id'=>$modalId,
+                'size'=>'modal-xxl',
+                'options'=>['tabindex' => false]
+           ]);
+        ?>
+        <?php richardfan\widget\JSRegister::begin();?>
+            <script>
+                $('.nav-cart-popup').on('click', function(){
+                    let url='/site/alert';
+                    $('#<?= $modalId?>').modal('show');
+                    $('#<?= $modalId?> .modal-content').html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
+                    $.get(url,function(data){
+                        $('#<?= $modalId?> .modal-content').html(data); 
+                    });
+                    
+                    return false;
+                });
+            </script>
+        <?php richardfan\widget\JSRegister::end();?>
+    <?php endif;?>
     <?php appxq\sdii\widgets\CSSRegister::begin()?>
     <style>
         .pro-content .pro-infos h2 {

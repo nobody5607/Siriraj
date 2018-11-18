@@ -341,5 +341,8 @@ class SiteController extends Controller
         }
         \appxq\sdii\utils\VarDumper::dump('success');
     }
-
+    public function actionAlert()
+    {
+        return $this->renderAjax('alert');
+    }
 }
