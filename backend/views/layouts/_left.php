@@ -100,12 +100,13 @@ $actionID = Yii::$app->controller->action->id;
                             'url' => ['/template/template-management/water-mark-video'],
                             'icon' => '<i class="fa fa-angle-double-right"></i>',
                             'visible' => Yii::$app->user->can('administrator'),
-                        ],[
-                            'label' => Yii::t('appmenu', 'Example Data'),
-                            'url' => ['/example-data'],
-                            'icon' => '<i class="fa fa-angle-double-right"></i>',
-                            'visible' => Yii::$app->user->can('administrator'),
-                        ]
+                        ],
+//                        [
+//                            'label' => Yii::t('appmenu', 'Example Data'),
+//                            'url' => ['/example-data'],
+//                            'icon' => '<i class="fa fa-angle-double-right"></i>',
+//                            'visible' => Yii::$app->user->can('administrator'),
+//                        ]
                     ],
                 ],
                 [

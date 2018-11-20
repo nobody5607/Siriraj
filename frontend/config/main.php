@@ -81,7 +81,7 @@ $config = [
             ],
        ],
         'request' => [
-            'baseUrl' => '',
+//            'baseUrl' => '',
             'cookieValidationKey' => env('BACKEND_COOKIE_VALIDATION_KEY'),
             'csrfParam' => '_csrf-frontend',
         ],

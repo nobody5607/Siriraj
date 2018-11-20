@@ -1,5 +1,5 @@
 <?php 
-   
+    use yii\helpers\Url;
     $cart = isset(Yii::$app->session["cart"]) ? count(Yii::$app->session["cart"]) : 0;
     ///sections/content-management/view-file?content_id=1536226767074797500&file_id=1538478070046184200&filet_id=2
     //appxq\sdii\utils\VarDumper::dump($cart);
@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-3 text-center"> 
              <?php if (!Yii::$app->user->isGuest): ?> 
-            <a href="/account/default/settings">
+            <a href="<?= Url::to(['/account/default/settings'])?>">
                 ยินดีต้อนรับ  : <?= Yii::$app->user->identity->userProfile->firstname. ' '.Yii::$app->user->identity->userProfile->lastname;?>
             </a>
             <?php endif; ?>
@@ -51,7 +51,7 @@
         <?php richardfan\widget\JSRegister::begin();?>
             <script>
                 $('.nav-cart-popup').on('click', function(){
-                    let url='/site/alert';
+                    let url='<?= Url::to(['/site/alert'])?>';
                     $('#<?= $modalId?>').modal('show');
                     $('#<?= $modalId?> .modal-content').html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
                     $.get(url,function(data){
@@ -161,7 +161,7 @@
     
     
     function loadHighlight(){
-       let url = '/site/highlight';
+       let url = '<?= Url::to(['/site/highlight'])?>';
        
        $('#btnHighlight').addClass('nav-active-right');
         $('#btnTopSearch').removeClass('nav-active-left');
@@ -183,7 +183,7 @@
     $('#btnTopSearch').on('click', function(){
         $('#btnHighlight').removeClass('nav-active-right');
         $('#btnTopSearch').addClass('nav-active-left');
-        let url = '/site/top-search';
+        let url = '<?= Url::to(['/site/top-search'])?>';
         loadSlideImage(url);
        return false;
     }); 

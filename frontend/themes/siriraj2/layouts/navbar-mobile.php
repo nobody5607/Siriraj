@@ -1,11 +1,14 @@
+<?php 
+    use yii\helpers\Url;
+?>
 <div class="topnav" id="myTopnav">
-    <a href="/" class="nav_active"><i class='fa fa-home'></i> หน้าหลัก</a>
+    <a href="<?= Url::to(['/'])?>" class="nav_active"><i class='fa fa-home'></i> หน้าหลัก</a>
     <?php if(!Yii::$app->user->isGuest):?>
-     <a href="/account/default/settings"><i class="fa fa-user"></i> <?= Yii::t('appmenu', 'MY PROFILE') ?></a>
+     <a href="<?= Url::to(['/account/default/settings'])?>"><i class="fa fa-user"></i> <?= Yii::t('appmenu', 'MY PROFILE') ?></a>
     <?php endif; ?>
-    <a href="/site/about"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'ABOUT US') ?></a>
-    <a href="/site/contact"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'CONTACT US') ?></a>
-    <a href="/sections/cart/my-cart" class="nav-cart-popup">
+    <a href="<?= Url::to(['/site/about'])?>"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'ABOUT US') ?></a>
+    <a href="<?= Url::to(['/site/contact'])?>"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'CONTACT US') ?></a>
+    <a href="<?= Url::to(['/sections/cart/my-cart'])?>" class="nav-cart-popup">
         <img src="<?= \yii\helpers\Url::to('@web/images/cart-icon.png') ?>" style="width:25px;"/>
         ตะกร้าสินค้า
         <span class="my-cart">
@@ -16,9 +19,9 @@
     </a>
     
     <?php if(!Yii::$app->user->isGuest):?>
-     <a href="/sections/order/my-order"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a>
-     <a href="/sections/cart/my-cart" ><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'รายการคำร้องขอ') ?></a>
-     <a href="/account/sign-in/logout" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'LOGOUT') ?></a>
+     <a href="<?= Url::to(['/sections/order/my-order'])?>"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a>
+     <a href="<?= Url::to(['/sections/cart/my-cart'])?>" ><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'รายการคำร้องขอ') ?></a>
+     <a href="<?= Url::to(['/account/sign-in/logout'])?>" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'LOGOUT') ?></a>
     <?php endif; ?>
     
     <a href="#" class="icon" id="btn-icon-navbar-module">

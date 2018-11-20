@@ -1,5 +1,6 @@
 <?php 
      $images = \backend\modules\sections\classes\JContent::getImage();
+//     \frontend\themes\siriraj2\assets\Siriraj2Assets::register($view);
 ?>
 <section class="multiple-items">
     <?php foreach($images as $k=>$i): ?>
