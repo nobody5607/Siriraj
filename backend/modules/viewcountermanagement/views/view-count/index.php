@@ -66,7 +66,7 @@ $itemMonth = ['0' => 'all', '1' => "ม.ค.", '2' => "ก.พ.", '3' => "มี
         let year = $('#year').val();
         let month = $('#month').val();
         let params = {year: year, month: month, print: 0};
-        let url = '/viewcountermanagement/view-count/preview';
+        let url = '<?= Url::to(['/viewcountermanagement/view-count/preview'])?>';
         $.get(url, params, function (data) {
             $('#preview-count').html(data);
         });

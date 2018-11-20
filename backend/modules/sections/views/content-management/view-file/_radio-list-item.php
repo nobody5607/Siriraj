@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\helpers\Url;
 ?>
 <div style="display: flex;" id="flex-<?= $value?>"/>
     <div style="flex-grow: 2">
@@ -20,7 +21,7 @@
                 'data-action' => 'update-section',
                 'class' => 'btn btn-primary btn-xs btnCalls',
                 'title' => Yii::t('appmenu', 'Edit'),
-                'data-url' => '/sections/file-management/update'
+                'data-url' => Url::to(['/sections/file-management/update'])
             ]);
             echo " ";
             echo Html::button("<i class='fa fa-trash'></i>", [
@@ -29,7 +30,7 @@
                 'data-action' => 'delete',
                 'class' => 'btn btn-danger btn-xs btnCalls',
                 'title' => Yii::t('appmenu', 'Delete'),
-                'data-url' => '/sections/file-management/delete',
+                'data-url' => Url::to(['/sections/file-management/delete']),
                 'data-method' => 'POST'
             ]);
         ?>

@@ -75,7 +75,7 @@ use appxq\sdii\helpers\SDHtml;
        let year = $('#year').val();
        let month = $('#month').val();
        let params = {year:year, month:month, print:0};
-       let url = '/viewcountermanagement/view-count/preview?year='+year+'&month='+month+'&print=1';
+       let url = '<?= Url::to(['/viewcountermanagement/view-count/preview?year='])?>'+year+'&month='+month+'&print=1';
        window.open(url, "target=_blank")
        return false;
     });

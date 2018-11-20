@@ -1,5 +1,6 @@
 <?php 
     use yii\helpers\Html;
+    use yii\helpers\Url;
     \janpan\jn\assets\ListdataAsset::register($this);
     \janpan\jn\assets\EzfToolAsset::register($this);
     \janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
@@ -18,7 +19,7 @@
                                     'data-action' => 'create',
                                     'class' => 'btn btn-success btnCreateFile',
                                     'title' => Yii::t('appmenu', 'Create'),
-                                    'data-url' => '/sections/session-management/create'
+                                    'data-url' => Url::to(['/sections/session-management/create'])
                                 ]);
                             ?> 
                          <?php
@@ -28,7 +29,7 @@
                                     'data-action' => 'create',
                                     'class' => 'btn btn-danger btnDeleteBySelect',
                                     'title' => Yii::t('appmenu', 'Delete'),
-                                    'data-url' => '/sections/session-management/create', 
+                                    'data-url' => Url::to(['/sections/session-management/create']), 
                                 ]);
                             ?> 
             </span>
@@ -113,7 +114,7 @@
                 let content_id = '<?= Yii::$app->request->get('content_id', '')?>';
                 $('#<?= $modal?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
                 $('#<?= $modal?>').modal('show');
-                let url = '/sections/file-management/upload-file';
+                let url = '<?= Url::to(['/sections/file-management/upload-file'])?>';
                 let file_type = $(this).attr('file_type');
                 $.get(url,{id:id,file_type:file_type,content_id:content_id}, function(res){
                     $('#<?= $modal?> .modal-content').html(res);
@@ -122,7 +123,7 @@
             });  
             $('.btnDeleteBySelect').click(function () { 
                      
-                    let url = '/sections/file-management/delete-file';
+                    let url = '<?= Url::to(['/sections/file-management/delete-file'])?>';
                     $(':checkbox:checked').each(function () {
                         let dataID = $(this).val();                         
                         if(!dataID){

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <div class="col-md-4 view-file-right">
     <div class="box box-primary">
@@ -13,7 +14,7 @@ use yii\helpers\Html;
                     'data-action' => 'create-choice',
                     'class' => 'btn btn-primary btnCalls',
                     'title' => Yii::t('appmenu', 'Edit'),
-                    'data-url' => '/sections/file-management/create'
+                    'data-url' => Url::to(['/sections/file-management/create'])
                 ]);
                 //appxq\sdii\utils\VarDumper::dump($dataDefault);
                 ?> 

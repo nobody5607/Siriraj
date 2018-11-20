@@ -37,7 +37,7 @@
     $('.btnSubmit').prop('disabled', true); 
     
     $("#input-700").fileinput({        
-        uploadUrl: "/sections/file-management/upload-file",
+        uploadUrl: "<?= yii\helpers\Url::to(['/sections/file-management/upload-file'])?>",
         minFileCount:0,
         maxFileCount:1000,
         showUpload:false,

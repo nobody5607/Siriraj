@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\helpers\Url;
     $section_obj = \common\models\Sections::findOne($data_id);  
     
      
@@ -21,7 +22,7 @@
                     'data-action' => 'create-content',
                     'class' => 'btn btn-success btnCall',
                     'title' => Yii::t('appmenu', 'Create'),
-                    'data-url' => '/sections/content-management/create'
+                    'data-url' => Url::to(['/sections/content-management/create'])
                 ]);
             ?> 
         </div>
@@ -63,7 +64,7 @@
     });
     function saveOrder(dataObj , type){
         let dataStr = dataObj.join();
-        let url ='/sections/session-management/order-content';
+        let url ='<?= Url::to(['/sections/session-management/order-content'])?>';
         $.post(url,{data:dataStr, type:type}, function(result){
             console.log(result);
             if(result.status == 'success') {

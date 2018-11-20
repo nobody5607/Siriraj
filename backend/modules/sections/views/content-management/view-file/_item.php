@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <div style='margin-bottom:10px;text-align:center;'>
 <!--    <span>            
@@ -14,13 +15,13 @@ use yii\helpers\Html;
         'data-action' => 'delete',
         'class' => 'btn btn-danger btn-xs btnDelete',
         'title' => Yii::t('appmenu', 'Delete'),
-        'data-url' => '/sections/file-management/delete-file',
+        'data-url' => Url::to(['/sections/file-management/delete-file']),
         'data-method' => 'POST'
     ]);
     ?>
     <input type="checkbox" data-id="<?= $model['id'] ?>" value="<?= $model['id'] ?>">
 </div>    
-<a href="<?= "/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ?>" style="margin-top: 5px;" href=""   data-id="<?= $model['id'] ?>" id="<?= "btn-{$model['id']}" ?>" data-action="view-file" class="content-popup btnCall text-left">
+<a href="<?= Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ?>" style="margin-top: 5px;" href=""   data-id="<?= $model['id'] ?>" id="<?= "btn-{$model['id']}" ?>" data-action="view-file" class="content-popup btnCall text-left">
     <?php
     if ($model['file_type'] == '2') {
         echo Html::img("{$model['file_path']}/thumbnail/{$model['file_view']}", [

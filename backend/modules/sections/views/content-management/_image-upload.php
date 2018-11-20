@@ -12,7 +12,7 @@ $image = '';
                 <?= Html::img($model->thumn_image, ['id' => 'preview_icon', 'class' => 'img-rounded']) ?>
             </div>
         </div>
-        <div class="col-md-ุ">
+        <div class="col-md-6">
             <div class="upload-edit">
                 <div id="upload-edit"></div>
                 <div id="upload-action" class="text-center">

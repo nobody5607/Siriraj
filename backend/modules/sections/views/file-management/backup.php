@@ -70,7 +70,7 @@
 <script> 
    $("#input-705").fileinput({
         uploadAsync: false,
-        uploadUrl: "/sections/file-management/upload-file",
+        uploadUrl: "<?= Url::to('/sections/file-management/upload-file')?>",
         uploadExtraData: function() {
             return {
                 content_id: "<?= Yii::$app->request->get('content_id', '')?>",

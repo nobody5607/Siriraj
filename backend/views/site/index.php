@@ -1,16 +1,17 @@
 <?php 
+    use yii\helpers\Url;
     $this->title = Yii::t('_app', 'Dashboard');
 ?>
 <div class="row" style="margin-bottom:10px;">
     <div class="col-md-12">
         <div class="pull-left">
-            <a href="/theme" class="btn btn-success btn-md" title="<?= Yii::t('appmenu','Themes Frontend')?>"><i class="fa fa-rocket"></i> <?= Yii::t('appmenu','Themes Frontend')?></a>
-            <a href="/slideimg" class="btn btn-warning btn-md" title="<?= Yii::t('appmenu','Slider Image')?>"><i class="fa fa-sliders"></i> <?= Yii::t('appmenu','Slider Image')?></a>
-            <a href="/example-data" class="btn btn-info btn-md" title="<?= Yii::t('_app','Example Data')?>"><i class="fa fa-table"></i> <?= Yii::t('_app','Example Data')?></a>
+            <a href="<?= Url::to(['/theme'])?>" class="btn btn-success btn-md" title="<?= Yii::t('appmenu','Themes Frontend')?>"><i class="fa fa-rocket"></i> <?= Yii::t('appmenu','Themes Frontend')?></a>
+            <a href="<?= Url::to(['/slideimg'])?>" class="btn btn-warning btn-md" title="<?= Yii::t('appmenu','Slider Image')?>"><i class="fa fa-sliders"></i> <?= Yii::t('appmenu','Slider Image')?></a>
+            <a href="<?= Url::to(['/example-data'])?>" class="btn btn-info btn-md" title="<?= Yii::t('_app','Example Data')?>"><i class="fa fa-table"></i> <?= Yii::t('_app','Example Data')?></a>
          
-            <a href="/template/template-management/form-request" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Request information')?>"><i class="fa fa-files-o"></i> <?= Yii::t('_app', 'Request information')?></a>
-            <a href="/template/template-management/water-mark-image" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark image template')?>"><i class="fa fa-picture-o"></i> <?= Yii::t('_app', 'Water mark image template')?></a>
-            <a href="/template/template-management/water-mark-video" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark video template')?>"><i class="fa fa-file-video-o"></i> <?= Yii::t('_app', 'Water mark video template')?></a>
+            <a href="<?= Url::to(['/template/template-management/form-request'])?>" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Request information')?>"><i class="fa fa-files-o"></i> <?= Yii::t('_app', 'Request information')?></a>
+            <a href="<?= Url::to(['/template/template-management/water-mark-image'])?>" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark image template')?>"><i class="fa fa-picture-o"></i> <?= Yii::t('_app', 'Water mark image template')?></a>
+            <a href="<?= Url::to(['/template/template-management/water-mark-video'])?>" class="btn btn-default btn-md" title="<?= Yii::t('_app', 'Water mark video template')?>"><i class="fa fa-file-video-o"></i> <?= Yii::t('_app', 'Water mark video template')?></a>
          
         </div>
             
@@ -18,7 +19,7 @@
 </div>
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="/sections/session-management" style="text-decoration: none;color:#000;">
+        <a href="<?= Url::to(['/sections/session-management'])?>" style="text-decoration: none;color:#000;">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fa fa-files-o"></i></span>
 
@@ -32,7 +33,7 @@
         <!-- /.info-box -->
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="/user/index" style="text-decoration: none;color:#000;">
+        <a href="<?= Url::to(['/user/index'])?>" style="text-decoration: none;color:#000;">
         <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
 
@@ -47,7 +48,7 @@
     </div>
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="/viewcountermanagement/view-count" style="text-decoration: none;color:#000;">
+        <a href="<?= Url::to(['/viewcountermanagement/view-count'])?>" style="text-decoration: none;color:#000;">
         <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-eye"></i></span>
 
@@ -67,7 +68,7 @@
     
 
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="/order/order-management" style="text-decoration: none;color:#000;">
+        <a href="<?= Url::to(['/order/order-management'])?>" style="text-decoration: none;color:#000;">
         <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
 
@@ -98,7 +99,7 @@
                 <?php \richardfan\widget\JSRegister::begin();?>
                     <script>
                         function getTraffic(){
-                           let url = ' /viewcountermanagement/view-count/preview?year=<?= date('Y')?>&month=0&print=0';
+                           let url = '<?= Url::to(['/viewcountermanagement/view-count/preview?year='])?><?= date('Y')?>&month=0&print=0';
                             $('#view-traffic').html(`<div class='text-center'><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i></div>`)
                             $.get(url, function(data){
                               setTimeout(function(){
@@ -128,7 +129,7 @@
                 <?php \richardfan\widget\JSRegister::begin();?>
                     <script>
                         function getReportDownload(){
-                           let url = '/viewcountermanagement/view-count/report-download-preview?year=<?= date('Y')?>&month=0&print=0';
+                           let url = '<?= Url::to(['/viewcountermanagement/view-count/report-download-preview?year='])?><?= date('Y')?>&month=0&print=0';
                             $('#report-download').html(`<div class='text-center'><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i></div>`)
                             $.get(url, function(data){
                               setTimeout(function(){
@@ -155,7 +156,7 @@
 <?php \richardfan\widget\JSRegister::begin(); ?>
 <script>
     function setImageToText(){
-       let url = ' /site/image-to-text'; 
+       let url = '<?= Url::to(['/site/image-to-text'])?>'; 
         $.get(url, function(data){
            console.log(data);            
         });

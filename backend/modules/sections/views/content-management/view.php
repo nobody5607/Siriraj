@@ -1,6 +1,7 @@
 <?php
 
 use yii\bootstrap\Html;
+use yii\helpers\Url;
 use kartik\tabs\TabsX;
 
 $this->title = Yii::t('section', $title);
@@ -27,7 +28,7 @@ $modal = "modal-contents";
                                 'data-action' => 'create',
                                 'class' => 'btn btn-success btnCreateFile',
                                 'title' => Yii::t('appmenu', 'Create'),
-                                'data-url' => '/sections/session-management/create'
+                                'data-url' => Url::to(['/sections/session-management/create'])
                             ]);
                             ?>
                             <?php
@@ -38,7 +39,7 @@ $modal = "modal-contents";
                                 'data-action' => 'create',
                                 'class' => 'btn btn-danger btnDeleteBySelect',
                                 'title' => Yii::t('appmenu', 'Delete'),
-                                'data-url' => '/sections/session-management/create',
+                                'data-url' => Url::to(['/sections/session-management/create']),
                             ]);
                             ?> 
 
@@ -77,7 +78,7 @@ $modal = "modal-contents";
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
                                 <?=
-                                Html::a(Yii::t('section', 'More...'), "/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}", [
+                                Html::a(Yii::t('section', 'More...'), Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id=&filet_id={$f['id']}", [
                                     'id' => "btn-{$f['id']}",
                                     'data-action' => 'view-file',
                                     'class' => 'content-popup btnCall btn btn-default btn-block',
@@ -103,7 +104,7 @@ $modal = "modal-contents";
                 });
             }
             load_data = function () {
-                let url = '/sections/content-management/view-data-content'
+                let url = '<?= Url::to(['/sections/content-management/view-data-content'])?>'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "files_<?= $f['id'] ?>";
 
@@ -117,7 +118,7 @@ $modal = "modal-contents";
 
             }
             load_content_data = function () {
-                let url = '/sections/content-management/get-count-data'
+                let url = '<?= Url::to(['/sections/content-management/get-count-data'])?>'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "label_<?= $f['id'] ?>";
 
@@ -158,7 +159,7 @@ echo yii\bootstrap\Modal::widget([
         let content_id = '<?= Yii::$app->request->get('content_id', '') ?>';
         $('#<?= $modalf ?> .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
         $('#<?= $modalf ?>').modal('show');
-        let url = '/sections/file-management/upload-file';
+        let url = '<?= Url::to(['/sections/file-management/upload-file'])?>';
         let file_type = $(this).attr('file_type');
 
         $.get(url, {id: id, file_type: file_type, content_id: content_id}, function (res) {
@@ -172,7 +173,7 @@ echo yii\bootstrap\Modal::widget([
 
                 //yii.confirm('<?= Yii::t('file', 'Confirm Delete?') ?>', function(){
                 let id = $(this).attr('data-id');
-                let url = '/sections/file-management/delete-file';
+                let url = '<?= Url::to(['/sections/file-management/delete-file'])?>';
                 $('#panel-' + id + ' :checkbox:checked').each(function () {
                     let dataID = $(this).val();
                     if (!dataID) {

@@ -64,7 +64,7 @@ $itemMonth = ['0' => 'all', '1' => "ม.ค.", '2' => "ก.พ.", '3' => "มี
         let year = $('#year').val();
         let month = $('#month').val();
         let params = {year: year, month: month, print: 0};
-        let url = '/viewcountermanagement/view-count/report-download-preview';
+        let url = '<?= Url::to(['/viewcountermanagement/view-count/report-download-preview'])?>';
         
         
         $('#preview-count').html(`<div class='text-center'><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>`);

@@ -1,6 +1,7 @@
 <?php
 $this->title = Yii::t('section', 'Section');
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 ?>
 <div class="col-md-4 col-border-right section-left">
@@ -15,7 +16,7 @@ use yii\widgets\ListView;
                 'data-action' => 'create-section',
                 'class' => 'btn btn-success btnCall',
                 'title' => Yii::t('appmenu', 'Create'),
-                'data-url' => '/sections/session-management/create'
+                'data-url' => Url::to(['/sections/session-management/create'])
             ]);
             ?> 
         </div> <br/>
@@ -63,7 +64,7 @@ use yii\widgets\ListView;
     });
     function saveOrder(dataObj, type){
         let dataStr = dataObj.join();
-        let url ='/sections/session-management/order-content';
+        let url ='<?= Url::to(['/sections/session-management/order-content'])?>';
         $.post(url,{data:dataStr, type:type}, function(result){
             console.log(result);
             if(result.status == 'success') {

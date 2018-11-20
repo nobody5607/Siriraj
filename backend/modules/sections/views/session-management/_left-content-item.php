@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\helpers\Url;
 ?>
 
 <div class="flex-container">
@@ -10,7 +11,7 @@
     </div>
     <div class="flex-2">
         <?php 
-            $url = "/sections/session-management?id={$model['id']}";
+            $url = Url::to(['/sections/session-management?id='])."{$model['id']}";
             $name_str = backend\modules\sections\classes\JFiles::lengthName($model['name'], 25);
          
             echo Html::a("<img src='{$model['icon']}' style='width:50px;' class='img img-rounded'> {$name_str}", $url, ['title'=>$model['name']]);
@@ -24,7 +25,7 @@
             'data-action' => 'update-section',
             'class' => 'btn btn-primary btn-xs btnCall',
             'title' => Yii::t('appmenu', 'Edit'),
-            'data-url' => '/sections/session-management/update'
+            'data-url' => Url::to('/sections/session-management/update')
         ]);
         echo " ";
         echo Html::button("<i class='fa fa-trash'></i> ", [
@@ -33,7 +34,7 @@
             'data-action' => 'delete',
             'class' => 'btn btn-danger btn-xs btnCall',
             'title' => Yii::t('appmenu', 'Delete'),
-            'data-url' => '/sections/session-management/delete',
+            'data-url' => Url::to('/sections/session-management/delete'),
             'data-method' => 'POST'
         ]);
         ?>

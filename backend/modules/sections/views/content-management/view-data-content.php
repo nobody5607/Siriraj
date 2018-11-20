@@ -40,7 +40,7 @@
     }); 
     function saveOrder(dataObj){
         let dataStr = dataObj.join();
-        let url ='/sections/session-management/forder-files';
+        let url ='<?= yii\helpers\Url::to(['/sections/session-management/forder-files'])?>';
         $.post(url,{data:dataStr}, function(result){
             if(result.status == 'success') {
                 <?= appxq\sdii\helpers\SDNoty::show('result.message', 'result.status')?>

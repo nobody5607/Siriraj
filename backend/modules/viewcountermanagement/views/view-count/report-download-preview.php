@@ -87,7 +87,7 @@
         let month = $('#month').val();
         let params = {year: year, month: month, print: 0};
 
-        let url = '/viewcountermanagement/view-count/report-download-preview?year=' + year + '&month=' + month + '&print=1';
+        let url = '<?= yii\helpers\Url::to(['/viewcountermanagement/view-count/report-download-preview?year='])?>' + year + '&month=' + month + '&print=1';
         window.open(url, "_blank");
         return false;
     });

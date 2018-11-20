@@ -14,7 +14,7 @@
         $fileName = backend\modules\sections\classes\JFiles::lengthName($i['file_name_org'], 60);
         
    ?>
-        <a title='<?= $i['details']?>' target="_BLANK" href="/sections/content-management/view-file?content_id=<?= $i['content_id'] ?>&file_id=<?= $i['id'] ?>&filet_id=<?= $i['file_type'] ?>">    
+    <a title='<?= $i['details']?>' target="_BLANK" href="<?= yii\helpers\Url::to(['/sections/content-management/view-file?content_id='])?><?= $i['content_id'] ?>&file_id=<?= $i['id'] ?>&filet_id=<?= $i['file_type'] ?>">    
             <img class="img img-responsive img-rounded image-sliders" src="<?= "{$i['file_path']}/thumbnail/{$i['file_view']}"?>">
             <div class="text-center captur-text"><?= $fileName?></div>
             

@@ -36,7 +36,7 @@
     $('.btnSubmit').on('click', function(){
        let option_value = $('#template').val();
        let option_name = '<?= $template['option_name']?>'
-       let url = '/template/template-management/form-request';
+       let url = '<?= yii\helpers\Url::to(['/template/template-management/form-request'])?>';
        let params = { option_name:option_name, option_value:option_value};
        $.post(url, params, function(data){
     

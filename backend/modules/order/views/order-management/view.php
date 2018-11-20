@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -103,7 +104,7 @@ $this->title = Yii::t('order','Order detail');
 <script>
     $('.btn-delete').on('click', function(){
         let id=$(this).attr('data-id');
-        let url = '/order/order-management/delet-order-detail';
+        let url = '<?= Url::to(['/order/order-management/delet-order-detail'])?>';
         
         yii.confirm('<?= Yii::t('cart', 'Are you sure you want to delete this item?')?>', function() {
             $.post(url, {id:id}, function(data){

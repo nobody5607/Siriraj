@@ -1,10 +1,11 @@
 <?php 
     use yii\helpers\Html;
+    use yii\helpers\Url;
     $folderImage = Yii::getAlias('@storageUrl/avatars/folder.png');
 ?>
 
 <div class="box-comment" style="display: flex;"> 
-    <a href="/sections/content-management/view?content_id=<?= $model['id']?>" style="flex-grow:2">
+    <a href="<?= Url::to(['/sections/content-management/view?content_id='])?><?= $model['id']?>" style="flex-grow:2">
     <?= \yii\helpers\Html::img($model['thumn_image'], ['class'=>'img-circle img-sm'])?>
     <div class="comment-text">
         <span class="username">
@@ -22,7 +23,7 @@
             'data-action' => 'update',
             'class' => 'btn btn-primary btn-xs btnCall',
             'title' => Yii::t('appmenu', 'Edit'),
-            'data-url' => '/sections/content-management/update'
+            'data-url' => Url::to(['/sections/content-management/update'])
         ]);
         echo " ";
          echo Html::button("<i class='fa fa-trash'></i>", [
@@ -30,7 +31,7 @@
             'data-action' => 'delete',
             'class' => 'btn btn-danger btn-xs btnCall',
             'title' => Yii::t('appmenu', 'Delete'),
-            'data-url' => '/sections/content-management/delete',
+            'data-url' => Url::to(['/sections/content-management/delete']),
             'data-method'=>'POST'
         ]);
         ?>

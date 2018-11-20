@@ -41,22 +41,19 @@
     $taga .= "<div style='margin-bottom:10px;text-align:center;'>";            
             $taga .= Html::button("<i class='fa fa-trash'></i>", [
                  'data-id' => $model['id'],
-                //'data-parent_id' => Yii::$app->request->get('id', '0'),
                 'data-action' => 'delete',
                 'class' => 'btn btn-danger btn-xs btnDelete',
                 'title' => Yii::t('appmenu', 'Delete'),
-                'data-url' => '/sections/file-management/delete-file',
+                'data-url' => yii\helpers\Url::to(['/sections/file-management/delete-file']),
                 'data-method' => 'POST'
             ]);
         $taga .= "</div>";
-    $taga .=  Html::a($link,"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ,
-    //['/knowledges/content/view-content-data','content_id'=>$_GET['content_id'], 'file_id'=>$model['id'], 'filet_id'=>$model['file_type']], 
+    $taga .=  Html::a($link, yii\helpers\Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ,
     [
         'id'=>"btn-{$model['id']}",
         'data-action'=>'view-file',
         'class'=>'content-popup btnCall',
         'data-id'=>$model['id'],
-        //'data-url'=>"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}"
     ]);
     echo $taga;
 ?> 
