@@ -77,7 +77,7 @@ use yii\helpers\Html;
 <script>
      $('.btnSendMail').on('click', function(){
        let email = $('#email').val();  
-       let url = '/sections/order/print?id=<?= $_GET['id']?>&type=mail&email='+email;  
+       let url = '<?= yii\helpers\Url::to(['/sections/order/print?id='])?><?= $_GET['id']?>&type=mail&email='+email;  
        location.href = url;
        return false; 
     }); 

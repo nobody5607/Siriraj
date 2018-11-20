@@ -1,6 +1,7 @@
 <?php
 
 use yii\bootstrap\Html;
+use yii\helpers\Url;
 use kartik\tabs\TabsX;
 
 $this->title = Yii::t('section', $title);
@@ -30,7 +31,7 @@ $modal = "modal-contents";
                     <div class="box-footer read-all">
                         <div class="row">
                             <div class="text-center">
-                                <?=  Html::a(Yii::t('section', 'more...'),"/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
+                                <?=  Html::a(Yii::t('section', 'more...'),Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id=&filet_id={$f['id']}" , [
                                     'id'=>"btn-{$f['id']}",
                                     'data-action'=>'view-file',
                                     'class'=>'content-popup btnCall text-center',
@@ -49,7 +50,7 @@ $modal = "modal-contents";
              
              
             load_data = function () {
-                let url = '/sections/content-management/view-data-content'
+                let url = '<?= Url::to(['/sections/content-management/view-data-content'])?>'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "files_<?= $f['id'] ?>";
 
@@ -61,7 +62,7 @@ $modal = "modal-contents";
 
             }
             load_content_data = function () {
-                let url = '/sections/content-management/get-count-data'
+                let url = '<?= Url::to(['/sections/content-management/get-count-data'])?>'
                 let content_id = "<?= Yii::$app->request->get('content_id') ?>";
                 let select_id = "label_<?= $f['id'] ?>";
 

@@ -35,7 +35,7 @@
     $('.btn-parent').css({ cursor:'pointer' });
     $('.btn-parent').on('click',function(){
         let id = $(this).attr('data-id');   
-        let url = '/sections/section?id='+id;  
+        let url = '<?= yii\helpers\Url::to(['/sections/section?id='])?>'+id;  
         location.href = url;
     });
 </script>

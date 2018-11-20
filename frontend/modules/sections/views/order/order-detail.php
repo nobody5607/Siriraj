@@ -76,7 +76,7 @@
 <script>
     $('.btn-delete').on('click', function(){
         let id=$(this).attr('data-id');
-        let url = '/sections/order/delet-order-detail';
+        let url = '<?= yii\helpers\Url::to(['/sections/order/delet-order-detail'])?>';
         
         yii.confirm('<?= Yii::t('cart', 'Are you sure you want to delete this item?')?>', function() {
             $.post(url, {id:id}, function(data){

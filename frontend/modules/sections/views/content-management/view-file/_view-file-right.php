@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 <div class="col-md-4 view-file-right">
@@ -75,7 +75,7 @@ use yii\helpers\Html;
                                             $contentID = isset($files['content_id']) ? $files['content_id'] : Yii::$app->request->get('content_id','');
                                              
                                         ?>
-                                        <a href="/sections/content-management/view-file?content_id=<?= $contentID?>&file_id=<?= $fileId?>&filet_id=<?= $v['id']?>" class="list-group-item">
+                            <a href="<?= Url::to(['/sections/content-management/view-file?content_id='])?><?= $contentID?>&file_id=<?= $fileId?>&filet_id=<?= $v['id']?>" class="list-group-item">
                                             <h4 class="list-group-item-heading"><i class="fa <?= "{$v['icon']}"?>"></i> <?= $v['name'] ?></h4>                                       
                                         </a>
                                     <?php endif; ?>                            

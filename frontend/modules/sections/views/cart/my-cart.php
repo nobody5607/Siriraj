@@ -78,7 +78,7 @@
         <div class="panel-footer text-center" style="">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <a href="/sections/cart/my-check-out?step=1" class="btn btn-info btn-block btn-lg" style="position: relative;">
+                    <a href="<?= yii\helpers\Url::to(['/sections/cart/my-check-out?step=1'])?>" class="btn btn-info btn-block btn-lg" style="position: relative;">
                         <i class="fa fa-shopping-cart"></i> <?= Yii::t('cart', 'Next')?>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
 <script>
     $('.btn-delete').on('click', function(){
         let id=$(this).attr('data-id');
-        let url = '/sections/cart/delete-cart';
+        let url = '<?= yii\helpers\Url::to(['/sections/cart/delete-cart'])?>';
         
         yii.confirm('<?= Yii::t('cart', 'Are you sure you want to delete this item?')?>', function() {
             $.post(url, {id:id}, function(data){

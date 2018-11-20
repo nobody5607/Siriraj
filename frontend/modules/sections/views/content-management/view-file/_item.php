@@ -13,7 +13,7 @@ use yii\helpers\Url;
 <?php $this->registerCss("a{color:#000;}") ?>
 
 
-<a href="<?= "/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ?>" style="margin-top: 5px;" href=""   data-id="<?= $model['id'] ?>" id="<?= "btn-{$model['id']}" ?>" data-action="view-file" class="content-popup btnCall text-left">
+<a href="<?= Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}" ?>" style="margin-top: 5px;" href=""   data-id="<?= $model['id'] ?>" id="<?= "btn-{$model['id']}" ?>" data-action="view-file" class="content-popup btnCall text-left">
     <?php
     if ($model['file_type'] == '2') {
         if ((!Yii::$app->user->isGuest) && (Yii::$app->user->can("administrator") || Yii::$app->user->can("admin") || Yii::$app->user->can("users"))) {
@@ -32,7 +32,7 @@ use yii\helpers\Url;
                     <div class='clearfix' style='    margin-bottom: 20px;'></div>
                 ";
         }
-        echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
+        echo "<a href='".Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
         echo Html::img("{$model['file_path']}/thumbnail/{$model['file_view']}", [
             'class' => 'img img-responsive img-rounded',
             'style' => 'height:120px;    margin: 0 auto;'
@@ -58,7 +58,7 @@ use yii\helpers\Url;
                     <div class='clearfix'></div>
                 ";
         }
-        echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
+        echo "<a href='".Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
             echo "<div style='    margin: 0 auto; margin-top: 15px;'>";
             $imgs = "{$model['file_path']}/{$model['file_name']}_.jpg";
             echo Html::img($imgs,['class'=>'img img-responsive' , 'style'=>'margin:0 auto;']);
@@ -91,7 +91,7 @@ use yii\helpers\Url;
                     <div class='clearfix'></div>
                 ";
         }
-        echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
+        echo "<a href='".Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";
         echo "            
                 <div style='font-size: 50pt;text-align: center;padding-top: 15px;'><i class='fa fa-music'></i></div>
             ";
@@ -117,7 +117,7 @@ use yii\helpers\Url;
             $fileNameStr = explode(".", $model['file_name']);
             ///appxq\sdii\utils\VarDumper::dump($fileNameStr);
             $icon = "";
-            echo "<a href='/sections/content-management/view-file?content_id={$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";                        
+            echo "<a href='".Url::to(['/sections/content-management/view-file?content_id='])."{$_GET['content_id']}&file_id={$model['id']}&filet_id={$model['file_type']}' style='margin-top: 5px;' href='#'  data-id='{$model['id']}' id='btn-{$model['id']}' data-action='view-file' class='content-popup btnCall text-left'>";                        
             if ($fileNameStr[1] == 'doc' || $fileNameStr[1] == 'docx') {
                 $icon = "<i class='fa fa-file-word-o'></i>";
             } else if ($fileNameStr[1] == 'ppt' || $fileNameStr[1] == 'pptx') {
@@ -169,13 +169,13 @@ use yii\helpers\Url;
     <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
     $('.download').on('click', function () {
-        let url = '/site/convert';//$(this).attr('data-href');
+        let url = '<?= Url::to(['/site/convert'])?>';//$(this).attr('data-href');
         let id = $(this).attr('data-id');
         let name = $(this).attr('data-name');
         let type = $(this).attr('data-type');
         //download("data:image/gif;base64,R0lGODlhRgAVAIcAAOfn5+/v7/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAAAAP8ALAAAAABGABUAAAj/AAEIHAgggMGDCAkSRMgwgEKBDRM+LBjRoEKDAjJq1GhxIMaNGzt6DAAypMORJTmeLKhxgMuXKiGSzPgSZsaVMwXUdBmTYsudKjHuBCoAIc2hMBnqRMqz6MGjTJ0KZcrz5EyqA276xJrVKlSkWqdGLQpxKVWyW8+iJcl1LVu1XttafTs2Lla3ZqNavAo37dm9X4eGFQtWKt+6T+8aDkxUqWKjeQUvfvw0MtHJcCtTJiwZsmLMiD9uplvY82jLNW9qzsy58WrWpDu/Lp0YNmPXrVMvRm3T6GneSX3bBt5VeOjDemfLFv1XOW7kncvKdZi7t/S7e2M3LkscLcvH3LF7HwSuVeZtjuPPe2d+GefPrD1RpnS6MGdJkebn4/+oMSAAOw==", "dlDataUrlBin.gif", "image/gif");
         if (type == '5') { 
-             url = '/site/get-url-file';
+             url = '<?= Url::to(['/site/get-url-file'])?>';
              $.get(url, {id: id}, function (data) {
                if(data['status'] === "success"){
                    downloadFile(data['data']['path'], data['data']['name']);

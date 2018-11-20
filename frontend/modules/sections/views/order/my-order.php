@@ -1,5 +1,6 @@
 <?php 
     use yii\helpers\Html;
+    use yii\helpers\Url;
     $this->title = Yii::t('appmenu', 'REQUEST INFORMATION');
     if($breadcrumb){
         echo janpan\jn\widgets\BreadcrumbsWidget::widget([
@@ -77,11 +78,11 @@
                         'template'=>'{preview} {send-mail} {print} {delete}',
                         'buttons'=>[
                           'preview' => function($url,$model,$key){                               
-                             return Html::a('<i class="fa fa-eye"></i>', "/sections/order/print?id={$model['id']}&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-xs', 'target'=>'_blank']);   
+                             return Html::a('<i class="fa fa-eye"></i>', Url::to(['/sections/order/print?id='])."{$model['id']}&type=preview", ['title'=>Yii::t('order','Preview'),'data-id'=>$model['id'], 'class'=>'btns btn btn-info btn-xs', 'target'=>'_blank']);   
                           },  
                           'send-mail' => function($url,$model,$key){
                               
-                                  return Html::a('<i class="fa fa-envelope"></i>',"/sections/order/print?id={$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btns btn btn-success btn-xs', 'target'=>'_blank' ]);
+                                  return Html::a('<i class="fa fa-envelope"></i>',Url::to(['/sections/order/print?id='])."{$model['id']}&type=mail", ['title'=> Yii::t('order','Send Email'),'data-id'=>$model['id'], 'class'=>'btns btn btn-success btn-xs', 'target'=>'_blank' ]);
                                
                           },
                           'print' => function($url,$model,$key){                               
@@ -110,7 +111,7 @@
 <script>
     $('.btn-delete').on('click', function(){
         let id=$(this).attr('data-id');
-        let url = '/sections/order/delet-order';
+        let url = '<?= Url::to(['/sections/order/delet-order'])?>';
         
         yii.confirm('<?= Yii::t('cart', 'Are you sure you want to delete this item?')?>', function() {
             $.post(url, {id:id}, function(data){

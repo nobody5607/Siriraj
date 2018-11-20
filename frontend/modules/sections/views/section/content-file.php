@@ -27,7 +27,7 @@
                 <div class="row" style="margin-top:10px;">
                         <div class="col-md-6 col-md-offset-3">
                             <?=
-                                Html::a(Yii::t('section', 'more...'), "/sections/content-management/view-file?content_id={$content_id}&file_id=&filet_id={$f['id']}", [
+                                Html::a(Yii::t('section', 'more...'), yii\helpers\Url::to(['/sections/content-management/view-file?content_id='])."{$content_id}&file_id=&filet_id={$f['id']}", [
                                     'id' => "btn-{$f['id']}",
                                     'data-action' => 'view-file',
                                     'class' => 'content-popup btnCall text-center btn btn-success btn-lg btn-block',

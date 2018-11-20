@@ -58,7 +58,7 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
             $('.btn-parent').css({cursor: 'pointer'});
             $('.btn-parent').on('click', function () {
                 let id = $(this).attr('data-id');
-                let url = '/sections/section?id=' + id;
+                let url = '<?= yii\helpers\Url::to(['/sections/section?id='])?>' + id;
                 location.href = url;
             });
         </script>
@@ -106,7 +106,7 @@ $name_str = backend\modules\sections\classes\JFiles::lengthName($section_obj['na
                 $('.btn-content').css({cursor: 'pointer'});
                 $('.btn-content').on('click', function () {
                     let id = $(this).attr('data-id');
-                    let url = '/sections/section/content-management?content_id=' + id;
+                    let url = '<?= yii\helpers\Url::to(['/sections/section/content-management?content_id='])?>' + id;
                     location.href = url;
                 });
             </script>

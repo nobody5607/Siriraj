@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 ?>
-<a href="/sections/content-management/view?content_id=<?= $model['id']?>">
+<a href="<?= yii\helpers\Url::to(['/sections/content-management/view?content_id='])?><?= $model['id']?>">
 <div class="product-img">
     <img src="<?= $model['thumn_image'] ?>" alt="<?= Html::encode($model['name']) ?>">
 </div>

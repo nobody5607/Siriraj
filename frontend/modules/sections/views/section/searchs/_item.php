@@ -1,6 +1,6 @@
 <?php 
     use yii\helpers\Html;
-    $link_url = "/sections/content-management/view-file?content_id={$model->content_id}&file_id={$model->id}&filet_id={$model->file_type}";
+    $link_url = yii\helpers\Url::to(['/sections/content-management/view-file?content_id='])."{$model->content_id}&file_id={$model->id}&filet_id={$model->file_type}";
     $meta_text = appxq\sdii\utils\SDUtility::string2Array($model['meta_text']);
     
     $content = \backend\modules\sections\classes\JContent::getContentById($model->content_id);

@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 
 \janpan\jn\assets\jlightbox\JLightBoxAsset::register($this);
 \janpan\jn\assets\file_download\FileDownloadAsset::register($this);
@@ -98,7 +100,7 @@ use yii\helpers\Html;
                                         } 
                                         $this->registerJs("
                                             function convertToPDF(){
-                                                let url='/site/doc-to-pdf';
+                                                let url='".Url::to(['/site/doc-to-pdf'])."';
                                                 let params={id:'".$dataDefault['id']."'};
                                                 $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
                                                 $.post(url,params, function(data){
@@ -111,7 +113,7 @@ use yii\helpers\Html;
                                                 }); 
                                             }
                                             function convert(id, path){
-                                                let url='/site/create-file';
+                                                let url='".Url::to(['/site/create-file'])."';
                                                 let params={id:id, path:path};
                                                 $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
                                                 $.post(url,params, function(data){
@@ -121,7 +123,7 @@ use yii\helpers\Html;
                                                 });
                                             }
                                             function view(){
-                                                let url='/site/view-file';
+                                                let url='".Url::to(['/site/view-file'])."';
                                                 let params={id:'".$dataDefault['id']."'};
                                                 $.post(url,params, function(data){
                                                     $('#preview-file').html(data);
@@ -134,7 +136,7 @@ use yii\helpers\Html;
                                     }else if($type == 'pdf'){
                                         $this->registerJs("
                                             function convert(){
-                                                let url='/site/create-file';
+                                                let url='".Url::to(['/site/create-file'])."';
                                                 let params={id:'".$dataDefault['id']."'};
                                                 $('#preview-file').html('<div style=\'text-align:center;margin:0 auto;\'><i class=\"fa fa-spinner fa-spin fa-3x fa-fw\"></i></div>')    
                                                 $.post(url,params, function(data){
@@ -144,7 +146,7 @@ use yii\helpers\Html;
                                                 });
                                             }
                                             function view(){
-                                                let url='/site/view-file';
+                                                let url='".Url::to(['/site/view-file'])."';
                                                 let params={id:'".$dataDefault['id']."'};
                                                 $.post(url,params, function(data){
                                                     $('#preview-file').html(data);
@@ -252,7 +254,7 @@ use yii\helpers\Html;
             <?= \appxq\sdii\helpers\SDNoty::show('res.message', 'res.status') ?>
             return false;
         }
-        let url = "/sections/cart/add-cart";
+        let url = "<?= Url::to(['/sections/cart/add-cart'])?>";
         let size = $('.check-size:checked').val();
         $.post(url, {id: id_str, size: size}, function (res) {
             if (res['status'] == 'success') {

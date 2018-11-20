@@ -38,7 +38,7 @@
         let type_id = $('#search_param').val();
         let txtsearch = $('#txtsearch').val();
         let params = {type_id:type_id, txtsearch:txtsearch};
-        let url = "/sections/session-management/search?type_id="+type_id+"&txtsearch="+txtsearch;
+        let url = "<?= yii\helpers\Url::to(['/sections/session-management/search?type_id='])?>"+type_id+"&txtsearch="+txtsearch;
         //window.open(url,'_blank');
         location.href = url;
         

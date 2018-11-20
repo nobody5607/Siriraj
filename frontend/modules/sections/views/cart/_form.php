@@ -54,7 +54,7 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
             <?= SDNoty::show('result.message', 'result.status')?>
             
             setTimeout(function(){
-                location.href = '/sections/order/my-order';
+                location.href = '<?= yii\helpers\Url::to(['/sections/order/my-order'])?>';
             },1000);
              
             
