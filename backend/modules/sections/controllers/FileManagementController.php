@@ -236,6 +236,7 @@ class FileManagementController extends Controller
  
     public function actionUploadFile()
     {
+       
         $file_type = Yii::$app->request->get('file_type', '');
         $content_id = Yii::$app->request->get('content_id', '');
         $model = new \common\models\Files();
@@ -272,7 +273,7 @@ class FileManagementController extends Controller
                         $filePath       = "{$path}/{$realFileName}";
                         $fileType       = explode('/', $file->type);
                         $thumbnail      = "{$path}/thumbnail/{$realFileName}";                        
-                        $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
+                        $viewPath       = Yii::getAlias('@storageUrl') . "/files/{$folderName}"; 
                         $fileNames      = "{$realFileName}.{$obj['type']}";
                         // \appxq\sdii\utils\VarDumper::dump($fileType[0]);
                         $objType = ['vob','avi','mpeg2','wmv','rmvb','3gp','flv','m4v','mkv','mov','mpeg','mpg','mts','webm','wmv'];

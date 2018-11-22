@@ -24,6 +24,7 @@
                     'attribute'=>'name',
                     'label'=>Yii::t('file','Image'),
                     'value'=>function($model){
+                        
                         $src = Yii::getAlias('@storageUrl')."{$model->path}/{$model->name}";                        
                         return yii\helpers\Html::img($src,['style'=>'width:80px']);
                     }

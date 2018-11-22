@@ -87,15 +87,15 @@ class TemplateManagementController extends \yii\web\Controller
                     $filePath   = "{$path}/{$fileName}";
                     $target     = "{$path}/mark_".$genName.".png";
                     if ($f->saveAs($filePath)) {
-                        $sql  = "convert {$filePath} -resize 120x120 {$target}";
+                        $sql  = "magick convert {$filePath} -resize 120x120 {$target}";
                         if($default_image == "1"){
-                            $sql  = "convert {$filePath} {$target}";
+                            $sql  = "magick convert {$filePath} {$target}";
                         }
                         exec($sql, $out, $retval);
                         @unlink($filePath);
                     }
                     $model->name = "mark_".$genName.".png";         
-                    $model->path = $pathDefault;
+                    $model->path = "/images/watermark";
                 }   
             }
             $model->code    = $post['code'];

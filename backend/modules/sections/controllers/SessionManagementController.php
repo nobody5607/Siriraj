@@ -49,14 +49,16 @@ class SessionManagementController extends Controller
                 'pageSize' => 100,
             ],
         ]);          
-        
+
+        //\appxq\sdii\utils\VarDumper::dump($contentProvider->allModels);
+
         return $this->render("index",[
             'dataProvider'=>$dataProvider,
             'contentProvider'=>$contentProvider,
             'breadcrumb'=>$breadcrumb,
             'title'=>($title['id']==0) ? '' : $title['name'],
             'content_section'=>$content_section,
-            'public'=>$public
+            'public'=>$public 
         ]);
     }
     public function actionCreate()
@@ -98,7 +100,7 @@ class SessionManagementController extends Controller
     public function actionUpdate($id)
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');     
+            $parent_id = Yii::$app->request->get('parent_id', '0');     
             
 	    $model =  Sections::findOne($id);
              
@@ -115,7 +117,8 @@ class SessionManagementController extends Controller
 		}
 	    } else {
 		$parent_section = Sections::find()->where('rstat not in(0,3)')->all();
-                $model->parent_id = $parent_id; 
+        $model->parent_id = $parent_id; 
+       
 		return $this->renderAjax('update', [
 		    'model' => $model,
                     'parent_section'=>$parent_section
