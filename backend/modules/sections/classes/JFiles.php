@@ -451,7 +451,7 @@ class JFiles {
 
 
              if ($file->extension == "mkv") {
-                 @unlink("{$filePath.mp4");
+                 @unlink("{$filePath}.mp4");
              }
 
             @unlink("{$filePath}_mark.mkv");

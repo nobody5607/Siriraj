@@ -15,7 +15,7 @@
         } else if ($model->file_type == 3) {//วีดีโอ (ตัดต่อ)
             $accept = 'video/*';
             echo "<label>Select video type</label>";
-            echo Html::radioList("status", 2, ['1'=>'footage', '2'=>'video clip'], ['id'=>'status']);
+            echo Html::radioList("status", 1, ['1'=>'footage', '2'=>'video clip'], ['id'=>'status']);
         }else if ($model->file_type == 4) { //audio
             $accept = 'audio/*';            
         }
