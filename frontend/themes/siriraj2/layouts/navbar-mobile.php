@@ -20,7 +20,6 @@
     
     <?php if(!Yii::$app->user->isGuest):?>
      <a href="<?= Url::to(['/sections/order/my-order'])?>"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('appmenu', 'REQUEST INFORMATION') ?></a>
-     <a href="<?= Url::to(['/sections/cart/my-cart'])?>" ><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'รายการคำร้องขอ') ?></a>
      <a href="<?= Url::to(['/account/sign-in/logout'])?>" data-method="post" tabindex="-1"><i class="fa fa-unlock-alt"></i>  <?= Yii::t('appmenu', 'LOGOUT') ?></a>
     <?php endif; ?>
     
