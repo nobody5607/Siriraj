@@ -16,7 +16,7 @@ class CNParent {
     }
     public static function buildSectionTree($section, $level)
     {
-        $rootNode = \common\models\Sections::find()->where('id=:id', [':id'=>$section])->asArray()->one();
+        $rootNode = \common\models\Sections::find()->where('id=:id', [':id'=>$section])->andWhere('id <> 0')->asArray()->one();
         $childNodes = \common\models\Sections::find()->where('parent_id = :parent_id AND id <> :id AND rstat not in(0,3) ',[':parent_id'=>$rootNode['id'], ':id'=>$rootNode['id']])->asArray()->all();
         if(count($childNodes) < 1) {
             return 0;
@@ -36,7 +36,7 @@ class CNParent {
     public static function deleteSection($sectionID){
         $dataSectionTree = CNParent::getSectionTree($sectionID);                                                                               
         if(!$dataSectionTree){                                                                                                                 
-            $section = \common\models\Sections::find()->where(['id'=>$sectionID])->one();                                                      
+            $section = \common\models\Sections::find()->where(['id'=>$sectionID])->andWhere('id <> 0')->one();                                                      
             $section->rstat = '3';                                                                                                             
             if($section->save()){                                                                                                              
                 $contents = \common\models\Contents::find()->where(['section_id'=>$section['id']])->all();                                     
@@ -50,19 +50,22 @@ class CNParent {
                 }                                                                                                                              
             }                                                                                                                                  
         }       
-        foreach($dataSectionTree as $k =>$v){                                                                                                  
-            $section = \common\models\Sections::findOne($v['id']);                                                                             
-            $section->rstat = '3';                                                                                                             
-            if($section->save()){                                                                                                              
-                $contents = \common\models\Contents::find()->where(['section_id'=>$v['id']])->all();                                           
-                foreach($contents as $c){                                                                                                      
-                    $c->rstat = '3';                                                                                                           
-                    $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();                                             
-                    foreach($files as $f){                                                                                                     
-                        $f->delete();                                                                                                          
-                    }                                                                                                                          
-                }                                                                                                                              
-            }                                                                                                                                  
+        foreach($dataSectionTree as $k =>$v){    
+            if($v['id'] != '0'){
+                $section = \common\models\Sections::findOne($v['id']);                                                                             
+                $section->rstat = '3';                                                                                                             
+                if($section->save()){                                                                                                              
+                    $contents = \common\models\Contents::find()->where(['section_id'=>$v['id']])->all();                                           
+                    foreach($contents as $c){                                                                                                      
+                        $c->rstat = '3';                                                                                                           
+                        $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();                                             
+                        foreach($files as $f){                                                                                                     
+                            $f->delete();                                                                                                          
+                        }                                                                                                                          
+                    }                                                                                                                              
+                } 
+            }
+                                                                                                                                             
         }
         
     }

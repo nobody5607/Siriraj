@@ -46,7 +46,7 @@ $this->title = Yii::t('section','Siriraj Museum\'s Knowledge Management');
                     </div>
                 </div>
             </div>
-            <div class="clearfix">
+            <div class="clearfix" style="display:none;">
                     <div class="col-md-8">
                         <?php
                         $parent_list = \yii\helpers\ArrayHelper::map($parent_section, 'id', 'name');
