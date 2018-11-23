@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <?=  appxq\sdii\widgets\GridView::widget([
             'dataProvider' => $dataProvider,
-            //'filterModel' => $searchModel,
+            'filterModel' => $searchModel,
             'tableOptions'=>['class'=>'table table-hover table-bordered table-responsive'],
             'columns' => [
                 
@@ -92,6 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],  
                         
                [
+                   'attribute'=>'role',
                     'contentOptions' => ['style'=>'width:180px;text-align: center;'],
                     'label' => Yii::t('_user','ประเภทผู้ใช้'),
                     'value' => function ($model) {
@@ -108,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                        $rows = yii\helpers\ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
 //                        \appxq\sdii\utils\VarDumper::dump($rows);
                         
-                    } 
+                    } ,'filter'=>array("manager"=>"Manager","users"=>"Users", "administrator"=>'Administrator'),
                 ],  
                         
                 [

@@ -41,13 +41,14 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        //$searchModel = new UserSearch();
+        $searchModel = new UserSearch();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $search = Yii::$app->request->get('search', '');
+        $role = Yii::$app->request->get('UserSearch', '');
+        
+        
         
         $user = User::find()->innerJoinWith('userProfile', true);
- ;
-        
         $user->orFilterWhere(['like', 'username', $search])
                 ->orFilterWhere(['like', 'email', $search])
                 ->orFilterWhere(['like','firstname',  $search])
@@ -55,6 +56,25 @@ class UserController extends Controller
                 ->orFilterWhere(['like','sap_id',  $search])
                 ->orFilterWhere(['like','sitecode',  $search]);
         
+        if($role != ''){
+            $role = $role['role'];
+            $roles = (new \yii\db\Query())->select('*')->from('auth_assignment')->where(['item_name'=>$role])->all();
+            $user_id=[];
+            //\appxq\sdii\utils\VarDumper::dump($roles);
+            if(!empty($roles)){
+                foreach($roles as $k=>$v){
+                    array_push($user_id, $v['user_id']);
+                }
+                $user_id = join(',', $user_id);
+                
+                $user = User::find()
+                        ->where("id in({$user_id})")
+                        ->innerJoinWith('userProfile', true);
+            }else{
+                 
+            }
+            //\appxq\sdii\utils\VarDumper::dump($user->all());
+        }
         
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $user,
@@ -66,7 +86,7 @@ class UserController extends Controller
 //        ];
 
         return $this->render('index', [
-            //'searchModel' => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
