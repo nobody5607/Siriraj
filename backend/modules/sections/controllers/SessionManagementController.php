@@ -64,7 +64,7 @@ class SessionManagementController extends Controller
     public function actionCreate()
     {
 	if (Yii::$app->getRequest()->isAjax) {
-            $parent_id = Yii::$app->request->get('parent_id', '');
+            $parent_id = Yii::$app->request->get('parent_id', '0');
             $public = Yii::$app->request->get('public', '');  
 	    $model =  new Sections();
             $model->id          = \appxq\sdii\utils\SDUtility::getMillisecTime();
