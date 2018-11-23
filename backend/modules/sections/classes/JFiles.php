@@ -83,7 +83,20 @@ class JFiles {
         return FALSE;
     }
 
-    
+    /**
+     * 
+     * @param type $modelForm array ['filename'=>$filename, 'mark'=>$mark, 'target'=>$target]
+     * @param type $template  string "magick convert {filename} -gravity SouthEast {mark} -geometry +20+20  -composite {target}"
+     */
+    public static function getTemplateMark($modelForm, $template) {
+        $path = [];
+        foreach ($modelForm as $key => $value) {
+            $path["{" . $key . "}"] = $value;
+        }
+        $master = strtr($template, $path);
+        return $master;
+    }
+
     /**
      * 
      * @param type $file UploadedFile::getInstancesByName('name')
@@ -98,7 +111,7 @@ class JFiles {
             $default_type = ['jpg', 'png', 'gif', 'jpeg'];
             $type = "";
             $sql = "";
-            $mark = Yii::getAlias('@storage') . "/web/{$watermark['path']}/{$watermark['name']}";
+            $mark = Yii::getAlias('@storage') . "/{$watermark['path']}/{$watermark['name']}";
 
             $output = [];
             //\appxq\sdii\utils\VarDumper::dump($output);
@@ -112,8 +125,10 @@ class JFiles {
                     set_time_limit(1200);
                     $modelForm = ['filename' => "{$filePath}.{$fileType[1]}", 'mark' => $mark, 'target' => "{$filePath}_mark.{$fileType[1]}"];
                     $template = self::getTemplateMark($modelForm, $watermark['code']);
-                    $sql = "magick convert {$filePath}_mark.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.{$fileType[1]}";
-                    $sql2 = "magick convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
+                    $sql = "convert {$filePath}_mark.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.{$fileType[1]}";
+                    
+                    $sql2 = "convert {$filePath}.{$fileType[1]} -resize 200x200 {$thumbnail}_preview.jpg";
+                    
                     //2124x1414 
                     
                     @exec($template . " && " . $sql . " && " . $sql2, $out, $retval);
@@ -122,8 +137,8 @@ class JFiles {
                     exec("file {$filePath}.{$fileType[1]}", $des2);
 
                     //original file
-                    $sql10 = "magick convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
-                    $sql11 = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
                     @exec($sql10 . " && " . $sql11, $out, $retval);
                     
                     @unlink("{$filePath}.{$fileType[1]}");
@@ -139,7 +154,7 @@ class JFiles {
                 if ($file->saveAs("{$filePath}.{$fileType[1]}")) {
                     $type = "jpg";
 
-                    $sql = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.jpg";
+                    $sql = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_mark.jpg";
                     $modelForm = ['filename' => "{$filePath}.{$fileType[1]}", 'mark' => $mark, 'target' => "{$filePath}_mark.jpg"];
                     $template = self::getTemplateMark($modelForm, $watermark['code']);
                     set_time_limit(1200);
@@ -152,8 +167,8 @@ class JFiles {
                     
                     
                     //original file
-                    $sql10 = "magick convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
-                    $sql11 = "magick convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
+                    $sql10 = "convert {$filePath}.{$fileType[1]} -resize 2124x1414 {$thumbnail}_2124.{$fileType[1]}";
+                    $sql11 = "convert {$filePath}.{$fileType[1]} -resize 1024x768 {$thumbnail}_1024.{$fileType[1]}";
                     @exec($sql10 . " && " . $sql11, $out, $retval);
 
                     @unlink("{$filePath}.{$fileType[1]}");
@@ -385,20 +400,6 @@ class JFiles {
 //        }
 //        return $output;
     }
-/**
-     * 
-     * @param type $modelForm array ['filename'=>$filename, 'mark'=>$mark, 'target'=>$target]
-     * @param type $template  string "magick convert {filename} -gravity SouthEast {mark} -geometry +20+20  -composite {target}"
-     */
-    public static function getTemplateMark($modelForm, $template) {
-
-        $path = [];
-        foreach ($modelForm as $key => $value) {
-            $path["{" . $key . "}"] = $value;
-        }
-        $master = strtr($template, $path);
-        return $master;
-    }
 
     public static function uploadVideo($file, $filePath, $watermark, $status) {
         $format = ["mp4", "mpg", "mpeg", "mov", "avi", "flv", "wmv"];
@@ -411,7 +412,7 @@ class JFiles {
             //
         }
         $output = [];
-        $mark = Yii::getAlias('@storage') . "/web/{$watermark['path']}/{$watermark['name']}";
+        $mark = Yii::getAlias('@storage') . "/{$watermark['path']}/{$watermark['name']}";
         if ($file->saveAs($path)) {//save image
             exec("stat {$path}", $des1);
             exec("file {$path}", $des2);
@@ -431,29 +432,14 @@ class JFiles {
                 ];
             }
             set_time_limit(1200);
-             $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
-            if ($file->extension == "mkv") {
-                $tem="ffmpeg -i {$path} -c:v copy  -b:a 128k  {$filePath}.mp4";
-                exec($tem, $des1);
-                 $modelForm = ['filename' => "{$filePath}.mp4", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
-            }
-
-           
-
+            $modelForm = ['filename' => "{$path}", 'mark' => $mark, 'target' => "{$filePath}_mark.mkv", 'output' => "{$filePath}_marks.mp4"];
             $w = $watermark['code'];
-
             if ($status == '2') {
                 $w = \backend\modules\cores\classes\CoreOption::getParams('water_video', 'e');
             }
-            
             $template = self::getTemplateMark($modelForm, $w);
+
             exec($template, $output, $return_var);
-
-
-             if ($file->extension == "mkv") {
-                 @unlink("{$filePath}.mp4");
-             }
-
             @unlink("{$filePath}_mark.mkv");
             // \appxq\sdii\utils\VarDumper::dump($path);
             @unlink("{$path}");

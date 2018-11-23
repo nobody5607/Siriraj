@@ -136,8 +136,9 @@ class SessionManagementController extends Controller
             if($model->id == 0){
                 return \janpan\jn\classes\JResponse::getError(\Yii::t('session', 'Delete Error!'));
             }
+            \backend\modules\sections\classes\CNParent::deleteSection($id);
 	    if ($model->save()) {
-                \backend\modules\sections\classes\CNParent::deleteSection($id);
+                //\backend\modules\sections\classes\CNParent::deleteSection($id);
                 return \janpan\jn\classes\JResponse::getSuccess(\Yii::t('session', 'Delete data complete'), $model);
             } else {
                 return \janpan\jn\classes\JResponse::getError(\Yii::t('session', 'Delete Error!'));

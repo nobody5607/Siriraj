@@ -34,21 +34,37 @@ class CNParent {
         }
     }
     public static function deleteSection($sectionID){
-        $dataSectionTree = CNParent::getSectionTree($sectionID);
-        foreach($dataSectionTree as $k =>$v){
-            $section = \common\models\Sections::findOne($v['id']);
-            $section->rstat = '3';
-            if($section->save()){
-                $contents = \common\models\Contents::find()->where(['section_id'=>$v['id']])->all();
-                foreach($contents as $c){
-                    $c->rstat = '3';
-                    $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();
-                    foreach($files as $f){
-                        $f->delete();
-                    }
-                }
-            }
-        } 
+        $dataSectionTree = CNParent::getSectionTree($sectionID);                                                                               
+        if(!$dataSectionTree){                                                                                                                 
+            $section = \common\models\Sections::find()->where(['id'=>$sectionID])->one();                                                      
+            $section->rstat = '3';                                                                                                             
+            if($section->save()){                                                                                                              
+                $contents = \common\models\Contents::find()->where(['section_id'=>$section['id']])->all();                                     
+                foreach($contents as $c){                                                                                                      
+                    $c->rstat = '3';                                                                                                           
+                    $c->save();                                                                                                                
+                    $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();                                             
+                    foreach($files as $f){                                                                                                     
+                        $f->delete();                                                                                                          
+                    }                                                                                                                          
+                }                                                                                                                              
+            }                                                                                                                                  
+        }       
+        foreach($dataSectionTree as $k =>$v){                                                                                                  
+            $section = \common\models\Sections::findOne($v['id']);                                                                             
+            $section->rstat = '3';                                                                                                             
+            if($section->save()){                                                                                                              
+                $contents = \common\models\Contents::find()->where(['section_id'=>$v['id']])->all();                                           
+                foreach($contents as $c){                                                                                                      
+                    $c->rstat = '3';                                                                                                           
+                    $files = \common\models\Files::find()->where(['content_id'=>$c['id']])->all();                                             
+                    foreach($files as $f){                                                                                                     
+                        $f->delete();                                                                                                          
+                    }                                                                                                                          
+                }                                                                                                                              
+            }                                                                                                                                  
+        }
+        
     }
     
     

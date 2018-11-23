@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $model frontend\modules\account\models\SignupForm */
 
 $this->title = Yii::t('user', 'Sign up');
+
 ?>
 
 <?php
