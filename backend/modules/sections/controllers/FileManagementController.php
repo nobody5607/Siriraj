@@ -273,7 +273,7 @@ class FileManagementController extends Controller
                         $filePath       = "{$path}/{$realFileName}";
                         $fileType       = explode('/', $file->type);
                         $thumbnail      = "{$path}/thumbnail/{$realFileName}";                        
-                        $viewPath       = Yii::getAlias('@storageUrl') . "/files/{$folderName}"; 
+                        $viewPath       = Yii::getAlias('@storageUrl') . "{$folder}/{$folderName}"; 
                         $fileNames      = "{$realFileName}.{$obj['type']}";
                         // \appxq\sdii\utils\VarDumper::dump($fileType[0]);
                         $objType = ['vob','avi','mpeg2','wmv','rmvb','3gp','flv','m4v','mkv','mov','mpeg','mpg','mts','webm','wmv'];
