@@ -68,7 +68,7 @@ echo yii\bootstrap\Modal::widget([
                                 <div class="clearfix"></div>
                                 <div class="col-md-3"></div>
                                 <label class="col-md-6">
-                                    <input type="checkbox" class="btn btn-info" data-toggle="collapse" data-target="#demo"> บุคลาของคณะแพทยศาสตร์ศิริราชพยาบาล
+                                    <input type="checkbox" class="btn btn-info" data-toggle="collapse" data-target="#demo"> บุคลากรของคณะแพทยศาสตร์ศิริราชพยาบาล
                                 </label>
                             </div>
                     

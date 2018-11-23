@@ -9,7 +9,7 @@
 <li class="bg-green">
     <a href="<?= Url::to(['/sections/cart/my-cart'])?>" class="nav-cart-popup">
         <img src="<?= \yii\helpers\Url::to('@web/images/cart-icon.png') ?>" style="width:25px;"/>
-        ตะกร้าสินค้า
+        ตะกร้าขอข้อมูล
         <span class="my-cart">
             <?php if (!empty($cart)): ?>
                 <span class="badge" id="globalCart"> 1<?= $cart ?></span>  

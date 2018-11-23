@@ -10,7 +10,7 @@
     <a href="<?= Url::to(['/site/contact'])?>"><i class="fa fa-caret-right" aria-hidden="true"></i> <?= Yii::t('section', 'CONTACT US') ?></a>
     <a href="<?= Url::to(['/sections/cart/my-cart'])?>" class="nav-cart-popup">
         <img src="<?= \yii\helpers\Url::to('@web/images/cart-icon.png') ?>" style="width:25px;"/>
-        ตะกร้าสินค้า
+        ตะกร้าขอข้อมูล
         <span class="my-cart">
             <?php if (!empty($cart)): ?>
                 <span class="badge" id="globalCart"><?= $cart ?></span>  
