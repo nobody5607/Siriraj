@@ -58,17 +58,17 @@ echo yii\bootstrap\Modal::widget([
 
                     </div>
                     <div class="col-md-12">
-                        <?= $form->field($model, 'firstname')->textInput() ?>
+                        <?= $form->field($model, 'firstname')->textInput()->label('ชื่อจริง') ?>
                     </div>
                     <div class="col-md-12">
-                        <?= $form->field($model, 'lastname')->textInput() ?>
+                        <?= $form->field($model, 'lastname')->textInput()->label('นามสกุลจริง') ?>
                     </div>
                             <div class="col-md-12">
                                 
                                 <div class="clearfix"></div>
                                 <div class="col-md-3"></div>
                                 <label class="col-md-6">
-                                    <input type="checkbox" class="btn btn-info" data-toggle="collapse" data-target="#demo"> <?= Yii::t('_user','Staff')?>
+                                    <input type="checkbox" class="btn btn-info" data-toggle="collapse" data-target="#demo"> บุคลาของคณะแพทยศาสตร์ศิริราชพยาบาล
                                 </label>
                             </div>
                     
