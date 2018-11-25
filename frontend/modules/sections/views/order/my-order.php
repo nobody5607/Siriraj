@@ -126,7 +126,7 @@
        let url = $(this).attr('href');
        $('#<?= $modalId ?>').modal('show');
        $('#<?= $modalId ?> .modal-content').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-fw"></i></div>');
-       $.post(url,{id:id},function(data){
+       $.get(url,{id:id},function(data){
             $('#<?= $modalId ?> .modal-content').html(data); 
        });
        return false;

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <i class="fa fa-shopping-cart"></i> <?=  Html::encode($this->title) ?>
+        <img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?=  Html::encode($this->title) ?>
     </div>
     <div class="panel-body">
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,18 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php  Pjax::begin(['id'=>'order-grid-pjax']);?>
     <?= GridView::widget([
 	'id' => 'order-grid',
-	'panelBtn' => Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['/order/order-management/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-order', 'disabled'=>true]),
+	//'panelBtn' => Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['/order/order-management/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-order', 'disabled'=>true]),
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
         'columns' => [
-	    [
-		'class' => 'yii\grid\CheckboxColumn',
-		'checkboxOptions' => [
-		    'class' => 'selectionOrderIds'
-		],
-		'headerOptions' => ['style'=>'text-align: center;'],
-		'contentOptions' => ['style'=>'width:40px;text-align: center;'],
-	    ],
+//	    [
+//		'class' => 'yii\grid\CheckboxColumn',
+//		'checkboxOptions' => [
+//		    'class' => 'selectionOrderIds'
+//		],
+//		'headerOptions' => ['style'=>'text-align: center;'],
+//		'contentOptions' => ['style'=>'width:40px;text-align: center;'],
+//	    ],
 	    [
 		'class' => 'yii\grid\SerialColumn',
 		'headerOptions' => ['style'=>'text-align: center;'],
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    ],
              [
                 'format' => 'raw',
-                'contentOptions' => ['style' => 'width:200px;'],
+                'contentOptions' => ['style' => 'width:160px;'],
                 'attribute' => 'id',
                 'label' => Yii::t('order', 'Order Id'),
                 'value' => function($model) {
@@ -88,7 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'create_date',
                 'label'=>'วันที่ขอความอนุเคราะห์',
                 'value'=>function($model){
-                    return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
+//                    return appxq\sdii\utils\SDdate::mysql2phpDate($model->create_date);
+                    return appxq\sdii\utils\SDdate::mysql2phpThDateSmall($model->create_date);
                 },      
             ],
            [
@@ -115,14 +116,59 @@ $this->params['breadcrumbs'][] = $this->title;
             },
         ],
         [
+            'format' => 'raw',
+            'attribute' => 'admin_id',
+            'label' => 'อนุมัติโดย',
+            'value' => function($model) {
+               $model = \common\models\User::findOne($model->admin_id);
+               $name = '';
+               if($model){
+                   $fname = isset($model->userProfile->firstname) ? $model->userProfile->firstname : '';
+                   $lname = isset($model->userProfile->lastname) ? $model->userProfile->lastname : '';
+                   $name = "{$fname} {$lname}";
+                   
+               }
+               return $name;
+               
+                   // return $model->admin_id;
+            },
+            'filter' => \kartik\select2\Select2::widget([
+                'model' => $searchModel,
+                'attribute' => 'admin_id',
+                'data' => yii\helpers\ArrayHelper::map(common\models\UserProfile::find()->select(['user_id', 'concat(firstname,"  ", lastname) as name'])->asArray()->all(), 'user_id', 'name'),
+                'hideSearch' => false,
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'width' => 'resolve',
+                ],
+                'options' => [
+                    'id' => appxq\sdii\utils\SDUtility::getMillisecTime(),
+                    'style' => 'width:100%',
+                    'placeholder' => Yii::t('order', 'Search for name'),
+                ]
+            ]),
+        ], 
+        [
+            'format' => 'raw',
+            'attribute' => 'send_date',
+            'label' => 'วันที่อนุมัติ',
+            'contentOptions' => ['style' => 'width:100px;'],
+            'value' => function($model) {
+                if(isset($model->send_date)){
+                    return appxq\sdii\utils\SDdate::mysql2phpThDateTime($model->send_date);
+                }
+                return '';
+            },
+        ],            
+        [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
                         'contentOptions' => ['style'=>'width:50px;text-align: center;'],
-                        'template' => '{confirm} {download} {delete} ',
-                        'headerOptions' => ['style' => 'width:250px'],
+                        'template' => '{confirm}  {download} {delete} ',
+                        'headerOptions' => ['style' => 'width:280px'],
                         'buttons' => [
                             'confirm' => function ($url, $model) {
                                 $label = Yii::t('section', 'แก้ไข');
-                                return Html::a('<span class="fa fa-pencil"> แก้ไข</span> ', yii\helpers\Url::to(['/order/order-management/update', 'id' => $model->id]), [
+                                return Html::a('<span class="fa fa-pencil"> แก้ไขสถานะ</span> ', yii\helpers\Url::to(['/order/order-management/update', 'id' => $model->id]), [
                                             'title'         => $label,
                                             'class'         => 'btn btn-primary btn-xs btnEdit',
                                             'data-action'   => 'edit',
@@ -140,9 +186,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                             'download' => function ($url, $model) {
                                 
-                                return Html::a('<span class="fa fa-file-pdf-o"> ดาวน์โหลด PDF</span> ', yii\helpers\Url::to(['/order/order-management/download', 'id' => $model->id]), [
-                                            'title'         => 'ดาวน์โหลด PDF',
-                                            'class'         => 'btn btn-success btn-xs btnDownload',
+                                return Html::a('<span class="fa fa-eye"> ดูคำร้อง</span> ', yii\helpers\Url::to(['/order/order-management/view-request', 'id' => $model->id]), [
+                                            'title'         => 'ดูคำร้อง',
+                                            'class'         => 'btn btn-success btn-xs',
                                             'data-action'   => 'download',
                                             'data-pjax'     =>0
                                     ]);

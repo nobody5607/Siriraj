@@ -103,6 +103,8 @@ class OrderManagementController extends Controller
 //                $invoice->create_date = new \yii\db\Expression('NOW()');
 //                $invoice->admin_id = Yii::$app->user->id;
 //                $invoice->user_id = $model->user_id;
+                $model->admin_id = Yii::$app->user->id;
+                $model->send_date = new \yii\db\Expression('NOW()');
 		if ($model->save()) {
 //                    if($model->status != 1){
 //                         $invoice->save();
@@ -153,9 +155,11 @@ class OrderManagementController extends Controller
     public function actionDownload(){
         $id = Yii::$app->request->get('id', '');
         $order = Order::findOne($id);
-        // \appxq\sdii\utils\VarDumper::dump($order);
         $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
-        $model = \common\models\Shipper::find()->where(['user_id' => $order->user_id])->one();
+
+        
+        //\appxq\sdii\utils\VarDumper::dump($order);
+        
         $orderDetail = \common\models\OrderDetail::find()->where(['order_id' => $id])->all();
         $file_arr = [];
         if ($orderDetail) {
@@ -173,32 +177,33 @@ class OrderManagementController extends Controller
             }
             sort($file_arr);
         }
-        $product = "";
+        $product = $this->getProduct($id);
         $title = "";
-        if ($file_arr) {
-            $n = 1;
-            $checkType = $this->groupByPartAndType($file_arr);
-            foreach ($checkType as $c) {
-                $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
-                $title .= "{$c['file_type_name']} / ";
-                foreach ($file_arr as $key => $value) {
-                    $meta_text = substr($value['file_name'], -4, 5);
-                    if ($value['file_type'] == $c['file_type']) {
-                        $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
-                            </div>";
-                    }
-                }
-                $n++;
-            }
-        }
+//        if ($file_arr) {
+//            $n = 1;
+//            $checkType = $this->groupByPartAndType($file_arr);
+//            foreach ($checkType as $c) {
+//                $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
+//                $title .= "{$c['file_type_name']} / ";
+//                foreach ($file_arr as $key => $value) {
+//                    $meta_text = substr($value['file_name'], -4, 5);
+//                    if ($value['file_type'] == $c['file_type']) {
+//                        $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
+//                            </div>";
+//                    }
+//                }
+//                $n++;
+//            }
+//        }
         
         $title = substr($title, 0, strlen($title) - 2);
         $content = $this->renderPartial('download', [
         'template' => $template,
-         'model' => $model,
+        // 'model' => $model,
          'count' => count($orderDetail),
          'product' => $product,
          'title' => $title,
+         'id'=>$id
         ]);
         $layout = \kartik\mpdf\Pdf::ORIENT_PORTRAIT;
         $paperSize = \kartik\mpdf\Pdf::FORMAT_A4;
@@ -211,7 +216,7 @@ class OrderManagementController extends Controller
        \frontend\modules\sections\classes\JPrint::printPDF($layout, $paperSize, $title, $content, $fileName);
         $urlFile = \Yii::getAlias('@storageUrl');
        
-        $data = ['filename'=>$name , 'path'=>"{$urlFile}/web/pdf/"];
+        $data = ['filename'=>$name , 'path'=>"{$urlFile}/pdf/"];
         return \janpan\jn\classes\JResponse::getSuccess("Success", $data, 'download');
 
 }
@@ -311,5 +316,89 @@ public function groupByPartAndType($input) {
            'breadcrumb'=>$breadcrumbs,
            //'order'=>$order
         ]);
+    }
+    
+    public function actionViewRequest() {
+        $id = Yii::$app->request->get('id', '');
+
+        $template = \backend\modules\cores\classes\CoreOption::getParams('form_request');
+        $model = \common\models\Shipper::find()->where(['user_id' => Yii::$app->user->id])->one();
+        $orderDetail = \common\models\OrderDetail::find()->where(['order_id' => $id])->all();
+
+        $file_arr = [];
+        if ($orderDetail) {
+            foreach ($orderDetail as $key => $o) {
+                //\appxq\sdii\utils\VarDumper::dump($o->sizes->label);
+                $files = \common\models\Files::find()->where(['id' => $o->product_id])->one();
+                $file_arr[$key] = [
+                    'id' => isset($files->id) ? $files->id : '',
+                    'file_type' => isset($files->file_type) ? $files->file_type : '',
+                    'file_type_name' => isset($files->type->name) ? $files->type->name : '',
+                    'size' => isset($o->sizes->label) ? $o->sizes->label : '',
+                    'file_name_org' => isset($files->file_name_org) ? $files->file_name_org : '',
+                    'file_name' => isset($files->file_name) ? $files->file_name : '',
+                    'meta_text' => isset($files->meta_text) ? $files->meta_text : '',
+                ];
+            }
+            sort($file_arr);
+            // \appxq\sdii\utils\VarDumper::dump($files);
+        }
+
+        $product = $this->getProduct($id);
+        $title = "";
+
+        return $this->render('view-request', [
+            'template' => $template,
+            'model' => $model,
+            'product' => $product,
+            'id'=>$id
+            
+        ]);
+    }
+
+    public function getProduct($id){
+       $orderDetail = \common\models\OrderDetail::find()->where(['order_id' => $id])->all();
+        // \appxq\sdii\utils\VarDumper::dump($id);
+        $file_arr = [];
+        if ($orderDetail) {
+            foreach ($orderDetail as $key => $o) {
+                //\appxq\sdii\utils\VarDumper::dump($o->sizes->label);
+                $files = \common\models\Files::find()->where(['id' => $o->product_id])->one();
+                $file_arr[$key] = [
+                    'id' => isset($files->id) ? $files->id : '',
+                    'file_type' => isset($files->file_type) ? $files->file_type : '',
+                    'file_type_name' => isset($files->type->name) ? $files->type->name : '',
+                    'size' => isset($o->sizes->label) ? $o->sizes->label : '',
+                    'file_name_org' => isset($files->file_name_org) ? $files->file_name_org : '',
+                    'file_name' => isset($files->file_name) ? $files->file_name : '',
+                    'meta_text' => isset($files->meta_text) ? $files->meta_text : '',
+                ];
+            }
+            sort($file_arr);
+            // \appxq\sdii\utils\VarDumper::dump($files);
+        }
+
+        $product = "";
+        $title = "";
+        if ($file_arr) {
+            $n = 1;
+            $checkType = $this->groupByPartAndType($file_arr);
+            foreach ($checkType as $c) {
+                //$product .= "{$n}. ไฟล์ {$c['file_type_name']} เรื่อง ";
+                $title .= "{$c['file_type_name']} / ";
+                foreach ($file_arr as $key => $value) {
+                    $meta_text = substr($value['file_name'], -4, 5);
+                    if ($value['file_type'] == $c['file_type']) {
+                        $product .= "<div class='f-t-11' style='margin-bottom:10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".($key+1).". {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                            </div>";
+                    }
+                    //$product .= "<span>{$key}</span>";
+                    $n++;
+                }
+                
+            }
+        }
+        return $product;
+//        \appxq\sdii\utils\VarDumper::dump($product);
     }
 }

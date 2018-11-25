@@ -158,24 +158,24 @@ class OrderController extends Controller
                // \appxq\sdii\utils\VarDumper::dump($files);
             }
             
-            $product = "";
+            $product = $this->getProduct($id);
             $title = "";
-            if($file_arr){
-                $n=1;
-                $checkType = $this->groupByPartAndType($file_arr);
-                foreach($checkType as $c){
-                    $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
-                    $title .= "{$c['file_type_name']} / ";
-                    foreach($file_arr as $key=>$value){
-                        $meta_text = substr($value['file_name'], -4, 5);
-                        if($value['file_type'] == $c['file_type']){
-                            $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
-                            </div>";
-                        }
-                    }
-                    $n++;
-                }
-            }
+//            if($file_arr){
+//                $n=1;
+//                $checkType = $this->groupByPartAndType($file_arr);
+//                foreach($checkType as $c){
+//                    $product .= "{$n}. ไฟล์{$c['file_type_name']} เรื่อง ";
+//                    $title .= "{$c['file_type_name']} / ";
+//                    foreach($file_arr as $key=>$value){
+//                        $meta_text = substr($value['file_name'], -4, 5);
+//                        if($value['file_type'] == $c['file_type']){
+//                            $product .= "<div style='margin-bottom:10px;'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>    
+//                            </div>";
+//                        }
+//                    }
+//                    $n++;
+//                }
+//            }
             $title = substr($title, 0, strlen($title)-2);
             //\appxq\sdii\utils\VarDumper::dump($x);
             if($type == "print"){
@@ -185,7 +185,8 @@ class OrderController extends Controller
                 'count'=>count($orderDetail),
                 'product'=>$product,
                  'title'=>$title,
-                'autoPrint'=>true   
+                'autoPrint'=>true ,
+                'id'=>$id   
               ]); 
             }else if($type == "preview"){
                return $this->renderAjax('preview',[
@@ -202,6 +203,7 @@ class OrderController extends Controller
                     'count'=>count($orderDetail),
                     'product'=>$product,
                     'title'=>$title,
+                    'id'=>$id
                      
                   ]); 
                 if($email){
@@ -241,30 +243,20 @@ class OrderController extends Controller
       }
       
    public function actionAddRequest(){
-       $id = Yii::$app->request->post('id', '');
+       $id = Yii::$app->request->get('id', '');
        $user_id = Yii::$app->user->id;
-       
-       //\appxq\sdii\utils\VarDumper::dump(Yii::$app->user->identity->userProfile);
-       $model = \common\models\Shipper::find()->where('user_id=:user_id', [':user_id'=>$user_id])->one();
+       $model = \common\models\Shipper::find()->where('id=:id', [':id'=>$id])->one();
        if(!$model){
-           $profile = isset(Yii::$app->user->identity->userProfile) ? Yii::$app->user->identity->userProfile : '';
-           
-           $model = new \common\models\Shipper();
-           $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
-           $model->firstname = isset($profile['firstname']) ? $profile['firstname'] : '';
-           $model->lastname = isset($profile['lastname']) ? $profile['lastname'] : '';
-           $model->sitecode = isset($profile['sitecode']) ? $profile['sitecode'] : '';
-           $model->position = isset($profile['position']) ? $profile['position'] : '';
-           $model->user_id = $user_id;
-           $model->email = isset(Yii::$app->user->identity->email) ? Yii::$app->user->identity->email : '';
+           $model = new \common\models\Shipper(); 
+           $model->id = $id;
+       } 
+       $product = $this->getProduct($id); 
+       if($model->load(Yii::$app->request->post())){
            if($model->save()){
-               $model = \common\models\Shipper::find()->where('user_id=:user_id', [':user_id'=>$user_id])->one();
+                return \janpan\jn\classes\JResponse::getSuccess("ส่งข้อมูลเรียบร้อย");
+           }else{
+               return \janpan\jn\classes\JResponse::getError("error ", $model->errors);
            }
-       }
-       $product = $this->getProduct($id);
-       //\appxq\sdii\utils\VarDumper::dump($product);
-       if($model->load(Yii::$app->request->post()) && $model->save()){
-           return \janpan\jn\classes\JResponse::getSuccess("ส่งข้อมูลเรียบร้อย"); 
        }
        //\appxq\sdii\utils\VarDumper::dump($model);
        return $this->renderAjax('add-request', [
@@ -305,9 +297,10 @@ class OrderController extends Controller
                 foreach ($file_arr as $key => $value) {
                     $meta_text = substr($value['file_name'], -4, 5);
                     if ($value['file_type'] == $c['file_type']) {
-                        $product .= "<div style='margin-bottom:10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$n}. {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                        $product .= "<div class='f-t-11' style='margin-bottom:10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".($key+1).". {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
                             </div>";
                     }
+                    //$product .= "<span>{$key}</span>";
                     $n++;
                 }
                 

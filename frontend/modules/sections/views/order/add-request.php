@@ -26,7 +26,7 @@
         เรื่อง  ขอความอนุเคราะห์ข้อมูล<br>
         เรียน หัวหน้าหน่วยพิพิธภัณฑ์ศิริราช
     </h2>
-   
+    <?= $form->field($model, 'id')->hiddenInput()->label(FALSE);?>
     <?= $form->field($model, 'firstname')->textInput()?>
     <?= $form->field($model, 'lastname')->textInput()?>
     <?= $form->field($model, 'position')->textInput()?>

@@ -31,9 +31,9 @@ $actionID = Yii::$app->controller->action->id;
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ], 
                 [
-                    'label' => Yii::t('appmenu', 'Order Management'),
+                    'label' => ' จัดการใบคำร้อง',
                     'url' => ['/order/order-management'],
-                    'icon' => '<i class="fa fa-shopping-cart"></i>',
+                    'icon' => "<img src='". \yii\helpers\Url::to('@web/images/cart-icon.png')."' style='width:25px;'>  ",
                     'active' => ($moduleID == 'order') ? TRUE : FALSE,
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->can('admin')),
                 ],

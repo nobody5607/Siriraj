@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?= yii\helpers\Url::to(['/sections/cart/my-check-out?step=1'])?>" class="btn btn-info btn-block btn-lg" style="position: relative;">
-                        <img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?= Yii::t('cart', 'Next')?>
+                        <img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?= Yii::t('cart', 'ยืนยัน รายการคำขอ')?>
                     </a>
                 </div>
             </div>
