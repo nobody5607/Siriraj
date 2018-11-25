@@ -40,7 +40,7 @@ use yii\helpers\Url;
                                         echo "<div class='label label-default pull-right'>1024 x 768 Pixel</div>";
                                         echo "<div id=''>";
                                         echo Html::beginTag("div", ['class' => 'flex-3', 'data-src' => "{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", 'data-sub-html' => "{$dataDefault['details']}"]);
-                                            echo \yii\helpers\Html::img("{$dataDefault['file_path']}/thumbnail/{$dataDefault['file_name']}", [
+                                            echo \yii\helpers\Html::img("{$dataDefault['file_path']}/{$dataDefault['file_name']}", [
                                                 'class' => 'img img-responsive'
                                             ]);
                                         echo Html::endTag("div");
