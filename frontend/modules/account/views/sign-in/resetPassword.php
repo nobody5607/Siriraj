@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use appxq\sdii\helpers\SDNoty;
+use appxq\sdii\helpers\SDHtml;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -42,3 +44,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php ActiveForm::end() ?>
     </div>
 </div>
+<?php richardfan\widget\JSRegister::begin(); ?>
+<script>
+    $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
+        
+        var $form = $(this);
+        $.post(
+            $form.attr('action'), //serialize Yii2 form
+            $form.serialize()
+        ).done(function(result) {
+            if(result.status == 'success') {
+                <?= SDNoty::show('result.message', 'result.status')?>
+                let url = '<?= \yii\helpers\Url::to(['/account/sign-in/login'])?>';
+                setTimeout(function(){
+                    location.href = url;
+                },1000);
+                 
+            } else {
+                <?= SDNoty::show('result.message', 'result.status')?>
+            } 
+        }).fail(function() {
+            <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
+            console.log('server error');
+        });
+        return false;
+    });
+</script>
+<?php richardfan\widget\JSRegister::end(); ?> 

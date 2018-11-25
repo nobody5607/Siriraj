@@ -163,18 +163,22 @@ class SignInController extends Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
+        $message = '';
+        $status = '';
         if ($model->load(Yii::$app->request->post())) {
-            //\appxq\sdii\utils\VarDumper::dump($_POST);
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', Yii::t('frontend', 'ตรวจสอบอีเมลของคุณเพื่อดูคำแนะนำเพิ่มเติม'));
+                return \janpan\jn\classes\JResponse::getSuccess('ตรวจสอบอีเมลของคุณเพื่อดูคำแนะนำเพิ่มเติม');
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('frontend', 'ขออภัยเราไม่สามารถรีเซ็ตรหัสผ่านสำหรับที่อยู่อีเมลที่ให้มาได้'));
+                return \janpan\jn\classes\JResponse::getError('ขออภัยเราไม่สามารถรีเซ็ตรหัสผ่านสำหรับที่อยู่อีเมลที่ให้มาได้');
             }
-
-            return $this->refresh();
         }
 
-        return $this->render('requestPasswordResetToken', ['model' => $model]);
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+            'message'=>$message,
+            'status'=>$status
+                
+        ]);
     }
 
     /**
@@ -193,9 +197,10 @@ class SignInController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('frontend', 'New password saved.'));
+            //Yii::$app->session->setFlash('success', Yii::t('frontend', 'New password saved.'));
+            return \janpan\jn\classes\JResponse::getSuccess("รีเซ็ตรหัสผ่านสำเร็จ");
 
-            return $this->goHome();
+            //return $this->goHome();
         }
 
         return $this->render('resetPassword', ['model' => $model]);
