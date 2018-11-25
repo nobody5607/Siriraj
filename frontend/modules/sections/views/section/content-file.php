@@ -7,7 +7,7 @@
             <div class="product-list-box">                  
 
                 <h3 class="text-left header-text-content" style="">
-                    <i class="fa fa-<?= $f['icon'] ?>"></i> <label style="color:#fff;"><?= Yii::t('section',$f['name']) ?>   </label>                    
+                    <i class="fa fa-<?= $f['icon'] ?>"></i> <label class="header-content-type"><?= Yii::t('section',$f['name']) ?>   </label>                    
                     <small ><?= count($files) ?> <?= Yii::t('section', 'Item') ?> </small>
 
                 </h3>

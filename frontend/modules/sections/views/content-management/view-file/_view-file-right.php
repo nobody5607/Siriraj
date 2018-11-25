@@ -14,7 +14,7 @@ use yii\helpers\Html;
             </div>     
             <div class="border-bottom">
                 <label>
-                    <i class="fa fa-calendar"></i> อัพเดตล่าสุด: <?php echo appxq\sdii\utils\SDdate::mysql2phpThDateTime($dataDefault['create_date'])?>
+                    <i class="fa fa-calendar"></i> อัพเดตล่าสุด: <?php echo isset($dataDefault['create_date']) ? appxq\sdii\utils\SDdate::mysql2phpThDateTime($dataDefault['create_date']) : ''?>
                 </label>    
             </div>
 

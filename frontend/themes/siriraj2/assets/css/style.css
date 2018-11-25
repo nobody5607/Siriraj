@@ -430,6 +430,9 @@ section {
         border-radius: 6px;
         font-weight: bold;
     }
+    .header-content-type{
+        color:#fff;
+    }
     
 }/*min width*/
 
@@ -575,11 +578,12 @@ section {
         width: 100%;
         display: block;
         padding: 30px;
-        font-size: 18pt;
-        font-weight: bold;
+        font-size: 14pt;
+        font-weight: normal;
         color: #fff;
         letter-spacing: 1px;
     }
+    
     
     #globalCart {
         background: #f47736;
@@ -639,5 +643,8 @@ section {
         }
         .pro-content .pro-infos p{
             display: none;
+        }
+        .header-content-type{
+            color:#4e2455;
         }
 }
