@@ -37,4 +37,13 @@ class JResponse {
         ];
         return $result;
     }
+    public static function getWarning($message , $model="", $action=""){
+        self::init();
+        $result = [
+            'status' => 'warning',
+            'message' => "<strong><i class='fa fa-exclamation-circle'></i></strong> {$message}",
+            'data' => $model,
+        ];
+        return $result;
+    }
 }

@@ -66,7 +66,7 @@ class ContentManagementController extends Controller
             
             $checkName = Contents::find()->where(['name' => $_POST['Contents']['name']])->andWhere('rstat <> 3')->one();
             if (!empty($checkName)) {
-                return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
+                return \janpan\jn\classes\JResponse::getWarning("ชื่อซ้ำ");
                 //return \janpan\jn\classes\JResponse::getError("{$_POST['Contents']['name']} ถูกใช้งานแล้ว");
             }
 
@@ -98,7 +98,7 @@ class ContentManagementController extends Controller
                     ->andWhere('id != :id AND rstat <> 3', [':id' => $id])->one();
            // \appxq\sdii\utils\VarDumper::dump($id);
             if (!empty($checkName)) {
-                return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
+                return \janpan\jn\classes\JResponse::getWarning("ชื่อซ้ำ");
                 //return \janpan\jn\classes\JResponse::getError("{$_POST['Contents']['name']} ถูกใช้งานแล้ว");
             }
             

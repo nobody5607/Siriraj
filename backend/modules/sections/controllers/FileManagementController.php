@@ -109,7 +109,7 @@ class FileManagementController extends Controller
                 
                 $checkName = \common\models\Files::find()->where(['file_name_org'=>$post['file_name_org']])->andWhere('id != :id', [':id'=>$filet_id])->one();
                 if(!empty($checkName)){
-                    return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
+                    return \janpan\jn\classes\JResponse::getWarning("ชื่อซ้ำ");
                 } 
                 
                 if ($model->save()) {		 
@@ -141,7 +141,7 @@ class FileManagementController extends Controller
                 
                 $checkName = \common\models\Files::find()->where(['file_name_org'=>$_POST['Files']['file_name_org']])->andWhere('id <> :id', [':id'=>$id])->one();
                 if(!empty($checkName)){
-                    return \janpan\jn\classes\JResponse::getError("ชื่อซ้ำ");
+                    return \janpan\jn\classes\JResponse::getWarning("ชื่อซ้ำ");
                     //return \janpan\jn\classes\JResponse::getError("{$_POST['Files']['file_name_org']} ถูกใช้งานแล้ว");
                 }
                 
