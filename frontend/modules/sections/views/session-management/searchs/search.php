@@ -1,5 +1,7 @@
 <?php
 $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section', 'Section');
+//$sectionProvider , $contentProvider
+
 ?>
 
 <div class="" style="margin-top:20px;"> 
@@ -22,22 +24,70 @@ $this->title = isset($_GET['txtsearch']) ? $_GET['txtsearch'] : Yii::t('section'
         ?>
         <?php
         
-        echo yii\widgets\ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'item col-md-4 col-xs-6'],
-            //'layout' => "{items}",
-            'layout' => '<div class=" sidebar-nav-title text-left" ><h3>{summary}</h3></div><div class="row">{items}</div><div class="clearfix"><div class="row " style="margin:0 auto;text-align:center;">{pager}</div></div>',
+        if(isset($sectionProvider->models) && count($sectionProvider->models) > 0){
+            //พิพิธภัณฑ์ศิริราช
+//            appxq\sdii\utils\VarDumper::dump($sectionProvider->models);
+            echo yii\widgets\ListView::widget([
+                'dataProvider' => $sectionProvider,
+                'itemOptions' => ['class' => 'item col-md-4 col-xs-6'],
+                //'layout' => "{items}",
+                //'layout' => '<div class=" sidebar-nav-title text-left" ><h3>{summary}</h3></div><div class="row">{items}</div><div class="clearfix"><div class="row " style="margin:0 auto;text-align:center;">{pager}</div></div>',
+                'layout' =>'{items}',
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_item', [
+                                'model' => $model,
+                                'key' => $key,
+                                'index' => $index,
+                                'data_type'=>'section',
+                                //'widget' => $widget,
+                                'ezf_id' => $model['id'],
+                    ]);
+                }
+            ]);
+        }
+        
+        if(isset($contentProvider->models) && count($contentProvider->models) > 0){
+            //พิพิธภัณฑ์ศิริราช
+//            appxq\sdii\utils\VarDumper::dump($sectionProvider->models);
+            echo yii\widgets\ListView::widget([
+                'dataProvider' => $contentProvider,
+                'itemOptions' => ['class' => 'item col-md-4 col-xs-6'],
+                //'layout' => "{items}",
+                'layout' =>'{items}',
+                //'layout' => '<div class=" sidebar-nav-title text-left" ><h3>{summary}</h3></div><div class="row">{items}</div><div class="clearfix"><div class="row " style="margin:0 auto;text-align:center;">{pager}</div></div>',
 
-            'itemView' => function ($model, $key, $index, $widget) {
-                return $this->render('_item', [
-                            'model' => $model,
-                            'key' => $key,
-                            'index' => $index,
-                            //'widget' => $widget,
-                            'ezf_id' => $model['id'],
-                ]);
-            }
-        ]);
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_item', [
+                                'model' => $model,
+                                'key' => $key,
+                                'index' => $index,
+                                'data_type'=>'content',
+                                //'widget' => $widget,
+                                'ezf_id' => $model['id'],
+                    ]);
+                }
+            ]);
+        }
+        if(isset($dataProvider->models) && count($dataProvider->models) > 0){
+            echo yii\widgets\ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item col-md-4 col-xs-6'],
+                //'layout' => "{items}",
+                'layout' => '<div class=" sidebar-nav-title text-left" ><h3>{summary}</h3></div><div class="row">{items}</div><div class="clearfix"><div class="row " style="margin:0 auto;text-align:center;">{pager}</div></div>',
+
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_item', [
+                                'model' => $model,
+                                'key' => $key,
+                                'index' => $index,
+                                'data_type'=>'file',
+                                //'widget' => $widget,
+                                'ezf_id' => $model['id'],
+                    ]);
+                }
+            ]);
+        }
+        
         ?> 
     </div>
 </div>

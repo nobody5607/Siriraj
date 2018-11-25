@@ -95,6 +95,8 @@ class SessionManagementController extends Controller
         $fileType = \common\models\FileType::findOne($type_id);
         $data = \common\models\Files::find();
         
+        $sections = Sections::find()->where('name like :name AND rstat not in(0,3)',[':name'=>"%{$txtsearch}%"])->orderBy(['forder'=>SORT_ASC]);
+        $contents = \common\models\Contents::find()->where('name like :name AND rstat not in(0,3)', [':name'=>"%{$txtsearch}%"])->orderBy(['forder'=>SORT_ASC]);
         
         $model = $data->where('keywords LIKE :keywords OR details LIKE :details OR description LIKE :description  OR detail_meta LIKE :detail_meta  OR file_name_org LIKE :file_name OR meta_text LIKE :meta_text',[
             ':details'=>"%{$txtsearch}%",
@@ -118,7 +120,7 @@ class SessionManagementController extends Controller
             //\appxq\sdii\utils\VarDumper::dump($type_id);
         }
         
-        if(!empty($model)){
+        if(isset($model) || isset($sections) || isset($contents)){
             $keyword =  \common\models\KeywordSearch::find()->where(['word'=>$txtsearch])->one();
             
             if(!$keyword){
@@ -146,13 +148,39 @@ class SessionManagementController extends Controller
                     'id' => SORT_DESC,  
                 ]
             ],
-        ]);            
+        ]);  
+        
+        $sectionProvider = new \yii\data\ActiveDataProvider([
+            'query' => $sections,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,  
+                ]
+            ],
+        ]);  
+         
+        $contentProvider = new \yii\data\ActiveDataProvider([
+            'query' => $contents,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC,  
+                ]
+            ],
+        ]);  
         
         return $this->render("searchs/search",[
+            'sectionProvider'=>$sectionProvider,
+            'contentProvider'=>$contentProvider,
             'dataProvider'=>$dataProvider,
             'txtsearch'=> isset($txtsearch) ? $txtsearch : '',
             'fileType'=>$fileType,
-            'countSearch'=>count($model->all())
+            'countSearch'=>count($model->all()) + count($sections->all())+ count($contents->all())
         ]); 
     }
 }
