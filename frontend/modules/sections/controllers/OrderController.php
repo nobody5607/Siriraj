@@ -239,4 +239,81 @@ class OrderController extends Controller
 
         return array_values($output);
       }
+      
+   public function actionAddRequest(){
+       $id = Yii::$app->request->post('id', '');
+       $user_id = Yii::$app->user->id;
+       
+       //\appxq\sdii\utils\VarDumper::dump(Yii::$app->user->identity->userProfile);
+       $model = \common\models\Shipper::find()->where('user_id=:user_id', [':user_id'=>$user_id])->one();
+       if(!$model){
+           $profile = isset(Yii::$app->user->identity->userProfile) ? Yii::$app->user->identity->userProfile : '';
+           
+           $model = new \common\models\Shipper();
+           $model->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+           $model->firstname = isset($profile['firstname']) ? $profile['firstname'] : '';
+           $model->lastname = isset($profile['lastname']) ? $profile['lastname'] : '';
+           $model->sitecode = isset($profile['sitecode']) ? $profile['sitecode'] : '';
+           $model->position = isset($profile['position']) ? $profile['position'] : '';
+           $model->user_id = $user_id;
+           $model->email = isset(Yii::$app->user->identity->email) ? Yii::$app->user->identity->email : '';
+           if($model->save()){
+               $model = \common\models\Shipper::find()->where('user_id=:user_id', [':user_id'=>$user_id])->one();
+           }
+       }
+       $product = $this->getProduct($id);
+       //\appxq\sdii\utils\VarDumper::dump($product);
+       if($model->load(Yii::$app->request->post()) && $model->save()){
+           return \janpan\jn\classes\JResponse::getSuccess("ส่งข้อมูลเรียบร้อย"); 
+       }
+       //\appxq\sdii\utils\VarDumper::dump($model);
+       return $this->renderAjax('add-request', [
+           'model'=>$model,
+           'product'=>$product
+       ]);
+   }
+   public function getProduct($id){
+       $orderDetail = \common\models\OrderDetail::find()->where(['order_id' => $id])->all();
+        // \appxq\sdii\utils\VarDumper::dump($id);
+        $file_arr = [];
+        if ($orderDetail) {
+            foreach ($orderDetail as $key => $o) {
+                //\appxq\sdii\utils\VarDumper::dump($o->sizes->label);
+                $files = \common\models\Files::find()->where(['id' => $o->product_id])->one();
+                $file_arr[$key] = [
+                    'id' => isset($files->id) ? $files->id : '',
+                    'file_type' => isset($files->file_type) ? $files->file_type : '',
+                    'file_type_name' => isset($files->type->name) ? $files->type->name : '',
+                    'size' => isset($o->sizes->label) ? $o->sizes->label : '',
+                    'file_name_org' => isset($files->file_name_org) ? $files->file_name_org : '',
+                    'file_name' => isset($files->file_name) ? $files->file_name : '',
+                    'meta_text' => isset($files->meta_text) ? $files->meta_text : '',
+                ];
+            }
+            sort($file_arr);
+            // \appxq\sdii\utils\VarDumper::dump($files);
+        }
+
+        $product = "";
+        $title = "";
+        if ($file_arr) {
+            $n = 1;
+            $checkType = $this->groupByPartAndType($file_arr);
+            foreach ($checkType as $c) {
+                //$product .= "{$n}. ไฟล์ {$c['file_type_name']} เรื่อง ";
+                $title .= "{$c['file_type_name']} / ";
+                foreach ($file_arr as $key => $value) {
+                    $meta_text = substr($value['file_name'], -4, 5);
+                    if ($value['file_type'] == $c['file_type']) {
+                        $product .= "<div style='margin-bottom:10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$n}. {$value['file_name_org']}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                            </div>";
+                    }
+                    $n++;
+                }
+                
+            }
+        }
+        return $product;
+//        \appxq\sdii\utils\VarDumper::dump($product);
+    }
 }

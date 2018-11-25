@@ -46,7 +46,7 @@ use yii\helpers\Html;
             <div class="panel panel-default" id="box">                 
                 <div class="panel-body">
                    <div class="text-center" style="">
-                       <button style="padding:10px;font-size:16pt;" class="btn btn-success btn-lg btn-block" id="btnCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <?= Yii::t('section', 'Add to cart') ?></button>
+                       <button style="padding:10px;font-size:16pt;" class="btn btn-success btn-lg btn-block" id="btnCart"><img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?= Yii::t('section', 'Add to cart') ?></button>
                    </div>
                     <div class="text-center" style="margin-top:10px;">
                        <button style="padding:10px;font-size:16pt;" class="btn btn-primary btn-lg btn-block" id="btnDownload"><i class="fa fa-download" aria-hidden="true"></i> <?= Yii::t('section', 'Download') ?></button>

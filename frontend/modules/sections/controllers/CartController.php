@@ -117,7 +117,7 @@ class CartController extends Controller
         if($step == 1){  
             
             $order = new \common\models\Order();
-            $order->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+            $order->id = time();//\appxq\sdii\utils\SDUtility::getMillisecTime();
             $order->create_date = new \yii\db\Expression('NOW()');
             $order->status = 1;
             $order->user_id = $user_id;

@@ -33,9 +33,9 @@ class Shipper extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'firstname', 'lastname'], 'required'],
+            [['firstname', 'lastname', 'position', 'sitecode', 'email', 'tel', 'note'], 'required'],
             [['id', 'user_id'], 'integer'],
-            [['companey_name', 'note'], 'string'],
+            [['companey_name', 'note', 'email','position'], 'string'],
             [['date'], 'safe'],
             [['firstname', 'lastname'], 'string', 'max' => 100],
             [['sitecode'], 'string', 'max' => 255],
@@ -54,11 +54,15 @@ class Shipper extends \yii\db\ActiveRecord
             'user_id' => Yii::t('order', 'User ID'),
             'firstname' => Yii::t('order', 'ขื่อ'),
             'lastname' => Yii::t('order', 'นามสกุล'),
-            'sitecode' => Yii::t('order', 'หน่วยงาน'),
+            'sitecode' => Yii::t('order', 'หน่วยงาน หรือที่อยู่'),
             'companey_name' => Yii::t('order', 'ที่อยู่'),
             'tel' => Yii::t('order', 'เบอร์โทรศัพท์'),
             'note' => Yii::t('order', 'Note'),
             'date' => Yii::t('order', 'Date'),
+            'position'=>'ตำแหน่ง หรืออาชีพ',
+            'tel'=>'เบอร์โทรศัพท์',
+            'note'=>'วัตถุประสงค์ในการนำข้อมูลไปใช้',
+            'email' => 'อีเมล์'
         ];
     }
 }

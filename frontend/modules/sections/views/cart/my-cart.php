@@ -1,5 +1,6 @@
 <?php 
     use yii\helpers\Html;
+    use yii\helpers\Url;
     $this->title = Yii::t('appmenu', 'My Cart');
     if($breadcrumb){
         echo janpan\jn\widgets\BreadcrumbsWidget::widget([
@@ -10,7 +11,7 @@
 <div class="col-md-12" id="10" data-id="10" style="padding: 5px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-shopping-cart"></i> <?= Html::encode($this->title)?></div>             
+            <div class="panel-title"><img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?= Html::encode($this->title)?></div>             
         </div>
         <!-- /.box-header -->
         <div class="panel-body" style="">
@@ -79,7 +80,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?= yii\helpers\Url::to(['/sections/cart/my-check-out?step=1'])?>" class="btn btn-info btn-block btn-lg" style="position: relative;">
-                        <i class="fa fa-shopping-cart"></i> <?= Yii::t('cart', 'Next')?>
+                        <img src="<?= Url::to('@web/images/cart-icon.png')?>" style="width:25px;"> <?= Yii::t('cart', 'Next')?>
                     </a>
                 </div>
             </div>
