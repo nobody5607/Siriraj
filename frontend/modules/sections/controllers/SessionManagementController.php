@@ -90,6 +90,7 @@ class SessionManagementController extends Controller
         return $output;
     }
     public function actionSearch(){
+        ini_set('memory_limit', '-1');
         $type_id    = Yii::$app->request->get('type_id', '');
         $txtsearch = Yii::$app->request->get('txtsearch', '');
         $fileType = \common\models\FileType::findOne($type_id);

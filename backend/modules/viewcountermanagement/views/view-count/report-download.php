@@ -73,5 +73,19 @@ $itemMonth = ['0' => 'all', '1' => "ม.ค.", '2' => "ก.พ.", '3' => "มี
         });
         return false;
     });
+    function initialData(){
+        let year = $('#year').val();
+        let month = $('#month').val();
+        let params = {year: year, month: month, print: 0};
+        let url = '<?= Url::to(['/viewcountermanagement/view-count/report-download-preview'])?>';
+        
+        
+        $('#preview-count').html(`<div class='text-center'><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>`);
+        $.get(url, params, function (data) {
+            $('#preview-count').html(data);
+        });
+        return false;
+    }
+    initialData();
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>

@@ -62,6 +62,16 @@ $itemMonth = ['0' => 'all', '1' => "ม.ค.", '2' => "ก.พ.", '3' => "มี
 </div>
 <?php richardfan\widget\JSRegister::begin(); ?>
 <script>
+    function initialData(){
+        let year = $('#year').val();
+        let month = $('#month').val();
+        let params = {year: year, month: month, print: 0};
+        let url = '<?= Url::to(['/viewcountermanagement/view-count/preview'])?>';
+        $.get(url, params, function (data) {
+            $('#preview-count').html(data);
+        });
+        return false;
+    }
     $('#btnView').on('click', function () {
         let year = $('#year').val();
         let month = $('#month').val();
@@ -72,5 +82,6 @@ $itemMonth = ['0' => 'all', '1' => "ม.ค.", '2' => "ก.พ.", '3' => "มี
         });
         return false;
     });
+    initialData();
 </script>
 <?php richardfan\widget\JSRegister::end(); ?>
