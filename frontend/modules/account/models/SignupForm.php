@@ -121,9 +121,16 @@ class SignupForm extends Model
         if (!$user->save()) {
             return false;
         }
-
+        
+        return \Yii::$app->mailer->compose()
+                    ->setFrom(['chanpan.nuttaphon1993@gmail.com' => 'พิพิธภัณฑ์ศิริราช'])
+                    ->setTo($this->email)
+                    ->setSubject('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') 
+                    ->setHtmlBody('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') //เลือกอยางใดอย่างหนึ่ง
+                    ->send();
+        \appxq\sdii\utils\VarDumper::dump($user);
         return Yii::$app->mailer->compose('activation', ['user' => $user])
-            ->setFrom([Yii::$app->params['robotEmail'] => Yii::$app->name . ' robot'])
+            ->setFrom(['chanpan.nuttaphon1993@gmail.com' => 'Siriraj'])
             ->setTo($this->email)
             ->setSubject(Yii::t('frontend', 'Activation for {name}', ['name' => Yii::$app->name]))
             ->send();

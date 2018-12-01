@@ -100,6 +100,14 @@ class SignInController extends Controller
      */
     public function actionSignup()
     {
+        return \Yii::$app->mailer->compose()
+                    ->setFrom(['chanpan.nuttaphon1993@gmail.com' => 'พิพิธภัณฑ์ศิริราช'])
+                    ->setTo('chanpan.nuttaphon.nut@gmail.com')
+                    ->setSubject('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') 
+                    ->setHtmlBody('แบบฟอร์มและหนังสือขอภาพพิพิธภัณฑ์ศิริราช') //เลือกอยางใดอย่างหนึ่ง
+                    ->send();
+    \appxq\sdii\utils\VarDumper::dump('ok');
+        
         if (Yii::$app->keyStorage->get('frontend.registration')) {
             $model = new SignupForm();
             if ($model->load(Yii::$app->request->post())) {

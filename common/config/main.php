@@ -97,8 +97,8 @@ $config = [
                 'host' => 'smtp.gmail.com',
                 'username' => 'chanpan.nuttaphon1993@gmail.com',//'ncrcthailand@gmail.com',
                 'password' => 'Chanpan!((#',//'ncrc2018',
-                'port' => '465',//587
-                'encryption' => 'ssl',//tls
+                'port' => '235',//587 , 465
+                'encryption' => 'tls',//tls, ssl
             ],
 
         ],
