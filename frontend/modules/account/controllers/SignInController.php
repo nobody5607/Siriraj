@@ -103,19 +103,19 @@ class SignInController extends Controller
         if (Yii::$app->keyStorage->get('frontend.registration')) {
             $model = new SignupForm();
             if ($model->load(Yii::$app->request->post())) {
-//                \appxq\sdii\utils\VarDumper::dump($model);
+                //\appxq\sdii\utils\VarDumper::dump(Yii::$app->keyStorage->get('frontend.email-confirm'));
                 if ($user = $model->signup()) {
-                    if (Yii::$app->getUser()->login($user)) {
-                            return $this->goHome();
-                    }
+//                    if (Yii::$app->getUser()->login($user)) {
+//                            return $this->goHome();
+//                    }
                     if (Yii::$app->keyStorage->get('frontend.email-confirm')) {
-                        // подтверждение email
+                       
                         if ($model->sendEmail()) {
                             Yii::$app->session->setFlash('success', Yii::t('frontend', 'Your account has been successfully created. Check your email for further instructions.'));
                         } else {
                             Yii::$app->session->setFlash('error', Yii::t('frontend', 'There was an error sending your message.'));
                         }
-
+                        //\appxq\sdii\utils\VarDumper::dump(Yii::$app->keyStorage->get('frontend.email-confirm'));
                         return $this->refresh();
                     } else {
                         // автологин

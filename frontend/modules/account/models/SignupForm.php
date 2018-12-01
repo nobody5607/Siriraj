@@ -88,7 +88,7 @@ class SignupForm extends Model
             $user = new User();
             $user->username = $this->username;
             $user->email = $this->email;
-            $user->status = User::STATUS_ACTIVE;//Yii::$app->keyStorage->get('frontend.email-confirm') ? User::STATUS_INACTIVE : User::STATUS_ACTIVE;
+            $user->status = Yii::$app->keyStorage->get('frontend.email-confirm') ? User::STATUS_INACTIVE : User::STATUS_ACTIVE;
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
